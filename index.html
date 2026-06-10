@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Texas CDL Practice — Master the Exam</title>
+<style>
+  :root{
+    --navy:#0b2545; --navy2:#13315c; --blue:#2563eb; --blue-d:#1d4ed8;
+    --red:#d7263d; --green:#188a4f; --green-bg:#e8f7ee; --red-bg:#fdeaec;
+    --amber:#c77700;
+    --bg:#eef2f7; --card:#ffffff; --line:#e3e8f0; --ink:#0f1b2d; --muted:#5b6b82;
+    --shadow:0 6px 24px rgba(13,30,55,.08); --shadow-lg:0 14px 40px rgba(13,30,55,.16);
+    --radius:16px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b1220; --card:#121c2e; --line:#23314a; --ink:#eef3fb; --muted:#9fb0c8;
+    --navy:#0a1832; --navy2:#10254a; --green-bg:#10301f; --red-bg:#3a1620;
+    --shadow:0 6px 24px rgba(0,0,0,.4); --shadow-lg:0 16px 44px rgba(0,0,0,.55);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--blue);text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+
+  /* Header */
+  header.top{
+    background:linear-gradient(135deg,var(--navy),var(--navy2));
+    color:#fff; box-shadow:var(--shadow); position:sticky; top:0; z-index:30;
+  }
+  .top-inner{display:flex;align-items:center;gap:14px;padding:14px 18px;max-width:1040px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none}
+  .star{width:34px;height:34px;flex:0 0 auto;background:var(--red);border-radius:9px;
+    display:grid;place-items:center;color:#fff;font-weight:800;box-shadow:0 3px 8px rgba(0,0,0,.25)}
+  .brand h1{font-size:1.05rem;margin:0;letter-spacing:.2px;font-weight:750}
+  .brand p{margin:0;font-size:.72rem;opacity:.8;font-weight:500}
+  .top-spacer{flex:1}
+  .hbtn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);
+    padding:7px 12px;border-radius:9px;font-size:.82rem;cursor:pointer;font-weight:600;transition:.15s}
+  .hbtn:hover{background:rgba(255,255,255,.22)}
+  .langdd{position:relative;display:inline-block}
+  .langbtn{display:inline-flex;align-items:center;gap:6px;color:#fff;background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.22);border-radius:9px;padding:6px 11px;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.3px}
+  .langbtn:hover{background:rgba(255,255,255,.22)}
+  .langbtn .cv{font-size:.66rem;transition:transform .15s;opacity:.85}
+  .langdd.open .langbtn .cv{transform:rotate(180deg)}
+  .langmenu{position:absolute;top:calc(100% + 6px);right:0;min-width:72px;background:var(--card);border:1px solid var(--line);
+    border-radius:10px;box-shadow:var(--shadow-lg);padding:5px;display:none;z-index:50}
+  .langdd.open .langmenu{display:block}
+  .langmenu button{display:block;width:100%;text-align:left;background:transparent;border:none;color:var(--ink);
+    padding:8px 16px;font-size:.82rem;font-weight:700;cursor:pointer;border-radius:7px;letter-spacing:.3px}
+  .langmenu button:hover{background:var(--bg)}
+  .enflag{display:inline-block;font-size:.58rem;font-weight:800;vertical-align:middle;background:var(--bg);color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-left:6px;letter-spacing:.4px}
+
+  /* Hero / overall progress */
+  .hero{padding:26px 0 6px}
+  .hero h2{margin:0 0 4px;font-size:1.5rem;font-weight:780;letter-spacing:-.3px}
+  .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+  .overall{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:18px 20px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .ring{--p:0;width:74px;height:74px;border-radius:50%;flex:0 0 auto;
+    background:conic-gradient(var(--green) calc(var(--p)*1%), var(--line) 0);
+    display:grid;place-items:center}
+  .ring::after{content:attr(data-label);width:56px;height:56px;border-radius:50%;background:var(--card);
+    display:grid;place-items:center;font-weight:760;font-size:.92rem}
+  .overall .lbl{flex:1;min-width:200px}
+  .overall .lbl b{font-size:1.02rem}
+  .overall .lbl div{color:var(--muted);font-size:.86rem}
+
+  /* Category grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:18px 0 34px}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}}
+  .cat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:18px 18px 16px;cursor:pointer;transition:.16s;position:relative;overflow:hidden}
+  .cat:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .cat .accent{position:absolute;left:0;top:0;bottom:0;width:6px}
+  .cat h3{margin:2px 0 2px;font-size:1.12rem;font-weight:740;padding-left:6px}
+  .cat .desc{color:var(--muted);font-size:.85rem;min-height:34px;padding-left:6px}
+  .cat .meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 12px;padding-left:6px}
+  .pill{font-size:.72rem;font-weight:650;padding:4px 9px;border-radius:999px;background:var(--bg);
+    border:1px solid var(--line);color:var(--muted)}
+  .bar{height:9px;background:var(--line);border-radius:999px;overflow:hidden;margin:0 6px}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--green),#27b368);border-radius:999px;transition:width .5s}
+  .cat .prog-lbl{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin:7px 6px 0}
+
+  /* Tests list */
+  .crumb{display:flex;align-items:center;gap:8px;margin:22px 0 8px;font-size:.86rem;color:var(--muted)}
+  .crumb a{cursor:pointer;font-weight:600}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  .section-head h2{margin:0;font-size:1.45rem;font-weight:760;letter-spacing:-.3px}
+  .section-head .info{color:var(--muted);font-size:.9rem}
+  .tests{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px;margin:18px 0 36px}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);
+    padding:14px 13px;cursor:pointer;transition:.15s;position:relative}
+  .tcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#cfd9ea}
+  .tcard .num{font-size:.74rem;color:var(--muted);font-weight:650;letter-spacing:.4px;text-transform:uppercase}
+  .tcard .ttl{font-size:1.04rem;font-weight:740;margin:2px 0 10px}
+  .badge{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;
+    padding:4px 9px;border-radius:999px}
+  .b-new{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+  .b-pass{background:var(--green-bg);color:var(--green)}
+  .b-fail{background:var(--red-bg);color:var(--red)}
+  .tcard .best{font-size:.74rem;color:var(--muted);margin-top:8px}
+
+  /* Test runner */
+  .runner{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:0;overflow:hidden;margin:16px 0 40px}
+  .runbar{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .runbar .qpos{font-weight:740;font-size:1rem}
+  .runbar .tally{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+  .chip{font-size:.76rem;font-weight:700;padding:5px 11px;border-radius:999px}
+  .chip.ok{background:var(--green-bg);color:var(--green)}
+  .chip.no{background:var(--red-bg);color:var(--red)}
+  .chip.left{background:#eef3ff;color:var(--blue)}
+  [data-theme="dark"] .chip.left{background:#16264a}
+  .pbar{height:6px;background:var(--line)}
+  .pbar > i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#5b8cff);transition:width .35s}
+  .qbody{padding:22px 22px 24px}
+  .qtext{font-size:1.18rem;font-weight:650;line-height:1.45;margin:2px 0 18px}
+  .opts{display:flex;flex-direction:column;gap:11px}
+  .opt{display:flex;align-items:flex-start;gap:12px;border:1.5px solid var(--line);background:var(--card);
+    border-radius:12px;padding:14px 15px;cursor:pointer;transition:.13s;font-size:1rem;text-align:left;width:100%;color:var(--ink)}
+  .opt:hover:not(:disabled){border-color:var(--blue);background:#f5f8ff}
+  [data-theme="dark"] .opt:hover:not(:disabled){background:#16223b}
+  .opt .key{flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
+    display:grid;place-items:center;font-weight:740;font-size:.85rem}
+  .opt.correct{border-color:var(--green);background:var(--green-bg)}
+  .opt.correct .key{background:var(--green);color:#fff;border-color:var(--green)}
+  .opt.wrong{border-color:var(--red);background:var(--red-bg)}
+  .opt.wrong .key{background:var(--red);color:#fff;border-color:var(--red)}
+  .opt:disabled{cursor:default}
+  .opt .mark{margin-left:auto;font-weight:800;font-size:1.05rem}
+
+  .explain{margin-top:18px;border-radius:12px;padding:15px 16px;border:1px solid var(--line);
+    background:var(--bg);display:none}
+  .explain.show{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .explain .verdict{font-weight:760;font-size:1rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .explain.good .verdict{color:var(--green)}
+  .explain.bad .verdict{color:var(--red)}
+  .explain p{margin:6px 0}
+  .explain .hb{margin-top:11px;border-left:4px solid var(--amber);background:var(--card);
+    padding:10px 13px;border-radius:0 9px 9px 0;font-size:.92rem}
+  .explain .hb .src{display:block;font-size:.74rem;font-weight:740;color:var(--amber);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+  .explain .hb i{color:var(--ink);font-style:italic}
+
+  .runfoot{display:flex;align-items:center;gap:12px;padding:16px 22px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .btn{border:none;border-radius:11px;padding:12px 20px;font-size:.96rem;font-weight:700;cursor:pointer;transition:.15s}
+  .btn.primary{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(37,99,235,.32)}
+  .btn.primary:hover{background:var(--blue-d)}
+  .btn.ghost{background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:#c2cee0}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .runfoot .hint{color:var(--muted);font-size:.84rem}
+
+  /* Results */
+  .result{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:30px 26px;text-align:center;margin:16px 0 22px}
+  .result .seal{width:96px;height:96px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
+    font-size:2.6rem;color:#fff}
+  .result.pass .seal{background:linear-gradient(135deg,var(--green),#27b368);box-shadow:0 10px 26px rgba(24,138,79,.4)}
+  .result.fail .seal{background:linear-gradient(135deg,var(--red),#ef5366);box-shadow:0 10px 26px rgba(215,38,61,.36)}
+  .result h2{margin:0 0 4px;font-size:1.7rem;font-weight:800}
+  .result.pass h2{color:var(--green)} .result.fail h2{color:var(--red)}
+  .result .score{font-size:3rem;font-weight:820;letter-spacing:-1px;margin:6px 0}
+  .result .line{color:var(--muted);font-size:.96rem}
+  .result .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+
+  .review h3{font-size:1.1rem;margin:26px 0 10px}
+  .rev{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);
+    padding:14px 16px;margin-bottom:11px}
+  .rev .rq{font-weight:650;margin-bottom:8px}
+  .rev .ra{font-size:.9rem;margin:3px 0;padding-left:24px;position:relative}
+  .rev .ra::before{position:absolute;left:0;top:0;font-weight:800}
+  .rev .ra.you-wrong{color:var(--red)} .rev .ra.you-wrong::before{content:"✗";color:var(--red)}
+  .rev .ra.correct{color:var(--green)} .rev .ra.correct::before{content:"✓";color:var(--green)}
+  .rev .rhb{margin-top:8px;font-size:.86rem;color:var(--muted);border-left:3px solid var(--amber);padding:4px 11px}
+  .rev .rhb b{color:var(--amber)}
+
+  footer{color:var(--muted);font-size:.8rem;text-align:center;padding:26px 18px 40px;line-height:1.6}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);
+    color:#fff;padding:11px 18px;border-radius:11px;box-shadow:var(--shadow-lg);font-size:.88rem;font-weight:600;
+    opacity:0;pointer-events:none;transition:.25s;z-index:60}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .kbd{font-size:.72rem;color:var(--muted)}
+
+  /* Roadmap */
+  .roadmap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:18px 20px 20px;margin:18px 0 8px;position:relative;overflow:hidden}
+  .roadmap::before{content:"";position:absolute;left:0;top:0;right:0;height:5px;
+    background:linear-gradient(90deg,var(--red),var(--blue),#0f9d8c,#7c3aed)}
+  .rm-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:4px}
+  .rm-head h3{margin:0 0 3px;font-size:1.2rem;font-weight:760}
+  .rm-tag{color:var(--muted);font-size:.86rem}
+  .rm-tag b{color:var(--ink)}
+  .rm-ready{flex:0 0 auto;text-align:center;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 14px}
+  .rm-ready b{font-size:1.3rem;font-weight:800;display:block;line-height:1}
+  .rm-ready span{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .rm-group{font-size:.74rem;font-weight:740;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);
+    margin:18px 0 9px}
+  .rm-steps{display:flex;flex-direction:column;gap:9px}
+  .rm-step{display:flex;align-items:center;gap:13px;border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:var(--card)}
+  .rm-step.click{cursor:pointer;transition:.14s}
+  .rm-step.click:hover{border-color:#c2cee0;transform:translateX(2px);box-shadow:var(--shadow)}
+  .rm-step .ico{flex:0 0 auto;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:.95rem}
+  .rm-step .ico.muted{background:var(--bg);color:var(--muted);border:1px dashed var(--line)}
+  .rm-step .nm{flex:1;min-width:0}
+  .rm-step .nm b{display:block;font-size:.98rem;font-weight:680}
+  .rm-step .nm span{font-size:.78rem;color:var(--muted)}
+  .b-prog{background:#fff4e0;color:var(--amber)}
+  [data-theme="dark"] .b-prog{background:#3a2a12}
+  .rm-ends{display:flex;flex-wrap:wrap;gap:8px}
+  .rm-chip{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:620;color:var(--muted);
+    background:var(--bg);border:1px dashed var(--line);border-radius:999px;padding:7px 13px}
+  .rm-chip .code{background:var(--card);border:1px solid var(--line);border-radius:6px;font-weight:800;font-size:.72rem;
+    color:var(--ink);width:20px;height:20px;display:grid;place-items:center}
+  .rm-chip .soon{font-size:.68rem;text-transform:uppercase;letter-spacing:.4px;color:var(--amber);font-weight:740}
+  .rm-chip.on{border-style:solid;color:var(--ink);cursor:pointer}
+
+  /* Downloads / study materials */
+  .downloads{margin:26px 0 8px}
+  .dl-head{margin-bottom:12px}
+  .dl-head h3{margin:0 0 3px;font-size:1.15rem;font-weight:760}
+  .dl-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .dl-card{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;box-shadow:var(--shadow);padding:15px 16px;text-decoration:none;color:var(--ink);transition:.15s}
+  .dl-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#c2cee0}
+  .dl-ico{flex:0 0 auto;width:44px;height:44px;border-radius:11px;display:grid;place-items:center;font-size:1.5rem;
+    background:var(--bg);border:1px solid var(--line)}
+  .dl-card .dl-txt{flex:1;min-width:0}
+  .dl-card b{display:block;font-size:1rem;font-weight:720}
+  .dl-card span{font-size:.8rem;color:var(--muted)}
+  .dl-go{flex:0 0 auto;font-size:.82rem;font-weight:700;color:var(--blue);background:#eef3ff;border-radius:9px;padding:7px 12px;white-space:nowrap}
+  [data-theme="dark"] .dl-go{background:#16264a}
+  footer .dlinks{margin-top:10px}
+  footer .dlinks a{font-weight:650;margin:0 8px}
+
+  /* =================== RESPONSIVE =================== */
+  /* Tablet */
+  @media (max-width:1024px){
+    .wrap{padding:0 16px}
+    .grid{gap:14px}
+    .hero h2{font-size:1.4rem}
+  }
+  /* Small tablet / large phone */
+  @media (max-width:760px){
+    .top-inner{padding:11px 14px;gap:9px}
+    .brand h1{font-size:.96rem}
+    .brand p{display:none}
+    .hbtn{padding:6px 10px;font-size:.78rem}
+    .hero{padding:20px 0 4px}
+    .hero h2{font-size:1.26rem}
+    .grid{grid-template-columns:1fr}
+    .overall{padding:16px;gap:16px}
+    .rm-head{flex-direction:column}
+    .rm-ready{align-self:flex-start}
+    .dl-row{grid-template-columns:1fr}
+    .section-head{gap:8px}
+    .section-head h2{font-size:1.25rem}
+  }
+  /* Phone */
+  @media (max-width:480px){
+    .wrap{padding:0 12px}
+    .star{width:30px;height:30px}
+    .brand h1{font-size:.9rem}
+    .hero h2{font-size:1.1rem}
+    .hero .sub{font-size:.85rem}
+    .ring{width:64px;height:64px}
+    .ring::after{width:48px;height:48px;font-size:.8rem}
+    .overall .lbl b{font-size:.95rem}
+    .tests{grid-template-columns:1fr 1fr;gap:10px}
+    .tcard .ttl{font-size:.98rem}
+    .qbody{padding:16px 14px 18px}
+    .qtext{font-size:1.04rem}
+    .opt{padding:13px 12px;font-size:.95rem}
+    .opt .key{width:24px;height:24px}
+    .runbar{padding:11px 13px;gap:8px}
+    .runbar .qpos{font-size:.9rem}
+    .chip{font-size:.72rem;padding:4px 9px}
+    .runfoot{padding:13px 14px;gap:10px}
+    .btn{padding:11px 15px;font-size:.9rem}
+    .result{padding:22px 15px}
+    .result h2{font-size:1.4rem}
+    .result .score{font-size:2.3rem}
+    .result .seal{width:76px;height:76px;font-size:1.9rem}
+    .roadmap{padding:15px 14px 16px}
+    .rm-step{padding:10px 11px;gap:10px}
+    .rm-step .ico{width:28px;height:28px;font-size:.85rem}
+    .rm-step .nm b{font-size:.92rem}
+    .rm-step .nm span{font-size:.72rem}
+    .cat{padding:15px 15px 14px}
+    .dl-ico{width:38px;height:38px;font-size:1.3rem}
+    .rev .rq{font-size:.95rem}
+    footer{font-size:.74rem;padding:22px 14px 36px}
+  }
+  /* Larger desktop — a touch more breathing room */
+  @media (min-width:1280px){
+    .wrap{max-width:1100px}
+  }
+
+  /* Header label toggles */
+  .lbl-min{display:none}
+
+  /* CLP guide entry banner (home) */
+  .guide-banner{display:flex;align-items:center;gap:14px;color:#fff;cursor:pointer;border-radius:14px;
+    padding:16px 18px;margin:24px 0 4px;box-shadow:var(--shadow);transition:.15s;
+    background:linear-gradient(135deg,#11325c,#1d4ed8)}
+  .guide-banner:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .guide-banner .gb-ico{font-size:1.9rem;flex:0 0 auto}
+  .guide-banner .gb-txt{flex:1;min-width:0}
+  .guide-banner b{display:block;font-size:1.06rem;font-weight:760}
+  .guide-banner span{font-size:.85rem;opacity:.9}
+  .guide-banner .gb-go{font-weight:800;font-size:1.4rem;flex:0 0 auto}
+
+  /* CLP guide view */
+  .guidewrap{max-width:840px;margin:0 auto}
+  .guide-hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:var(--radius);
+    padding:24px 22px;box-shadow:var(--shadow);margin:14px 0 18px}
+  .guide-hero h2{margin:0 0 6px;font-size:1.5rem;font-weight:780;letter-spacing:-.3px}
+  .guide-hero p{margin:0;opacity:.88;font-size:.93rem}
+  .step{display:flex;gap:15px;background:var(--card);border:1px solid var(--line);border-radius:14px;
+    box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
+  .step .sn{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;
+    display:grid;place-items:center;font-weight:800;font-size:1.05rem}
+  .step .sc{flex:1;min-width:0}
+  .step h3{margin:0 0 4px;font-size:1.1rem;font-weight:740}
+  .step p{margin:6px 0;font-size:.92rem}
+  .step .muted{color:var(--muted);font-size:.85rem}
+  .linkbtn{display:inline-flex;align-items:center;gap:6px;background:#eef3ff;color:var(--blue);font-weight:700;
+    font-size:.83rem;border:1px solid #d6e2ff;border-radius:9px;padding:7px 12px;margin:7px 6px 0 0;text-decoration:none;cursor:pointer}
+  .linkbtn:hover{background:#e0ebff}
+  [data-theme="dark"] .linkbtn{background:#16264a;border-color:#26406e;color:#9cc0ff}
+  .linkbtn.go{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .linkbtn.go:hover{background:var(--blue-d)}
+  .checklist{list-style:none;padding:0;margin:10px 0 0}
+  .checklist li{position:relative;padding:8px 0 8px 30px;border-bottom:1px solid var(--line);font-size:.9rem}
+  .checklist li:last-child{border-bottom:none}
+  .checklist li::before{content:"☐";position:absolute;left:3px;top:6px;font-size:1.05rem;color:var(--blue)}
+  .checklist li b{font-weight:720}
+  .callout{border-left:4px solid var(--amber);background:var(--bg);border-radius:0 10px 10px 0;
+    padding:11px 14px;margin:14px 0;font-size:.88rem}
+  .callout b{color:var(--amber)}
+  .tie{background:var(--green-bg);border:1px solid #bfe6cf;border-radius:10px;padding:10px 13px;margin-top:10px;font-size:.86rem}
+  [data-theme="dark"] .tie{border-color:#1f5236}
+  .order-list{margin:8px 0 0;padding-left:20px;font-size:.9rem}
+  .order-list li{margin:4px 0}
+
+  @media (max-width:640px){ .guidebtn{display:none} }
+  @media (max-width:480px){
+    .lbl-full{display:none} .lbl-min{display:inline}
+    .guide-hero{padding:18px 15px} .guide-hero h2{font-size:1.25rem}
+    .step{padding:14px;gap:11px} .step .sn{width:32px;height:32px;font-size:.95rem}
+    .step h3{font-size:1.02rem}
+    .guide-banner b{font-size:.98rem}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand" onclick="go('home')">
+      <div class="star">★</div>
+      <div><h1>Texas CDL Practice</h1><p id="brandSub">General Knowledge · Air Brakes · Combination · Special Requirements</p></div>
+    </div>
+    <div class="top-spacer"></div>
+    <div class="langdd" id="langdd">
+      <button class="langbtn" id="langBtn" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false"><span id="langCur">EN</span><span class="cv">▾</span></button>
+      <div class="langmenu" id="langMenu" role="listbox"></div>
+    </div>
+    <button class="hbtn ic" onclick="toggleTheme()" id="themeBtn" title="Theme" aria-label="Theme">🌙</button>
+    <button class="hbtn" onclick="resetAll()" title="Reset"><span class="lbl-full" id="resetLbl">Reset</span><span class="lbl-min">↺</span></button>
+  </div>
+</header>
+
+<main id="app" class="wrap"></main>
+
+<footer id="siteFooter">
+  Practice questions are written from the official <b>Texas Commercial Motor Vehicle Drivers Handbook</b>
+  (General Knowledge §2, Air Brakes §5, Combination §6, Texas Special Requirements §14).<br>
+  Study aid only — not affiliated with the Texas DPS/DMV. You must score <b>80%</b> to pass each test.
+  <div class="dlinks">
+    <a href="https://www.dps.texas.gov/internetforms/Forms/DL-7C.pdf" target="_blank" rel="noopener">📕 Official Handbook (DL-7C)</a> ·
+    <a href="Texas-CDL-Study-Guide.pdf" target="_blank" rel="noopener" download>📗 Quick Study Guide</a> ·
+    <a onclick="go('guide')" style="cursor:pointer">🪪 How to get your CLP</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="questions.js"></script>
+<script src="translations.js"></script>
+<script>
+/* ============================ STATE & STORAGE ============================ */
+const DATA = window.CDL_DATA;
+const PKEY = "tx_cdl_progress_v2";
+const TKEY = "tx_cdl_theme";
+const LKEY = "tx_cdl_lang";
+
+let state = {};
+let LANG = (function(){ try{ return localStorage.getItem(LKEY) || 'en'; }catch(e){ return 'en'; } })();
+
+/* ============================ i18n ============================ */
+function t(key, vars){
+  let s = (window.I18N && I18N.ui[LANG] && I18N.ui[LANG][key]);
+  if(s==null) s = (window.I18N && I18N.ui.en[key]!=null) ? I18N.ui.en[key] : key;
+  if(vars) for(const k in vars){ s = String(s).split('{'+k+'}').join(vars[k]); }
+  return s;
+}
+function catName(c){ const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
+function catBlurb(c){ const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.blurb)||c.blurb; }
+function g(k){ const G=window.I18N&&I18N.guide; if(G&&G[LANG]&&G[LANG][k]!=null) return G[LANG][k]; return (G&&G.en&&G.en[k]!=null)?G.en[k]:k; }
+function qData(catId, qid){
+  const en = CAT(catId).questions[qid];
+  const tr = window.I18N && I18N.q[LANG] && I18N.q[LANG][catId] && I18N.q[LANG][catId][qid];
+  const src = (LANG!=='en' && tr) ? tr : en;
+  return { q: src.q||en.q, options: src.options||en.options, explanation: src.explanation||en.explanation,
+           handbook: en.handbook, hbref: en.hbref, translated: !!(LANG!=='en' && tr) };
+}
+function langBadge(translated){ return (LANG==='en'||translated) ? '' : ` <span class="enflag" title="${t('langWipNote')}">${t('enBadge')}</span>`; }
+function setLang(l){
+  LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){}
+  document.documentElement.setAttribute('lang', l);
+  renderLangMenu();
+  applyStaticI18n();
+  render();
+}
+/* language dropdown (shows only the non-active languages) */
+const LANGS=['en','ru','tr'];
+function renderLangMenu(){
+  const cur=document.getElementById('langCur'); if(cur) cur.textContent=LANG.toUpperCase();
+  const menu=document.getElementById('langMenu');
+  if(menu) menu.innerHTML = LANGS.filter(l=>l!==LANG).map(l=>`<button role="option" onclick="pickLang('${l}')">${l.toUpperCase()}</button>`).join('');
+}
+function toggleLangMenu(e){ if(e) e.stopPropagation(); const dd=document.getElementById('langdd'); if(!dd) return;
+  const open=dd.classList.toggle('open'); const b=document.getElementById('langBtn'); if(b) b.setAttribute('aria-expanded', open?'true':'false'); }
+function closeLangMenu(){ const dd=document.getElementById('langdd'); if(dd) dd.classList.remove('open'); const b=document.getElementById('langBtn'); if(b) b.setAttribute('aria-expanded','false'); }
+function pickLang(l){ closeLangMenu(); setLang(l); }
+document.addEventListener('click', closeLangMenu);
+function applyStaticI18n(){
+  const sub=document.getElementById('brandSub'); if(sub) sub.textContent=t('brandSub');
+  const rl=document.getElementById('resetLbl'); if(rl) rl.textContent=t('reset');
+  const f=document.getElementById('siteFooter');
+  if(f) f.innerHTML = t('footMain')+'<br>'+t('footSub')+
+    '<div class="dlinks">'+
+    '<a href="'+HANDBOOK_URL+'" target="_blank" rel="noopener">'+t('footHb')+'</a> · '+
+    '<a href="Texas-CDL-Study-Guide.pdf" target="_blank" rel="noopener" download>'+t('footSg')+'</a> · '+
+    '<a onclick="go(\'guide\')" style="cursor:pointer">'+t('footGuide')+'</a></div>';
+}
+
+function loadProgress(){
+  try{ return JSON.parse(localStorage.getItem(PKEY)) || {}; }catch(e){ return {}; }
+}
+function saveProgress(p){ localStorage.setItem(PKEY, JSON.stringify(p)); }
+
+function getResult(catId, idx){
+  const p = loadProgress();
+  return (p[catId] && p[catId][idx]) || null;
+}
+function recordResult(catId, idx, correct, total){
+  const p = loadProgress();
+  p[catId] = p[catId] || {};
+  const prev = p[catId][idx];
+  const pct = Math.round(correct/total*100);
+  const passed = correct >= DATA.categories.find(c=>c.id===catId).passNeed;
+  const bestPct = prev ? Math.max(prev.bestPct, pct) : pct;
+  const bestCorrect = prev ? Math.max(prev.bestCorrect, correct) : correct;
+  p[catId][idx] = {
+    passed: passed || (prev && prev.passed) || false,
+    lastPct: pct, bestPct, bestCorrect, total,
+    attempts: (prev ? prev.attempts : 0) + 1
+  };
+  saveProgress(p);
+}
+
+/* ============================ SEEDED RNG ============================ */
+function hashStr(s){ let h=2166136261>>>0; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619);} return h>>>0; }
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function seededShuffle(arr, seedStr){
+  const rng = mulberry32(hashStr(seedStr));
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(rng()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function gcd(a,b){ while(b){ const t=a%b; a=b; b=t; } return a; }
+
+/* Build a stable, distinct test #idx for a category.
+   One master shuffle of the pool, then each test takes a window that is
+   strided across the pool so consecutive tests share as few questions as
+   the pool size allows. Stays deterministic, so a given test is reproducible. */
+function buildTest(cat, idx){
+  const pool = cat.questions, P = pool.length, E = cat.examSize;
+  const master = seededShuffle(pool.map((q,i)=>i), cat.id+"|master");
+  let step = Math.max(1, P - E);              // spread tests apart
+  while(step>1 && gcd(step,P)!==1) step--;    // coprime => distinct windows
+  const start = (idx*step) % P;
+  const pickIdx = [];
+  for(let i=0;i<E;i++) pickIdx.push(master[(start+i)%P]);
+  const order = seededShuffle(pickIdx, cat.id+"|order|"+idx);
+  return order.map(qi=>{
+    const q = pool[qi];
+    // shuffle option *indices* deterministically; text is resolved per language at render time
+    const optOrder = seededShuffle(q.options.map((o,i)=>i), cat.id+"|"+idx+"|q"+qi);
+    return { qid: qi, optOrder, answer: optOrder.indexOf(q.answer) };
+  });
+}
+
+/* ============================ ROUTER ============================ */
+function go(view, opts={}){
+  state = Object.assign({view}, opts);
+  window.scrollTo(0,0);
+  render();
+}
+function render(){
+  const el = document.getElementById('app');
+  if(state.view==='home') el.innerHTML = renderHome();
+  else if(state.view==='guide') el.innerHTML = renderGuide();
+  else if(state.view==='category') el.innerHTML = renderCategory(state.catId);
+  else if(state.view==='test'){ renderTestShell(); return; }
+  else if(state.view==='results') el.innerHTML = renderResults();
+}
+
+/* ============================ HOME ============================ */
+const ACCENTS = {special:"#d7263d", general:"#2563eb", airbrakes:"#0f9d8c", combination:"#7c3aed"};
+
+function catStats(cat){
+  let passed=0;
+  for(let i=0;i<cat.numTests;i++){ const r=getResult(cat.id,i); if(r&&r.passed) passed++; }
+  return {passed, total:cat.numTests};
+}
+function catLevel(cat){
+  const s=catStats(cat);
+  let lvl='none';
+  if(s.passed>=cat.numTests) lvl='mastered';
+  else if(s.passed>=(cat.readyTarget||3)) lvl='ready';
+  else if(s.passed>0) lvl='progress';
+  return {lvl, passed:s.passed, total:cat.numTests};
+}
+function classAReady(){
+  const reqs=DATA.categories.filter(c=>c.classA);
+  let ready=0; reqs.forEach(c=>{ const L=catLevel(c); if(L.lvl==='ready'||L.lvl==='mastered') ready++; });
+  return {ready, total:reqs.length};
+}
+function renderRoadmap(){
+  const rm=DATA.roadmap||{skills:[],endorsements:[]};
+  const reqs=DATA.categories.filter(c=>c.classA);
+  const ca=classAReady();
+
+  const knowledge=reqs.map((c,i)=>{
+    const L=catLevel(c);
+    let badge;
+    if(L.lvl==='mastered') badge=`<span class="badge b-pass">${t('stMastered')}</span>`;
+    else if(L.lvl==='ready') badge=`<span class="badge b-pass">${t('stReady')}</span>`;
+    else if(L.lvl==='progress') badge=`<span class="badge b-prog">${t('stProgress')}</span>`;
+    else badge=`<span class="badge b-new">${t('stNew')}</span>`;
+    return `<div class="rm-step click" onclick="go('category',{catId:'${c.id}'})">
+      <div class="ico" style="background:${ACCENTS[c.id]||'#888'}">${i+1}</div>
+      <div class="nm"><b>${catName(c)}</b><span>${t('rmTestsLine',{p:L.passed,t:c.numTests,target:c.readyTarget})}</span></div>
+      ${badge}
+    </div>`;
+  }).join('');
+
+  const skillKeys=[['skPretrip','skPretripNote'],['skBasic','skBasicNote'],['skRoad','skRoadNote']];
+  const skills=skillKeys.map(k=>`
+    <div class="rm-step">
+      <div class="ico muted">＋</div>
+      <div class="nm"><b>${t(k[0])}</b><span>${t(k[1])}</span></div>
+      <span class="badge b-new">${t('atDPS')}</span>
+    </div>`).join('');
+
+  const ends=(rm.endorsements||[]).map(e=>{
+    if(e.active && e.catId){
+      return `<span class="rm-chip on" onclick="go('category',{catId:'${e.catId}'})"><span class="code">${e.code}</span>${e.name}</span>`;
+    }
+    return `<span class="rm-chip"><span class="code">${e.code}</span>${e.name} <span class="soon">${t('soon')}</span></span>`;
+  }).join('');
+
+  return `<section class="roadmap">
+    <div class="rm-head">
+      <div>
+        <h3>${t('rmTitle')}</h3>
+        <div class="rm-tag">${t('rmTag',{n:ca.total})}</div>
+      </div>
+      <div class="rm-ready"><b>${ca.ready}/${ca.total}</b><span>${t('knowledgeReady')}</span></div>
+    </div>
+    <div class="rm-group">${t('grpKnowledge')}</div>
+    <div class="rm-steps">${knowledge}</div>
+    <div class="rm-group">${t('grpSkills')}</div>
+    <div class="rm-steps">${skills}</div>
+    <div class="rm-group">${t('grpEndorse')}</div>
+    <div class="rm-ends">${ends}</div>
+  </section>`;
+}
+/* ============================ STUDY MATERIALS ============================ */
+const HANDBOOK_URL = "https://www.dps.texas.gov/internetforms/Forms/DL-7C.pdf";
+const HANDBOOK_ES  = "https://www.dps.texas.gov/Internetforms/Forms/DL-7CS.pdf";
+function renderDownloads(){
+  return `<section class="downloads">
+    <div class="dl-head"><h3>${t('dlTitle')}</h3>
+      <div class="rm-tag">${t('dlTag')}</div></div>
+    <div class="dl-row">
+      <a class="dl-card" href="${HANDBOOK_URL}" target="_blank" rel="noopener">
+        <div class="dl-ico">📕</div>
+        <div class="dl-txt"><b>${t('dlHbT')}</b><span>${t('dlHbS')}</span></div>
+        <span class="dl-go">${t('dlOpen')}</span>
+      </a>
+      <a class="dl-card" href="Texas-CDL-Study-Guide.pdf" target="_blank" rel="noopener" download>
+        <div class="dl-ico">📗</div>
+        <div class="dl-txt"><b>${t('dlSgT')}</b><span>${t('dlSgS')}</span></div>
+        <span class="dl-go">${t('dlDownload')}</span>
+      </a>
+    </div>
+  </section>`;
+}
+
+/* ============================ CLP STEP-BY-STEP GUIDE ============================ */
+function renderGuide(){
+  const c7 = g('s7List').map(li=>`<li>${li}</li>`).join('');
+  const o8 = g('s8List').map(li=>`<li>${li}</li>`).join('');
+  return `<div class="guidewrap">
+    <div class="crumb"><a onclick="go('home')">${t('home')}</a> › <span>${g('crumb')}</span></div>
+    <div class="guide-hero">
+      <h2>${g('hTitle')}</h2>
+      <p>${g('hP')}</p>
+    </div>
+
+    <div class="step"><div class="sn">1</div><div class="sc">
+      <h3>${g('s1T')}</h3>
+      <p>${g('s1P')}</p>
+      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/how-apply-texas-driver-license" target="_blank" rel="noopener">How to apply for a Texas DL ↗</a>
+    </div></div>
+
+    <div class="step"><div class="sn">2</div><div class="sc">
+      <h3>${g('s2T')}</h3>
+      <p>${g('s2P')}</p>
+      <p class="muted">${g('s2Note')}</p>
+      <a class="linkbtn" href="https://nationalregistry.fmcsa.dot.gov/" target="_blank" rel="noopener">Find a certified DOT examiner ↗</a>
+      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/commercial-driver-license-cdl-medical-certification-requirement" target="_blank" rel="noopener">DPS medical certification info ↗</a>
+    </div></div>
+
+    <div class="step"><div class="sn">3</div><div class="sc">
+      <h3>${g('s3T')}</h3>
+      <p>${g('s3P')}</p>
+      <a class="linkbtn" href="https://www.dps.texas.gov/Internetforms/Forms/CDL-4.pdf" target="_blank" rel="noopener">Form CDL-4 (PDF) ↗</a>
+      <a class="linkbtn" href="https://www.dps.texas.gov/Internetforms/Forms/CDL-5.pdf" target="_blank" rel="noopener">Form CDL-5 (PDF) ↗</a>
+      <a class="linkbtn" href="https://www.dps.texas.gov/Internetforms/Forms/CDL-10.pdf" target="_blank" rel="noopener">Form CDL-10 (PDF) ↗</a>
+    </div></div>
+
+    <div class="step"><div class="sn">4</div><div class="sc">
+      <h3>${g('s4T')}</h3>
+      <p>${g('s4P')}</p>
+      <a class="linkbtn" href="https://www.dps.texas.gov/Internetforms/Forms/CDL-1.pdf" target="_blank" rel="noopener">Form CDL-1 application (PDF) ↗</a>
+    </div></div>
+
+    <div class="step"><div class="sn">5</div><div class="sc">
+      <h3>${g('s5T')}</h3>
+      <p>${g('s5P')}</p>
+      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/entry-level-driver-training-eldt" target="_blank" rel="noopener">About ELDT ↗</a>
+    </div></div>
+
+    <div class="step"><div class="sn">6</div><div class="sc">
+      <h3>${g('s6T')}</h3>
+      <p>${g('s6P')}</p>
+      <a class="linkbtn go" href="https://public.txdpsscheduler.com/" target="_blank" rel="noopener">Schedule a DPS appointment ↗</a>
+      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/driver-license-services-appointments" target="_blank" rel="noopener">Appointment help ↗</a>
+    </div></div>
+
+    <div class="step"><div class="sn">7</div><div class="sc">
+      <h3>${g('s7T')}</h3>
+      <ul class="checklist">${c7}</ul>
+      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/us-citizenship-or-lawful-presence-requirement" target="_blank" rel="noopener">Citizenship / lawful presence docs ↗</a>
+      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/identification-requirements" target="_blank" rel="noopener">Identity docs ↗</a>
+      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/driver-license-fees" target="_blank" rel="noopener">Fees ↗</a>
+    </div></div>
+
+    <div class="step"><div class="sn">8</div><div class="sc">
+      <h3>${g('s8T')}</h3>
+      <p>${g('s8P')}</p>
+      <ol class="order-list">${o8}</ol>
+      <div class="tie">${g('s8Tie')}</div>
+      <div>
+        <a class="linkbtn go" onclick="go('category',{catId:'special'})">${catName(CAT('special'))} →</a>
+        <a class="linkbtn" onclick="go('category',{catId:'general'})">${catName(CAT('general'))} →</a>
+        <a class="linkbtn" onclick="go('category',{catId:'combination'})">${catName(CAT('combination'))} →</a>
+        <a class="linkbtn" onclick="go('category',{catId:'airbrakes'})">${catName(CAT('airbrakes'))} →</a>
+      </div>
+    </div></div>
+
+    <div class="step"><div class="sn">9</div><div class="sc">
+      <h3>${g('s9T')}</h3>
+      <p>${g('s9P')}</p>
+      <p class="muted">${g('s9Note')}</p>
+      <a class="linkbtn" href="https://www.dps.texas.gov/internetforms/Forms/DL-60a.pdf" target="_blank" rel="noopener">Driving-test requirements ↗</a>
+    </div></div>
+
+    <div class="callout">⚠️ <b>${g('calloutBold')}</b>${g('calloutText')}
+      <a href="https://www.dps.texas.gov/section/driver-license/how-do-i-apply-commercial-driver-license" target="_blank" rel="noopener" style="font-weight:700"> Official DPS: Apply for a CDL/CLP ↗</a></div>
+
+    <div style="text-align:center;margin:8px 0 30px">
+      <button class="btn ghost" onclick="go('home')">${g('back')}</button>
+    </div>
+  </div>`;
+}
+
+function renderHome(){
+  let totPass=0, totTests=0;
+  DATA.categories.forEach(c=>{ const s=catStats(c); totPass+=s.passed; totTests+=c.numTests; });
+  const pct = totTests? Math.round(totPass/totTests*100):0;
+
+  const cards = DATA.categories.map(c=>{
+    const s = catStats(c); const p = Math.round(s.passed/s.total*100);
+    return `<div class="cat" onclick="go('category',{catId:'${c.id}'})">
+      <span class="accent" style="background:${ACCENTS[c.id]}"></span>
+      <h3>${catName(c)}</h3>
+      <div class="desc">${catBlurb(c)}</div>
+      <div class="meta">
+        <span class="pill">${t('ccTests',{n:c.numTests})}</span>
+        <span class="pill">${t('ccQEach',{n:c.examSize})}</span>
+        <span class="pill">${t('ccPass',{need:c.passNeed,exam:c.examSize})}</span>
+      </div>
+      <div class="bar"><i style="width:${p}%"></i></div>
+      <div class="prog-lbl"><span>${t('ccPassedOf',{p:s.passed,t:s.total})}</span><span>${p}%</span></div>
+    </div>`;
+  }).join('');
+
+  return `<section class="hero">
+    <h2>${t('heroTitle')}</h2>
+    <div class="sub">${t('heroSub')}</div>
+    <div class="overall">
+      <div class="ring" style="--p:${pct}" data-label="${pct}%"></div>
+      <div class="lbl">
+        <b>${t('overallPassed',{p:totPass,t:totTests})}</b>
+        <div>${t('overallDesc')}</div>
+      </div>
+    </div>
+    ${renderRoadmap()}
+    <div class="guide-banner" onclick="go('guide')">
+      <div class="gb-ico">🪪</div>
+      <div class="gb-txt"><b>${t('gbTitle')}</b>
+        <span>${t('gbSub')}</span></div>
+      <div class="gb-go">→</div>
+    </div>
+    ${renderDownloads()}
+    <div class="rm-group" style="margin-top:28px">${t('practiceByCat')}</div>
+    <div class="grid">${cards}</div>
+  </section>`;
+}
+
+/* ============================ CATEGORY ============================ */
+function renderCategory(catId){
+  const cat = DATA.categories.find(c=>c.id===catId);
+  const s = catStats(cat);
+  let tiles='';
+  for(let i=0;i<cat.numTests;i++){
+    const r = getResult(catId,i);
+    let badge = `<span class="badge b-new">${t('notStarted')}</span>`, best='';
+    if(r){
+      badge = r.passed ? `<span class="badge b-pass">${t('passedB')}</span>`
+                       : `<span class="badge b-fail">${t('notYet')}</span>`;
+      best = `<div class="best">${t('bestLine',{c:r.bestCorrect,t:r.total,pct:r.bestPct,a:r.attempts})}</div>`;
+    }
+    tiles += `<div class="tcard" onclick="startTest('${catId}',${i})">
+      <div class="num">${t('tilePractice')}</div>
+      <div class="ttl">${t('tileTest',{n:i+1})}</div>
+      ${badge}${best}
+    </div>`;
+  }
+  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <span>${catName(cat)}</span></div>
+    <div class="section-head">
+      <div><h2>${catName(cat)}</h2>
+      <div class="info">${t('catInfo',{exam:cat.examSize,need:cat.passNeed,sec:cat.hbSection})}</div></div>
+      <div class="badge ${s.passed===s.total?'b-pass':'b-new'}">${t('passedBadge',{p:s.passed,t:s.total})}</div>
+    </div>
+    <div class="tests">${tiles}</div>`;
+}
+
+/* ============================ TEST RUNNER ============================ */
+function startTest(catId, idx){
+  const cat = DATA.categories.find(c=>c.id===catId);
+  const test = buildTest(cat, idx);
+  state = { view:'test', catId, idx, cat, test, cur:0,
+            answers:new Array(test.length).fill(null), correct:0, incorrect:0, locked:false };
+  window.scrollTo(0,0);
+  renderTestShell();
+}
+
+function renderTestShell(){
+  const el = document.getElementById('app');
+  el.innerHTML = `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${state.catId}'})">${catName(state.cat)}</a> › <span>${t('tileTest',{n:state.idx+1})}</span></div>
+    <div class="runner" id="runner"></div>`;
+  paintQuestion();
+}
+
+function paintQuestion(){
+  const s = state, it = s.test[s.cur], qd = qData(s.catId, it.qid);
+  const dispOpts = it.optOrder.map(oi=>qd.options[oi]);
+  const allowMiss = s.cat.examSize - s.cat.passNeed;
+  const missLeft = allowMiss - s.incorrect;
+  const pct = Math.round((s.cur)/s.test.length*100);
+  const prevAns = s.answers[s.cur];
+  const answered = prevAns !== null;
+
+  const opts = dispOpts.map((txt,i)=>{
+    let cls='opt';
+    if(answered){
+      if(i===it.answer) cls+=' correct';
+      else if(i===prevAns) cls+=' wrong';
+    }
+    const key = String.fromCharCode(65+i);
+    let mark='';
+    if(answered && i===it.answer) mark='<span class="mark" style="color:var(--green)">✓</span>';
+    else if(answered && i===prevAns) mark='<span class="mark" style="color:var(--red)">✗</span>';
+    return `<button class="${cls}" ${answered?'disabled':''} onclick="choose(${i})">
+      <span class="key">${key}</span><span>${txt}</span>${mark}</button>`;
+  }).join('');
+
+  let explain='';
+  if(answered){
+    const good = prevAns===it.answer;
+    const L = String.fromCharCode(65+it.answer);
+    explain = `<div class="explain show ${good?'good':'bad'}">
+      <div class="verdict">${good? t('vCorrect',{L:L}) : t('vWrong',{L:L})}</div>
+      <p>${qd.explanation}</p>
+      <div class="hb"><span class="src">${t('hbSrc',{ref:qd.hbref})}</span><i>“${qd.handbook}”</i></div>
+    </div>`;
+  }
+
+  const isLast = s.cur === s.test.length-1;
+  document.getElementById('runner').innerHTML = `
+    <div class="runbar">
+      <span class="qpos">${t('tQuestion')} ${s.cur+1} <span style="color:var(--muted);font-weight:600">/ ${s.test.length}</span></span>
+      <div class="tally">
+        <span class="chip ok">✓ ${s.correct}</span>
+        <span class="chip no">✗ ${s.incorrect}</span>
+        <span class="chip left">${t('chipMiss',{n:(missLeft<0?0:missLeft)})}</span>
+      </div>
+    </div>
+    <div class="pbar"><i style="width:${pct}%"></i></div>
+    <div class="qbody">
+      <div class="qtext">${qd.q}${langBadge(qd.translated)}</div>
+      <div class="opts">${opts}</div>
+      ${explain}
+    </div>
+    <div class="runfoot">
+      ${answered ? `<button class="btn primary" onclick="next()">${isLast? t('seeResults') : t('nextQ')}</button>`
+                 : `<span class="hint">${t('pickAnswer')}</span>`}
+      <span class="top-spacer" style="flex:1"></span>
+      <button class="btn ghost" onclick="confirmQuit()">${t('quit')}</button>
+    </div>`;
+}
+
+function choose(i){
+  const s=state; if(s.answers[s.cur]!==null) return;
+  s.answers[s.cur]=i;
+  if(i===s.test[s.cur].answer) s.correct++; else s.incorrect++;
+  paintQuestion();
+  // scroll explanation into view a touch
+  const ex=document.querySelector('.explain'); if(ex) ex.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function next(){
+  const s=state;
+  if(s.cur < s.test.length-1){ s.cur++; paintQuestion(); window.scrollTo({top:0,behavior:'smooth'}); }
+  else finishTest();
+}
+function confirmQuit(){
+  if(confirm(t('confirmQuit'))) go('category',{catId:state.catId});
+}
+function finishTest(){
+  recordResult(state.catId, state.idx, state.correct, state.test.length);
+  state.view='results';
+  window.scrollTo(0,0);
+  render();
+}
+
+/* ============================ RESULTS ============================ */
+function renderResults(){
+  const s=state, total=s.test.length, correct=s.correct;
+  const pct=Math.round(correct/total*100);
+  const passed = correct >= s.cat.passNeed;
+
+  const reviews = s.test.map((it,i)=>{
+    const qd = qData(s.catId, it.qid);
+    const dispOpts = it.optOrder.map(oi=>qd.options[oi]);
+    const you=s.answers[i]; const ok=you===it.answer;
+    const youTxt = you===null? '—' : dispOpts[you];
+    let rows = ok
+      ? `<div class="ra correct">${t('rCorrect')} ${dispOpts[it.answer]}</div>`
+      : `<div class="ra you-wrong">${t('rYour')} ${youTxt}</div><div class="ra correct">${t('rCorrect')} ${dispOpts[it.answer]}</div>`;
+    return `<div class="rev">
+      <div class="rq">${i+1}. ${qd.q}</div>
+      ${rows}
+      <div class="rhb"><b>📘 ${qd.hbref}:</b> ${qd.explanation}</div>
+    </div>`;
+  }).join('');
+
+  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${s.catId}'})">${catName(s.cat)}</a> › <span>${t('resultsCrumb',{n:s.idx+1})}</span></div>
+    <div class="result ${passed?'pass':'fail'}">
+      <div class="seal">${passed?'✓':'✗'}</div>
+      <h2>${passed? t('rPassed') : t('rFailed')}</h2>
+      <div class="score">${pct}%</div>
+      <div class="line">${t('rScoreLine',{c:correct,t:total,need:s.cat.passNeed})}${passed?'': t('rMore',{n:s.cat.passNeed-correct})}</div>
+      <div class="actions">
+        <button class="btn primary" onclick="startTest('${s.catId}',${s.idx})">${t('rRetake')}</button>
+        <button class="btn ghost" onclick="go('category',{catId:'${s.catId}'})">${t('rBackTo',{cat:catName(s.cat)})}</button>
+        <button class="btn ghost" onclick="go('home')">${t('rAllCats')}</button>
+      </div>
+    </div>
+    <div class="review"><h3>${t('rReview',{t:total})}</h3>${reviews}</div>`;
+}
+
+/* ============================ MISC ============================ */
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1900); }
+function resetAll(){ if(confirm(t('confirmReset'))){ localStorage.removeItem(PKEY); toast(t('toastReset')); go('home'); } }
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',cur);
+  localStorage.setItem(TKEY,cur);
+  document.getElementById('themeBtn').textContent = cur==='dark'?'☀️':'🌙';
+}
+(function initTheme(){
+  const t=localStorage.getItem(TKEY)||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  window.addEventListener('DOMContentLoaded',()=>{ const b=document.getElementById('themeBtn'); if(b) b.textContent=t==='dark'?'☀️':'🌙'; });
+})();
+
+/* keyboard: 1-4 to answer, Enter to advance */
+document.addEventListener('keydown',e=>{
+  if(state.view!=='test') return;
+  const s=state, answered=s.answers[s.cur]!==null;
+  if(!answered && ['1','2','3','4'].includes(e.key)){ const i=+e.key-1; if(i<s.test[s.cur].optOrder.length) choose(i); }
+  else if(answered && (e.key==='Enter'||e.key==='n'||e.key===' ')){ e.preventDefault(); next(); }
+});
+
+/* boot */
+if(!DATA){ document.getElementById('app').innerHTML='<p style="padding:40px">⚠️ questions.js failed to load. Keep <b>index.html</b>, <b>questions.js</b> and <b>translations.js</b> together in the same folder.</p>'; }
+else {
+  document.documentElement.setAttribute('lang', LANG);
+  renderLangMenu();
+  applyStaticI18n();
+  go('home');
+}
+</script>
+</body>
+</html>

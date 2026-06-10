@@ -1,0 +1,10 @@
+# build/upload artifacts
+passroute-site.zip
+
+# stray temp files
+zifrLuAX
+*.tmp
+
+# OS junk
+.DS_Store
+Thumbs.db
