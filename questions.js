@@ -14,22 +14,22 @@ window.CDL_DATA = {
     {
       id:"special", name:"TX Special Requirements", hbSection:"§14",
       blurb:"Texas-only rules: vehicle size, lighting, flags, brakes, towing and marking. You must pass this first.",
-      numTests:10, examSize:25, passNeed:20, questions:[]
+      numTests:15, examSize:25, passNeed:20, questions:[]
     },
     {
       id:"general", name:"General Knowledge", hbSection:"§1–3",
       blurb:"The core test every CDL applicant takes: safe driving, speed and space management, hazards, cargo and emergencies.",
-      numTests:20, examSize:50, passNeed:40, questions:[]
+      numTests:25, examSize:50, passNeed:40, questions:[]
     },
     {
       id:"airbrakes", name:"Air Brakes", hbSection:"§5",
       blurb:"How air brake systems work, inspecting them, and using them safely. Needed to remove the air-brake restriction.",
-      numTests:15, examSize:25, passNeed:20, questions:[]
+      numTests:20, examSize:25, passNeed:20, questions:[]
     },
     {
       id:"combination", name:"Combination Vehicles", hbSection:"§6",
       blurb:"Tractor-trailers and other combinations: coupling, off-tracking, trailer brakes and rollover prevention.",
-      numTests:15, examSize:20, passNeed:16, questions:[]
+      numTests:20, examSize:20, passNeed:16, questions:[]
     }
   ]
 };
@@ -1515,6 +1515,106 @@ CAT("special").questions.push(
   }
 );
 
+/* ===== HARD set — TX Special Requirements ===== */
+CAT("special").questions.push(
+  {
+    q:"A load extends 5 feet past the rear of your truck in daylight. You must mark the end with:",
+    options:["A red flag at least 12 inches square","A white flag 12 inches square","A red light visible 500 feet","Nothing — marking is only required past 6 feet"],
+    answer:0,
+    explanation:"Over 4 feet of rear overhang requires a red flag (at least 12 in square) by day. White flags mark towing connections; a red light is the night requirement; the trigger is 4 feet, not 6.",
+    handbook:"A load extending more than four feet beyond the rear must be marked with a red flag at least 12 inches square during the day.",
+    hbref:"§14 Flags and Marking"
+  },
+  {
+    q:"You are towing a broken-down car with a steel chain. Texas requires the chain to display:",
+    options:["A red flag 12 inches square","A white flag or cloth at least 12 inches square","An orange triangle","A burning red light"],
+    answer:1,
+    explanation:"A chain, rope, or cable used to tow must show a white flag or cloth at least 12 inches square. Red flags mark a projecting load, not a towing connection.",
+    handbook:"When a chain, rope, or cable is used to tow, a white flag or cloth not less than 12 inches square must be displayed on the connection.",
+    hbref:"§14 Towing"
+  },
+  {
+    q:"On an 84-inch-wide truck, which of the following is WRONG?",
+    options:["Amber clearance lamps at the front","Red clearance lamps at the rear","Two red reflectors at the rear, 24–60 inches high","Amber clearance lamps at the rear"],
+    answer:3,
+    explanation:"Rear lamps and reflectors are RED, not amber; amber is for the front. So 'amber clearance lamps at the rear' is the wrong statement.",
+    handbook:"Clearance and side-marker lamps near the front are amber; those at the rear are red.",
+    hbref:"§14 Lighting and Reflectors"
+  },
+  {
+    q:"Which pair of mounting-height ranges is correct?",
+    options:["Headlamps 24–54 in; rear reflectors 24–60 in","Headlamps 24–60 in; rear reflectors 24–54 in","Headlamps 12–48 in; rear reflectors 24–60 in","Both 24–54 in"],
+    answer:0,
+    explanation:"White headlamps mount 24 to 54 inches high; rear red reflectors mount 24 to 60 inches high. Do not swap the two ranges.",
+    handbook:"Headlamps are mounted not less than 24 nor more than 54 inches high; rear reflectors not less than 24 nor more than 60 inches.",
+    hbref:"§14 Lighting and Reflectors"
+  },
+  {
+    q:"Outside a business or residential district, one truck must not follow another truck closer than 300 feet. This rule:",
+    options:["Forbids one truck from ever passing another","Does NOT prevent overtaking and passing","Applies only after dark","Applies only inside city limits"],
+    answer:1,
+    explanation:"Trucks must leave 300 feet between them on the open highway so others can pass safely, but the rule does not prohibit overtaking and passing.",
+    handbook:"A truck shall not follow within 300 feet of another truck outside a business or residential district; this does not prevent overtaking and passing.",
+    hbref:"§14 Following Distance"
+  },
+  {
+    q:"A combination of vehicles weighing 3,500 lb must be able to stop from 20 mph within:",
+    options:["40 feet","50 feet","30 feet","60 feet"],
+    answer:1,
+    explanation:"Over 3,000 lb the limit is 50 feet from 20 mph; 3,000 lb or less is 40 feet. 3,500 lb is over 3,000, so 50 feet.",
+    handbook:"A combination over 3,000 pounds must stop within 50 feet from 20 mph; 3,000 pounds or less within 40 feet.",
+    hbref:"§14 Brakes"
+  },
+  {
+    q:"Without a permit, which vehicle-plus-load is within BOTH the Texas width and height limits?",
+    options:["102 inches wide and 14 feet high","108 inches wide and 14 feet high","102 inches wide and 14 feet 6 inches high","96 inches wide and 15 feet high"],
+    answer:0,
+    explanation:"Maximum width is 102 inches and maximum height is 14 feet. Only the first option meets both; the others exceed width or height.",
+    handbook:"Maximum width is 102 inches and maximum height is 14 feet without a permit.",
+    hbref:"§14 Size and Weight Limits"
+  },
+  {
+    q:"Mud flaps are required on trucks/trailers that have ____ on the rear axle, and must reach within ____ of the road.",
+    options:["four or more tires; 8 inches","two or more tires; 6 inches","any number of tires; 12 inches","four or more tires; 4 inches"],
+    answer:0,
+    explanation:"Vehicles with four or more tires on the rear axle need mud flaps reaching within 8 inches of the road (pole trailers and bobtails excepted).",
+    handbook:"Trucks and trailers with four or more tires on the rear axle must have mud flaps reaching within 8 inches of the road.",
+    hbref:"§14 Vehicle Equipment"
+  },
+  {
+    q:"Your out-of-state plates are recognized for 30 days after you take a Texas job. A buyer's temporary cardboard tag, however, is valid for:",
+    options:["30 days","20 days","60 days","90 days"],
+    answer:1,
+    explanation:"Out-of-state plates: 30 days after residency or employment. A buyer's temporary cardboard tag: only 20 days. Do not confuse the two figures.",
+    handbook:"Out-of-state plates are recognized 30 days after residency or employment; a buyer's temporary tag is valid 20 days.",
+    hbref:"§14 Registration"
+  },
+  {
+    q:"In Texas, which of the following is LEGAL / permitted?",
+    options:["Coasting downhill with the gears in neutral","A placarded hazmat truck rolling through a clear crossing without stopping","Showing a red light toward the front of the vehicle","Covering a gravel load so it cannot blow out"],
+    answer:3,
+    explanation:"Covering loose loads is required and legal. Coasting in neutral, hazmat failing to stop at crossings, and a red light to the front are all prohibited.",
+    handbook:"Loose materials must be covered to prevent blowing or spilling; coasting in neutral, not stopping placarded hazmat at crossings, and red light to the front are prohibited.",
+    hbref:"§14 Rules of Operation"
+  },
+  {
+    q:"Tail lamps must be visible ____ to the rear; stop lamps must be visible in daylight from ____.",
+    options:["1,000 feet; 300 feet","500 feet; 1,000 feet","300 feet; 1,000 feet","1,000 feet; 500 feet"],
+    answer:0,
+    explanation:"Tail lamps (red) must be visible 1,000 feet to the rear; stop lamps must be visible 300 feet in normal daylight. Do not swap the numbers.",
+    handbook:"Tail lamps must be visible 1,000 feet to the rear; stop lamps must be visible at least 300 feet in normal sunlight.",
+    hbref:"§14 Lighting and Reflectors"
+  },
+  {
+    q:"A truck 30 feet long but only 70 inches wide breaks down on the shoulder. Must it turn on hazard flashers?",
+    options:["No — it is under 80 inches wide","Yes — being 30 feet or more long triggers the requirement when stopped on a roadway or shoulder","Only if it is after dark","Only inside city limits"],
+    answer:1,
+    explanation:"The rule applies to vehicles 80 inches OR more wide OR 30 feet OR more long. At 30 feet long it qualifies, so flashers are required when stopped on the roadway/shoulder (except legal city parking or loading).",
+    handbook:"A vehicle 80 inches or more in width or 30 feet or more in length must display emergency flashers when stopped on a roadway or shoulder.",
+    hbref:"§14 Hazard Warning Lights"
+  }
+);
+
 CAT("general").questions.push(
   {
     q:"The recommended pre-trip inspection uses a seven-step method. What is the correct general order?",
@@ -1590,6 +1690,106 @@ CAT("general").questions.push(
   }
 );
 
+/* ===== HARD set — General Knowledge ===== */
+CAT("general").questions.push(
+  {
+    q:"At 55 mph a hazard appears. Before your foot even touches the brake, perception (~1.5 s) and reaction (~0.75 s) are over. About how far has the vehicle traveled by then?",
+    options:["About 60 feet","About 142 feet","About 200 feet","About 419 feet"],
+    answer:2,
+    explanation:"Perception distance is about 142 ft and reaction distance about 61 ft — roughly 200 ft before braking even begins. Braking then adds about 216 ft for about 419 ft total.",
+    handbook:"At 55 mph perception distance is about 142 feet and reaction distance about 61 feet; only then does braking distance of about 216 feet begin.",
+    hbref:"§2.6 Controlling Speed"
+  },
+  {
+    q:"Which situation gives the LONGEST stopping distance, all at the same speed?",
+    options:["A fully loaded truck on dry pavement","An empty truck on a wet road","A loaded truck on a damp road","An empty truck on dry pavement"],
+    answer:1,
+    explanation:"Empty trucks have poor traction (brakes and tires are built for the loaded weight), and a wet road cuts traction further — the worst combination, with wheels prone to lock.",
+    handbook:"An empty vehicle has less traction and wet roads can double stopping distance; together they give the poorest braking.",
+    hbref:"§2.6 Controlling Speed"
+  },
+  {
+    q:"You are pulling a 70-foot combination at 62 mph in clear weather. The recommended following distance is about:",
+    options:["6 seconds","7 seconds","8 seconds","10 seconds"],
+    answer:2,
+    explanation:"One second per 10 feet of length is 7 seconds for 70 feet; above 40 mph add one second, giving 8 seconds.",
+    handbook:"Allow one second for each 10 feet of vehicle length below 40 mph; at higher speeds add one second.",
+    hbref:"§2.7 Managing Space"
+  },
+  {
+    q:"In heavy rain at 35 mph the steering suddenly goes light and the truck stops responding to the wheel. Your FIRST action should be to:",
+    options:["Brake firmly to slow down","Take your foot off the accelerator and push in the clutch","Steer sharply to find grip","Downshift hard"],
+    answer:1,
+    explanation:"This is hydroplaning. Release the accelerator and push in the clutch so the wheels slow and regain contact; do not brake hard or steer sharply.",
+    handbook:"If your vehicle hydroplanes, release the accelerator and push in the clutch to let the wheels slow down and regain traction.",
+    hbref:"§2.6 Controlling Speed"
+  },
+  {
+    q:"Which statement about antilock brakes (ABS) is TRUE?",
+    options:["ABS always shortens your stopping distance","ABS lets you keep steering by preventing wheel lockup, but does not necessarily stop you shorter","If the ABS light stays on you have no brakes at all","ABS means you should pump the pedal in a hard stop"],
+    answer:1,
+    explanation:"ABS keeps the wheels from locking so you can steer while braking hard. It does not necessarily shorten the stop, you still have normal brakes if the lamp is on, and you should hold (not pump) the pedal.",
+    handbook:"ABS helps you keep control and steer when you brake hard; it does not necessarily shorten your stopping distance.",
+    hbref:"§2.17 Antilock Braking Systems"
+  },
+  {
+    q:"On a long, steep downgrade your speed should be controlled MAINLY by:",
+    options:["Steady light pressure on the brakes the whole way down","A low gear and the engine, with occasional firm (snub) braking","The parking brake","Coasting in neutral to save the brakes"],
+    answer:1,
+    explanation:"Be in a low gear before the grade so the engine holds your speed; use brief firm snub braking only as a supplement. Riding the brakes overheats them and causes fade.",
+    handbook:"Once in the proper low gear, the braking effect of the engine is the principal way to control speed; brakes are only a supplement.",
+    hbref:"§2.15 Mountain Driving"
+  },
+  {
+    q:"At 1 a.m. the car ahead drifts within its lane, slows for no reason, then speeds up again. The MOST likely hazard is:",
+    options:["A lost tourist reading signs","An impaired or drowsy driver","A minor mechanical fault","Someone set on cruise control"],
+    answer:1,
+    explanation:"Drifting plus erratic speed late at night most strongly suggests an impaired or drowsy driver. Keep well back and do not pass closely.",
+    handbook:"Drivers who weave or change speed for no reason, especially late at night, may be drunk or drowsy and are a serious hazard.",
+    hbref:"§2.8 Seeing Hazards"
+  },
+  {
+    q:"You are hauling a single 23-foot steel beam. Ignoring the weight rule, the MINIMUM number of tie-downs by the length rule is:",
+    options:["Two","Three","Four","One"],
+    answer:1,
+    explanation:"At least one tie-down per 10 feet of cargo: 23 feet needs three (covering up to 30 feet), and never fewer than two. So three.",
+    handbook:"Use at least one tie-down for each 10 feet of cargo, with a minimum of two no matter how short.",
+    hbref:"§3.2 Securing Cargo"
+  },
+  {
+    q:"A ramp is posted 35 mph. You are driving a half-full tanker. You should take the ramp at:",
+    options:["Exactly 35 mph — the sign is set for trucks","Just under 35 mph","Well below 35 mph because of the high center of gravity and liquid surge","Any speed if the tank has baffles"],
+    answer:2,
+    explanation:"Posted speeds are for cars in good conditions. A tanker with a high center of gravity and surging liquid can roll over at the posted ramp speed — slow well below it, even with baffles.",
+    handbook:"Take curves and ramps well below posted speeds; a high center of gravity and surging liquid make rollover easy.",
+    hbref:"§2.6 Controlling Speed"
+  },
+  {
+    q:"At a roadside check a CMV driver registers 0.02% BAC. What happens?",
+    options:["Nothing — it is under the 0.04% limit","Placed out of service for 24 hours","Immediate one-year disqualification","Charged with DUI on the spot"],
+    answer:1,
+    explanation:"Any detectable alcohol under 0.04% means out of service for 24 hours. At 0.04% or more it becomes a DUI / disqualifying offense.",
+    handbook:"A driver with any detectable amount of alcohol under 0.04 may be placed out of service for 24 hours.",
+    hbref:"§2.21 Alcohol and Other Drugs"
+  },
+  {
+    q:"A trailer tire catches fire from an overheated wheel bearing. Which is correct?",
+    options:["Never put water on any vehicle fire","Water may be used to cool a burning tire, but use a B:C extinguisher on electrical or fuel fires","Use only water, never an extinguisher","Use a Class A extinguisher on the fuel tank"],
+    answer:1,
+    explanation:"Water can cool a burning tire (and works on wood, paper, cloth), but never use water on electrical or gasoline fires — use a B:C extinguisher there.",
+    handbook:"Water can be used on burning wood, paper, cloth, or to cool a tire, but not on electrical or burning-liquid fires; use a B:C extinguisher for those.",
+    hbref:"§2.20 Fires"
+  },
+  {
+    q:"On a dark road your low beams light about 250 feet ahead. To avoid overdriving your headlights, your speed should be no more than roughly:",
+    options:["30 mph","40 mph","55 mph","65 mph"],
+    answer:1,
+    explanation:"You must be able to stop within the distance you can see. Total stopping distance reaches about 250 feet at roughly 40 mph, so going faster means you cannot stop within your headlight range.",
+    handbook:"Do not overdrive your headlights; you must be able to stop within the distance you can see ahead.",
+    hbref:"§2.10 Night Driving"
+  }
+);
+
 CAT("airbrakes").questions.push(
   {
     q:"An air brake setup is actually three braking systems in one. They are the:",
@@ -1625,6 +1825,106 @@ CAT("airbrakes").questions.push(
   }
 );
 
+/* ===== HARD set — Air Brakes ===== */
+CAT("airbrakes").questions.push(
+  {
+    q:"Engine off, brakes released, fully charged combination vehicle: the gauge drops 3 psi in 30 seconds. This is:",
+    options:["Fine — under the 2 psi limit","Too much — it equals 6 psi per minute, over the 3 psi/min limit for a combination","Fine — combinations may lose up to 4 psi","Impossible to judge without the engine running"],
+    answer:1,
+    explanation:"3 psi in 30 seconds equals 6 psi per minute — well over the 3 psi/min released-brake limit for combinations (2 psi/min for single vehicles). Fix it before driving.",
+    handbook:"With brakes released, air loss should be no more than 2 psi per minute for single vehicles and 3 psi per minute for combinations.",
+    hbref:"§5.3 Inspecting Air Brakes"
+  },
+  {
+    q:"With air brakes, after perception and reaction you press the pedal. The extra ~32 ft of 'brake lag' at 55 mph comes from:",
+    options:["The driver reacting slowly","The roughly half-second for air to travel and apply the brakes after the pedal is pushed","ABS cycling the brakes on and off","The brakes overheating"],
+    answer:1,
+    explanation:"Air brakes add brake lag — about half a second for the air to move and apply — which is roughly 32 feet at 55 mph, on top of perception, reaction, and braking distance.",
+    handbook:"Air brakes have a brake lag of about half a second for the air to work after the brake pedal is pushed, adding about 32 feet at 55 mph.",
+    hbref:"§5.4 Using Air Brakes"
+  },
+  {
+    q:"You ignore the low-air warning and keep driving as pressure keeps falling. The spring (emergency) brakes will come on by themselves at about:",
+    options:["55 psi","45 psi exactly","20 to 45 psi","0 psi"],
+    answer:2,
+    explanation:"As air pressure drops into the 20–45 psi range, the spring brakes apply automatically — possibly at an unsafe moment. That is why you stop as soon as the warning comes on.",
+    handbook:"Spring brakes come on automatically when air pressure drops into the range of about 20 to 45 psi.",
+    hbref:"§5.1 Spring Brakes"
+  },
+  {
+    q:"Your air pressure climbs past 140 psi and the safety valve lets air out at 150 psi. The most likely problem is:",
+    options:["Normal — the system is just full","The governor is not cutting the compressor out and needs repair","You are braking too much","The low-air warning is stuck on"],
+    answer:1,
+    explanation:"The governor should cut the compressor out around 120–140 psi. If pressure climbs to 150 and the safety valve releases, the governor is faulty — get it fixed.",
+    handbook:"The safety valve opens at about 150 psi; if it releases air, something is wrong, such as the governor not cutting out.",
+    hbref:"§5.1 Air Compressor Governor"
+  },
+  {
+    q:"While driving, the primary air circuit suddenly fails. What is TRUE of a properly working dual system?",
+    options:["You lose all braking at once","The secondary circuit still stops you, with a longer distance, and the low-air warning comes on","The spring brakes lock instantly at any speed","Only the parking brake works"],
+    answer:1,
+    explanation:"Dual systems keep primary and secondary separate. If one fails the other still brakes the vehicle (with a longer distance), and the low-air warning alerts you.",
+    handbook:"A dual air brake system has two separate systems; if one loses pressure, the other can still be used to stop the vehicle.",
+    hbref:"§5.2 Dual Air Brake Systems"
+  },
+  {
+    q:"You pull hard on a manual slack adjuster and it moves about 1.5 inches. This means:",
+    options:["The brakes are well adjusted","The brakes are out of adjustment (more than about 1 inch of free play) and unsafe","The brake chamber is too large","The ABS needs resetting"],
+    answer:1,
+    explanation:"If a slack adjuster moves more than about one inch where the pushrod attaches, the brakes are out of adjustment — the most common air-brake defect — and must be fixed.",
+    handbook:"If a slack adjuster moves more than about one inch when pulled by hand, the brakes need adjustment.",
+    hbref:"§5.3 Inspecting Air Brakes — Slack Adjusters"
+  },
+  {
+    q:"You have just descended a long grade and the brakes are very hot. You need to park briefly on a slight slope. Best practice:",
+    options:["Set the parking (spring) brakes firmly","Let the brakes cool and chock the wheels rather than setting the parking brakes","Hold the service brake with the engine running","Spray water on the hot drums"],
+    answer:1,
+    explanation:"Setting parking brakes on very hot drums can damage them, and if it is wet and freezing they can freeze. Let them cool and chock the wheels.",
+    handbook:"If the brakes are very hot, do not use the parking brakes; let them cool and use wheel chocks instead.",
+    hbref:"§5.4 Using Air Brakes — Parking"
+  },
+  {
+    q:"In a dual air system at operating rpm, the build-up check expects pressure to rise from 85 to 100 psi within:",
+    options:["45 seconds","3 minutes","10 seconds","2 minutes"],
+    answer:0,
+    explanation:"For a dual air system, pressure should build from 85 to 100 psi within 45 seconds at operating rpm; slower build-up means the system may not keep up with demand.",
+    handbook:"In dual air systems, the pressure should build from 85 to 100 psi within 45 seconds at the engine's operating rpm.",
+    hbref:"§5.3 Inspecting Air Brakes"
+  },
+  {
+    q:"Per the Texas handbook, the low-air pressure warning must come on before tank pressure falls below:",
+    options:["45 psi","55 psi","60 psi","80 psi"],
+    answer:2,
+    explanation:"The low-air warning must activate before pressure drops below 60 psi, giving you time to stop while you still have braking air.",
+    handbook:"The low air pressure warning signal must come on before the air pressure in the tanks falls below 60 psi.",
+    hbref:"§5.1 Low Air Pressure Warning"
+  },
+  {
+    q:"Halfway down a grade the pedal feels softer and the truck speeds up even though you are braking. This is most likely:",
+    options:["An air leak in the service line","Brake fade from overheating — downshift, use engine braking, and a runaway ramp if needed","ABS engaging","Wet brakes from a puddle"],
+    answer:1,
+    explanation:"A soft pedal and rising speed on a grade point to brake fade from heat. Get into a lower gear, use engine braking, and use an escape ramp if you cannot regain control.",
+    handbook:"Brakes can fade or fail from excessive heat caused by using them too much instead of using the engine braking effect.",
+    hbref:"§5.4 Using Air Brakes — Downgrades"
+  },
+  {
+    q:"To test the service brakes, you should:",
+    options:["Brake hard from highway speed","Roll at about 5 mph, apply the brakes firmly, and check for a prompt, straight stop","Only set and release the parking brake","Pump the pedal ten times quickly"],
+    answer:1,
+    explanation:"At about 5 mph, press the brake firmly; the vehicle should stop promptly without pulling to one side or feeling spongy.",
+    handbook:"Test the service brakes by moving at about 5 mph and pushing the brake pedal firmly, noting any pulling or delay.",
+    hbref:"§5.3 Inspecting Air Brakes"
+  },
+  {
+    q:"After startup, your tractor's yellow ABS malfunction lamp stays on. You should:",
+    options:["Stop immediately — your brakes are gone","Keep driving (you still have normal brakes), brake carefully, and have the ABS repaired soon","Pump the brakes continuously to compensate","Release the parking brake to reset it"],
+    answer:1,
+    explanation:"If the ABS lamp stays on you have lost only the anti-lock function; normal service brakes still work. Drive carefully to avoid lockup and get it repaired.",
+    handbook:"If the ABS is not working you still have regular brakes; the malfunction lamp tells you ABS is off — have it serviced soon.",
+    hbref:"§5.1 Antilock Braking Systems"
+  }
+);
+
 CAT("combination").questions.push(
   {
     q:"The trailer air supply (red, eight-sided) knob and the tractor protection valve close automatically (the knob pops out) when air pressure drops to about:",
@@ -1657,6 +1957,106 @@ CAT("combination").questions.push(
     explanation:"If a low-slung trailer hangs up on the tracks, leave the vehicle immediately, move away from the tracks toward any oncoming train, and call the emergency number using the DOT crossing ID posted at the crossing.",
     handbook:"Low-clearance trailers can get stuck on raised crossings; if you are stuck, get out and away from the tracks and call 911 with the DOT crossing number.",
     hbref:"§6.1 Railroad Crossings"
+  }
+);
+
+/* ===== HARD set — Combination Vehicles ===== */
+CAT("combination").questions.push(
+  {
+    q:"While driving, the red trailer-air-supply knob pops out on its own. The most likely reason is:",
+    options:["Normal behavior at highway speed","A big air leak or loss dropped pressure into the 20–45 psi range","You accidentally pressed it","The trailer is fully loaded"],
+    answer:1,
+    explanation:"The knob pops out (and the tractor protection valve closes) when pressure falls to about 20–45 psi, applying the trailer emergency brakes. It signals a serious air loss — stop safely.",
+    handbook:"The trailer air supply control pops out when air pressure drops to about 20 to 45 psi, applying the trailer emergency brakes.",
+    hbref:"§6.2 Combination Vehicle Air Brakes"
+  },
+  {
+    q:"Making a tight right turn with a long trailer, the correct technique is to:",
+    options:["Swing wide to the LEFT first, then turn right","Keep the tractor out far enough and turn wide as you COMPLETE the turn, keeping the rear near the curb","Turn the wheel sharply as early as possible","Speed up through the corner"],
+    answer:1,
+    explanation:"Because the trailer off-tracks (cuts the corner), turn wide as you finish the turn — never swing left first, which invites a driver to pass on your right.",
+    handbook:"Turn wide as you complete a turn so the rear wheels clear the curb; do not swing wide to the left before turning right.",
+    hbref:"§6.1 Driving Combination Vehicles Safely"
+  },
+  {
+    q:"A mechanic accidentally crosses the service and emergency glad-hand connections. The danger is that:",
+    options:["The trailer brakes will drag the whole trip","You may have no trailer brakes when you press the pedal","The trailer lights will fail","Nothing — they are interchangeable"],
+    answer:1,
+    explanation:"Crossed glad hands send air to the wrong line, so you could have no trailer service brakes when you need them. Connect correctly (blue = service, red = emergency) and test before driving.",
+    handbook:"If the air lines are crossed, the trailer brakes may not work when needed; connect the service and emergency lines correctly.",
+    hbref:"§6.4 Coupling and Uncoupling"
+  },
+  {
+    q:"Which is MOST likely to roll over?",
+    options:["An empty trailer on a straight, dry highway","A fully loaded trailer taking an off-ramp 5 mph above the posted speed","A bobtail tractor at low speed","A loaded trailer cruising straight on dry pavement"],
+    answer:1,
+    explanation:"Rollovers come mostly from speed in curves plus a high, loaded center of gravity. A loaded rig over the ramp speed is the classic rollover setup.",
+    handbook:"The main causes of rollover are going too fast around turns and a high center of gravity; a loaded rig is far more likely to roll than an empty one.",
+    hbref:"§6.1 Rollover Risks"
+  },
+  {
+    q:"After coupling, you see daylight (a gap) between the trailer apron and the fifth wheel. You should:",
+    options:["Drive slowly and keep watching it","Not drive — the kingpin may not be locked in the jaws and the trailer could come loose","Add grease to close the gap","Ignore it; a small gap is normal"],
+    answer:1,
+    explanation:"There must be no space between the upper and lower fifth wheel. A gap means the kingpin may not be locked — do not drive until it is fixed.",
+    handbook:"Make sure there is no space between the upper and lower fifth wheel; a gap means the kingpin may not be locked in the jaws.",
+    hbref:"§6.4 Coupling and Uncoupling"
+  },
+  {
+    q:"The best way to confirm the fifth wheel is truly locked onto the kingpin is to:",
+    options:["Check that the trailer lights work","Lock the trailer brakes and gently pull forward in low gear, then get out and inspect the connection","Tap the side of the trailer","Listen for a click while coupling"],
+    answer:1,
+    explanation:"Do a tug test — with trailer brakes locked, pull gently forward; the trailer should stay attached. Then visually confirm the jaws are closed around the kingpin with no gap.",
+    handbook:"Test the coupling by pulling against the locked trailer brakes; the tractor should not separate from the trailer.",
+    hbref:"§6.4 Coupling and Uncoupling"
+  },
+  {
+    q:"Compared with a loaded tractor-trailer, a bobtail tractor (no trailer) usually:",
+    options:["Stops in a much shorter distance","Can be surprisingly hard to stop, because the drive wheels carry little weight and can lock up","Cannot skid at all","Has the best braking of any configuration"],
+    answer:1,
+    explanation:"With no load over the drive axle, traction is poor and the wheels can lock and skid, so a bobtail can need a longer stop. Brake early and gently.",
+    handbook:"Bobtail tractors can take longer to stop than a loaded tractor-trailer because the drive wheels have poor traction.",
+    hbref:"§6.1 Driving Combination Vehicles Safely"
+  },
+  {
+    q:"The emergency (supply) line between tractor and trailer does what?",
+    options:["Carries only the brake-pedal signal","Charges the trailer air tanks and applies the trailer emergency brakes if its pressure is lost","Powers the trailer marker lights","Nothing while you are driving"],
+    answer:1,
+    explanation:"The emergency/supply line charges the trailer tanks; losing its pressure (for example a breakaway) makes the trailer emergency brakes apply. The service line carries the brake signal.",
+    handbook:"Losing pressure in the emergency (supply) line applies the trailer emergency brakes; the service line carries the signal from the brake pedal.",
+    hbref:"§6.2 Combination Vehicle Air Brakes"
+  },
+  {
+    q:"Backing a trailer, you want the rear of the trailer to move to your RIGHT. You first turn the steering wheel:",
+    options:["To the right","To the left, then follow the trailer by turning back","Straight, then brake","You cannot steer a trailer in reverse"],
+    answer:1,
+    explanation:"Backing a trailer is opposite a car: to send the trailer right, turn the wheel left at first, then steer back to follow it. Back slowly and use a helper.",
+    handbook:"When backing a trailer, turn the steering wheel opposite to the way you want the trailer to go, then follow it.",
+    hbref:"§6.1 Driving Combination Vehicles Safely"
+  },
+  {
+    q:"A sliding fifth wheel locked too far FORWARD can:",
+    options:["Improve the ride quality","Put too much weight on the steer axle and reduce the cab-to-trailer clearance in turns","Take weight off the steer axle","Have no effect on anything"],
+    answer:1,
+    explanation:"Where the fifth wheel sits shifts weight between the axles and changes turning clearance. Too far forward overloads the steer axle and brings the trailer closer to the cab in turns.",
+    handbook:"The position of the sliding fifth wheel changes how weight is distributed on the axles; it must be locked in a legal position.",
+    hbref:"§6.5 Inspecting a Combination Vehicle"
+  },
+  {
+    q:"Using the trailer hand valve (trolley / Johnson bar) to slow down on the road is dangerous because:",
+    options:["It brakes only the trailer and can cause a trailer skid","It brakes only the tractor","It releases the parking brakes","It wastes too much fuel"],
+    answer:0,
+    explanation:"The hand valve applies only the trailer brakes; using it to slow down can make the trailer skid. Use it only to test the trailer brakes — use the foot brake to stop.",
+    handbook:"Do not use the trailer hand valve in driving because of the danger of making the trailer skid; use it only to test the trailer brakes.",
+    hbref:"§6.2 Combination Vehicle Air Brakes"
+  },
+  {
+    q:"Why is a sudden, hard lane change especially dangerous when the trailer is EMPTY?",
+    options:["Empty trailers grip the road better","The light rear is amplified and can whip and flip ('crack the whip')","It saves no time either way","Nothing happens with an empty trailer"],
+    answer:1,
+    explanation:"A quick steering move is amplified at the rear of the combination; an empty, top-heavy trailer can whip and roll over. Steer smoothly and early.",
+    handbook:"Steer gently and smoothly; a sudden steering movement can make the trailer swing and tip over (rearward amplification).",
+    hbref:"§6.1 Driving Combination Vehicles Safely"
   }
 );
 
