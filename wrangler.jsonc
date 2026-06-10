@@ -1,0 +1,10 @@
+{
+  // Cloudflare Worker that just serves the static site files.
+  // "assets.directory" tells wrangler where the files are (the repo root),
+  // which fixes "Missing entry-point to Worker script or to assets directory".
+  "name": "passroute",
+  "compatibility_date": "2026-06-10",
+  "assets": {
+    "directory": "./"
+  }
+}
