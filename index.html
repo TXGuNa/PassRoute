@@ -117,6 +117,7 @@
   .chip.ok{background:var(--green-bg);color:var(--green)}
   .chip.no{background:var(--red-bg);color:var(--red)}
   .chip.left{background:#eef3ff;color:var(--blue)}
+  .chip.time{background:var(--bg);color:var(--ink);border:1px solid var(--line)}
   [data-theme="dark"] .chip.left{background:#16264a}
   .pbar{height:6px;background:var(--line)}
   .pbar > i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#5b8cff);transition:width .35s}
@@ -169,6 +170,7 @@
   .result.pass h2{color:var(--green)} .result.fail h2{color:var(--red)}
   .result .score{font-size:3rem;font-weight:820;letter-spacing:-1px;margin:6px 0}
   .result .line{color:var(--muted);font-size:.96rem}
+  .result .rtime{color:var(--muted);font-size:.86rem;margin-top:6px;font-weight:600}
   .result .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
 
   .review h3{font-size:1.1rem;margin:26px 0 10px}
@@ -404,6 +406,13 @@ const LKEY = "tx_cdl_lang";
 let state = {};
 let LANG = (function(){ try{ return localStorage.getItem(LKEY) || 'en'; }catch(e){ return 'en'; } })();
 
+/* ---- test timer ---- */
+let timerInt=null;
+function fmtTime(ms){ const s=Math.max(0,Math.floor(ms/1000)); const m=Math.floor(s/60); return m+":"+String(s%60).padStart(2,'0'); }
+function updateTimer(){ const el=document.getElementById('qtimer'); if(el && state.startTime) el.textContent=fmtTime(Date.now()-state.startTime); }
+function startTimer(){ stopTimer(); timerInt=setInterval(updateTimer,1000); updateTimer(); }
+function stopTimer(){ if(timerInt){ clearInterval(timerInt); timerInt=null; } }
+
 /* ============================ i18n ============================ */
 function t(key, vars){
   let s = (window.I18N && I18N.ui[LANG] && I18N.ui[LANG][key]);
@@ -501,7 +510,7 @@ function buildTest(cat, idx){
   const start = (idx*step) % P;
   const pickIdx = [];
   for(let i=0;i<E;i++) pickIdx.push(master[(start+i)%P]);
-  const order = seededShuffle(pickIdx, cat.id+"|order|"+idx);
+  const order = pickIdx.slice().sort((a,b)=>a-b);   // present easy → hard (pool is ordered by difficulty)
   return order.map(qi=>{
     const q = pool[qi];
     // shuffle option *indices* deterministically; text is resolved per language at render time
@@ -512,6 +521,7 @@ function buildTest(cat, idx){
 
 /* ============================ ROUTER ============================ */
 function go(view, opts={}){
+  stopTimer();
   state = Object.assign({view}, opts);
   window.scrollTo(0,0);
   render();
@@ -784,9 +794,10 @@ function startTest(catId, idx){
   const cat = DATA.categories.find(c=>c.id===catId);
   const test = buildTest(cat, idx);
   state = { view:'test', catId, idx, cat, test, cur:0,
-            answers:new Array(test.length).fill(null), correct:0, incorrect:0, locked:false };
+            answers:new Array(test.length).fill(null), correct:0, incorrect:0, locked:false, startTime:Date.now() };
   window.scrollTo(0,0);
   renderTestShell();
+  startTimer();
 }
 
 function renderTestShell(){
@@ -835,6 +846,7 @@ function paintQuestion(){
     <div class="runbar">
       <span class="qpos">${t('tQuestion')} ${s.cur+1} <span style="color:var(--muted);font-weight:600">/ ${s.test.length}</span></span>
       <div class="tally">
+        <span class="chip time" id="qtimer">${fmtTime(Date.now()-(s.startTime||Date.now()))}</span>
         <span class="chip ok">✓ ${s.correct}</span>
         <span class="chip no">✗ ${s.incorrect}</span>
         <span class="chip left">${t('chipMiss',{n:(missLeft<0?0:missLeft)})}</span>
@@ -871,6 +883,8 @@ function confirmQuit(){
   if(confirm(t('confirmQuit'))) go('category',{catId:state.catId});
 }
 function finishTest(){
+  state.elapsed = Date.now() - (state.startTime||Date.now());
+  stopTimer();
   recordResult(state.catId, state.idx, state.correct, state.test.length);
   state.view='results';
   window.scrollTo(0,0);
@@ -904,6 +918,7 @@ function renderResults(){
       <h2>${passed? t('rPassed') : t('rFailed')}</h2>
       <div class="score">${pct}%</div>
       <div class="line">${t('rScoreLine',{c:correct,t:total,need:s.cat.passNeed})}${passed?'': t('rMore',{n:s.cat.passNeed-correct})}</div>
+      <div class="rtime">${t('resTime',{t:fmtTime(s.elapsed||0)})} · ${t('resAvg',{s:Math.max(1,Math.round((s.elapsed||0)/1000/total))})}</div>
       <div class="actions">
         <button class="btn primary" onclick="startTest('${s.catId}',${s.idx})">${t('rRetake')}</button>
         <button class="btn ghost" onclick="go('category',{catId:'${s.catId}'})">${t('rBackTo',{cat:catName(s.cat)})}</button>

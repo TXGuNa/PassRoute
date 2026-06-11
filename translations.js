@@ -60,7 +60,8 @@ window.I18N = {
       footSub:"Study aid only — not affiliated with the Texas DPS/DMV. You must score 80% to pass each test.",
       footHb:"📕 Official Handbook (DL-7C)", footSg:"📗 Quick Study Guide", footGuide:"🪪 How to get your CLP",
       confirmReset:"Erase all your saved pass/fail results on this device?", toastReset:"Progress reset.",
-      enBadge:"EN", langWipNote:"This section isn't translated yet — shown in English."
+      enBadge:"EN", langWipNote:"This section isn't translated yet — shown in English.",
+      resTime:"⏱ Finished in {t}", resAvg:"~{s}s / question"
     },
     /* ---------------- TÜRKÇE ---------------- */
     tr: {
@@ -112,7 +113,8 @@ window.I18N = {
       footSub:"Yalnızca çalışma aracıdır — Texas DPS/DMV ile bağlantılı değildir. Her testi geçmek için %80 almalısın.",
       footHb:"📕 Resmi Handbook (DL-7C)", footSg:"📗 Hızlı Çalışma Kılavuzu", footGuide:"🪪 CLP nasıl alınır",
       confirmReset:"Bu cihazda kayıtlı tüm geçti/kaldı sonuçların silinsin mi?", toastReset:"İlerleme sıfırlandı.",
-      enBadge:"EN", langWipNote:"Bu bölüm henüz çevrilmedi — İngilizce gösteriliyor."
+      enBadge:"EN", langWipNote:"Bu bölüm henüz çevrilmedi — İngilizce gösteriliyor.",
+      resTime:"⏱ {t} içinde bitirdin", resAvg:"soru başına ~{s} sn"
     },
     /* ---------------- РУССКИЙ ---------------- */
     ru: {
@@ -164,7 +166,8 @@ window.I18N = {
       footSub:"Только учебное пособие — не связано с Texas DPS/DMV. Для сдачи каждого теста нужно 80%.",
       footHb:"📕 Офиц. справочник (DL-7C)", footSg:"📗 Краткое пособие", footGuide:"🪪 Как получить CLP",
       confirmReset:"Удалить все сохранённые на этом устройстве результаты?", toastReset:"Прогресс сброшен.",
-      enBadge:"EN", langWipNote:"Этот раздел ещё не переведён — показан на английском."
+      enBadge:"EN", langWipNote:"Этот раздел ещё не переведён — показан на английском.",
+      resTime:"⏱ Завершено за {t}", resAvg:"~{s} с / вопрос"
     }
   },
 
@@ -536,4 +539,83 @@ window.I18N.q.ru.combination = {
   47:{q:"Скользящее седло, запертое слишком ВПЕРЁД, может:",options:["Улучшить плавность хода","Дать слишком много веса на рулевую ось и уменьшить зазор кабина–прицеп в поворотах","Снять вес с рулевой оси","Ни на что не влиять"],explanation:"Положение седла перераспределяет вес между осями и меняет зазор в поворотах. Слишком вперёд — перегружает рулевую ось и приближает прицеп к кабине в поворотах."},
   48:{q:"Использовать ручной кран прицепа (trolley / Johnson bar) для замедления на дороге опасно, потому что:",options:["Он тормозит только прицеп и может вызвать занос прицепа","Он тормозит только тягач","Он отпускает стояночные тормоза","Он расходует много топлива"],explanation:"Ручной кран применяет только тормоза прицепа; торможение им может вызвать занос прицепа. Используй его только для проверки тормозов прицепа — для остановки используй ножной тормоз."},
   49:{q:"Почему резкая смена полосы особенно опасна, когда прицеп ПУСТОЙ?",options:["Пустые прицепы лучше держат дорогу","Лёгкий зад усиливается и может вильнуть и опрокинуться ('crack the whip')","Это всё равно не экономит время","С пустым прицепом ничего не происходит"],explanation:"Резкое движение рулём усиливается в хвосте состава; пустой, верхне-тяжёлый прицеп может вильнуть и опрокинуться. Рули плавно и заранее."}
+};
+
+/* Special Requirements was reworked (v2) — old index-keyed translations no longer
+   match the new questions, so fall back to English until the new set is translated. */
+window.I18N.q.tr.special = {
+  0:{q:"Texas'ta bir ticari aracın veya yükünün azami yasal genişliği nedir?",options:["96 inç","102 inç","108 inç","120 inç"],explanation:"Yük dahil azami genişlik 102 inçtir (8,5 fit); daha genişi izin gerektirir."},
+  1:{q:"Texas karayollarında araç ve yükün azami yüksekliği nedir?",options:["13 fit","13 fit 6 inç","14 fit","15 fit"],explanation:"Azami yükseklik 14 fittir; köprülerden geçmek sürücünün sorumluluğudur."},
+  2:{q:"İzinsiz azami brüt ağırlık (araç + yük) nedir?",options:["72.000 lb","76.000 lb","80.000 lb","90.000 lb"],explanation:"Azami brüt ağırlık izinsiz 80.000 pounddur."},
+  3:{q:"Yavaş hareket eden araç (SMV) amblemi hangi hız için tasarlanmış araçlar içindir?",options:["15 mil/saat veya altı","25 mil/saat veya altı","35 mil/saat veya altı","45 mil/saat veya altı"],explanation:"Turuncu üçgen, 25 mil/saat ve altı için tasarlanan araçları uyarır."},
+  4:{q:"80 inç genişliğindeki bir kamyonda ön gabari lambaları ne renk olmalı?",options:["Amber","Kırmızı","Beyaz","Yeşil"],explanation:"Ön gabari lambaları amber, arkadakiler kırmızıdır."},
+  5:{q:"Geniş bir kamyonda arka gabari lambaları ne renk olmalı?",options:["Amber","Beyaz","Kırmızı","Mavi"],explanation:"Arka gabari lambaları ve reflektörler kırmızıdır."},
+  6:{q:"Bir CMV'nin arkasında gereken iki reflektör ne renk olmalı?",options:["Amber","Kırmızı","Beyaz","Yeşil"],explanation:"Arka reflektörler kırmızıdır."},
+  7:{q:"Kuyruk lambaları arkaya hangi rengi göstermeli?",options:["Beyaz","Amber","Kırmızı","Mavi"],explanation:"Kuyruk lambaları arkaya kırmızı gösterir."},
+  8:{q:"Bir ticari araçta farlar hangi rengi göstermeli?",options:["Amber","Beyaz","Sarı","Mavi"],explanation:"Farlar beyaz ışık göstermelidir."},
+  9:{q:"Taşan bir yükü işaretleyen kırmızı bayrak en az ne kadar olmalı?",options:["6 inç kare","9 inç kare","12 inç kare","18 inç kare"],explanation:"Kırmızı bayrak en az 12 inç kare olmalıdır."},
+  10:{q:"Bir yük arkadan ne kadar taşarsa bayrak gerekir?",options:["2 fit","3 fit","4 fit","6 fit"],explanation:"Yük arkadan 4 fitten fazla taşarsa kırmızı bayrak gerekir."},
+  11:{q:"Bir yük aracın önünden en fazla ne kadar taşabilir?",options:["3 fit","4 fit","6 fit","10 fit"],explanation:"Yük önden 3 fitten fazla taşamaz."},
+  12:{q:"Zincirle çekerken bağlantıda hangi renk bayrak gösterilmeli?",options:["Kırmızı","Beyaz","Amber","Turuncu"],explanation:"Çekme zinciri/halatı için beyaz bayrak; kırmızı taşan yük içindir."},
+  13:{q:"İki araç arasındaki çekme bağlantısı en fazla ne kadar olabilir?",options:["10 fit","15 fit","20 fit","25 fit"],explanation:"Bağlantı 15 fiti aşamaz (sabit çeki demiri hariç)."},
+  14:{q:"Arka aks frenleri hangi brüt ağırlığın üstünde zorunludur?",options:["2.500 lb","3.000 lb","4.500 lb","10.000 lb"],explanation:"4.500 lb üzeri römorklarda fren zorunludur."},
+  15:{q:"Texas'a yerleştikten sonra başka eyalet plakaları kaç gün tanınır?",options:["10 gün","20 gün","30 gün","60 gün"],explanation:"Başka eyalet plakaları yerleşim/işten sonra 30 gün geçerlidir."},
+  16:{q:"Alıcının geçici karton plakası kaç gün geçerlidir?",options:["20 gün","30 gün","45 gün","60 gün"],explanation:"Geçici alıcı plakası 20 gün geçerlidir."},
+  17:{q:"Çamurluklar yere ne kadar yakına inmelidir?",options:["4 inç","6 inç","8 inç","12 inç"],explanation:"Çamurluklar yola 8 inç kalana kadar inmelidir."},
+  18:{q:"Bir motosikleti sollarken en az ne kadar boşluk bırakmalısın?",options:["3 fit","6 fit","9 fit","12 fit"],explanation:"En az 6 fit bırak ve sollamak için şerit değiştir."},
+  19:{q:"Tek bir araç (çekici hariç) en fazla kaç fit olabilir?",options:["40 fit","45 fit","53 fit","65 fit"],explanation:"Tek araç 45 fitle sınırlıdır."},
+  20:{q:"Bir kombinasyonda izin verilen azami araç sayısı kaçtır?",options:["2","3","4","5"],explanation:"En fazla üç araç birleştirilebilir."},
+  21:{q:"Kuyruk lambaları arkadan kaç fitten net görünmeli?",options:["300 fit","500 fit","750 fit","1.000 fit"],explanation:"Kuyruk lambaları 1.000 fitten görünmeli."},
+  22:{q:"Bir stop lambası gündüz en az kaç fitten görünmeli?",options:["100 fit","300 fit","500 fit","1.000 fit"],explanation:"Stop lambaları normal gündüzde 300 fitten görünmeli."},
+  23:{q:"Gece, arkadan 4 fitten fazla taşan yük neyle işaretlenmeli?",options:["Beyaz bayrak","Kırmızı bayrak","Kırmızı ışık","Amber ışık"],explanation:"Gece bayrak yerine kırmızı ışık (500 fit) kullanılır."},
+  24:{q:"Arka reflektörler hangi yükseklikte monte edilmeli?",options:["12–48 inç","24–54 inç","24–60 inç","12–60 inç"],explanation:"Arka reflektörler yerden 24–60 inç yükseğe monte edilir."},
+  25:{q:"Farlar hangi yükseklikte monte edilmeli?",options:["12–48 inç","24–54 inç","24–60 inç","20–50 inç"],explanation:"Farlar 24–54 inç yükseğe monte edilir."},
+  26:{q:"Şehir dışında bir kamyon başka bir kamyonu en yakın kaç fit takip edebilir?",options:["100 fit","200 fit","300 fit","500 fit"],explanation:"Kamyonlar arasında en az 300 fit bırak (sollama yine de serbest)."},
+  27:{q:"Karşıdan gelen bir araç için uzun farları kaç fit içinde kısmalısın?",options:["200 fit","300 fit","500 fit","1.000 fit"],explanation:"Karşıdan gelende 500 fit, takip ederken 300 fit içinde kıs."},
+  28:{q:"3.000 lb üstü bir kombinasyon 20 mil/saatten kaç fit içinde durmalı?",options:["30 fit","40 fit","50 fit","60 fit"],explanation:"3.000 lb üstü 50 fit; 3.000 lb ve altı 40 fit içinde durmalı."},
+  29:{q:"Aracın önüne hangi renk ışık gösterilemez?",options:["Beyaz","Amber","Kırmızı","Hepsi serbest"],explanation:"Öne kırmızı ışık gösterilemez; kırmızı arka içindir."},
+  30:{q:"Demiryolu geçidinde plakartlı tehlikeli madde kamyonu ne yapmalı?",options:["Durmalı","Yolun açık olduğunu kontrol etmeli","Vites değiştirmeden geçmeli","Hepsi"],explanation:"Durmalı, yolun açık olduğundan emin olmalı ve raylarda vites değiştirmeden geçmeli."},
+  31:{q:"Aşağıdakilerden hangisi bir Texas limiti DEĞİLDİR (izinsiz)?",options:["Genişlik 102 inç","Yükseklik 14 fit","Uzunluk 45 fit (tek)","Brüt 100.000 lb"],explanation:"Azami brüt 80.000 lb'dir, 100.000 değil; diğerleri doğru limitlerdir."},
+  32:{q:"Kuyruk lambaları ____ görünür; stop lambaları ____ görünür.",options:["1.000 fit / 300 fit","500 fit / 1.000 fit","300 fit / 1.000 fit","1.000 fit / 500 fit"],explanation:"Kuyruk lambaları 1.000 fit; stop lambaları gündüz 300 fit."},
+  33:{q:"Farlar ____ monte edilir; arka reflektörler ____ monte edilir.",options:["24–54 inç / 24–60 inç","24–60 inç / 24–54 inç","ikisi de 24–54 inç","ikisi de 24–60 inç"],explanation:"Farlar 24–54 inç; reflektörler 24–60 inç."},
+  34:{q:"Bir aracı zincirle çekerken hangisi gereklidir?",options:["Bağlantıda beyaz bayrak","15 fitten uzun olmayan bağlantı","Yedek güvenlik zincirleri","Hepsi"],explanation:"Beyaz bayrak, 15 fit içinde bağlantı ve güvenlik zincirlerinin hepsi gereklidir."},
+  35:{q:"Aşağıdakilerden hangisi Texas'ta YASALDIR?",options:["Yokuş aşağı boşta inmek","Öne kırmızı ışık göstermek","Çakıl yükünü örtmek","Hazmat'ın geçidi atlaması"],explanation:"Gevşek yükleri örtmek zorunludur; diğer üçü yasaktır."}
+};
+window.I18N.q.ru.special = {
+  0:{q:"Какова максимальная законная ширина коммерческого ТС или его груза в Техасе?",options:["96 дюймов","102 дюйма","108 дюймов","120 дюймов"],explanation:"Максимальная ширина с грузом — 102 дюйма (8,5 фута); шире нужен пермит."},
+  1:{q:"Какова максимальная высота ТС с грузом на дорогах Техаса?",options:["13 футов","13 футов 6 дюймов","14 футов","15 футов"],explanation:"Максимальная высота — 14 футов; за проезд под мостами отвечает водитель."},
+  2:{q:"Какова максимальная полная масса (ТС + груз) без пермита?",options:["72 000 фунтов","76 000 фунтов","80 000 фунтов","90 000 фунтов"],explanation:"Максимальная полная масса без пермита — 80 000 фунтов."},
+  3:{q:"Знак тихоходного ТС (SMV) — для ТС, рассчитанных на скорость:",options:["15 миль/ч и менее","25 миль/ч и менее","35 миль/ч и менее","45 миль/ч и менее"],explanation:"Оранжевый треугольник предупреждает о ТС со скоростью 25 миль/ч и менее."},
+  4:{q:"На грузовике шириной 80 дюймов передние габаритные фонари должны быть:",options:["Жёлтыми","Красными","Белыми","Зелёными"],explanation:"Передние габаритные фонари жёлтые, задние — красные."},
+  5:{q:"Задние габаритные фонари широкого грузовика должны быть:",options:["Жёлтыми","Белыми","Красными","Синими"],explanation:"Задние габаритные фонари и отражатели — красные."},
+  6:{q:"Два отражателя, обязательные сзади CMV, должны быть:",options:["Жёлтыми","Красными","Белыми","Зелёными"],explanation:"Задние отражатели — красные."},
+  7:{q:"Какого цвета задние фонари должны светить назад?",options:["Белого","Жёлтого","Красного","Синего"],explanation:"Задние фонари светят назад красным."},
+  8:{q:"Какого цвета должны быть фары коммерческого ТС?",options:["Янтарного","Белого","Жёлтого","Синего"],explanation:"Фары должны светить белым."},
+  9:{q:"Красный флажок, отмечающий выступающий груз, должен быть не менее:",options:["6 дюймов по стороне","9 дюймов по стороне","12 дюймов по стороне","18 дюймов по стороне"],explanation:"Красный флажок должен быть не менее 12×12 дюймов."},
+  10:{q:"Груз нужно отметить флажком, если он выступает сзади более чем на:",options:["2 фута","3 фута","4 фута","6 футов"],explanation:"Красный флажок нужен при выступе более 4 футов сзади."},
+  11:{q:"Груз не может выступать за перед ТС более чем на:",options:["3 фута","4 фута","6 футов","10 футов"],explanation:"Груз не может выступать вперёд более чем на 3 фута."},
+  12:{q:"При буксировке цепью на сцепке должен быть флажок какого цвета?",options:["Красного","Белого","Янтарного","Оранжевого"],explanation:"Для цепи/троса буксировки — белый флажок; красный для выступающего груза."},
+  13:{q:"Сцепка между двумя ТС при буксировке не может быть длиннее:",options:["10 футов","15 футов","20 футов","25 футов"],explanation:"Сцепка не может превышать 15 футов (кроме жёсткой штанги)."},
+  14:{q:"Тормоза на задней оси обязательны при полной массе свыше:",options:["2 500 фунтов","3 000 фунтов","4 500 фунтов","10 000 фунтов"],explanation:"Тормоза обязательны на прицепах свыше 4 500 фунтов."},
+  15:{q:"После переезда в Техас номера другого штата признаются:",options:["10 дней","20 дней","30 дней","60 дней"],explanation:"Номера другого штата действуют 30 дней после резидентства/работы."},
+  16:{q:"Временный картонный номер покупателя действует:",options:["20 дней","30 дней","45 дней","60 дней"],explanation:"Временный номер покупателя действует 20 дней."},
+  17:{q:"Брызговики должны доходить до какого расстояния от дороги?",options:["4 дюйма","6 дюймов","8 дюймов","12 дюймов"],explanation:"Брызговики должны доходить до 8 дюймов от дороги."},
+  18:{q:"При обгоне мотоцикла нужно оставить не менее:",options:["3 футов","6 футов","9 футов","12 футов"],explanation:"Оставь не менее 6 футов и перестройся для обгона."},
+  19:{q:"Одиночное ТС (не тягач) не может быть длиннее:",options:["40 футов","45 футов","53 фута","65 футов"],explanation:"Одиночное ТС ограничено 45 футами."},
+  20:{q:"Максимальное число ТС в одном составе:",options:["2","3","4","5"],explanation:"В составе не более трёх ТС."},
+  21:{q:"Задние фонари должны быть видны сзади с расстояния:",options:["300 футов","500 футов","750 футов","1 000 футов"],explanation:"Задние фонари должны быть видны с 1 000 футов."},
+  22:{q:"Стоп-сигнал должен быть виден днём с расстояния не менее:",options:["100 футов","300 футов","500 футов","1 000 футов"],explanation:"Стоп-сигналы видны днём с 300 футов."},
+  23:{q:"Ночью груз, выступающий сзади более 4 футов, отмечают:",options:["Белым флажком","Красным флажком","Красным фонарём","Жёлтым фонарём"],explanation:"Ночью вместо флажка — красный фонарь (виден 500 футов)."},
+  24:{q:"Задние отражатели монтируются на высоте:",options:["12–48 дюймов","24–54 дюйма","24–60 дюймов","12–60 дюймов"],explanation:"Задние отражатели — 24–60 дюймов над дорогой."},
+  25:{q:"Фары монтируются на высоте:",options:["12–48 дюймов","24–54 дюйма","24–60 дюймов","20–50 дюймов"],explanation:"Фары — 24–54 дюйма."},
+  26:{q:"Вне города грузовик не может следовать за другим грузовиком ближе:",options:["100 футов","200 футов","300 футов","500 футов"],explanation:"Оставляй не менее 300 футов между грузовиками (обгон разрешён)."},
+  27:{q:"Дальний свет нужно переключить для встречного ТС в пределах:",options:["200 футов","300 футов","500 футов","1 000 футов"],explanation:"Для встречного — 500 футов, при следовании — 300 футов."},
+  28:{q:"Состав свыше 3 000 фунтов должен остановиться с 20 миль/ч в пределах:",options:["30 футов","40 футов","50 футов","60 футов"],explanation:"Свыше 3 000 фунтов — 50 футов; до 3 000 — 40 футов."},
+  29:{q:"Какой цвет света нельзя показывать вперёд?",options:["Белый","Жёлтый","Красный","Все разрешены"],explanation:"Красный нельзя показывать вперёд; он для задней части."},
+  30:{q:"На железнодорожном переезде грузовик с плакатами опасного груза должен:",options:["Остановиться","Убедиться, что путь свободен","Проехать без переключения передач","Всё перечисленное"],explanation:"Остановиться, убедиться, что свободно, и проехать без переключения передач на путях."},
+  31:{q:"Что из следующего НЕ является лимитом Техаса (без пермита)?",options:["Ширина 102 дюйма","Высота 14 футов","Длина 45 футов (одиночное)","Полная масса 100 000 фунтов"],explanation:"Максимум полной массы — 80 000 фунтов, не 100 000; остальные верны."},
+  32:{q:"Задние фонари видны на ____; стоп-сигналы видны на ____.",options:["1 000 футов / 300 футов","500 футов / 1 000 футов","300 футов / 1 000 футов","1 000 футов / 500 футов"],explanation:"Задние фонари 1 000 футов; стоп-сигналы днём 300 футов."},
+  33:{q:"Фары монтируются на ____; задние отражатели на ____.",options:["24–54 дюйма / 24–60 дюймов","24–60 дюймов / 24–54 дюйма","оба 24–54 дюйма","оба 24–60 дюймов"],explanation:"Фары 24–54 дюйма; отражатели 24–60 дюймов."},
+  34:{q:"При буксировке ТС цепью что требуется?",options:["Белый флажок на сцепке","Сцепка не длиннее 15 футов","Страховочные цепи как резерв","Всё перечисленное"],explanation:"Белый флажок, сцепка в пределах 15 футов и страховочные цепи — всё обязательно."},
+  35:{q:"Что из следующего ЗАКОННО в Техасе?",options:["Накат под уклон на нейтрали","Красный свет вперёд","Накрыть груз гравия","Грузовик с опасным грузом не остановился на переезде"],explanation:"Накрывать сыпучий груз обязательно; остальные три запрещены."}
 };
