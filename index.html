@@ -534,7 +534,12 @@ function buildTest(cat, idx){
   return order.map(qi=>{
     const q = pool[qi];
     // shuffle option *indices* deterministically; text is resolved per language at render time
-    const optOrder = randShuffle(q.options.map((o,i)=>i));   // random each attempt so positions can't be memorized
+    // random each attempt so positions can't be memorized, but keep
+    // "All of the above" / "None of the above" style options pinned last
+    const _idx = q.options.map((o,i)=>i);
+    const _pin = _idx.filter(i=>/^(all|none)\b/i.test(String(q.options[i]).trim()));
+    const _free = _idx.filter(i=>_pin.indexOf(i)<0);
+    const optOrder = randShuffle(_free).concat(_pin);
     return { qid: qi, optOrder, answer: optOrder.indexOf(q.answer) };
   });
 }
