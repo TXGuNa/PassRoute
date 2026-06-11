@@ -56,6 +56,20 @@
     padding:8px 16px;font-size:.82rem;font-weight:700;cursor:pointer;border-radius:7px;letter-spacing:.3px}
   .langmenu button:hover{background:var(--bg)}
   .enflag{display:inline-block;font-size:.58rem;font-weight:800;vertical-align:middle;background:var(--bg);color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-left:6px;letter-spacing:.4px}
+  /* Stats */
+  .scards{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:12px;margin:14px 0 6px}
+  .scard{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:14px 12px;text-align:center}
+  .scard b{display:block;font-size:1.5rem;font-weight:800;line-height:1.1}
+  .scard span{font-size:.76rem;color:var(--muted)}
+  .srow{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:9px 12px;margin-bottom:7px;font-size:.86rem;box-shadow:var(--shadow)}
+  .srow.p{border-left-color:var(--green)} .srow.f{border-left-color:var(--red)}
+  .srow .sr-cat{flex:1;font-weight:650;min-width:0}
+  .srow .sr-sc,.srow .sr-tm{color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .srow .sr-st{font-weight:800}
+  .srow.p .sr-st{color:var(--green)} .srow.f .sr-st{color:var(--red)}
+  .srow .sr-dt{color:var(--muted);font-size:.74rem;white-space:nowrap;min-width:80px;text-align:right}
+  .statsempty{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:30px;text-align:center;color:var(--muted);margin-top:16px}
+  @media(max-width:560px){ .srow .sr-dt,.srow .sr-tm{display:none} }
 
   /* Hero / overall progress */
   .hero{padding:26px 0 6px}
@@ -374,6 +388,7 @@
       <button class="langbtn" id="langBtn" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false"><span id="langCur">EN</span><span class="cv">▾</span></button>
       <div class="langmenu" id="langMenu" role="listbox"></div>
     </div>
+    <button class="hbtn ic" onclick="go('stats')" id="statsBtn" title="Stats" aria-label="Stats">📊</button>
     <button class="hbtn ic" onclick="toggleTheme()" id="themeBtn" title="Theme" aria-label="Theme">🌙</button>
     <button class="hbtn" onclick="resetAll()" title="Reset"><span class="lbl-full" id="resetLbl">Reset</span><span class="lbl-min">↺</span></button>
   </div>
@@ -402,6 +417,7 @@ const DATA = window.CDL_DATA;
 const PKEY = "tx_cdl_progress_v2";
 const TKEY = "tx_cdl_theme";
 const LKEY = "tx_cdl_lang";
+const HKEY = "tx_cdl_history";
 
 let state = {};
 let LANG = (function(){ try{ return localStorage.getItem(LKEY) || 'en'; }catch(e){ return 'en'; } })();
@@ -465,6 +481,8 @@ function loadProgress(){
   try{ return JSON.parse(localStorage.getItem(PKEY)) || {}; }catch(e){ return {}; }
 }
 function saveProgress(p){ localStorage.setItem(PKEY, JSON.stringify(p)); }
+function loadHistory(){ try{ return JSON.parse(localStorage.getItem(HKEY)) || []; }catch(e){ return []; } }
+function pushHistory(rec){ const h=loadHistory(); h.push(rec); if(h.length>300) h.splice(0,h.length-300); try{ localStorage.setItem(HKEY, JSON.stringify(h)); }catch(e){} }
 
 function getResult(catId, idx){
   const p = loadProgress();
@@ -497,6 +515,8 @@ function seededShuffle(arr, seedStr){
 }
 
 function gcd(a,b){ while(b){ const t=a%b; a=b; b=t; } return a; }
+function randShuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function fmtDur(secs){ secs=Math.round(secs||0); const h=Math.floor(secs/3600), m=Math.floor((secs%3600)/60), s=secs%60; return h?(h+"h "+m+"m"):(m?(m+"m "+s+"s"):(s+"s")); }
 
 /* Build a stable, distinct test #idx for a category.
    One master shuffle of the pool, then each test takes a window that is
@@ -514,7 +534,7 @@ function buildTest(cat, idx){
   return order.map(qi=>{
     const q = pool[qi];
     // shuffle option *indices* deterministically; text is resolved per language at render time
-    const optOrder = seededShuffle(q.options.map((o,i)=>i), cat.id+"|"+idx+"|q"+qi);
+    const optOrder = randShuffle(q.options.map((o,i)=>i));   // random each attempt so positions can't be memorized
     return { qid: qi, optOrder, answer: optOrder.indexOf(q.answer) };
   });
 }
@@ -533,6 +553,7 @@ function render(){
   else if(state.view==='category') el.innerHTML = renderCategory(state.catId);
   else if(state.view==='test'){ renderTestShell(); return; }
   else if(state.view==='results') el.innerHTML = renderResults();
+  else if(state.view==='stats') el.innerHTML = renderStats();
 }
 
 /* ============================ HOME ============================ */
@@ -886,6 +907,7 @@ function finishTest(){
   state.elapsed = Date.now() - (state.startTime||Date.now());
   stopTimer();
   recordResult(state.catId, state.idx, state.correct, state.test.length);
+  pushHistory({ts:Date.now(), cat:state.catId, idx:state.idx, correct:state.correct, total:state.test.length, pct:Math.round(state.correct/state.test.length*100), passed:state.correct>=state.cat.passNeed, secs:Math.round((state.elapsed||0)/1000)});
   state.view='results';
   window.scrollTo(0,0);
   render();
@@ -928,9 +950,47 @@ function renderResults(){
     <div class="review"><h3>${t('rReview',{t:total})}</h3>${reviews}</div>`;
 }
 
+/* ============================ STATS ============================ */
+function renderStats(){
+  const h = loadHistory();
+  const head = `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <span>${t('statsTitle')}</span></div>`;
+  if(!h.length) return head + `<div class="statsempty">${t('statNoData')}</div>`;
+  const taken=h.length, passed=h.filter(r=>r.passed).length;
+  const passRate=Math.round(passed/taken*100), avgScore=Math.round(h.reduce((a,r)=>a+r.pct,0)/taken);
+  const totalSecs=h.reduce((a,r)=>a+(r.secs||0),0);
+  const cards=[[t('statTaken'),taken],[t('statPassed'),passed+" / "+taken],[t('statPassRate'),passRate+"%"],[t('statAvgScore'),avgScore+"%"],[t('statTotalTime'),fmtDur(totalSecs)]]
+    .map(c=>`<div class="scard"><b>${c[1]}</b><span>${c[0]}</span></div>`).join('');
+  const byCat=DATA.categories.map(c=>{
+    const cr=h.filter(r=>r.cat===c.id); if(!cr.length) return '';
+    const cp=cr.filter(r=>r.passed).length, cavg=Math.round(cr.reduce((a,r)=>a+r.pct,0)/cr.length);
+    return `<div class="srow ${cp>0?'p':'f'}"><div class="sr-cat">${catName(c)}</div><div class="sr-sc">${cp}/${cr.length} · ${t('statAvg')} ${cavg}%</div></div>`;
+  }).join('');
+  const recent=h.slice(-25).reverse().map(r=>{
+    const c=DATA.categories.find(x=>x.id===r.cat);
+    let d=''; try{ d=new Date(r.ts).toLocaleString(LANG,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }catch(e){ d=new Date(r.ts).toLocaleString(); }
+    return `<div class="srow ${r.passed?'p':'f'}">
+      <div class="sr-cat">${c?catName(c):r.cat} · ${t('tileTest',{n:r.idx+1})}</div>
+      <div class="sr-sc">${r.correct}/${r.total} · ${r.pct}%</div>
+      <div class="sr-tm">⏱ ${fmtTime((r.secs||0)*1000)}</div>
+      <div class="sr-st">${r.passed?'✓':'✗'}</div>
+      <div class="sr-dt">${d}</div>
+    </div>`;
+  }).join('');
+  return head + `
+    <div class="section-head"><h2>${t('statsTitle')}</h2>
+      <button class="btn ghost" onclick="clearHistory()">${t('statClear')}</button></div>
+    <div class="scards">${cards}</div>
+    <div class="rm-group" style="margin-top:18px">${t('statByCat')}</div>
+    ${byCat}
+    <div class="rm-group" style="margin-top:18px">${t('statRecent')}</div>
+    ${recent}
+    <div style="text-align:center;margin:18px 0 30px"><button class="btn ghost" onclick="go('home')">← ${t('home')}</button></div>`;
+}
+
 /* ============================ MISC ============================ */
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1900); }
-function resetAll(){ if(confirm(t('confirmReset'))){ localStorage.removeItem(PKEY); toast(t('toastReset')); go('home'); } }
+function resetAll(){ if(confirm(t('confirmReset'))){ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); toast(t('toastReset')); go('home'); } }
+function clearHistory(){ if(confirm(t('confirmClearHistory'))){ localStorage.removeItem(HKEY); toast(t('toastHistoryCleared')); render(); } }
 function toggleTheme(){
   const cur=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
   document.documentElement.setAttribute('data-theme',cur);

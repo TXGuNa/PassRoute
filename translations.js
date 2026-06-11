@@ -61,7 +61,8 @@ window.I18N = {
       footHb:"📕 Official Handbook (DL-7C)", footSg:"📗 Quick Study Guide", footGuide:"🪪 How to get your CLP",
       confirmReset:"Erase all your saved pass/fail results on this device?", toastReset:"Progress reset.",
       enBadge:"EN", langWipNote:"This section isn't translated yet — shown in English.",
-      resTime:"⏱ Finished in {t}", resAvg:"~{s}s / question"
+      resTime:"⏱ Finished in {t}", resAvg:"~{s}s / question",
+      navStats:"📊 Stats", statsTitle:"Your statistics", statTaken:"Tests taken", statPassed:"Passed", statPassRate:"Pass rate", statAvgScore:"Avg. score", statTotalTime:"Total time", statByCat:"By category", statRecent:"Recent attempts", statNoData:"No tests yet — take one to see your stats.", statClear:"Clear history", statAvg:"avg", confirmClearHistory:"Clear your test history?", toastHistoryCleared:"History cleared."
     },
     /* ---------------- TÜRKÇE ---------------- */
     tr: {
@@ -114,7 +115,8 @@ window.I18N = {
       footHb:"📕 Resmi Handbook (DL-7C)", footSg:"📗 Hızlı Çalışma Kılavuzu", footGuide:"🪪 CLP nasıl alınır",
       confirmReset:"Bu cihazda kayıtlı tüm geçti/kaldı sonuçların silinsin mi?", toastReset:"İlerleme sıfırlandı.",
       enBadge:"EN", langWipNote:"Bu bölüm henüz çevrilmedi — İngilizce gösteriliyor.",
-      resTime:"⏱ {t} içinde bitirdin", resAvg:"soru başına ~{s} sn"
+      resTime:"⏱ {t} içinde bitirdin", resAvg:"soru başına ~{s} sn",
+      navStats:"📊 İstatistik", statsTitle:"İstatistiklerin", statTaken:"Çözülen test", statPassed:"Geçilen", statPassRate:"Geçme oranı", statAvgScore:"Ort. skor", statTotalTime:"Toplam süre", statByCat:"Kategoriye göre", statRecent:"Son denemeler", statNoData:"Henüz test yok — bir tane çöz, istatistik burada görünsün.", statClear:"Geçmişi temizle", statAvg:"ort.", confirmClearHistory:"Test geçmişini temizle?", toastHistoryCleared:"Geçmiş temizlendi."
     },
     /* ---------------- РУССКИЙ ---------------- */
     ru: {
@@ -167,7 +169,8 @@ window.I18N = {
       footHb:"📕 Офиц. справочник (DL-7C)", footSg:"📗 Краткое пособие", footGuide:"🪪 Как получить CLP",
       confirmReset:"Удалить все сохранённые на этом устройстве результаты?", toastReset:"Прогресс сброшен.",
       enBadge:"EN", langWipNote:"Этот раздел ещё не переведён — показан на английском.",
-      resTime:"⏱ Завершено за {t}", resAvg:"~{s} с / вопрос"
+      resTime:"⏱ Завершено за {t}", resAvg:"~{s} с / вопрос",
+      navStats:"📊 Статистика", statsTitle:"Твоя статистика", statTaken:"Пройдено тестов", statPassed:"Сдано", statPassRate:"Доля сдачи", statAvgScore:"Ср. результат", statTotalTime:"Общее время", statByCat:"По категориям", statRecent:"Последние попытки", statNoData:"Пока нет тестов — пройди один, чтобы увидеть статистику.", statClear:"Очистить историю", statAvg:"ср.", confirmClearHistory:"Очистить историю тестов?", toastHistoryCleared:"История очищена."
     }
   },
 
