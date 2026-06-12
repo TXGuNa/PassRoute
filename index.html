@@ -262,6 +262,32 @@
   .rm-step .nm span{font-size:.78rem;color:var(--muted)}
   .b-prog{background:#fff4e0;color:var(--amber)}
   [data-theme="dark"] .b-prog{background:#3a2a12}
+  /* class picker */
+  .cls-pick{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 4px}
+  .cls-lbl{font-size:.74rem;font-weight:740;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+  .cls-tabs{display:inline-flex;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:4px}
+  .cls-tab{border:0;background:transparent;color:var(--muted);font-weight:720;font-size:.86rem;
+    padding:6px 16px;border-radius:8px;cursor:pointer;transition:.14s}
+  .cls-tab:hover{color:var(--ink)}
+  .cls-tab.on{background:var(--blue);color:#fff;box-shadow:var(--shadow)}
+  .cls-desc{color:var(--muted);font-size:.84rem;line-height:1.5;margin:2px 2px 4px}
+  /* card footer: kind tag + class chips + status */
+  .cardftr{display:flex;gap:7px;align-items:center;margin-top:10px;flex-wrap:wrap}
+  .numdot{color:#fff;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;
+    justify-content:center;font-size:12px;font-weight:700;flex:0 0 auto}
+  .ecode{color:#fff;padding:2px 9px;border-radius:6px;font-size:12px;font-weight:700;flex:0 0 auto}
+  .kt{font-size:.66rem;font-weight:760;text-transform:uppercase;letter-spacing:.4px;padding:3px 8px;border-radius:6px}
+  .kt-req{background:#e7f0ff;color:#1d4ed8}
+  .kt-opt{background:#eef2f6;color:#64748b}
+  .kt-air{background:#e9f9f3;color:#0f9d8c}
+  .kt-tx{background:#fdeedf;color:#b4530f}
+  [data-theme="dark"] .kt-req{background:#15233f;color:#7aa2ee}
+  [data-theme="dark"] .kt-opt{background:#1f2630;color:#9aa6b4}
+  [data-theme="dark"] .kt-air{background:#0f2a23;color:#4ecbac}
+  [data-theme="dark"] .kt-tx{background:#36230f;color:#e0a060}
+  .clsrow{display:inline-flex;gap:3px}
+  .clsb{font-size:.66rem;font-weight:800;color:var(--ink);background:var(--bg);border:1px solid var(--line);
+    border-radius:5px;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center}
   .rm-ends{display:flex;flex-wrap:wrap;gap:8px}
   .rm-chip{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:620;color:var(--muted);
     background:var(--bg);border:1px dashed var(--line);border-radius:999px;padding:7px 13px}
@@ -464,6 +490,27 @@ if(DATA && DATA.categories){
     c.readyTarget = Math.max(1, c.numTests - 1);
   });
 }
+/* ---- CDL class model: which class(es) each test serves, and its kind ---- */
+const CLASS_META = {
+  general:    {classes:["A","B","C"], kind:"core"},
+  combination:{classes:["A"],         kind:"core"},
+  airbrakes:  {classes:["A","B","C"], kind:"air"},
+  special:    {classes:["A","B","C"], kind:"tx"},
+  hazmat:     {classes:["A","B","C"], kind:"endorse"},
+  tanker:     {classes:["A","B"],     kind:"endorse"},
+  doubles:    {classes:["A"],         kind:"endorse"},
+  passenger:  {classes:["A","B","C"], kind:"endorse"},
+  schoolbus:  {classes:["A","B","C"], kind:"endorse"}
+};
+if(DATA && DATA.categories){
+  DATA.categories.forEach(c=>{
+    const m = CLASS_META[c.id] || {classes:["A","B","C"], kind:(c.endorsement?"endorse":"core")};
+    c.classes = m.classes; c.kind = m.kind;
+  });
+}
+let CDLCLASS = (function(){ try{ return localStorage.getItem("tx_cdl_class") || "A"; }catch(e){ return "A"; } })();
+function setClass(x){ if(CDLCLASS===x) return; CDLCLASS=x; try{ localStorage.setItem("tx_cdl_class",x); }catch(e){} if(state.view==="home") render(); }
+
 const PKEY = "tx_cdl_progress_v2";
 const TKEY = "tx_cdl_theme";
 const LKEY = "tx_cdl_lang";
@@ -736,20 +783,30 @@ function catLevel(cat){
   else if(s.passed>0 || s.attempted>0) lvl='progress';
   return {lvl, passed:s.passed, total:cat.numTests};
 }
-function classAReady(){
-  const reqs=DATA.categories.filter(c=>c.classA);
+/* knowledge tests (core + Texas + air) that apply to a class */
+function classKnowCats(cls){ return DATA.categories.filter(c=>c.kind!=="endorse" && (c.classes||[]).includes(cls)); }
+/* readiness counts the truly required ones (core + Texas) */
+function classReady(cls){
+  const reqs=classKnowCats(cls).filter(c=>c.kind==="core"||c.kind==="tx");
   let ready=0; reqs.forEach(c=>{ const L=catLevel(c); if(L.lvl==='ready'||L.lvl==='mastered') ready++; });
   return {ready, total:reqs.length};
 }
+function kindTag(c){
+  if(c.kind==="core") return `<span class="kt kt-req">${t('reqTag')}</span>`;
+  if(c.kind==="air")  return `<span class="kt kt-air">${t('airTag')}</span>`;
+  if(c.kind==="tx")   return `<span class="kt kt-tx">${t('txTag')}</span>`;
+  return `<span class="kt kt-opt">${t('optTag')}</span>`;
+}
+function classChips(c){ return `<span class="clsrow">`+(c.classes||[]).map(x=>`<span class="clsb">${x}</span>`).join('')+`</span>`; }
 function renderRoadmap(){
-  const rm=DATA.roadmap||{skills:[],endorsements:[]};
-  const reqs=DATA.categories.filter(c=>c.classA);
-  const ca=classAReady();
+  const cls=CDLCLASS;
+  const know=classKnowCats(cls);
+  const ca=classReady(cls);
 
-  const knowledge=reqs.map((c,i)=>catCard(c,
-    `<div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">`+
-    `<span style="background:${ACCENTS[c.id]||'#64748b'};color:#fff;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 auto">${i+1}</span>`+
-    `${statusBadge(c)}<span style="font-size:12px;color:#6b7280">${t('rmReadyHint',{target:c.readyTarget})}</span></div>`
+  const knowledge=know.map((c,i)=>catCard(c,
+    `<div class="cardftr">`+
+    `<span class="numdot" style="background:${ACCENTS[c.id]||'#64748b'}">${i+1}</span>`+
+    `${kindTag(c)}${classChips(c)}${statusBadge(c)}</div>`
   )).join('');
 
   const skillKeys=[['skPretrip','skPretripNote'],['skBasic','skBasicNote'],['skRoad','skRoadNote']];
@@ -761,31 +818,32 @@ function renderRoadmap(){
       <span class="badge b-prog">${t('skDetail')} →</span>
     </div>`).join('');
 
-  const endcats=DATA.categories.filter(c=>c.endorsement);
-  const ends = endcats.length
-    ? endcats.map(c=>catCard(c,
-        `<div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">`+
-        `<span style="background:${ACCENTS[c.id]||'#64748b'};color:#fff;padding:2px 9px;border-radius:6px;font-size:12px;font-weight:700">${c.code}</span>`+
-        `${statusBadge(c)}</div>`
-      )).join('')
-    : (rm.endorsements||[]).map(e=>`<span class="rm-chip"><span class="code">${e.code}</span>${e.name} <span class="soon">${t('soon')}</span></span>`).join('');
-  const endWrap = endcats.length ? 'grid' : 'rm-ends';
+  const endcats=DATA.categories.filter(c=>c.endorsement && (c.classes||[]).includes(cls));
+  const ends = endcats.map(c=>catCard(c,
+        `<div class="cardftr">`+
+        `<span class="ecode" style="background:${ACCENTS[c.id]||'#64748b'}">${c.code}</span>`+
+        `<span class="kt kt-opt">${t('optTag')}</span>${classChips(c)}${statusBadge(c)}</div>`
+      )).join('');
+
+  const tabs=["A","B","C"].map(x=>`<button class="cls-tab ${x===cls?'on':''}" onclick="setClass('${x}')">${t('cls'+x+'Name')}</button>`).join('');
 
   return `<section class="roadmap">
     <div class="rm-head">
       <div>
-        <h3>${t('rmTitle')}</h3>
+        <h3>${t('rmTitle',{cls:cls})}</h3>
         <div class="rm-tag">${t('rmTag',{n:ca.total})}</div>
       </div>
       <div class="rm-ready"><b>${ca.ready}/${ca.total}</b><span>${t('knowledgeReady')}</span></div>
     </div>
+    <div class="cls-pick"><span class="cls-lbl">${t('clsPick')}</span><div class="cls-tabs">${tabs}</div></div>
+    <div class="cls-desc">${t('cls'+cls+'Desc')}</div>
     <div class="rm-group">${t('grpKnowledge')}</div>
     <div class="grid">${knowledge}</div>
     <div class="rm-group">${t('grpSkills')}</div>
     <div class="rm-steps">${skills}</div>
     <div class="rm-tag" style="margin:6px 2px 0;line-height:1.55">${t('skFoot')}</div>
     <div class="rm-group">${t('grpEndorse')}</div>
-    <div class="${endWrap}">${ends}</div>
+    <div class="grid">${ends}</div>
   </section>`;
 }
 /* ============================ STUDY MATERIALS ============================ */
@@ -927,7 +985,7 @@ function catCard(c, extra){
 }
 function renderHome(){
   let totPass=0, totTests=0;
-  DATA.categories.filter(c=>c.classA).forEach(c=>{ const s=catStats(c); totPass+=s.passed; totTests+=c.numTests; });
+  classKnowCats(CDLCLASS).filter(c=>c.kind==="core"||c.kind==="tx").forEach(c=>{ const s=catStats(c); totPass+=s.passed; totTests+=c.numTests; });
   const pct = totTests? Math.round(totPass/totTests*100):0;
 
   return `<section class="hero">
