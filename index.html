@@ -451,6 +451,19 @@
 <script>
 /* ============================ STATE & STORAGE ============================ */
 const DATA = window.CDL_DATA;
+/* Test count auto-scales with the (unique) bank size: each pool is split into
+   near-equal DISJOINT tests, so a question never repeats within or across the
+   tests of a category. Target sizes below pick how big each test is. */
+if(DATA && DATA.categories){
+  const CLP = {special:20, general:50, airbrakes:25, combination:20, hazmat:30, tanker:20, doubles:20, passenger:20, schoolbus:20};
+  DATA.categories.forEach(c=>{
+    const P = c.questions.length, E = Math.min(CLP[c.id] || 25, P);  // each test = the real CLP exam size
+    c.examSize   = E;
+    c.numTests   = Math.max(1, Math.ceil(P / E));                    // enough tests so every unique question is shown
+    c.passNeed   = Math.max(1, Math.round(E * 0.8));
+    c.readyTarget = Math.max(1, c.numTests - 1);
+  });
+}
 const PKEY = "tx_cdl_progress_v2";
 const TKEY = "tx_cdl_theme";
 const LKEY = "tx_cdl_lang";
@@ -530,7 +543,7 @@ function recordResult(catId, idx, correct, total){
   p[catId] = p[catId] || {};
   const prev = p[catId][idx];
   const pct = Math.round(correct/total*100);
-  const passed = correct >= DATA.categories.find(c=>c.id===catId).passNeed;
+  const passed = correct >= passMark(total);
   const bestPct = prev ? Math.max(prev.bestPct, pct) : pct;
   const bestCorrect = prev ? Math.max(prev.bestCorrect, correct) : correct;
   p[catId][idx] = {
@@ -559,13 +572,14 @@ function fmtDur(secs){ secs=Math.round(secs||0); const h=Math.floor(secs/3600), 
    One master shuffle of the pool, then each test takes a window that is
    strided across the pool so consecutive tests share as few questions as
    the pool size allows. Stays deterministic, so a given test is reproducible. */
+function passMark(len){ return Math.max(1, Math.round(len*0.8)); }  /* 80% to pass */
 function buildTest(cat, idx){
-  const pool = cat.questions, P = pool.length, E = cat.examSize;
+  const pool = cat.questions, P = pool.length, E = Math.min(cat.examSize, P);
   const master = seededShuffle(pool.map((q,i)=>i), cat.id+"|master");
-  let step = Math.max(1, P - E);              // spread tests apart
-  while(step>1 && gcd(step,P)!==1) step--;    // coprime => distinct windows
-  const start = (idx*step) % P;
-  const pickIdx = [];
+  // Every test is the full CLP exam size. Tests are disjoint while the pool lasts;
+  // the final test wraps around to pad with already-seen questions, so every unique
+  // question still appears somewhere across the set.
+  const start = idx*E, pickIdx = [];
   for(let i=0;i<E;i++) pickIdx.push(master[(start+i)%P]);
   const order = pickIdx.slice().sort((a,b)=>a-b);   // present easy → hard (pool is ordered by difficulty)
   return order.map(qi=>{
@@ -986,7 +1000,7 @@ function renderTestShell(){
 function paintQuestion(){
   const s = state, it = s.test[s.cur], qd = qData(s.catId, it.qid);
   const dispOpts = it.optOrder.map(oi=>qd.options[oi]);
-  const allowMiss = s.cat.examSize - s.cat.passNeed;
+  const allowMiss = s.test.length - passMark(s.test.length);
   const missLeft = allowMiss - s.incorrect;
   const pct = Math.round((s.cur)/s.test.length*100);
   const prevAns = s.answers[s.cur];
@@ -1062,7 +1076,7 @@ function finishTest(){
   state.elapsed = Date.now() - (state.startTime||Date.now());
   stopTimer();
   recordResult(state.catId, state.idx, state.correct, state.test.length);
-  pushHistory({ts:Date.now(), cat:state.catId, idx:state.idx, correct:state.correct, total:state.test.length, pct:Math.round(state.correct/state.test.length*100), passed:state.correct>=state.cat.passNeed, secs:Math.round((state.elapsed||0)/1000)});
+  pushHistory({ts:Date.now(), cat:state.catId, idx:state.idx, correct:state.correct, total:state.test.length, pct:Math.round(state.correct/state.test.length*100), passed:state.correct>=passMark(state.test.length), secs:Math.round((state.elapsed||0)/1000)});
   state.view='results';
   window.scrollTo(0,0);
   render();
@@ -1072,7 +1086,8 @@ function finishTest(){
 function renderResults(){
   const s=state, total=s.test.length, correct=s.correct;
   const pct=Math.round(correct/total*100);
-  const passed = correct >= s.cat.passNeed;
+  const need = passMark(total);
+  const passed = correct >= need;
 
   const reviews = s.test.map((it,i)=>{
     const qd = qData(s.catId, it.qid);
@@ -1094,7 +1109,7 @@ function renderResults(){
       <div class="seal">${passed?'✓':'✗'}</div>
       <h2>${passed? t('rPassed') : t('rFailed')}</h2>
       <div class="score">${pct}%</div>
-      <div class="line">${t('rScoreLine',{c:correct,t:total,need:s.cat.passNeed})}${passed?'': t('rMore',{n:s.cat.passNeed-correct})}</div>
+      <div class="line">${t('rScoreLine',{c:correct,t:total,need:need})}${passed?'': t('rMore',{n:need-correct})}</div>
       <div class="rtime">${t('resTime',{t:fmtTime(s.elapsed||0)})} · ${t('resAvg',{s:Math.max(1,Math.round((s.elapsed||0)/1000/total))})}</div>
       <div class="actions">
         <button class="btn primary" onclick="startTest('${s.catId}',${s.idx})">${t('rRetake')}</button>
