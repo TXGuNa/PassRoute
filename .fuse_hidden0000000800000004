@@ -537,10 +537,10 @@ CAT("general").questions.push(
 CAT("airbrakes").questions = [
   {
     q:"At what air pressure does the governor normally stop the compressor from pumping more air into the system (cut-out)?",
-    options:["About 60 psi","About 100 psi","Usually around 125 psi","Above 175 psi"],
+    options:["About 60 psi","About 100 psi","Usually around 120–140 psi","Above 175 psi"],
     answer:2,
-    explanation:"The governor stops the compressor (cut-out) at the vehicle's set pressure — usually around 125 psi — and lets it resume (cut-in) when pressure drops. Always know your vehicle's specs.",
-    handbook:"Build air pressure to governor cut-out, usually around 125 psi; know your vehicle's requirements.",
+    explanation:"The governor stops the compressor (cut-out) at the vehicle's set pressure — usually around 120–140 psi — and lets it resume (cut-in) when pressure drops. Always know your vehicle's specs.",
+    handbook:"Build air pressure to governor cut-out, usually around 120 to 140 psi; know your vehicle's requirements.",
     hbref:"§5.1 Air Compressor Governor"
   },
   {
@@ -673,10 +673,10 @@ CAT("airbrakes").questions = [
   },
   {
     q:"Before driving, you should let the air system charge fully. What is 'fully'?",
-    options:["About 50 psi","About 60 psi","The normal operating range, up to governor cut-out (around 125 psi)","Exactly 150 psi"],
+    options:["About 50 psi","About 60 psi","The normal operating range, up to governor cut-out (around 120–140 psi)","Exactly 150 psi"],
     answer:2,
-    explanation:"Wait until the system charges into the normal operating range — up to the governor cut-out, usually around 125 psi — before you start moving, so you have full braking ability.",
-    handbook:"Before driving, build air pressure to governor cut-out (usually around 125 psi); know your vehicle's requirements.",
+    explanation:"Wait until the system charges into the normal operating range — up to the governor cut-out, usually around 120–140 psi — before you start moving, so you have full braking ability.",
+    handbook:"Before driving, build air pressure to governor cut-out (usually around 120–140 psi); know your vehicle's requirements.",
     hbref:"§5.3 Inspecting Air Brakes"
   },
   {
@@ -814,7 +814,7 @@ CAT("airbrakes").questions.push(
     q:"The governor 'cut-in' pressure is the point at which the compressor:",
     options:["Stops pumping air","Starts pumping air back into the system again (about 100 psi)","Releases the safety valve","Engages the parking brake"],
     answer:1,
-    explanation:"When tank pressure drops to about 100 psi, the governor lets the compressor resume pumping (cut-in). It cuts out again at the set pressure (usually around 125 psi). This cycle keeps pressure in range.",
+    explanation:"When tank pressure drops to about 100 psi, the governor lets the compressor resume pumping (cut-in). It cuts out again at the set pressure (usually around 120–140 psi). This cycle keeps pressure in range.",
     handbook:"The cut-in pressure is the level (about 100 psi) at which the governor allows the compressor to start pumping air again.",
     hbref:"§5.1 Air Compressor Governor"
   },
@@ -1855,7 +1855,7 @@ CAT("airbrakes").questions.push(
     q:"Your air pressure climbs past 140 psi and the safety valve lets air out at 150 psi. The most likely problem is:",
     options:["Normal — the system is just full","The governor is not cutting the compressor out and needs repair","You are braking too much","The low-air warning is stuck on"],
     answer:1,
-    explanation:"The governor should cut the compressor out around 125 psi. If pressure climbs to 150 and the safety valve releases, the governor is faulty — get it fixed.",
+    explanation:"The governor should cut the compressor out around 120–140 psi. If pressure climbs to 150 and the safety valve releases, the governor is faulty — get it fixed.",
     handbook:"The safety valve opens at about 150 psi; if it releases air, something is wrong, such as the governor not cutting out.",
     hbref:"§5.1 Air Compressor Governor"
   },
@@ -2181,7 +2181,7 @@ CAT("general").questions = [
    ========================================================= */
 CAT("airbrakes").questions = [
   {q:"An air brake system is really how many separate systems?",options:["One","Two","Three","Four"],answer:2,explanation:"Three: service, parking, and emergency.",handbook:"Air brakes are three systems: service, parking and emergency.",hbref:"§5.1 Parts"},
-  {q:"The governor stops the compressor (cut-out) at about:",options:["100 psi","110 psi","125 psi","150 psi"],answer:2,explanation:"Cut-out is usually around 125 psi (cut-in around 100 psi).",handbook:"The governor stops the compressor at cut-out, around 125 psi; cut-in is around 100 psi.",hbref:"§5.1 Governor"},
+  {q:"The governor stops the compressor (cut-out) at about:",options:["60 psi","100 psi","120–140 psi","175 psi"],answer:2,explanation:"Cut-out is usually around 120–140 psi.",handbook:"Build air pressure to governor cut-out, usually 120 to 140 psi.",hbref:"§5.1 Governor"},
   {q:"The governor lets the compressor start again (cut-in) at about:",options:["60 psi","100 psi","140 psi","150 psi"],answer:1,explanation:"Cut-in is about 100 psi.",handbook:"Cut-in (about 100 psi) is where the compressor resumes pumping.",hbref:"§5.1 Governor"},
   {q:"The safety relief valve usually opens at:",options:["100 psi","125 psi","150 psi","200 psi"],answer:2,explanation:"It opens at about 150 psi to protect the system.",handbook:"The safety valve is usually set to open at 150 psi.",hbref:"§5.1 Reservoirs"},
   {q:"The low-air warning must come on before pressure falls below:",options:["40 psi","55 psi","60 psi","80 psi"],answer:2,explanation:"Before 60 psi (Texas handbook).",handbook:"The low air warning must come on before pressure falls below 60 psi.",hbref:"§5.1 Warning"},
@@ -2215,7 +2215,7 @@ CAT("airbrakes").questions = [
   {q:"ABS is required on truck tractors built on or after:",options:["1995","1997","1998","2000"],answer:1,explanation:"Tractors 3/1/1997; other vehicles and trailers 3/1/1998.",handbook:"ABS is required on tractors made on or after March 1, 1997.",hbref:"§5.1 ABS"},
   {q:"If one circuit of a dual system fails while driving:",options:["You lose all braking","The other still stops you","The engine stops","Only the lights fail"],answer:1,explanation:"The other circuit still brakes you; the warning comes on.",handbook:"In a dual system, if one circuit fails the other can still stop you.",hbref:"§5.2 Dual"},
   {q:"Why drain the air tanks (or use automatic drains)?",options:["To raise pressure","To remove water that can freeze","To clean the linings","To reset the governor"],answer:1,explanation:"Water can freeze the brakes in cold weather.",handbook:"Drain tanks to remove water that can freeze in cold weather.",hbref:"§5.1 Tanks"},
-  {q:"Before driving, let the air system charge to:",options:["About 50 psi","The normal range (about 125 psi)","Exactly 150 psi","Any pressure"],answer:1,explanation:"Charge to the normal operating range before moving.",handbook:"Wait for pressure to build to the normal range before driving.",hbref:"§5.3 Inspection"},
+  {q:"Before driving, let the air system charge to:",options:["About 50 psi","The normal range (about 120–140 psi)","Exactly 150 psi","Any pressure"],answer:1,explanation:"Charge to the normal operating range before moving.",handbook:"Wait for pressure to build to the normal range before driving.",hbref:"§5.3 Inspection"},
   {q:"Why check the air-compressor drive belt (if belt-driven)?",options:["It runs the radio","A loose belt may not build enough air","It cools the brakes","It charges the trailer"],answer:1,explanation:"A slipping belt means the compressor can't keep up.",handbook:"If belt-driven, check the compressor belt's condition and tightness.",hbref:"§5.3 Inspection"},
   {q:"A full pre-trip air-brake check includes which test?",options:["Low-air warning","Build-up time","Leak-down rate","All of the above"],answer:3,explanation:"All of these are part of the air-brake check.",handbook:"Check the low-air warning, build-up time, and leakage rate.",hbref:"§5.3 Inspection"},
   {q:"Which is NOT a way to test air brakes?",options:["Leak-down test","Build-up time","Draining the radiator","Low-air warning"],answer:2,explanation:"The radiator is cooling, not the air-brake system.",handbook:"Air-brake tests include leakage, build-up, and the warning signal.",hbref:"§5.3 Inspection"},

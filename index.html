@@ -565,16 +565,16 @@ function render(){
 const ACCENTS = {special:"#d7263d", general:"#2563eb", airbrakes:"#0f9d8c", combination:"#7c3aed"};
 
 function catStats(cat){
-  let passed=0;
-  for(let i=0;i<cat.numTests;i++){ const r=getResult(cat.id,i); if(r&&r.passed) passed++; }
-  return {passed, total:cat.numTests};
+  let passed=0, attempted=0;
+  for(let i=0;i<cat.numTests;i++){ const r=getResult(cat.id,i); if(r){ attempted++; if(r.passed) passed++; } }
+  return {passed, attempted, total:cat.numTests};
 }
 function catLevel(cat){
   const s=catStats(cat);
   let lvl='none';
   if(s.passed>=cat.numTests) lvl='mastered';
   else if(s.passed>=(cat.readyTarget||3)) lvl='ready';
-  else if(s.passed>0) lvl='progress';
+  else if(s.passed>0 || s.attempted>0) lvl='progress';
   return {lvl, passed:s.passed, total:cat.numTests};
 }
 function classAReady(){
