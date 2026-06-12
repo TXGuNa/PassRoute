@@ -227,6 +227,15 @@
     opacity:0;pointer-events:none;transition:.25s;z-index:60}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   .kbd{font-size:.72rem;color:var(--muted)}
+  .modal-ov{position:fixed;inset:0;background:rgba(8,18,34,.55);backdrop-filter:blur(2px);display:flex;
+    align-items:center;justify-content:center;padding:20px;z-index:100;opacity:0;transition:opacity .16s}
+  .modal-ov.show{opacity:1}
+  .modal{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);
+    max-width:380px;width:100%;padding:22px 22px 18px;transform:translateY(10px) scale(.98);transition:transform .16s}
+  .modal-ov.show .modal{transform:none}
+  .modal-msg{margin:0 0 18px;font-size:1rem;font-weight:600;line-height:1.45}
+  .modal-acts{display:flex;gap:10px;justify-content:flex-end}
+  .modal-acts .btn{min-width:96px}
 
   /* Roadmap */
   .roadmap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
@@ -414,7 +423,7 @@
     </div>
     <button class="hbtn ic" onclick="go('stats')" id="statsBtn" title="Stats" aria-label="Stats">📊</button>
     <button class="hbtn ic" onclick="toggleTheme()" id="themeBtn" title="Theme" aria-label="Theme">🌙</button>
-    <button class="hbtn" onclick="resetAll()" title="Reset"><span class="lbl-full" id="resetLbl">Reset</span><span class="lbl-min">↺</span></button>
+    <button class="hbtn ic" onclick="resetAll()" id="resetBtn" title="Reset" aria-label="Reset">🔄</button>
   </div>
 </header>
 
@@ -496,7 +505,7 @@ function pickLang(l){ closeLangMenu(); setLang(l); }
 document.addEventListener('click', closeLangMenu);
 function applyStaticI18n(){
   const sub=document.getElementById('brandSub'); if(sub) sub.textContent=t('brandSub');
-  const rl=document.getElementById('resetLbl'); if(rl) rl.textContent=t('reset');
+  const rl=document.getElementById('resetBtn'); if(rl){ rl.title=t('reset'); rl.setAttribute('aria-label',t('reset')); }
   const f=document.getElementById('siteFooter');
   if(f) f.innerHTML = t('footMain')+'<br>'+t('footSub')+
     '<div class="dlinks">'+
@@ -1048,9 +1057,7 @@ function next(){
   if(s.cur < s.test.length-1){ s.cur++; paintQuestion(); window.scrollTo({top:0,behavior:'smooth'}); }
   else finishTest();
 }
-function confirmQuit(){
-  if(confirm(t('confirmQuit'))) go('category',{catId:state.catId});
-}
+function confirmQuit(){ askConfirm(t('confirmQuit'), ()=>go('category',{catId:state.catId})); }
 function finishTest(){
   state.elapsed = Date.now() - (state.startTime||Date.now());
   stopTimer();
@@ -1136,9 +1143,26 @@ function renderStats(){
 }
 
 /* ============================ MISC ============================ */
-function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1900); }
-function resetAll(){ if(confirm(t('confirmReset'))){ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); toast(t('toastReset')); go('home'); } }
-function clearHistory(){ if(confirm(t('confirmClearHistory'))){ localStorage.removeItem(HKEY); toast(t('toastHistoryCleared')); render(); } }
+function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),1900); }
+function askConfirm(msg, onYes){
+  const ov=document.createElement('div'); ov.className='modal-ov';
+  ov.innerHTML='<div class="modal" role="dialog" aria-modal="true"><p class="modal-msg"></p>'+
+    '<div class="modal-acts"><button class="btn ghost" data-act="cancel"></button><button class="btn primary" data-act="ok"></button></div></div>';
+  ov.querySelector('.modal-msg').textContent=msg;
+  ov.querySelector('[data-act="cancel"]').textContent=t('cancel');
+  ov.querySelector('[data-act="ok"]').textContent=t('ok');
+  document.body.appendChild(ov);
+  function close(){ document.removeEventListener('keydown',onKey); ov.classList.remove('show'); setTimeout(()=>ov.remove(),160); }
+  function yes(){ close(); if(onYes) onYes(); }
+  function onKey(e){ if(e.key==='Escape') close(); else if(e.key==='Enter') yes(); }
+  ov.addEventListener('click',e=>{ if(e.target===ov) close(); });
+  ov.querySelector('[data-act="cancel"]').onclick=close;
+  ov.querySelector('[data-act="ok"]').onclick=yes;
+  document.addEventListener('keydown',onKey);
+  requestAnimationFrame(()=>ov.classList.add('show'));
+}
+function resetAll(){ askConfirm(t('confirmReset'), ()=>{ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); toast(t('toastReset')); go('home'); }); }
+function clearHistory(){ askConfirm(t('confirmClearHistory'), ()=>{ localStorage.removeItem(HKEY); toast(t('toastHistoryCleared')); render(); }); }
 function toggleTheme(){
   const cur=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
   document.documentElement.setAttribute('data-theme',cur);
