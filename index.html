@@ -605,6 +605,7 @@ function render(){
   else if(state.view==='guide') el.innerHTML = renderGuide();
   else if(state.view==='pretrip') el.innerHTML = renderPretrip();
   else if(state.view==='skills') el.innerHTML = renderSkills();
+  else if(state.view==='basic'||state.view==='road') el.innerHTML = renderSkillDetail(state.view);
   else if(state.view==='category') el.innerHTML = renderCategory(state.catId);
   else if(state.view==='test'){ renderTestShell(); return; }
   else if(state.view==='results') el.innerHTML = renderResults();
@@ -650,24 +651,49 @@ function renderPretrip(){
     <div style="text-align:center;margin:14px 0 30px"><button class="btn ghost" onclick="go('home')">${g('back')}</button></div>`;
 }
 
-/* ============================ SKILLS TEST GUIDE ============================ */
+/* ============================ SKILLS TEST GUIDES ============================ */
+const SK_ACCENT={pretrip:'#0f9d8c',basic:'#2563eb',road:'#d7263d'};
+function skSec(sec,accent){
+  return `<div class="cat" style="cursor:default">
+    <span class="accent" style="background:${accent}"></span>
+    <h3 style="display:flex;align-items:center;gap:9px"><span>${sec.ico||''} ${sec.t}</span></h3>
+    <ul class="ptlist">${(sec.items||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+  </div>`;
+}
+/* Hub: lists the three parts, each opens its own detailed page */
 function renderSkills(){
-  const S = (window.SKILLS && (SKILLS[LANG]||SKILLS.en)) || {sections:[],intro:''};
-  const accents=['#0f9d8c','#2563eb','#d7263d','#7c3aed','#c77700'];
-  const secs = (S.sections||[]).map((s,i)=>`
-    <div class="cat" style="cursor:default">
-      <span class="accent" style="background:${accents[i%accents.length]}"></span>
-      <h3 style="display:flex;align-items:center;gap:9px"><span>${s.ico||''} ${s.t}</span></h3>
-      <ul class="ptlist">${(s.items||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
-      ${s.link==='pretrip'?`<button class="linkbtn go" style="margin-top:10px" onclick="go('pretrip')">📋 ${t('ptTitle')} →</button>`:''}
+  const S = (window.SKILLS && (SKILLS[LANG]||SKILLS.en)) || {tests:[],intro:''};
+  const cards = (S.tests||[]).map(tt=>`
+    <div class="cat click" onclick="go('${tt.route}')">
+      <span class="accent" style="background:${SK_ACCENT[tt.route]||'#64748b'}"></span>
+      <h3 style="display:flex;align-items:center;gap:9px"><span>${tt.ico||''} ${tt.t}</span></h3>
+      <div class="desc">${tt.blurb||''}</div>
+      <div style="margin-top:10px"><span class="badge b-prog">${t('skDetail')} →</span></div>
     </div>`).join('');
   return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <span>${t('skGuideTitle')}</span></div>
     <section class="pretrip">
       <h2 style="margin:4px 0 6px">${t('skGuideTitle')}</h2>
       <div class="sub" style="max-width:780px">${S.intro||''}</div>
-      <div class="grid" style="margin-top:18px">${secs}</div>
+      <div class="grid" style="margin-top:18px">${cards}</div>
+      <div class="grid" style="margin-top:14px">${S.bring?skSec(S.bring,'#7c3aed'):''}${S.attempts?skSec(S.attempts,'#c77700'):''}</div>
     </section>
     <div style="text-align:center;margin:14px 0 30px"><button class="btn ghost" onclick="go('home')">${g('back')}</button></div>`;
+}
+/* Detail page for one part (basic / road) + shared bring & attempts */
+function renderSkillDetail(which){
+  const S = (window.SKILLS && (SKILLS[LANG]||SKILLS.en)) || {};
+  const part = S[which] || {t:'',intro:'',items:[]};
+  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <span>${part.t}</span></div>
+    <section class="pretrip">
+      <h2 style="margin:4px 0 6px">${part.ico||''} ${part.t}</h2>
+      <div class="sub" style="max-width:780px">${part.intro||''}</div>
+      <div class="grid" style="margin-top:18px">
+        ${skSec(part, SK_ACCENT[which]||'#2563eb')}
+        ${S.bring?skSec(S.bring,'#7c3aed'):''}
+        ${S.attempts?skSec(S.attempts,'#c77700'):''}
+      </div>
+    </section>
+    <div style="text-align:center;margin:14px 0 30px"><button class="btn ghost" onclick="go('home')">← ${t('home')}</button></div>`;
 }
 
 /* ============================ HOME ============================ */
@@ -704,9 +730,9 @@ function renderRoadmap(){
   )).join('');
 
   const skillKeys=[['skPretrip','skPretripNote'],['skBasic','skBasicNote'],['skRoad','skRoadNote']];
-  const skIco=['📋','🔄','🛣️'];
+  const skIco=['📋','🔄','🛣️'], skRoute=['pretrip','basic','road'];
   const skills=skillKeys.map((k,i)=>
-    `<div class="rm-step click" onclick="go('skills')">
+    `<div class="rm-step click" onclick="go('${skRoute[i]}')">
       <div class="ico muted">${skIco[i]||'＋'}</div>
       <div class="nm"><b>${t(k[0])}</b><span>${t(k[1])}</span></div>
       <span class="badge b-prog">${t('skDetail')} →</span>
