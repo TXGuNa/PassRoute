@@ -785,9 +785,9 @@ function catLevel(cat){
 }
 /* knowledge tests (core + Texas + air) that apply to a class */
 function classKnowCats(cls){ return DATA.categories.filter(c=>c.kind!=="endorse" && (c.classes||[]).includes(cls)); }
-/* readiness counts the truly required ones (core + Texas) */
+/* readiness counts every knowledge test shown for the class (core + Texas + air) */
 function classReady(cls){
-  const reqs=classKnowCats(cls).filter(c=>c.kind==="core"||c.kind==="tx");
+  const reqs=classKnowCats(cls);
   let ready=0; reqs.forEach(c=>{ const L=catLevel(c); if(L.lvl==='ready'||L.lvl==='mastered') ready++; });
   return {ready, total:reqs.length};
 }
@@ -839,11 +839,11 @@ function renderRoadmap(){
     <div class="cls-desc">${t('cls'+cls+'Desc')}</div>
     <div class="rm-group">${t('grpKnowledge')}</div>
     <div class="grid">${knowledge}</div>
+    <div class="rm-group">${t('grpEndorse')}</div>
+    <div class="grid">${ends}</div>
     <div class="rm-group">${t('grpSkills')}</div>
     <div class="rm-steps">${skills}</div>
     <div class="rm-tag" style="margin:6px 2px 0;line-height:1.55">${t('skFoot')}</div>
-    <div class="rm-group">${t('grpEndorse')}</div>
-    <div class="grid">${ends}</div>
   </section>`;
 }
 /* ============================ STUDY MATERIALS ============================ */
@@ -985,7 +985,7 @@ function catCard(c, extra){
 }
 function renderHome(){
   let totPass=0, totTests=0;
-  classKnowCats(CDLCLASS).filter(c=>c.kind==="core"||c.kind==="tx").forEach(c=>{ const s=catStats(c); totPass+=s.passed; totTests+=c.numTests; });
+  classKnowCats(CDLCLASS).forEach(c=>{ const s=catStats(c); totPass+=s.passed; totTests+=c.numTests; });
   const pct = totTests? Math.round(totPass/totTests*100):0;
 
   return `<section class="hero">
