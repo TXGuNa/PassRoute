@@ -1,0 +1,87 @@
+# PassRoute — Project Rules & Requirements
+
+PassRoute is a static, multilingual Texas CDL practice-test web app hosted at **passroute.ai**.
+This file records the **non-negotiable rules** the project must always follow. Read it before
+making any change to questions, translations, or the app.
+
+## Stack & files
+- Static single-page app, **no build step**. Served as-is.
+- `index.html` — app shell, all CSS + JS (engine, router, render functions).
+- `questions.js` — `window.CDL_DATA` (core categories + questions, EN).
+- `translations.js` — `window.I18N` (UI + category + question translations TR/RU).
+- `endorsements.js` — optional endorsement categories (HazMat, Tanker, Doubles/Triples,
+  Passenger, School Bus) + their TR/RU translations. Loaded after translations.js.
+- `Texas-CDL-Study-Guide.pdf` — downloadable study guide.
+- Hosting: Cloudflare Worker (static assets, `wrangler.jsonc` → `assets.directory:"./"`) +
+  GitHub auto-deploy. Domain passroute.ai on Cloudflare nameservers.
+
+## Source of truth
+1. **The official Texas CDL Handbook (DL-7C) is the single source of truth.** Every answer,
+   number, and explanation must match the handbook — NOT the PDF study guide, NOT general
+   knowledge, NOT other states. When in doubt, verify against the handbook / official Texas DPS.
+2. Known handbook values to keep correct: total stopping distance at 55 mph ≈ **419 ft**;
+   cargo first-check within **50 miles**; low-air warning at **60 psi**; governor **cut-out ≈ 125 psi**,
+   **cut-in ≈ 100 psi** (single values, NOT a range); safety valve opens at **150 psi**;
+   ABS required on tractors built on/after **March 1, 1997** (other vehicles/trailers 3/1/1998).
+3. `handbook` (quote) and `hbref` (§ref) fields are **always English** and are never translated.
+
+## Question quality rules (apply to EVERY category, including endorsements)
+1. **Every question must be UNIQUE** — no duplicate or near-duplicate questions within or across
+   tests of a category. Same goes for the concept being tested; vary the angle.
+2. **Balanced, short options.** All four options similar in length and style. The **correct answer
+   must NOT stand out** — never make it the longest, the only full sentence, the only exact date,
+   the only range, or otherwise format-different from the distractors. Distractors must share the
+   correct answer's format (all years, all psi values, all ranges, etc.).
+3. **Easy → hard ordering.** Questions are stored easiest-first; the engine presents them in pool
+   order so each test ramps from simple to difficult.
+4. **Variety of question types:** include some "A, B, C correct → D = All of the above",
+   some "which is NOT / which is false", some "which is TRUE", plus straightforward recall.
+5. Each question object: `{q, options[4], answer (0–3 index), explanation, handbook, hbref}`.
+   The `answer` is the index into the **English** options; TR/RU option arrays must be in the
+   **same order** so the index stays correct in every language.
+6. Reference style/coverage modeled on cristcdl.com/texas and official Texas DPS material.
+
+## Languages (i18n)
+1. Three languages: **EN (default), RU, TR**. A dropdown selects language; the active language is
+   hidden from the menu, the others shown.
+2. **Translate EVERYTHING** the user sees (UI, category names/blurbs, questions, options,
+   explanations, roadmap, CLP guide) **EXCEPT** handbook quotes, PDFs, and external links.
+3. After any EN question change, update the matching TR and RU entries (same index, same option
+   order). Validate that all three languages stay answer-aligned.
+
+## Engine behavior
+1. Per-category numbered practice tests; each test draws `examSize` questions from the pool.
+2. **Option positions are shuffled every attempt** so positions can't be memorized — EXCEPT
+   "All/None of the above" style options, which are **pinned last**. The pinning works by index
+   detected from English and applies identically to TR/RU.
+3. **Pass mark = 80%** of `examSize` per test. Track best score / pass-fail per test.
+4. **Timer:** each test is timed; results show how long it took (and average per question).
+5. **Score history / statistics** are saved (localStorage) and shown on a stats page.
+6. localStorage keys: progress `tx_cdl_progress_v2`, theme `tx_cdl_theme`, lang `tx_cdl_lang`,
+   history `tx_cdl_history`.
+
+## Roadmap
+1. Title "Your Class A CDL roadmap" shows three groups:
+   - **1 · Knowledge tests** — rich cards (tests count, questions each, pass %, progress, status)
+     for the 4 required Class A categories: TX Special Requirements, General Knowledge,
+     Air Brakes, Combination Vehicles.
+   - **2 · Skills tests (in person at DPS)** — pre-trip inspection, basic control skills, on-road
+     driving, plus a note on third-party testers, what to bring, CLP held 14 days, ~2–3 hours.
+   - **3 · Optional endorsements** — HazMat (H), Tanker (N), Doubles/Triples (T), Passenger (P),
+     School Bus (S), each a real practiceable category (20 tests, 80% pass).
+2. A category shows "In progress" once **any** test is attempted (passed or failed), "Ready" once
+   the readyTarget number of tests is passed, "Mastered" when all are passed.
+3. Endorsement categories are `endorsement:true`, `classA:false` — excluded from the required
+   "Class A ready" count and the overall progress ring.
+
+## CLP application guide
+Step-by-step guidance must stay accurate and translated: DOT physical, forms (CDL-1/CDL-4/5/10),
+DPS appointment, what to bring; official links left untranslated.
+
+## Workflow when editing questions
+1. Make the EN change in `questions.js` / `endorsements.js`.
+2. Mirror it in TR and RU (same index + option order).
+3. Run the node validation: load the data, check every question has 4 options, valid answer index,
+   TR/RU option counts match, no duplicate questions, easy→hard order, balanced option lengths,
+   and 3-language answer alignment.
+4. Tell the user to `git add -A && git commit && git push` to deploy.

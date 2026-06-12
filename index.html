@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Texas CDL Practice — Master the Exam</title>
+<title>PassRoute — Texas CDL Practice (EN · TR · RU)</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#0b2545" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="PassRoute" />
 <style>
   :root{
     --navy:#0b2545; --navy2:#13315c; --blue:#2563eb; --blue-d:#1d4ed8;
@@ -35,17 +45,19 @@
   }
   .top-inner{display:flex;align-items:center;gap:14px;padding:14px 18px;max-width:1040px;margin:0 auto}
   .brand{display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none}
-  .star{width:34px;height:34px;flex:0 0 auto;background:var(--red);border-radius:9px;
-    display:grid;place-items:center;color:#fff;font-weight:800;box-shadow:0 3px 8px rgba(0,0,0,.25)}
+  .star{width:44px;height:44px;flex:0 0 auto;background:#fff;border-radius:50%;
+    object-fit:contain;padding:4px;box-sizing:border-box;box-shadow:0 2px 9px rgba(0,0,0,.3)}
   .brand h1{font-size:1.05rem;margin:0;letter-spacing:.2px;font-weight:750}
   .brand p{margin:0;font-size:.72rem;opacity:.8;font-weight:500}
   .top-spacer{flex:1}
   .hbtn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);
-    padding:7px 12px;border-radius:9px;font-size:.82rem;cursor:pointer;font-weight:600;transition:.15s}
+    height:36px;padding:0 12px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;
+    border-radius:9px;font-size:.82rem;cursor:pointer;font-weight:600;transition:.15s;line-height:1}
   .hbtn:hover{background:rgba(255,255,255,.22)}
+  .hbtn.ic{width:36px;padding:0;font-size:1.02rem}
   .langdd{position:relative;display:inline-block}
-  .langbtn{display:inline-flex;align-items:center;gap:6px;color:#fff;background:rgba(255,255,255,.14);
-    border:1px solid rgba(255,255,255,.22);border-radius:9px;padding:6px 11px;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.3px}
+  .langbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;color:#fff;background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.22);border-radius:9px;height:36px;padding:0 11px;box-sizing:border-box;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.3px;line-height:1}
   .langbtn:hover{background:rgba(255,255,255,.22)}
   .langbtn .cv{font-size:.66rem;transition:transform .15s;opacity:.85}
   .langdd.open .langbtn .cv{transform:rotate(180deg)}
@@ -137,6 +149,17 @@
   .pbar > i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#5b8cff);transition:width .35s}
   .qbody{padding:22px 22px 24px}
   .qtext{font-size:1.18rem;font-weight:650;line-height:1.45;margin:2px 0 18px}
+  .speakbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;vertical-align:middle;
+    margin-left:8px;border:1px solid var(--line);background:var(--bg);border-radius:8px;cursor:pointer;font-size:.95rem;line-height:1;transition:.15s}
+  .speakbtn:hover{background:var(--card);border-color:var(--blue)}
+  .speakbtn.on{background:var(--blue);border-color:var(--blue);animation:spk 1s ease-in-out infinite}
+  @keyframes spk{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.35)}50%{box-shadow:0 0 0 5px rgba(37,99,235,0)}}
+  .ptdiagram{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:16px 0 4px;box-shadow:var(--shadow)}
+  .ptdiagram svg{width:100%;height:auto;display:block}
+  .ptnum{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:800}
+  .ptlist{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+  .ptlist li{position:relative;padding-left:22px;font-size:.92rem;line-height:1.4;color:var(--ink)}
+  .ptlist li:before{content:"✓";position:absolute;left:0;top:0;color:var(--green);font-weight:800}
   .opts{display:flex;flex-direction:column;gap:11px}
   .opt{display:flex;align-items:flex-start;gap:12px;border:1.5px solid var(--line);background:var(--card);
     border-radius:12px;padding:14px 15px;cursor:pointer;transition:.13s;font-size:1rem;text-align:left;width:100%;color:var(--ink)}
@@ -380,10 +403,11 @@
 <header class="top">
   <div class="top-inner">
     <div class="brand" onclick="go('home')">
-      <div class="star">★</div>
-      <div><h1>Texas CDL Practice</h1><p id="brandSub">General Knowledge · Air Brakes · Combination · Special Requirements</p></div>
+      <img class="star" src="icon-192.png" alt="PassRoute logo" />
+      <div><h1>PassRoute</h1><p id="brandSub">Texas CDL · Practice Tests</p></div>
     </div>
     <div class="top-spacer"></div>
+    <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="langdd">
       <button class="langbtn" id="langBtn" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false"><span id="langCur">EN</span><span class="cv">▾</span></button>
       <div class="langmenu" id="langMenu" role="listbox"></div>
@@ -411,6 +435,10 @@
 
 <script src="questions.js"></script>
 <script src="translations.js"></script>
+<script src="endorsements.js"></script>
+<script src="questions-extra.js"></script>
+<script src="pretrip.js"></script>
+<script src="skills.js"></script>
 <script>
 /* ============================ STATE & STORAGE ============================ */
 const DATA = window.CDL_DATA;
@@ -544,9 +572,29 @@ function buildTest(cat, idx){
   });
 }
 
+/* ============================ TEXT-TO-SPEECH ============================ */
+function langBCP(){ return LANG==='tr'?'tr-TR':LANG==='ru'?'ru-RU':'en-US'; }
+function stopSpeak(){ try{ if(window.speechSynthesis) speechSynthesis.cancel(); }catch(e){} }
+function speakQuestion(e){
+  if(e) e.stopPropagation();
+  if(!('speechSynthesis' in window)){ toast(t('ttsNo')); return; }
+  const s=state, it=s.test && s.test[s.cur]; if(!it) return;
+  const btn=document.getElementById('speakBtn');
+  if(speechSynthesis.speaking){ stopSpeak(); if(btn) btn.classList.remove('on'); return; }
+  const qd=qData(s.catId, it.qid);
+  const opts=it.optOrder.map((oi,i)=>String.fromCharCode(65+i)+'. '+qd.options[oi]);
+  const u=new SpeechSynthesisUtterance(qd.q+'. '+opts.join('. '));
+  u.lang=langBCP(); u.rate=0.95;
+  const vs=(speechSynthesis.getVoices()||[]).filter(v=>v.lang&&v.lang.toLowerCase().slice(0,2)===u.lang.slice(0,2));
+  if(vs[0]) u.voice=vs[0];
+  if(btn) btn.classList.add('on');
+  u.onend=u.onerror=function(){ const b=document.getElementById('speakBtn'); if(b) b.classList.remove('on'); };
+  stopSpeak(); speechSynthesis.speak(u);
+}
+
 /* ============================ ROUTER ============================ */
 function go(view, opts={}){
-  stopTimer();
+  stopTimer(); stopSpeak();
   state = Object.assign({view}, opts);
   window.scrollTo(0,0);
   render();
@@ -555,14 +603,76 @@ function render(){
   const el = document.getElementById('app');
   if(state.view==='home') el.innerHTML = renderHome();
   else if(state.view==='guide') el.innerHTML = renderGuide();
+  else if(state.view==='pretrip') el.innerHTML = renderPretrip();
+  else if(state.view==='skills') el.innerHTML = renderSkills();
   else if(state.view==='category') el.innerHTML = renderCategory(state.catId);
   else if(state.view==='test'){ renderTestShell(); return; }
   else if(state.view==='results') el.innerHTML = renderResults();
   else if(state.view==='stats') el.innerHTML = renderStats();
 }
 
+/* ============================ PRE-TRIP GUIDE ============================ */
+function ptDiagram(){
+  return `<div class="ptdiagram"><svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tractor-trailer pre-trip zones">
+    <line x1="24" y1="224" x2="742" y2="224" stroke="#c2cbda" stroke-width="3"/>
+    <rect x="250" y="74" width="442" height="132" rx="9" fill="#eef3fb" stroke="#15325c" stroke-width="3"/>
+    <line x1="250" y1="150" x2="692" y2="150" stroke="#cdd8e8" stroke-width="2"/>
+    <rect x="232" y="176" width="34" height="14" rx="3" fill="#15325c"/>
+    <path d="M70 208 V164 Q70 150 84 150 H150 V208 Z" fill="#cfe0d6" stroke="#15325c" stroke-width="3"/>
+    <rect x="70" y="178" width="9" height="20" rx="2" fill="#15325c"/>
+    <circle cx="80" cy="166" r="5.5" fill="#ffd34d" stroke="#15325c" stroke-width="1.5"/>
+    <path d="M150 208 V96 Q150 88 160 88 H214 Q224 88 224 100 V208 Z" fill="#d9e8df" stroke="#15325c" stroke-width="3"/>
+    <path d="M158 104 H210 V134 H152 Z" fill="#bcd3ea" stroke="#15325c" stroke-width="1.5"/>
+    <path d="M170 88 Q196 78 224 92 V100 H170 Z" fill="#cfe0d6" stroke="#15325c" stroke-width="2"/>
+    <rect x="230" y="86" width="8" height="122" rx="3" fill="#9aa6b6" stroke="#15325c" stroke-width="1.5"/>
+    <line x1="150" y1="120" x2="140" y2="120" stroke="#15325c" stroke-width="3"/>
+    <rect x="132" y="112" width="9" height="20" rx="2" fill="#15325c"/>
+    ${[110,192,232,600,646].map(cx=>`<circle cx="${cx}" cy="224" r="22" fill="#1b2a3f"/><circle cx="${cx}" cy="224" r="9" fill="#7d8ca3"/>`).join('')}
+    <rect x="666" y="200" width="6" height="24" fill="#2b3645"/>
+    ${[['1',110,138],['2',186,70],['3',64,150],['4',110,200],['5',206,150],['6',249,158],['7',672,66],['8',623,200]].map(([n,x,y])=>`<g><circle cx="${x}" cy="${y}" r="14" fill="#2563eb" stroke="#fff" stroke-width="2.5"/><text x="${x}" y="${+y+5}" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" font-family="system-ui,Arial">${n}</text></g>`).join('')}
+  </svg></div>`;
+}
+function renderPretrip(){
+  const P = (window.PRETRIP && (PRETRIP[LANG]||PRETRIP.en)) || {sections:[],intro:''};
+  const secs = (P.sections||[]).map((s,i)=>`
+    <div class="cat" style="cursor:default">
+      <span class="accent" style="background:${['#d7263d','#2563eb','#c77700','#0f9d8c','#7c3aed','#0891b2','#65a30d','#d7263d'][i%8]}"></span>
+      <h3 style="display:flex;align-items:center;gap:9px"><span class="ptnum">${i+1}</span><span>${s.ico||''} ${s.t}</span></h3>
+      <ul class="ptlist">${(s.items||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+    </div>`).join('');
+  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <span>${t('ptTitle')}</span></div>
+    <section class="pretrip">
+      <h2 style="margin:4px 0 6px">${t('ptTitle')}</h2>
+      <div class="sub" style="max-width:760px">${P.intro||''}</div>
+      ${ptDiagram()}
+      <div class="grid" style="margin-top:18px">${secs}</div>
+    </section>
+    <div style="text-align:center;margin:14px 0 30px"><button class="btn ghost" onclick="go('home')">${g('back')}</button></div>`;
+}
+
+/* ============================ SKILLS TEST GUIDE ============================ */
+function renderSkills(){
+  const S = (window.SKILLS && (SKILLS[LANG]||SKILLS.en)) || {sections:[],intro:''};
+  const accents=['#0f9d8c','#2563eb','#d7263d','#7c3aed','#c77700'];
+  const secs = (S.sections||[]).map((s,i)=>`
+    <div class="cat" style="cursor:default">
+      <span class="accent" style="background:${accents[i%accents.length]}"></span>
+      <h3 style="display:flex;align-items:center;gap:9px"><span>${s.ico||''} ${s.t}</span></h3>
+      <ul class="ptlist">${(s.items||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+      ${s.link==='pretrip'?`<button class="linkbtn go" style="margin-top:10px" onclick="go('pretrip')">📋 ${t('ptTitle')} →</button>`:''}
+    </div>`).join('');
+  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <span>${t('skGuideTitle')}</span></div>
+    <section class="pretrip">
+      <h2 style="margin:4px 0 6px">${t('skGuideTitle')}</h2>
+      <div class="sub" style="max-width:780px">${S.intro||''}</div>
+      <div class="grid" style="margin-top:18px">${secs}</div>
+    </section>
+    <div style="text-align:center;margin:14px 0 30px"><button class="btn ghost" onclick="go('home')">${g('back')}</button></div>`;
+}
+
 /* ============================ HOME ============================ */
-const ACCENTS = {special:"#d7263d", general:"#2563eb", airbrakes:"#0f9d8c", combination:"#7c3aed"};
+const ACCENTS = {special:"#d7263d", general:"#2563eb", airbrakes:"#0f9d8c", combination:"#7c3aed",
+  hazmat:"#ea580c", tanker:"#0891b2", doubles:"#ca8a04", passenger:"#db2777", schoolbus:"#65a30d"};
 
 function catStats(cat){
   let passed=0, attempted=0;
@@ -587,34 +697,30 @@ function renderRoadmap(){
   const reqs=DATA.categories.filter(c=>c.classA);
   const ca=classAReady();
 
-  const knowledge=reqs.map((c,i)=>{
-    const L=catLevel(c);
-    let badge;
-    if(L.lvl==='mastered') badge=`<span class="badge b-pass">${t('stMastered')}</span>`;
-    else if(L.lvl==='ready') badge=`<span class="badge b-pass">${t('stReady')}</span>`;
-    else if(L.lvl==='progress') badge=`<span class="badge b-prog">${t('stProgress')}</span>`;
-    else badge=`<span class="badge b-new">${t('stNew')}</span>`;
-    return `<div class="rm-step click" onclick="go('category',{catId:'${c.id}'})">
-      <div class="ico" style="background:${ACCENTS[c.id]||'#888'}">${i+1}</div>
-      <div class="nm"><b>${catName(c)}</b><span>${t('rmTestsLine',{p:L.passed,t:c.numTests,target:c.readyTarget})}</span></div>
-      ${badge}
-    </div>`;
-  }).join('');
+  const knowledge=reqs.map((c,i)=>catCard(c,
+    `<div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">`+
+    `<span style="background:${ACCENTS[c.id]||'#64748b'};color:#fff;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 auto">${i+1}</span>`+
+    `${statusBadge(c)}<span style="font-size:12px;color:#6b7280">${t('rmReadyHint',{target:c.readyTarget})}</span></div>`
+  )).join('');
 
   const skillKeys=[['skPretrip','skPretripNote'],['skBasic','skBasicNote'],['skRoad','skRoadNote']];
-  const skills=skillKeys.map(k=>`
-    <div class="rm-step">
-      <div class="ico muted">＋</div>
+  const skIco=['📋','🔄','🛣️'];
+  const skills=skillKeys.map((k,i)=>
+    `<div class="rm-step click" onclick="go('skills')">
+      <div class="ico muted">${skIco[i]||'＋'}</div>
       <div class="nm"><b>${t(k[0])}</b><span>${t(k[1])}</span></div>
-      <span class="badge b-new">${t('atDPS')}</span>
+      <span class="badge b-prog">${t('skDetail')} →</span>
     </div>`).join('');
 
-  const ends=(rm.endorsements||[]).map(e=>{
-    if(e.active && e.catId){
-      return `<span class="rm-chip on" onclick="go('category',{catId:'${e.catId}'})"><span class="code">${e.code}</span>${e.name}</span>`;
-    }
-    return `<span class="rm-chip"><span class="code">${e.code}</span>${e.name} <span class="soon">${t('soon')}</span></span>`;
-  }).join('');
+  const endcats=DATA.categories.filter(c=>c.endorsement);
+  const ends = endcats.length
+    ? endcats.map(c=>catCard(c,
+        `<div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">`+
+        `<span style="background:${ACCENTS[c.id]||'#64748b'};color:#fff;padding:2px 9px;border-radius:6px;font-size:12px;font-weight:700">${c.code}</span>`+
+        `${statusBadge(c)}</div>`
+      )).join('')
+    : (rm.endorsements||[]).map(e=>`<span class="rm-chip"><span class="code">${e.code}</span>${e.name} <span class="soon">${t('soon')}</span></span>`).join('');
+  const endWrap = endcats.length ? 'grid' : 'rm-ends';
 
   return `<section class="roadmap">
     <div class="rm-head">
@@ -625,11 +731,12 @@ function renderRoadmap(){
       <div class="rm-ready"><b>${ca.ready}/${ca.total}</b><span>${t('knowledgeReady')}</span></div>
     </div>
     <div class="rm-group">${t('grpKnowledge')}</div>
-    <div class="rm-steps">${knowledge}</div>
+    <div class="grid">${knowledge}</div>
     <div class="rm-group">${t('grpSkills')}</div>
     <div class="rm-steps">${skills}</div>
+    <div class="rm-tag" style="margin:6px 2px 0;line-height:1.55">${t('skFoot')}</div>
     <div class="rm-group">${t('grpEndorse')}</div>
-    <div class="rm-ends">${ends}</div>
+    <div class="${endWrap}">${ends}</div>
   </section>`;
 }
 /* ============================ STUDY MATERIALS ============================ */
@@ -719,6 +826,7 @@ function renderGuide(){
       <p>${g('s8P')}</p>
       <ol class="order-list">${o8}</ol>
       <div class="tie">${g('s8Tie')}</div>
+      <p class="muted">${g('s8Retake')}</p>
       <div>
         <a class="linkbtn go" onclick="go('category',{catId:'special'})">${catName(CAT('special'))} →</a>
         <a class="linkbtn" onclick="go('category',{catId:'general'})">${catName(CAT('general'))} →</a>
@@ -731,7 +839,9 @@ function renderGuide(){
       <h3>${g('s9T')}</h3>
       <p>${g('s9P')}</p>
       <p class="muted">${g('s9Note')}</p>
+      <p class="muted">${g('s9Retake')}</p>
       <a class="linkbtn" href="https://www.dps.texas.gov/internetforms/Forms/DL-60a.pdf" target="_blank" rel="noopener">Driving-test requirements ↗</a>
+      <a class="linkbtn go" onclick="go('skills')">${t('skGuideTitle')} →</a>
     </div></div>
 
     <div class="callout">⚠️ <b>${g('calloutBold')}</b>${g('calloutText')}
@@ -743,26 +853,33 @@ function renderGuide(){
   </div>`;
 }
 
+function statusBadge(c){
+  const L=catLevel(c);
+  if(L.lvl==='mastered') return `<span class="badge b-pass">${t('stMastered')}</span>`;
+  if(L.lvl==='ready') return `<span class="badge b-pass">${t('stReady')}</span>`;
+  if(L.lvl==='progress') return `<span class="badge b-prog">${t('stProgress')}</span>`;
+  return `<span class="badge b-new">${t('stNew')}</span>`;
+}
+function catCard(c, extra){
+  const s = catStats(c); const p = s.total? Math.round(s.passed/s.total*100):0;
+  return `<div class="cat" onclick="go('category',{catId:'${c.id}'})">
+    <span class="accent" style="background:${ACCENTS[c.id]||'#64748b'}"></span>
+    <h3>${catName(c)}</h3>
+    <div class="desc">${catBlurb(c)}</div>
+    <div class="meta">
+      <span class="pill">${t('ccTests',{n:c.numTests})}</span>
+      <span class="pill">${t('ccQEach',{n:c.examSize})}</span>
+      <span class="pill">${t('ccPass',{need:c.passNeed,exam:c.examSize})}</span>
+    </div>
+    <div class="bar"><i style="width:${p}%"></i></div>
+    <div class="prog-lbl"><span>${t('ccPassedOf',{p:s.passed,t:s.total})}</span><span>${p}%</span></div>
+    ${extra||''}
+  </div>`;
+}
 function renderHome(){
   let totPass=0, totTests=0;
-  DATA.categories.forEach(c=>{ const s=catStats(c); totPass+=s.passed; totTests+=c.numTests; });
+  DATA.categories.filter(c=>c.classA).forEach(c=>{ const s=catStats(c); totPass+=s.passed; totTests+=c.numTests; });
   const pct = totTests? Math.round(totPass/totTests*100):0;
-
-  const cards = DATA.categories.map(c=>{
-    const s = catStats(c); const p = Math.round(s.passed/s.total*100);
-    return `<div class="cat" onclick="go('category',{catId:'${c.id}'})">
-      <span class="accent" style="background:${ACCENTS[c.id]}"></span>
-      <h3>${catName(c)}</h3>
-      <div class="desc">${catBlurb(c)}</div>
-      <div class="meta">
-        <span class="pill">${t('ccTests',{n:c.numTests})}</span>
-        <span class="pill">${t('ccQEach',{n:c.examSize})}</span>
-        <span class="pill">${t('ccPass',{need:c.passNeed,exam:c.examSize})}</span>
-      </div>
-      <div class="bar"><i style="width:${p}%"></i></div>
-      <div class="prog-lbl"><span>${t('ccPassedOf',{p:s.passed,t:s.total})}</span><span>${p}%</span></div>
-    </div>`;
-  }).join('');
 
   return `<section class="hero">
     <h2>${t('heroTitle')}</h2>
@@ -782,8 +899,6 @@ function renderHome(){
       <div class="gb-go">→</div>
     </div>
     ${renderDownloads()}
-    <div class="rm-group" style="margin-top:28px">${t('practiceByCat')}</div>
-    <div class="grid">${cards}</div>
   </section>`;
 }
 
@@ -880,7 +995,8 @@ function paintQuestion(){
     </div>
     <div class="pbar"><i style="width:${pct}%"></i></div>
     <div class="qbody">
-      <div class="qtext">${qd.q}${langBadge(qd.translated)}</div>
+      <div class="qtext">${qd.q}${langBadge(qd.translated)}
+        <button class="speakbtn" id="speakBtn" onclick="speakQuestion(event)" title="${t('speak')}" aria-label="${t('speak')}">🔊</button></div>
       <div class="opts">${opts}</div>
       ${explain}
     </div>
@@ -901,6 +1017,7 @@ function choose(i){
   const ex=document.querySelector('.explain'); if(ex) ex.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function next(){
+  stopSpeak();
   const s=state;
   if(s.cur < s.test.length-1){ s.cur++; paintQuestion(); window.scrollTo({top:0,behavior:'smooth'}); }
   else finishTest();
@@ -1023,6 +1140,10 @@ else {
   renderLangMenu();
   applyStaticI18n();
   go('home');
+}
+/* PWA: register the service worker for offline use (HTTPS only, e.g. passroute.ai) */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); });
 }
 </script>
 </body>
