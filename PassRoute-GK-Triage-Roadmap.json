@@ -1,0 +1,4002 @@
+[
+ {
+  "idx": 0,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "What is the minimum tread depth for front (steer) tires?"
+ },
+ {
+  "idx": 1,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Minimum tread depth for tires other than the front is:"
+ },
+ {
+  "idx": 2,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "How much steering-wheel play should make you suspect a problem?"
+ },
+ {
+  "idx": 3,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "How many reflective warning triangles must you carry?"
+ },
+ {
+  "idx": 4,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which fire extinguisher rating works on fuel and electrical fires?"
+ },
+ {
+  "idx": 5,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "You must carry spare electrical fuses unless the vehicle has:"
+ },
+ {
+  "idx": 6,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "The first step of the seven-step inspection is:"
+ },
+ {
+  "idx": 7,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "With the engine off, the inspection includes checking:"
+ },
+ {
+  "idx": 8,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Accelerating on a slippery road should be done:"
+ },
+ {
+  "idx": 9,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "When backing, you should generally:"
+ },
+ {
+  "idx": 10,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "You should downshift to the right gear:"
+ },
+ {
+  "idx": 11,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Total stopping distance is made up of:"
+ },
+ {
+  "idx": 12,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "At 55 mph in good conditions, total stopping distance is about:"
+ },
+ {
+  "idx": 13,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "If you double your speed, braking distance increases about:"
+ },
+ {
+  "idx": 14,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "On a wet road you should reduce speed by about:"
+ },
+ {
+  "idx": 15,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Compared with a loaded truck, an empty truck usually:"
+ },
+ {
+  "idx": 16,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If your vehicle starts to hydroplane, you should:"
+ },
+ {
+  "idx": 17,
+  "section": "§2.15",
+  "topic": "railroad_mountain",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Brake fade is most often caused by:"
+ },
+ {
+  "idx": 18,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Posted curve speed limits are set for:"
+ },
+ {
+  "idx": 19,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The following-distance rule for a heavy vehicle is:"
+ },
+ {
+  "idx": 20,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": false,
+  "q": "How far ahead should you look while driving?"
+ },
+ {
+  "idx": 21,
+  "section": "§2.5",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "You should signal a turn:"
+ },
+ {
+  "idx": 22,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "If you are being tailgated, you should:"
+ },
+ {
+  "idx": 23,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Before turning right, you should NOT:"
+ },
+ {
+  "idx": 24,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Posted clearance heights at bridges:"
+ },
+ {
+  "idx": 25,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Convex (curved) mirrors show:"
+ },
+ {
+  "idx": 26,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "A 'hazard' on the road is:"
+ },
+ {
+  "idx": 27,
+  "section": "§2.9",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "The correct response to an aggressive driver is to:"
+ },
+ {
+  "idx": 28,
+  "section": "§2.9",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Texting or holding a phone while driving a CMV is:"
+ },
+ {
+  "idx": 29,
+  "section": "§2.10",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Not 'overdriving' your headlights at night means:"
+ },
+ {
+  "idx": 30,
+  "section": "§2.10",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To avoid glare from oncoming headlights, look:"
+ },
+ {
+  "idx": 31,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "In dense fog you should use:"
+ },
+ {
+  "idx": 32,
+  "section": "§2.12",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In winter, which usually freezes first?"
+ },
+ {
+  "idx": 33,
+  "section": "§2.12",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The road looks wet but tires throw no spray in the cold. This is likely:"
+ },
+ {
+  "idx": 34,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "In very hot weather you should especially check:"
+ },
+ {
+  "idx": 35,
+  "section": "§2.15",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a long downgrade, speed is controlled mainly by:"
+ },
+ {
+  "idx": 36,
+  "section": "§2.15",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A runaway-truck escape ramp should be used when:"
+ },
+ {
+  "idx": 37,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "If a front tire blows out, your first action is to:"
+ },
+ {
+  "idx": 38,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "If your hydraulic brakes fail, first try to:"
+ },
+ {
+  "idx": 39,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To recover from a drive-wheel (rear) skid, you should:"
+ },
+ {
+  "idx": 40,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A front-wheel skid is usually caused by:"
+ },
+ {
+  "idx": 41,
+  "section": "§2.17",
+  "topic": "emergency_skid",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "The main benefit of ABS in a hard stop is:"
+ },
+ {
+  "idx": 42,
+  "section": "§2.19",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "First at an accident scene, you should:"
+ },
+ {
+  "idx": 43,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "For an engine fire you should:"
+ },
+ {
+  "idx": 44,
+  "section": "§2.21",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The blood alcohol limit for driving a CMV is:"
+ },
+ {
+  "idx": 45,
+  "section": "§2.21",
+  "topic": "foundations",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "What actually makes a drinker sober?"
+ },
+ {
+  "idx": 46,
+  "section": "§2.21",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A driver with detectable alcohol under 0.04% will be:"
+ },
+ {
+  "idx": 47,
+  "section": "§3.1",
+  "topic": "cargo",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "You should inspect your cargo within the first:"
+ },
+ {
+  "idx": 48,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "The minimum tie-down rule for cargo is:"
+ },
+ {
+  "idx": 49,
+  "section": "§3.1",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A high center of gravity makes a vehicle:"
+ },
+ {
+  "idx": 50,
+  "section": "§1",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A Texas Class A CDL is for combinations with a GCWR of:"
+ },
+ {
+  "idx": 51,
+  "section": "§1",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You get an air-brake restriction if you:"
+ },
+ {
+  "idx": 52,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At a railroad crossing, buses with passengers and placarded hazmat must:"
+ },
+ {
+  "idx": 53,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "A typical tractor-trailer clears a single track in about:"
+ },
+ {
+  "idx": 54,
+  "section": "§2.5",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In low light or rain, turn on your headlights mainly to:"
+ },
+ {
+  "idx": 55,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "A header board ('headache rack') is there to:"
+ },
+ {
+  "idx": 56,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which tire condition is a defect?"
+ },
+ {
+  "idx": 57,
+  "section": "§2.22",
+  "topic": "foundations",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Which is a sign you are too tired to drive?"
+ },
+ {
+  "idx": 58,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which is NOT required emergency equipment?"
+ },
+ {
+  "idx": 59,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which is NOT a correct way to handle a skid?"
+ },
+ {
+  "idx": 60,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Why should you inspect the vehicle before a trip?"
+ },
+ {
+  "idx": 61,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Stopping is not always the safest action because:"
+ },
+ {
+  "idx": 62,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which is the correct order of the stopping-distance parts?"
+ },
+ {
+  "idx": 63,
+  "section": "§2.5",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "To warn drivers behind that you are slowing a lot, you should:"
+ },
+ {
+  "idx": 64,
+  "section": "§1.4",
+  "topic": "foundations",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "The CDL blood alcohol limit while driving a CMV is:"
+ },
+ {
+  "idx": 65,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "If your brakes fail on a long downgrade, you should:"
+ },
+ {
+  "idx": 66,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Hydroplaning is most likely when:"
+ },
+ {
+  "idx": 67,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To check tire inflation correctly, you should:"
+ },
+ {
+  "idx": 68,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "The 'No-Zone' refers to:"
+ },
+ {
+  "idx": 69,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When backing, the safest practice is to:"
+ },
+ {
+  "idx": 70,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Sometimes the best way to avoid a crash is to:"
+ },
+ {
+  "idx": 71,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "A safe driver gives turn signals:"
+ },
+ {
+  "idx": 72,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "On a slippery road, an engine brake or retarder should usually be:"
+ },
+ {
+  "idx": 73,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Going up a long, steep grade, you should:"
+ },
+ {
+  "idx": 74,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If you double your speed, braking distance roughly:"
+ },
+ {
+  "idx": 75,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "The only sure cure for driving fatigue is to:"
+ },
+ {
+  "idx": 76,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Texting while driving a CMV is:"
+ },
+ {
+  "idx": 77,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "In a work zone you should:"
+ },
+ {
+  "idx": 78,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo with a high center of gravity makes the vehicle:"
+ },
+ {
+  "idx": 79,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The combined working load limit of tie-downs must be at least:"
+ },
+ {
+  "idx": 80,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "When making a right turn, you should:"
+ },
+ {
+  "idx": 81,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Posted curve speeds are set for:"
+ },
+ {
+  "idx": 82,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Brake fade on a long hill is caused by:"
+ },
+ {
+  "idx": 83,
+  "section": "§5.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Antilock brakes (ABS) mainly help you:"
+ },
+ {
+  "idx": 84,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Compared with loaded trucks, empty trucks:"
+ },
+ {
+  "idx": 85,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "You should turn on your headlights:"
+ },
+ {
+  "idx": 86,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Convex (curved) mirrors:"
+ },
+ {
+  "idx": 87,
+  "section": "§2.5",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The first thing to do when you spot a hazard ahead is:"
+ },
+ {
+  "idx": 88,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To recover from hydroplaning, you should:"
+ },
+ {
+  "idx": 89,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If your brakes get wet in a deep puddle, you should:"
+ },
+ {
+  "idx": 90,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should NOT pass another vehicle:"
+ },
+ {
+  "idx": 91,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When merging onto a highway, you should:"
+ },
+ {
+  "idx": 92,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "For an emergency vehicle with lights and siren, you should:"
+ },
+ {
+  "idx": 93,
+  "section": "§2.9",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The fire-extinguisher PASS method is Pull, Aim, Squeeze, and:"
+ },
+ {
+  "idx": 94,
+  "section": "§2.9",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "For a tire fire, you should:"
+ },
+ {
+  "idx": 95,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Skids are usually caused by:"
+ },
+ {
+  "idx": 96,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The best way to prevent a skid is:"
+ },
+ {
+  "idx": 97,
+  "section": "§2.10",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In hot weather you should check tires more often because:"
+ },
+ {
+  "idx": 98,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "In very thick fog, the safest choice is often to:"
+ },
+ {
+  "idx": 99,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A vehicle inspection should be done:"
+ },
+ {
+  "idx": 100,
+  "section": "§3.1",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should first check your cargo within:"
+ },
+ {
+  "idx": 101,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo must be secured so it does not:"
+ },
+ {
+  "idx": 102,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "When the sun causes glare, you should:"
+ },
+ {
+  "idx": 103,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should use four-way flashers when:"
+ },
+ {
+  "idx": 104,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "To warn drivers behind that you are slowing, your brake lights should:"
+ },
+ {
+  "idx": 105,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At a roundabout, you should:"
+ },
+ {
+  "idx": 106,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "An angry, aggressive driver behind you is best handled by:"
+ },
+ {
+  "idx": 107,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Standing water on the road can:"
+ },
+ {
+  "idx": 108,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which statement about speed and stopping is TRUE?"
+ },
+ {
+  "idx": 109,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which of these is NOT a cause of skidding?"
+ },
+ {
+  "idx": 110,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which statement about night driving is TRUE?"
+ },
+ {
+  "idx": 111,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which is NOT a proper use of four-way flashers?"
+ },
+ {
+  "idx": 112,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 40-foot-long vehicle traveling at 45 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 113,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 50-foot-long vehicle at 35 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 114,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 60-foot-long vehicle at 55 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 115,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 30-foot-long vehicle at 30 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 116,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 70-foot-long vehicle at 50 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 117,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 20-foot-long vehicle at 25 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 118,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "An 80-foot-long vehicle at 60 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 119,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 50-foot-long vehicle at 45 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 120,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 60-foot-long vehicle at 35 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 121,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which of these can cause a vehicle to skid?"
+ },
+ {
+  "idx": 122,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should slow down when:"
+ },
+ {
+  "idx": 123,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Your emergency equipment should include:"
+ },
+ {
+  "idx": 124,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which is an acceptable reason to drive over the posted speed limit?"
+ },
+ {
+  "idx": 125,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which is a safe place to pass another vehicle?"
+ },
+ {
+  "idx": 126,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which is a good reason to skip the pre-trip inspection?"
+ },
+ {
+  "idx": 127,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At night on a dark two-lane road, an oncoming car keeps its high beams on. What is the safest response?"
+ },
+ {
+  "idx": 128,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You are descending a long, steep mountain grade with a heavy load. How should you control your speed?"
+ },
+ {
+  "idx": 129,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "A front tire blows out while you are at highway speed. What should you do first?"
+ },
+ {
+  "idx": 130,
+  "section": "§2.15",
+  "topic": "railroad_mountain",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You approach a railroad crossing with no gates and the warning lights begin to flash. What should you do?"
+ },
+ {
+  "idx": 131,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Heavy rain is falling, your steering feels light, and the truck starts to hydroplane. What should you do?"
+ },
+ {
+  "idx": 132,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You are merging onto a busy freeway from an on-ramp and the right lane is moving fast. What is best?"
+ },
+ {
+  "idx": 133,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "An aggressive driver is tailgating you closely and flashing their lights. What should you do?"
+ },
+ {
+  "idx": 134,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You smell something burning and see smoke coming from the rear of your trailer. What should you do?"
+ },
+ {
+  "idx": 135,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The road ahead is covered with thick fog that hides the lane lines. What is the safest choice?"
+ },
+ {
+  "idx": 136,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You must back your truck into a tight loading dock and you have no one to help. What should you do?"
+ },
+ {
+  "idx": 137,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Total stopping distance for a truck is made up of which three parts?"
+ },
+ {
+  "idx": 138,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The blood alcohol concentration (BAC) limit for driving a commercial vehicle is:"
+ },
+ {
+  "idx": 139,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "After 10 hours off duty, how many hours may you drive before another break is required?"
+ },
+ {
+  "idx": 140,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The only sure way to fight driver fatigue is to:"
+ },
+ {
+  "idx": 141,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Good drivers look how far ahead in traffic?"
+ },
+ {
+  "idx": 142,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "WAVE2_UPGRADED",
+  "rote": false,
+  "q": "How often should you check your mirrors while driving?"
+ },
+ {
+  "idx": 143,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "When you must back a truck, it is safest to back toward:"
+ },
+ {
+  "idx": 144,
+  "section": "§3.3",
+  "topic": "cargo",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Cargo needs at least one tie-down for every how many feet of length?"
+ },
+ {
+  "idx": 145,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If your front wheels skid, what most likely happens?"
+ },
+ {
+  "idx": 146,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Controlled braking means you:"
+ },
+ {
+  "idx": 147,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A runaway truck on a steep grade should use an escape ramp because it:"
+ },
+ {
+  "idx": 148,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At about 55 mph, the average driver's reaction distance alone is about:"
+ },
+ {
+  "idx": 149,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which of the following must you do at a steady red traffic light?"
+ },
+ {
+  "idx": 150,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "When you spot a hazard far ahead, the best first action is to:"
+ },
+ {
+  "idx": 151,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A safe following distance in good conditions is at least:"
+ },
+ {
+  "idx": 152,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before driving, the engine oil pressure should:"
+ },
+ {
+  "idx": 153,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The coolant temperature gauge warns you of:"
+ },
+ {
+  "idx": 154,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A buildup of air pressure that is too slow may mean:"
+ },
+ {
+  "idx": 155,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should check the engine belts and hoses for:"
+ },
+ {
+  "idx": 156,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cracked wheel rims or loose lug nuts are:"
+ },
+ {
+  "idx": 157,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "During the walk-around, you check the steering linkage for:"
+ },
+ {
+  "idx": 158,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Leaking fluids under the vehicle should be:"
+ },
+ {
+  "idx": 159,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should check that all lights and reflectors are:"
+ },
+ {
+  "idx": 160,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The first step of a pre-trip inspection is the:"
+ },
+ {
+  "idx": 161,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "To shift gears in many trucks, you use:"
+ },
+ {
+  "idx": 162,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "You should shift to a lower gear before:"
+ },
+ {
+  "idx": 163,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A retarder helps you:"
+ },
+ {
+  "idx": 164,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a slippery road, a speed retarder or engine brake should be:"
+ },
+ {
+  "idx": 165,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When backing, you should:"
+ },
+ {
+  "idx": 166,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "If you are unsure while backing, you should:"
+ },
+ {
+  "idx": 167,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When you turn, you should signal:"
+ },
+ {
+  "idx": 168,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should keep signaling:"
+ },
+ {
+  "idx": 169,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To warn drivers behind that you will slow, you can:"
+ },
+ {
+  "idx": 170,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "When you are driving much slower than traffic, use the:"
+ },
+ {
+  "idx": 171,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At dawn or dusk, you should turn on your:"
+ },
+ {
+  "idx": 172,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should leave space in front so you can:"
+ },
+ {
+  "idx": 173,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When a tailgater follows too closely, you should:"
+ },
+ {
+  "idx": 174,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should avoid driving alongside another vehicle because:"
+ },
+ {
+  "idx": 175,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before going under a low bridge, you should know your:"
+ },
+ {
+  "idx": 176,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To have space to turn, you should:"
+ },
+ {
+  "idx": 177,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When crossing or entering traffic, you need a gap large enough to:"
+ },
+ {
+  "idx": 178,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Blind spots ('No-Zones') around a truck should be:"
+ },
+ {
+  "idx": 179,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A heavy load on a long uphill grade may make you:"
+ },
+ {
+  "idx": 180,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should manage space to the sides by:"
+ },
+ {
+  "idx": 181,
+  "section": "§2.15",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At a railroad crossing, you should look for a gap that lets you:"
+ },
+ {
+  "idx": 182,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should slow down for a curve:"
+ },
+ {
+  "idx": 183,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a wet road, you should:"
+ },
+ {
+  "idx": 184,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On snow or ice, traction is:"
+ },
+ {
+  "idx": 185,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Empty trucks may take a longer distance to stop because:"
+ },
+ {
+  "idx": 186,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a long downgrade, your main brakes can:"
+ },
+ {
+  "idx": 187,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The safe speed on a downgrade depends on:"
+ },
+ {
+  "idx": 188,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A good rule on a downgrade is to go down in:"
+ },
+ {
+  "idx": 189,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Bridges and overpasses freeze:"
+ },
+ {
+  "idx": 190,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Hydroplaning can happen at speeds as low as about:"
+ },
+ {
+  "idx": 191,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If you start to hydroplane, you should:"
+ },
+ {
+  "idx": 192,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "In hot weather, you should check your tires for:"
+ },
+ {
+  "idx": 193,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In winter, you should make sure the windshield and mirrors are:"
+ },
+ {
+  "idx": 194,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Black ice is dangerous because it is:"
+ },
+ {
+  "idx": 195,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Driving in fog, you should use:"
+ },
+ {
+  "idx": 196,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At night, you should drive at a speed that lets you stop:"
+ },
+ {
+  "idx": 197,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When driving in heavy rain, your headlights should be:"
+ },
+ {
+  "idx": 198,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In very hot weather, tar in the road may:"
+ },
+ {
+  "idx": 199,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Strong winds make a high trailer:"
+ },
+ {
+  "idx": 200,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When the road is slippery, you should:"
+ },
+ {
+  "idx": 201,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If your headlights are dirty, at night you should:"
+ },
+ {
+  "idx": 202,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If your brakes fail on a downgrade, you can:"
+ },
+ {
+  "idx": 203,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "An escape ramp is for:"
+ },
+ {
+  "idx": 204,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "If steering suddenly fails, you should:"
+ },
+ {
+  "idx": 205,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "At an accident scene, you should first:"
+ },
+ {
+  "idx": 206,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "If your vehicle catches fire, you should pull off:"
+ },
+ {
+  "idx": 207,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "ABS (antilock brakes) help you:"
+ },
+ {
+  "idx": 208,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "ABS does NOT necessarily:"
+ },
+ {
+  "idx": 209,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Without ABS, the best hard-stop method is:"
+ },
+ {
+  "idx": 210,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "If a tire suddenly blows out, you should:"
+ },
+ {
+  "idx": 211,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "If you feel drowsy while driving, you should:"
+ },
+ {
+  "idx": 212,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Overloading a truck can:"
+ },
+ {
+  "idx": 213,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo weight should be:"
+ },
+ {
+  "idx": 214,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A high center of gravity makes a vehicle more likely to:"
+ },
+ {
+  "idx": 215,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "GVWR means the:"
+ },
+ {
+  "idx": 216,
+  "section": "§3.3",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo should be secured with:"
+ },
+ {
+  "idx": 217,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A header board (headache rack) protects you from:"
+ },
+ {
+  "idx": 218,
+  "section": "§3.1",
+  "topic": "cargo",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You are responsible for:"
+ },
+ {
+  "idx": 219,
+  "section": "§3.2",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Axle weight is the weight:"
+ },
+ {
+  "idx": 220,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The most effective way to deal with fatigue is to:"
+ },
+ {
+  "idx": 221,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Some cold or allergy medicines can:"
+ },
+ {
+  "idx": 222,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Alcohol affects your:"
+ },
+ {
+  "idx": 223,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You should not drive if you are:"
+ },
+ {
+  "idx": 224,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Most adults need how much sleep to be rested?"
+ },
+ {
+  "idx": 225,
+  "section": "§2.18",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Caffeine and fresh air against drowsiness are:"
+ },
+ {
+  "idx": 226,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "An aggressive driver near you should be:"
+ },
+ {
+  "idx": 227,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Road rage means:"
+ },
+ {
+  "idx": 228,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To spot hazards, you should:"
+ },
+ {
+  "idx": 229,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A parked car with someone inside is a hazard because:"
+ },
+ {
+  "idx": 230,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Children near the road are a special hazard because they:"
+ },
+ {
+  "idx": 231,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When another driver makes a mistake, you should:"
+ },
+ {
+  "idx": 232,
+  "section": "§2.15",
+  "topic": "railroad_mountain",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You should never shift gears while:"
+ },
+ {
+  "idx": 233,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At a flashing red traffic signal, you must:"
+ },
+ {
+  "idx": 234,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A flashing yellow traffic signal means:"
+ },
+ {
+  "idx": 235,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At an uncontrolled intersection, you should:"
+ },
+ {
+  "idx": 236,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "When you see a stopped school bus with flashing red lights, you must:"
+ },
+ {
+  "idx": 237,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a mountain road, you should use a lower gear:"
+ },
+ {
+  "idx": 238,
+  "section": "§2.16",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Runaway truck ramps are usually found on:"
+ },
+ {
+  "idx": 239,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before a curve at night, you should:"
+ },
+ {
+  "idx": 240,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To check your brakes work, before a trip you should:"
+ },
+ {
+  "idx": 241,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The proper hand position on the wheel is:"
+ },
+ {
+  "idx": 242,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When you must drive in reverse, the safest direction is:"
+ },
+ {
+  "idx": 243,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A vehicle's stopping distance increases with:"
+ },
+ {
+  "idx": 244,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To merge onto a freeway, you should:"
+ },
+ {
+  "idx": 245,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should use your horn:"
+ },
+ {
+  "idx": 246,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When parking on a downhill grade, turn your wheels:"
+ },
+ {
+  "idx": 247,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If your wheels drift onto the right shoulder, you should:"
+ },
+ {
+  "idx": 248,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The safest way to handle a tailgater is to:"
+ },
+ {
+  "idx": 249,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A good driver communicates by:"
+ },
+ {
+  "idx": 250,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 30-foot-long vehicle at 50 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 251,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 40-foot-long vehicle at 35 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 252,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 50-foot-long vehicle at 55 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 253,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 60-foot-long vehicle at 45 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 254,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 70-foot-long vehicle at 35 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 255,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "An 80-foot-long vehicle at 45 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 256,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 90-foot-long vehicle at 50 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 257,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 100-foot-long vehicle at 60 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 258,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 40-foot-long vehicle at 55 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 259,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 50-foot-long vehicle at 50 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 260,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 70-foot-long vehicle at 45 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 261,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "An 80-foot-long vehicle at 35 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 262,
+  "section": "§3.3",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo that is 15 feet long needs at least how many tie-downs?"
+ },
+ {
+  "idx": 263,
+  "section": "§3.3",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo that is 25 feet long needs at least how many tie-downs?"
+ },
+ {
+  "idx": 264,
+  "section": "§3.3",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo that is 35 feet long needs at least how many tie-downs?"
+ },
+ {
+  "idx": 265,
+  "section": "§3.3",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo that is 45 feet long needs at least how many tie-downs?"
+ },
+ {
+  "idx": 266,
+  "section": "§3.3",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo that is 55 feet long needs at least how many tie-downs?"
+ },
+ {
+  "idx": 267,
+  "section": "§3.3",
+  "topic": "cargo",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo that is only 8 feet long needs at least how many tie-downs?"
+ },
+ {
+  "idx": 268,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If you double your speed, your braking distance becomes about:"
+ },
+ {
+  "idx": 269,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Total stopping distance at 55 mph on dry pavement is roughly:"
+ },
+ {
+  "idx": 270,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At higher speeds, braking distance increases:"
+ },
+ {
+  "idx": 271,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Perception plus reaction time totals roughly:"
+ },
+ {
+  "idx": 272,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Total stopping distance adds perception, reaction, and:"
+ },
+ {
+  "idx": 273,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 20-foot-long vehicle at 35 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 274,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 20-foot-long vehicle at 55 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 275,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 30-foot-long vehicle at 35 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 276,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 30-foot-long vehicle at 55 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 277,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 40-foot-long vehicle at 50 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 278,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 60-foot-long vehicle at 50 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 279,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 70-foot-long vehicle at 55 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 280,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 90-foot-long vehicle at 35 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 281,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 90-foot-long vehicle at 60 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 282,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 100-foot-long vehicle at 35 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 283,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 100-foot-long vehicle at 45 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 284,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A 60-foot-long vehicle at 60 mph needs how many seconds of following distance?"
+ },
+ {
+  "idx": 285,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A deer suddenly runs into the road just ahead of your truck. What is usually safest?"
+ },
+ {
+  "idx": 286,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You enter a highway work zone with a lower posted limit. What should you do?"
+ },
+ {
+  "idx": 287,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Your drive wheels begin to skid on a curve. What should you do?"
+ },
+ {
+  "idx": 288,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You're entering a curve that is sharper than you expected. What should you do?"
+ },
+ {
+  "idx": 289,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "A traffic light turns yellow as your heavy truck nears it. What should you do?"
+ },
+ {
+  "idx": 290,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The vehicle ahead brakes suddenly and you nearly hit it. You should have:"
+ },
+ {
+  "idx": 291,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "It's your first time on an unfamiliar road at night. What should you do?"
+ },
+ {
+  "idx": 292,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You see brake lights and slowing traffic far ahead. You should:"
+ },
+ {
+  "idx": 293,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A pedestrian steps off the curb into the street ahead. You should:"
+ },
+ {
+  "idx": 294,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You want to change lanes but a car is in your blind spot. You should:"
+ },
+ {
+  "idx": 295,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You feel anger building at another driver. The safe choice is to:"
+ },
+ {
+  "idx": 296,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To change lanes safely on a busy highway, you should:"
+ },
+ {
+  "idx": 297,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should NOT mix radial and bias-ply tires:"
+ },
+ {
+  "idx": 298,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A tire with tread separation or a large cut is:"
+ },
+ {
+  "idx": 299,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A regrooved or recapped tire is not allowed on the:"
+ },
+ {
+  "idx": 300,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Dual tires should not:"
+ },
+ {
+  "idx": 301,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cracked or broken wheel rims are:"
+ },
+ {
+  "idx": 302,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Loose, missing, or broken leaf springs are:"
+ },
+ {
+  "idx": 303,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Shock absorbers should be:"
+ },
+ {
+  "idx": 304,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A cracked frame or loose mounts should be:"
+ },
+ {
+  "idx": 305,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A leaking exhaust system is dangerous because it can:"
+ },
+ {
+  "idx": 306,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The battery should be:"
+ },
+ {
+  "idx": 307,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before fueling the truck, you should:"
+ },
+ {
+  "idx": 308,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "While fueling, you should never leave the nozzle:"
+ },
+ {
+  "idx": 309,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In winter, you should check that the coolant has enough:"
+ },
+ {
+  "idx": 310,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Tire chains are used to:"
+ },
+ {
+  "idx": 311,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A sign of a drunk or impaired driver is:"
+ },
+ {
+  "idx": 312,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Texting while driving is dangerous mainly because it:"
+ },
+ {
+  "idx": 313,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If your accelerator sticks down, you should:"
+ },
+ {
+  "idx": 314,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "For an electrical fire, you should:"
+ },
+ {
+  "idx": 315,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should set out warning devices within how long of stopping?"
+ },
+ {
+  "idx": 316,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At an accident, an injured person should usually not be moved unless:"
+ },
+ {
+  "idx": 317,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The only thing that truly sobers up someone who has been drinking is:"
+ },
+ {
+  "idx": 318,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Stimulant drugs ('uppers') for staying awake:"
+ },
+ {
+  "idx": 319,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A disabled vehicle on the shoulder is a hazard because:"
+ },
+ {
+  "idx": 320,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A quick look under the vehicle at a stop helps you spot:"
+ },
+ {
+  "idx": 321,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a long, steep downgrade, you should pick your gear:"
+ },
+ {
+  "idx": 322,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The safest way to control speed on a long downgrade is to:"
+ },
+ {
+  "idx": 323,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Riding the brakes down a long hill can make them:"
+ },
+ {
+  "idx": 324,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A truck escape ramp is built to:"
+ },
+ {
+  "idx": 325,
+  "section": "§2.17",
+  "topic": "emergency_skid",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You must always stop before a railroad crossing if you are carrying:"
+ },
+ {
+  "idx": 326,
+  "section": "§2.17",
+  "topic": "emergency_skid",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "You should never change gears while:"
+ },
+ {
+  "idx": 327,
+  "section": "§2.17",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "After one train passes a crossing, before you go you should check for:"
+ },
+ {
+  "idx": 328,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The first rain after a dry spell can make a road especially slippery because:"
+ },
+ {
+  "idx": 329,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "After driving through deep standing water, you should:"
+ },
+ {
+  "idx": 330,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "One sign your tires have lost grip on a wet road is:"
+ },
+ {
+  "idx": 331,
+  "section": "§2.21",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "After 10 hours off duty, the most total driving allowed in a day is:"
+ },
+ {
+  "idx": 332,
+  "section": "§2.21",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You may not drive at all after the:"
+ },
+ {
+  "idx": 333,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo must be secured so that it cannot:"
+ },
+ {
+  "idx": 334,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Overloading a vehicle can make it:"
+ },
+ {
+  "idx": 335,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Cargo that sticks out past the side or rear must be:"
+ },
+ {
+  "idx": 336,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Making sure the load is secure and legal is the responsibility of the:"
+ },
+ {
+  "idx": 337,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should first re-check your cargo securement within the first:"
+ },
+ {
+  "idx": 338,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Low-beam headlights let you see roughly how far ahead?"
+ },
+ {
+  "idx": 339,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At night you should not drive faster than you can:"
+ },
+ {
+  "idx": 340,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To cut glare from oncoming headlights at night, you should look:"
+ },
+ {
+  "idx": 341,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "An empty truck can stop poorly because it has:"
+ },
+ {
+  "idx": 342,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a wet road, you should cut your speed by about:"
+ },
+ {
+  "idx": 343,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On packed snow, you should cut your speed by about:"
+ },
+ {
+  "idx": 344,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Black ice is dangerous mainly because it:"
+ },
+ {
+  "idx": 345,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The correct way to hold the steering wheel is with:"
+ },
+ {
+  "idx": 346,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When you must back up, it is usually safest to back toward:"
+ },
+ {
+  "idx": 347,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Whenever you are unsure of clearance while backing, you should:"
+ },
+ {
+  "idx": 348,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Using a helper to back is good because they can:"
+ },
+ {
+  "idx": 349,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before making a right turn, you should:"
+ },
+ {
+  "idx": 350,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When turning left at an intersection, you should:"
+ },
+ {
+  "idx": 351,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should adjust your mirrors:"
+ },
+ {
+  "idx": 352,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "To warn traffic behind that you are slowing down, you can:"
+ },
+ {
+  "idx": 353,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "After you finish a lane change, you should:"
+ },
+ {
+  "idx": 354,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "To warn another driver that you are there, you may:"
+ },
+ {
+  "idx": 355,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At night, you should dim your high beams within how far of an oncoming vehicle?"
+ },
+ {
+  "idx": 356,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If you must stop on the road, you should:"
+ },
+ {
+  "idx": 357,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before leaving the cab, you should always set the:"
+ },
+ {
+  "idx": 358,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A good driver looks ahead down the road about:"
+ },
+ {
+  "idx": 359,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should check your mirrors:"
+ },
+ {
+  "idx": 360,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When another vehicle is passing you, you should:"
+ },
+ {
+  "idx": 361,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before going under a low bridge, you most need to know your vehicle's:"
+ },
+ {
+  "idx": 362,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Overhead electrical wires are a reason to watch your:"
+ },
+ {
+  "idx": 363,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If another driver insists on taking the right of way, you should:"
+ },
+ {
+  "idx": 364,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A bridge with a posted weight limit means you must:"
+ },
+ {
+  "idx": 365,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Brake fade is caused mainly by:"
+ },
+ {
+  "idx": 366,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "For CDL drivers, using a hand-held phone while driving is:"
+ },
+ {
+  "idx": 367,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The best way to deal with an aggressive driver is to:"
+ },
+ {
+  "idx": 368,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When you leave a parked position, you should:"
+ },
+ {
+  "idx": 369,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "If your service brakes fail while driving, you should:"
+ },
+ {
+  "idx": 370,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If an oncoming vehicle drifts into your lane, the best escape is usually to:"
+ },
+ {
+  "idx": 371,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A sign that a front tire has blown out is that:"
+ },
+ {
+  "idx": 372,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A sign that a rear tire has failed is that:"
+ },
+ {
+  "idx": 373,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The main purpose of antilock brakes (ABS) is to:"
+ },
+ {
+  "idx": 374,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When you make an emergency stop with ABS, you should:"
+ },
+ {
+  "idx": 375,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To stop quickly in a vehicle without ABS, you can use:"
+ },
+ {
+  "idx": 376,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In 'stab' braking, after the wheels lock you should:"
+ },
+ {
+  "idx": 377,
+  "section": "§2.5",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Keeping a space cushion around your truck mainly helps by:"
+ },
+ {
+  "idx": 378,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Compared with a car, a loaded truck needs:"
+ },
+ {
+  "idx": 379,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should give a motorcycle:"
+ },
+ {
+  "idx": 380,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At an uncontrolled intersection (no signs or lights), you should:"
+ },
+ {
+  "idx": 381,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In a school zone, you should:"
+ },
+ {
+  "idx": 382,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In a work zone, a flagger's directions must be obeyed:"
+ },
+ {
+  "idx": 383,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When an emergency vehicle approaches with lights and siren, you should:"
+ },
+ {
+  "idx": 384,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A high center of gravity (like a loaded van trailer) raises the risk of:"
+ },
+ {
+  "idx": 385,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The most common cause of truck rollover is:"
+ },
+ {
+  "idx": 386,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On an exit or entrance ramp, you should:"
+ },
+ {
+  "idx": 387,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To park headed downhill next to a curb, turn your front wheels:"
+ },
+ {
+  "idx": 388,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To park headed uphill next to a curb, turn your front wheels:"
+ },
+ {
+  "idx": 389,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When sharing the road, you should expect motorcycles to:"
+ },
+ {
+  "idx": 390,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A truck's stopping distance on a downgrade will:"
+ },
+ {
+  "idx": 391,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The posted curve advisory speed is set for:"
+ },
+ {
+  "idx": 392,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Braking hard while turning can cause a truck to:"
+ },
+ {
+  "idx": 393,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The three main types of vehicle inspection are pre-trip, en route, and:"
+ },
+ {
+  "idx": 394,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "During an en-route inspection at a stop, you should check:"
+ },
+ {
+  "idx": 395,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A post-trip inspection usually includes filling out a:"
+ },
+ {
+  "idx": 396,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "After you start the engine, oil pressure should come up within:"
+ },
+ {
+  "idx": 397,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If the oil pressure gauge shows no pressure, you should:"
+ },
+ {
+  "idx": 398,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The coolant temperature gauge warns you if the engine is:"
+ },
+ {
+  "idx": 399,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The ammeter or voltmeter shows whether the battery is:"
+ },
+ {
+  "idx": 400,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Steering wheel free play should be no more than about:"
+ },
+ {
+  "idx": 401,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Clutch free play that is too much or too little is:"
+ },
+ {
+  "idx": 402,
+  "section": "§2.13",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should never coast in neutral down a hill because you:"
+ },
+ {
+  "idx": 403,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To choose the right gear, you can use your:"
+ },
+ {
+  "idx": 404,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When starting on an upgrade, use the parking brake to avoid:"
+ },
+ {
+  "idx": 405,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To accelerate smoothly and avoid spinning the drive wheels, you should:"
+ },
+ {
+  "idx": 406,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Drive belts (alternator, water pump) should be checked for:"
+ },
+ {
+  "idx": 407,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Engine hoses should be checked for:"
+ },
+ {
+  "idx": 408,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The power steering system should be checked for:"
+ },
+ {
+  "idx": 409,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The windshield should be:"
+ },
+ {
+  "idx": 410,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Wipers and washers matter because you need:"
+ },
+ {
+  "idx": 411,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The horn should work because it is used to:"
+ },
+ {
+  "idx": 412,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The defroster and heater should work so you can:"
+ },
+ {
+  "idx": 413,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Seat belts should be checked and:"
+ },
+ {
+  "idx": 414,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Required emergency equipment includes a fire extinguisher and:"
+ },
+ {
+  "idx": 415,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before a trip, you should review the last:"
+ },
+ {
+  "idx": 416,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "If you find a serious defect during inspection, you should:"
+ },
+ {
+  "idx": 417,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A common sign of drowsy driving is:"
+ },
+ {
+  "idx": 418,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The best cure for drowsy driving is to:"
+ },
+ {
+  "idx": 419,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before a long trip, you should make sure you have:"
+ },
+ {
+  "idx": 420,
+  "section": "§2.20",
+  "topic": "emergency_skid",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "If a medicine makes you feel drowsy, you should:"
+ },
+ {
+  "idx": 421,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In hot weather, you should check tire pressure because heat can:"
+ },
+ {
+  "idx": 422,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a very hot day, 'bleeding' tar makes the road surface:"
+ },
+ {
+  "idx": 423,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In hot weather, watch which gauge for signs of overheating?"
+ },
+ {
+  "idx": 424,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In thick fog, you should drive with your:"
+ },
+ {
+  "idx": 425,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The safest choice in very heavy fog is usually to:"
+ },
+ {
+  "idx": 426,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Strong crosswinds are most dangerous for:"
+ },
+ {
+  "idx": 427,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Deer and other animals are usually most active at:"
+ },
+ {
+  "idx": 428,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "While driving, you should keep your eyes:"
+ },
+ {
+  "idx": 429,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Staring at one thing too long is bad because you may:"
+ },
+ {
+  "idx": 430,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should not pass another vehicle on:"
+ },
+ {
+  "idx": 431,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When you do pass another vehicle, you should:"
+ },
+ {
+  "idx": 432,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "At a marked crosswalk, pedestrians usually:"
+ },
+ {
+  "idx": 433,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A bicyclist on the road should be given:"
+ },
+ {
+  "idx": 434,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When entering a roundabout, you should:"
+ },
+ {
+  "idx": 435,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When the road is wet, your stopping distance:"
+ },
+ {
+  "idx": 436,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Reaching for an object on the floor while driving is risky because it:"
+ },
+ {
+  "idx": 437,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Using a GPS is safest when you:"
+ },
+ {
+  "idx": 438,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "If you are involved in a crash, the law requires you to:"
+ },
+ {
+  "idx": 439,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "After a crash, you should warn other traffic by:"
+ },
+ {
+  "idx": 440,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Eating while driving is risky mainly because it:"
+ },
+ {
+  "idx": 441,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A tailgater following too close is best handled by:"
+ },
+ {
+  "idx": 442,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should NOT try to lose a tailgater by:"
+ },
+ {
+  "idx": 443,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Bridges and overpasses tend to freeze:"
+ },
+ {
+  "idx": 444,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Wet leaves lying on the road can be:"
+ },
+ {
+  "idx": 445,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a cold day, shaded spots on the road may hide:"
+ },
+ {
+  "idx": 446,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Spray from other trucks in the rain reduces your:"
+ },
+ {
+  "idx": 447,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Off-tracking means a turning truck's rear wheels follow:"
+ },
+ {
+  "idx": 448,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Because of off-tracking, a long vehicle in a turn needs:"
+ },
+ {
+  "idx": 449,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The areas around a truck where other drivers are hard to see are called:"
+ },
+ {
+  "idx": 450,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A car that disappears in your side mirror is probably:"
+ },
+ {
+  "idx": 451,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When changing lanes, the biggest danger is a vehicle in your:"
+ },
+ {
+  "idx": 452,
+  "section": "§2.5",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "The space you most need to manage while driving is the space:"
+ },
+ {
+  "idx": 453,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Good trip planning includes checking your:"
+ },
+ {
+  "idx": 454,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You should drive slower than the posted limit when:"
+ },
+ {
+  "idx": 455,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The posted speed limit is the maximum for:"
+ },
+ {
+  "idx": 456,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In heavy traffic, the safest approach is to:"
+ },
+ {
+  "idx": 457,
+  "section": "§2.6",
+  "topic": "space_speed",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "If traffic is passing you on both sides, you are probably going:"
+ },
+ {
+  "idx": 458,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a two-lane road, you should not pass when you:"
+ },
+ {
+  "idx": 459,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before backing a trailer, it is best to first:"
+ },
+ {
+  "idx": 460,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When backing a trailer and you turn the wheel right, the trailer first goes:"
+ },
+ {
+  "idx": 461,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The 'No-Zone' beside the trailer is the area:"
+ },
+ {
+  "idx": 462,
+  "section": "§2.5",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "To manage the space behind you, you should:"
+ },
+ {
+  "idx": 463,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When traffic ahead begins to slow, you should:"
+ },
+ {
+  "idx": 464,
+  "section": "§2.5",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A wide vehicle on a narrow road must watch the space:"
+ },
+ {
+  "idx": 465,
+  "section": "§1.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "CDL drivers are disqualified for driving with a blood alcohol level of:"
+ },
+ {
+  "idx": 466,
+  "section": "§1.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Refusing to take a required alcohol test results in:"
+ },
+ {
+  "idx": 467,
+  "section": "§1.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A first DUI conviction in a CMV disqualifies you for at least:"
+ },
+ {
+  "idx": 468,
+  "section": "§1.3",
+  "topic": "foundations",
+  "status": "ADEQUATE",
+  "rote": false,
+  "q": "Leaving the scene of a crash you are in can lead to:"
+ },
+ {
+  "idx": 469,
+  "section": "§1.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Along with your CDL, you must always carry your:"
+ },
+ {
+  "idx": 470,
+  "section": "§1.3",
+  "topic": "foundations",
+  "status": "WAVE2_UPGRADED",
+  "rote": true,
+  "q": "Which of these is a major traffic violation?"
+ },
+ {
+  "idx": 471,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a level, straight road, the first warning triangle goes about:"
+ },
+ {
+  "idx": 472,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a two-lane road, another warning triangle should be placed about:"
+ },
+ {
+  "idx": 473,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "The farthest warning triangle on a straight road goes about:"
+ },
+ {
+  "idx": 474,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On a hill or curve, you should place the rear triangle:"
+ },
+ {
+  "idx": 475,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A Class A fire extinguisher is meant for fires in:"
+ },
+ {
+  "idx": 476,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A Class B fire extinguisher is meant for:"
+ },
+ {
+  "idx": 477,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A Class C fire extinguisher is meant for:"
+ },
+ {
+  "idx": 478,
+  "section": "§2.7",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "If your drive wheels start to spin on ice when starting out, you should:"
+ },
+ {
+  "idx": 479,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A burning tire can be cooled with:"
+ },
+ {
+  "idx": 480,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Carbon monoxide gas is dangerous because it is:"
+ },
+ {
+  "idx": 481,
+  "section": "§2.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "You must stop at an open weigh station because it is:"
+ },
+ {
+  "idx": 482,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "An out-of-service order means the vehicle:"
+ },
+ {
+  "idx": 483,
+  "section": "§2.21",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Records of duty status (logs or ELD) keep track of your:"
+ },
+ {
+  "idx": 484,
+  "section": "§2.3",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A diesel engine should not be:"
+ },
+ {
+  "idx": 485,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Before leaving a parked truck, chock the wheels if:"
+ },
+ {
+  "idx": 486,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Parking downhill with no curb, turn your front wheels:"
+ },
+ {
+  "idx": 487,
+  "section": "§2.1",
+  "topic": "vehicle_inspection",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Steps and handholds should be checked so you can:"
+ },
+ {
+  "idx": 488,
+  "section": "§1.2",
+  "topic": "foundations",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Your registration and proof of insurance should be:"
+ },
+ {
+  "idx": 489,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A flashing red traffic light means you should:"
+ },
+ {
+  "idx": 490,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A flashing yellow traffic light means you should:"
+ },
+ {
+  "idx": 491,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When a traffic signal is completely dark from a power outage, treat it as:"
+ },
+ {
+  "idx": 492,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A double solid yellow center line means:"
+ },
+ {
+  "idx": 493,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A solid white lane line tells you to:"
+ },
+ {
+  "idx": 494,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "When a school bus has its red lights flashing, you must:"
+ },
+ {
+  "idx": 495,
+  "section": "§2.11",
+  "topic": "weather",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Steel road plates and metal bridge decks are most slippery when:"
+ },
+ {
+  "idx": 496,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "In a city, you should especially watch for:"
+ },
+ {
+  "idx": 497,
+  "section": "§2.8",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "On rural roads, you should watch for slow:"
+ },
+ {
+  "idx": 498,
+  "section": "§2.4",
+  "topic": "space_speed",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "A flashing yellow turn arrow means you may turn but must:"
+ },
+ {
+  "idx": 499,
+  "section": "§2.14",
+  "topic": "railroad_mountain",
+  "status": "ROTE_PENDING",
+  "rote": true,
+  "q": "Near spilled fuel, the safest warning device to set out is:"
+ }
+]

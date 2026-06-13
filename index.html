@@ -470,8 +470,15 @@
 
 <script src="questions.js"></script>
 <script src="translations.js"></script>
+<script src="translations-es.js"></script>
+<script src="translations-hi.js"></script>
 <script src="endorsements.js"></script>
 <script src="questions-extra.js"></script>
+  <script src="upgrades.combination.js"></script>
+  <script src="upgrades.special.js"></script>
+  <script src="upgrades.airbrakes.js"></script>
+  <script src="upgrades.general.js"></script>
+  <script src="translations-hi-gk-extra.js"></script>
 <script src="pretrip.js"></script>
 <script src="skills.js"></script>
 <script>
@@ -552,7 +559,7 @@ function setLang(l){
   render();
 }
 /* language dropdown (shows only the non-active languages) */
-const LANGS=['en','ru','tr'];
+const LANGS=['en','es','ru','tr','hi'];
 function renderLangMenu(){
   const cur=document.getElementById('langCur'); if(cur) cur.textContent=LANG.toUpperCase();
   const menu=document.getElementById('langMenu');
@@ -643,7 +650,7 @@ function buildTest(cat, idx){
 }
 
 /* ============================ TEXT-TO-SPEECH ============================ */
-function langBCP(){ return LANG==='tr'?'tr-TR':LANG==='ru'?'ru-RU':'en-US'; }
+function langBCP(){ return LANG==='tr'?'tr-TR':LANG==='ru'?'ru-RU':LANG==='es'?'es-MX':LANG==='hi'?'hi-IN':'en-US'; }
 function stopSpeak(){ try{ if(window.speechSynthesis) speechSynthesis.cancel(); }catch(e){} }
 function speakQuestion(e){
   if(e) e.stopPropagation();
@@ -654,8 +661,11 @@ function speakQuestion(e){
   const qd=qData(s.catId, it.qid);
   const opts=it.optOrder.map((oi,i)=>String.fromCharCode(65+i)+'. '+qd.options[oi]);
   const u=new SpeechSynthesisUtterance(qd.q+'. '+opts.join('. '));
-  u.lang=langBCP(); u.rate=0.95;
-  const vs=(speechSynthesis.getVoices()||[]).filter(v=>v.lang&&v.lang.toLowerCase().slice(0,2)===u.lang.slice(0,2));
+  /* speak in the language of the TEXT actually shown: if the question fell back to English
+     (untranslated), read it with an English voice — not the selected UI language. */
+  const bcp = qd.translated ? langBCP() : 'en-US';
+  u.lang=bcp; u.rate=0.95;
+  const vs=(speechSynthesis.getVoices()||[]).filter(v=>v.lang&&v.lang.toLowerCase().slice(0,2)===bcp.slice(0,2));
   if(vs[0]) u.voice=vs[0];
   if(btn) btn.classList.add('on');
   u.onend=u.onerror=function(){ const b=document.getElementById('speakBtn'); if(b) b.classList.remove('on'); };

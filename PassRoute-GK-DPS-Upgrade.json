@@ -1,0 +1,1301 @@
+{
+  "deliverable": "PassRoute — CLP General Knowledge — DPS-Realism Upgrade",
+  "version": "wave-1",
+  "source_of_truth": "Texas CDL Handbook (DL-7C). Numbers/answers reconciled with the existing PassRoute bank (419 ft total stop @ 55 mph; first cargo check within 50 mi then every 3 hr/150 mi; steer-tire min tread 4/32\", others 2/32\"; aggregate tie-down WLL >= 1/2 cargo weight; min 2 tie-downs and 1 per 10 ft; BAC limit 0.04%).",
+  "schema_note": "answer letter (A/B/C/D) maps to the SAME positional option in every language. Translations are localized for meaning + trap, not word-for-word. Keep option order identical across languages so the correct-letter stays valid.",
+  "languages": [
+    "en (master)",
+    "ru",
+    "tr",
+    "es",
+    "hi"
+  ],
+  "coverage": {
+    "vehicle_inspection": [
+      "GK-PR-001",
+      "GK-PR-002",
+      "GK-PR-003",
+      "GK-PR-004"
+    ],
+    "space_speed_hazards": [
+      "GK-SS-005",
+      "GK-SS-006",
+      "GK-SS-007",
+      "GK-SS-008"
+    ],
+    "weather_driving": [
+      "GK-WX-009",
+      "GK-WX-010",
+      "GK-WX-011",
+      "GK-WX-012"
+    ],
+    "railroad_mountain_downgrade": [
+      "GK-RM-013",
+      "GK-RM-014",
+      "GK-RM-015",
+      "GK-RM-016"
+    ],
+    "emergency_skid_recovery": [
+      "GK-EM-017",
+      "GK-EM-018",
+      "GK-EM-019",
+      "GK-EM-020"
+    ],
+    "cargo_securement_weight": [
+      "GK-CG-021",
+      "GK-CG-022",
+      "GK-CG-023",
+      "GK-CG-024"
+    ]
+  },
+  "questions": [
+    {
+      "question_id": "GK-PR-001",
+      "english": {
+        "question": "During your pre-trip inspection you find the front steering tires worn unevenly. At the shallowest point the tread measures about 3/32 inch. What is the correct decision?",
+        "options": {
+          "A": "Do not drive — steering-axle tires must have at least 4/32 inch of tread",
+          "B": "Drive — 3/32 inch still clears the 2/32 inch minimum that applies to tires",
+          "C": "Drive — uneven wear only matters on the drive and trailer tires",
+          "D": "Do not drive — any tire below 6/32 inch is illegal on a commercial vehicle"
+        },
+        "correct_answer": "A",
+        "logic_breakdown": "Correct Answer Rationale: Front steering-axle tires are held to a HIGHER standard than all others — they need at least 4/32\" of tread, while other tires need only 2/32\". At 3/32\" the steer tire is below its own minimum, so the vehicle is out of service. The DPS Trap Explained: Option B is the classic 'swap-the-number' trap — 2/32\" is the real minimum, but it is the minimum for the OTHER tires, not the steers. Candidates who memorized '2/32 minimum' without knowing the steer-tire exception fall for it. D invents a fake number (6/32\") to look authoritative."
+      },
+      "translations": {
+        "ru": {
+          "question": "Во время предрейсового осмотра вы видите неравномерный износ передних (рулевых) шин. В самом мелком месте протектор около 3/32 дюйма. Какое решение правильное?",
+          "options": {
+            "A": "Не ехать — у шин рулевой оси протектор должен быть не менее 4/32 дюйма",
+            "B": "Ехать — 3/32 дюйма выше минимума 2/32 дюйма для шин",
+            "C": "Ехать — неравномерный износ важен только для ведущих и прицепных шин",
+            "D": "Не ехать — любая шина ниже 6/32 дюйма запрещена на грузовике"
+          }
+        },
+        "tr": {
+          "question": "Yola çıkış öncesi muayenede ön (direksiyon) lastiklerinin düzensiz aşındığını görüyorsun. En sığ noktada diş derinliği yaklaşık 3/32 inç. Doğru karar nedir?",
+          "options": {
+            "A": "Sürme — direksiyon aksı lastiklerinde en az 4/32 inç diş olmalı",
+            "B": "Sür — 3/32 inç, lastikler için 2/32 inç asgari sınırın üstünde",
+            "C": "Sür — düzensiz aşınma sadece çeker ve dorse lastiklerinde önemlidir",
+            "D": "Sürme — 6/32 inç altındaki her lastik ticari araçta yasaktır"
+          }
+        },
+        "es": {
+          "question": "En la inspección previa al viaje nota un desgaste disparejo en las llantas delanteras (de dirección). En el punto más bajo la banda mide unos 3/32 de pulgada. ¿Cuál es la decisión correcta?",
+          "options": {
+            "A": "No conducir — las llantas del eje de dirección requieren al menos 4/32 de pulgada",
+            "B": "Conducir — 3/32 supera el mínimo de 2/32 de pulgada que rige las llantas",
+            "C": "Conducir — el desgaste disparejo solo importa en las llantas de tracción y remolque",
+            "D": "No conducir — toda llanta bajo 6/32 de pulgada es ilegal en un vehículo comercial"
+          }
+        },
+        "hi": {
+          "question": "ट्रिप-पूर्व जांच में आप पाते हैं कि आगे के स्टीयरिंग टायर असमान रूप से घिसे हैं। सबसे कम जगह पर ट्रेड लगभग 3/32 इंच है। सही निर्णय क्या है?",
+          "options": {
+            "A": "न चलाएँ — स्टीयरिंग-एक्सल टायरों में कम से कम 4/32 इंच ट्रेड होना चाहिए",
+            "B": "चलाएँ — 3/32 इंच, टायरों के 2/32 इंच न्यूनतम से ऊपर है",
+            "C": "चलाएँ — असमान घिसाव केवल ड्राइव और ट्रेलर टायरों में मायने रखता है",
+            "D": "न चलाएँ — 6/32 इंच से कम कोई भी टायर वाणिज्यिक वाहन पर अवैध है"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-PR-002",
+      "english": {
+        "question": "You completed a full pre-trip, secured your load, and have now driven 45 miles on the interstate with everything feeling fine. Under the cargo inspection rules, what are you required to do?",
+        "options": {
+          "A": "Nothing yet — the first required cargo re-check is at 150 miles or 3 hours",
+          "B": "Nothing — once secured and pre-tripped, cargo need not be checked again until you fuel up",
+          "C": "Stop within the next few miles — the first cargo re-check is required within the first 50 miles",
+          "D": "Stop now — cargo must be re-inspected every 25 miles"
+        },
+        "correct_answer": "C",
+        "logic_breakdown": "Correct Answer Rationale: You must inspect cargo and securing devices within the FIRST 50 miles, because tie-downs settle and loads shift most in the early miles. At 45 miles you are right at that first checkpoint. The DPS Trap Explained: Option A states real handbook numbers (every 3 hours / 150 miles) but applies them to the wrong stage — those are the LATER recurring intervals, not the first check. Mixing up 'first 50 miles' with the 'then every 150 miles' interval is the exact confusion DPS likes to test."
+      },
+      "translations": {
+        "ru": {
+          "question": "Вы сделали полный предрейсовый осмотр, закрепили груз и проехали 45 миль по трассе — всё в порядке. Что требуют правила осмотра груза?",
+          "options": {
+            "A": "Пока ничего — первая повторная проверка груза после 150 миль или 3 часов",
+            "B": "Ничего — после закрепления и осмотра груз не проверяют до заправки",
+            "C": "Остановиться в ближайшие мили — первая проверка груза нужна в пределах первых 50 миль",
+            "D": "Остановиться сейчас — груз нужно проверять каждые 25 миль"
+          }
+        },
+        "tr": {
+          "question": "Tam bir yola çıkış muayenesi yaptın, yükü sabitledin ve otoyolda 45 mil sürdün, her şey yolunda. Yük muayene kuralları ne gerektirir?",
+          "options": {
+            "A": "Henüz bir şey yok — ilk yük kontrolü 150 mil veya 3 saatte gerekir",
+            "B": "Hiçbir şey — sabitleyip muayene ettikten sonra yakıt alana dek kontrol gerekmez",
+            "C": "Birkaç mil içinde dur — ilk yük kontrolü ilk 50 mil içinde gerekir",
+            "D": "Şimdi dur — yük her 25 milde bir kontrol edilmeli"
+          }
+        },
+        "es": {
+          "question": "Hizo una inspección previa completa, aseguró la carga y ya recorrió 45 millas en la autopista sin novedad. Según las reglas de inspección de carga, ¿qué debe hacer?",
+          "options": {
+            "A": "Nada aún — la primera reinspección de carga es a las 150 millas o 3 horas",
+            "B": "Nada — una vez asegurada e inspeccionada, no se revisa hasta cargar combustible",
+            "C": "Detenerse en las próximas millas — la primera revisión se exige dentro de las primeras 50 millas",
+            "D": "Detenerse ya — la carga debe reinspeccionarse cada 25 millas"
+          }
+        },
+        "hi": {
+          "question": "आपने पूरी ट्रिप-पूर्व जांच की, माल बांधा, और हाईवे पर 45 मील चला लिए — सब ठीक लग रहा है। माल-निरीक्षण नियमों के तहत आपको क्या करना है?",
+          "options": {
+            "A": "अभी कुछ नहीं — माल की पहली दोबारा जांच 150 मील या 3 घंटे पर होती है",
+            "B": "कुछ नहीं — एक बार बांधने और जांचने के बाद ईंधन भरने तक जांच नहीं चाहिए",
+            "C": "अगले कुछ मील में रुकें — पहली जांच पहले 50 मील के भीतर ज़रूरी है",
+            "D": "अभी रुकें — माल की हर 25 मील पर दोबारा जांच होनी चाहिए"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-PR-003",
+      "english": {
+        "question": "While checking the steering, you find the wheel turns more than 10 degrees (about two inches of play at the rim of a 20-inch wheel) before the front tires begin to move. What does this mean?",
+        "options": {
+          "A": "Normal free play that every heavy truck has — no action needed",
+          "B": "Excessive steering play — the vehicle is unsafe to drive until it is repaired",
+          "C": "The power steering is just warming up; it will tighten once you drive",
+          "D": "A minor item you may note on the post-trip report and keep driving"
+        },
+        "correct_answer": "B",
+        "logic_breakdown": "Correct Answer Rationale: More than about 10 degrees of free play (roughly 2 inches at the rim of a 20-inch wheel) means you can move the wheel a long way before the truck responds — that makes the vehicle hard to control and it must be fixed before driving. The DPS Trap Explained: Options A, C, and D all try to normalize a genuine defect ('every truck has it', 'it warms up', 'just note it later'). DPS questions reward the driver who treats a defined safety limit as a hard stop, not a maybe."
+      },
+      "translations": {
+        "ru": {
+          "question": "Проверяя рулевое, вы видите, что руль поворачивается больше чем на 10 градусов (около двух дюймов свободного хода на ободе 20-дюймового руля), прежде чем колёса начинают поворачивать. Что это значит?",
+          "options": {
+            "A": "Нормальный свободный ход, он есть у любого грузовика — ничего делать не нужно",
+            "B": "Чрезмерный люфт руля — ехать нельзя, пока не отремонтируют",
+            "C": "Это гидроусилитель прогревается; ход уменьшится в движении",
+            "D": "Мелочь — отметьте в послерейсовом отчёте и продолжайте ехать"
+          }
+        },
+        "tr": {
+          "question": "Direksiyonu kontrol ederken, ön lastikler dönmeye başlamadan önce direksiyonun 10 dereceden fazla (20 inçlik jantın kenarında yaklaşık iki inç boşluk) döndüğünü görüyorsun. Bu ne anlama gelir?",
+          "options": {
+            "A": "Her ağır kamyonda olan normal boşluk — bir şey yapmaya gerek yok",
+            "B": "Aşırı direksiyon boşluğu — onarılana dek araç sürülemez",
+            "C": "Hidrolik direksiyon ısınıyor; sürünce sıkılaşır",
+            "D": "Küçük bir madde — sefer sonu raporuna yaz ve sürmeye devam et"
+          }
+        },
+        "es": {
+          "question": "Al revisar la dirección, el volante gira más de 10 grados (unas dos pulgadas de juego en el borde de un volante de 20 pulgadas) antes de que las ruedas delanteras se muevan. ¿Qué significa?",
+          "options": {
+            "A": "Juego libre normal que todo camión pesado tiene — no hay que hacer nada",
+            "B": "Juego excesivo en la dirección — el vehículo es inseguro hasta que se repare",
+            "C": "La dirección hidráulica apenas se calienta; se ajustará al conducir",
+            "D": "Un detalle menor que puede anotar en el reporte posterior y seguir conduciendo"
+          }
+        },
+        "hi": {
+          "question": "स्टीयरिंग जांचते समय आप पाते हैं कि आगे के टायर मुड़ने से पहले स्टीयरिंग 10 डिग्री से अधिक (20-इंच पहिये के किनारे पर लगभग दो इंच ढीलापन) घूम जाता है। इसका क्या मतलब है?",
+          "options": {
+            "A": "हर भारी ट्रक में रहने वाला सामान्य ढीलापन — कुछ करने की ज़रूरत नहीं",
+            "B": "स्टीयरिंग में अत्यधिक ढीलापन — मरम्मत होने तक वाहन चलाना असुरक्षित है",
+            "C": "पावर स्टीयरिंग बस गर्म हो रहा है; चलाने पर कस जाएगा",
+            "D": "एक छोटी बात — ट्रिप के बाद रिपोर्ट में लिख दें और चलाते रहें"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-PR-004",
+      "english": {
+        "question": "At the end of your shift you discover a brake-adjustment problem. Regarding the Driver Vehicle Inspection Report (DVIR), which statement is correct?",
+        "options": {
+          "A": "A DVIR is only required before a trip, never after one",
+          "B": "A post-trip report is optional whenever you did a pre-trip that same morning",
+          "C": "You may report the defect verbally only; no written record is needed",
+          "D": "You must record the defect on a written post-trip report so it is repaired before the vehicle is used again"
+        },
+        "correct_answer": "D",
+        "logic_breakdown": "Correct Answer Rationale: A post-trip DVIR exists to capture defects you found during the day so the next driver does not unknowingly take out an unsafe truck. A safety defect like brake adjustment must be written up and corrected before the vehicle returns to service. The DPS Trap Explained: Options A and B both try to make the post-trip step 'optional' by leaning on the pre-trip you already did — but pre-trip and post-trip are separate duties. C downgrades a written legal record to a casual verbal note, which does not satisfy the rule."
+      },
+      "translations": {
+        "ru": {
+          "question": "В конце смены вы обнаружили проблему с регулировкой тормозов. Что верно в отношении отчёта об осмотре транспортного средства водителем (DVIR)?",
+          "options": {
+            "A": "DVIR нужен только перед рейсом, но никогда после",
+            "B": "Послерейсовый отчёт не обязателен, если утром был предрейсовый осмотр",
+            "C": "Дефект можно сообщить только устно; письменная запись не нужна",
+            "D": "Дефект нужно записать в письменный послерейсовый отчёт, чтобы устранить до следующего использования"
+          }
+        },
+        "tr": {
+          "question": "Vardiya sonunda bir fren ayarı sorunu buluyorsun. Sürücü Araç Muayene Raporu (DVIR) hakkında hangisi doğrudur?",
+          "options": {
+            "A": "DVIR sadece sefer öncesi gerekir, sefer sonrası asla",
+            "B": "Aynı sabah sefer öncesi muayene yaptıysan sefer sonu raporu isteğe bağlıdır",
+            "C": "Kusuru yalnızca sözlü bildirebilirsin; yazılı kayda gerek yok",
+            "D": "Kusuru yazılı sefer sonu raporuna geçirmelisin ki araç tekrar kullanılmadan onarılsın"
+          }
+        },
+        "es": {
+          "question": "Al final de su turno descubre un problema de ajuste de frenos. Respecto al Reporte de Inspección del Vehículo por el Conductor (DVIR), ¿qué afirmación es correcta?",
+          "options": {
+            "A": "El DVIR solo se exige antes del viaje, nunca después",
+            "B": "El reporte posterior es opcional si hizo la inspección previa esa misma mañana",
+            "C": "Puede reportar el defecto solo de forma verbal; no hace falta registro escrito",
+            "D": "Debe anotar el defecto en un reporte posterior escrito para que se repare antes de volver a usar el vehículo"
+          }
+        },
+        "hi": {
+          "question": "शिफ्ट के अंत में आपको ब्रेक-एडजस्टमेंट की समस्या मिलती है। ड्राइवर वाहन निरीक्षण रिपोर्ट (DVIR) के बारे में कौन-सा कथन सही है?",
+          "options": {
+            "A": "DVIR केवल ट्रिप से पहले चाहिए, बाद में कभी नहीं",
+            "B": "अगर उसी सुबह ट्रिप-पूर्व जांच की थी तो पोस्ट-ट्रिप रिपोर्ट वैकल्पिक है",
+            "C": "दोष केवल मौखिक रूप से बता सकते हैं; लिखित रिकॉर्ड की ज़रूरत नहीं",
+            "D": "दोष को लिखित पोस्ट-ट्रिप रिपोर्ट में दर्ज करें ताकि वाहन दोबारा इस्तेमाल से पहले ठीक हो"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-SS-005",
+      "english": {
+        "question": "It is just below freezing. The pavement looks wet and shiny, yet you notice the tire spray you would normally see from vehicles ahead has stopped. What is the safest interpretation and action?",
+        "options": {
+          "A": "Black ice is likely forming — reduce speed and avoid any sudden steering or braking",
+          "B": "The road is simply wet from earlier rain — maintain your current speed",
+          "C": "Your own tires are losing air — pull over to check their pressure",
+          "D": "It is only windshield frost — turn on the defroster and keep going"
+        },
+        "correct_answer": "A",
+        "logic_breakdown": "Correct Answer Rationale: A wet, glossy look combined with NO spray off the tires ahead, at temperatures near freezing, is the signature of black ice — a thin, nearly invisible layer. The disappearing spray is the key clue: liquid water throws spray, ice does not. Slow gently and avoid abrupt inputs. The DPS Trap Explained: Option B is the deadly 'it's just wet' misread — the same visual, opposite danger. The exam rewards reading the missing spray, not just the shine."
+      },
+      "translations": {
+        "ru": {
+          "question": "Температура чуть ниже нуля. Дорога выглядит мокрой и блестящей, но вы замечаете, что брызги из-под колёс машин впереди исчезли. Как это вернее истолковать и что делать?",
+          "options": {
+            "A": "Скорее всего образуется чёрный лёд — снизьте скорость, избегайте резкого руля и торможения",
+            "B": "Дорога просто мокрая после дождя — держите ту же скорость",
+            "C": "Это ваши шины спускают — остановитесь и проверьте давление",
+            "D": "Это лишь иней на стекле — включите обдув и продолжайте"
+          }
+        },
+        "tr": {
+          "question": "Hava donma noktasının hemen altında. Yol ıslak ve parlak görünüyor, ama öndeki araçlardan normalde gördüğün lastik sıçramasının kesildiğini fark ediyorsun. En güvenli yorum ve hareket nedir?",
+          "options": {
+            "A": "Büyük olasılıkla buz tutuyor (kara buz) — yavaşla, ani direksiyon ve frenden kaçın",
+            "B": "Yol önceki yağmurdan sadece ıslak — mevcut hızını koru",
+            "C": "Kendi lastiklerin hava kaybediyor — kenara çekip basıncı kontrol et",
+            "D": "Sadece cam buzu — defrostu aç ve devam et"
+          }
+        },
+        "es": {
+          "question": "La temperatura está apenas bajo cero. El pavimento se ve mojado y brillante, pero nota que el rocío de las llantas que normalmente vería de los vehículos de adelante ha cesado. ¿Cuál es la interpretación y acción más segura?",
+          "options": {
+            "A": "Probablemente se forma hielo negro — reduzca la velocidad y evite giros o frenadas bruscas",
+            "B": "El camino solo está mojado por la lluvia anterior — mantenga su velocidad",
+            "C": "Sus propias llantas pierden aire — orille y revise la presión",
+            "D": "Es solo escarcha en el parabrisas — encienda el desempañador y siga"
+          }
+        },
+        "hi": {
+          "question": "तापमान बस जमाव बिंदु से नीचे है। सड़क गीली और चमकदार दिखती है, फिर भी आप देखते हैं कि आगे के वाहनों से जो टायर-छींटे आम तौर पर दिखते हैं, वे बंद हो गए हैं। सबसे सुरक्षित व्याख्या और कार्रवाई क्या है?",
+          "options": {
+            "A": "संभवतः ब्लैक आइस बन रही है — गति घटाएँ और अचानक स्टीयरिंग या ब्रेकिंग से बचें",
+            "B": "सड़क बस पहले की बारिश से गीली है — अपनी गति बनाए रखें",
+            "C": "आपके अपने टायर हवा खो रहे हैं — किनारे लगाकर दबाव जांचें",
+            "D": "यह केवल विंडशील्ड पर पाला है — डिफ़्रॉस्टर चालू करें और चलते रहें"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-SS-006",
+      "english": {
+        "question": "Your vehicle begins to hydroplane on a flooded stretch of highway. You should do all of the following EXCEPT:",
+        "options": {
+          "A": "Ease off the accelerator to let the wheels slow down",
+          "B": "Push in the clutch so the wheels can turn freely",
+          "C": "Apply the brakes firmly to force the tires back onto the road",
+          "D": "Keep the steering wheel straight until you feel traction return"
+        },
+        "correct_answer": "C",
+        "logic_breakdown": "Correct Answer Rationale: This is an EXCEPT question, so the answer is the action you must NOT take. During a hydroplane the tires are riding on water; firm braking locks them and makes the slide worse. The correct moves are to ease off the throttle, push in the clutch, and hold the wheel straight until grip returns. The DPS Trap Explained: A driver who correctly knows to 'slow down' may reflexively reach for the brake — option C weaponizes that half-right instinct. In an EXCEPT question the most natural-sounding good idea is often the trap."
+      },
+      "translations": {
+        "ru": {
+          "question": "Ваш автомобиль начинает аквапланировать на залитом водой участке. Делать нужно всё перечисленное, КРОМЕ:",
+          "options": {
+            "A": "Отпустить педаль газа, чтобы колёса замедлились",
+            "B": "Выжать сцепление, чтобы колёса вращались свободно",
+            "C": "Сильно нажать на тормоз, чтобы вернуть шины на дорогу",
+            "D": "Держать руль прямо, пока не вернётся сцепление с дорогой"
+          }
+        },
+        "tr": {
+          "question": "Aracın su basmış bir kesimde su üstünde kaymaya (hydroplaning) başlıyor. Aşağıdakilerin hepsini yapmalısın, ŞU HARİÇ:",
+          "options": {
+            "A": "Tekerleklerin yavaşlaması için gazdan ayağını çek",
+            "B": "Tekerlekler serbest dönsün diye debriyaja bas",
+            "C": "Lastikleri yola geri zorlamak için sert fren yap",
+            "D": "Tutuş dönene dek direksiyonu düz tut"
+          }
+        },
+        "es": {
+          "question": "Su vehículo comienza a hidroplanear en un tramo inundado de la autopista. Debe hacer todo lo siguiente, EXCEPTO:",
+          "options": {
+            "A": "Soltar el acelerador para que las ruedas reduzcan velocidad",
+            "B": "Pisar el embrague para que las ruedas giren libremente",
+            "C": "Frenar con firmeza para forzar las llantas de vuelta al pavimento",
+            "D": "Mantener el volante recto hasta sentir que regresa la tracción"
+          }
+        },
+        "hi": {
+          "question": "आपका वाहन हाईवे के जलमग्न हिस्से पर हाइड्रोप्लेन करने लगता है। आपको निम्न सभी करने चाहिए, सिवाय:",
+          "options": {
+            "A": "पहियों को धीमा होने देने के लिए एक्सेलेरेटर छोड़ दें",
+            "B": "क्लच दबाएँ ताकि पहिये स्वतंत्र रूप से घूमें",
+            "C": "टायरों को वापस सड़क पर लाने के लिए ज़ोर से ब्रेक लगाएँ",
+            "D": "जब तक पकड़ वापस न आए, स्टीयरिंग सीधा रखें"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-SS-007",
+      "english": {
+        "question": "You are driving a 60-foot combination at 60 mph on a dry road in good conditions. Using the Texas following-distance rule, the minimum gap you should keep is closest to:",
+        "options": {
+          "A": "About 6 seconds",
+          "B": "About 7 seconds",
+          "C": "About 4 seconds",
+          "D": "About 10 seconds"
+        },
+        "correct_answer": "B",
+        "logic_breakdown": "Correct Answer Rationale: The rule is one second for each 10 feet of vehicle length below 40 mph, then add one more second above 40 mph. A 60-foot rig = 6 seconds for length, plus 1 second for being over 40 mph = 7 seconds. The DPS Trap Explained: Option A (6 seconds) is exactly what you get if you forget the '+1 second when over 40 mph' half of the rule — the single most common miss on this question. C (4 seconds) is a generic car-driver rule that does not apply to a long heavy combination."
+      },
+      "translations": {
+        "ru": {
+          "question": "Вы ведёте 60-футовую сцепку со скоростью 60 миль/ч по сухой дороге в хороших условиях. По техасскому правилу дистанции минимальный промежуток ближе всего к:",
+          "options": {
+            "A": "Около 6 секунд",
+            "B": "Около 7 секунд",
+            "C": "Около 4 секунд",
+            "D": "Около 10 секунд"
+          }
+        },
+        "tr": {
+          "question": "Kuru yolda iyi koşullarda 60 fitlik bir kombinasyonu 60 mil/saat ile sürüyorsun. Texas takip mesafesi kuralına göre tutman gereken asgari boşluk en yakın olarak:",
+          "options": {
+            "A": "Yaklaşık 6 saniye",
+            "B": "Yaklaşık 7 saniye",
+            "C": "Yaklaşık 4 saniye",
+            "D": "Yaklaşık 10 saniye"
+          }
+        },
+        "es": {
+          "question": "Conduce una combinación de 60 pies a 60 mph en camino seco y buenas condiciones. Según la regla de distancia de seguimiento de Texas, el intervalo mínimo que debe mantener es de aproximadamente:",
+          "options": {
+            "A": "Unos 6 segundos",
+            "B": "Unos 7 segundos",
+            "C": "Unos 4 segundos",
+            "D": "Unos 10 segundos"
+          }
+        },
+        "hi": {
+          "question": "आप सूखी सड़क पर अच्छी परिस्थितियों में 60-फुट का कॉम्बिनेशन 60 मील/घंटा पर चला रहे हैं। टेक्सास की फॉलोइंग-डिस्टेंस नियम के अनुसार न्यूनतम अंतराल लगभग कितना होना चाहिए?",
+          "options": {
+            "A": "लगभग 6 सेकंड",
+            "B": "लगभग 7 सेकंड",
+            "C": "लगभग 4 सेकंड",
+            "D": "लगभग 10 सेकंड"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-SS-008",
+      "english": {
+        "question": "It begins to rain hard after several dry weeks. Why is the first part of this rainfall especially dangerous, and how should you respond?",
+        "options": {
+          "A": "The rain cools the engine, so you can safely travel a little faster",
+          "B": "The only real hazard is the windshield — run the wipers and keep your speed",
+          "C": "Fresh rain improves traction right away; only deep standing water is a concern",
+          "D": "Oil and dust on the road rise into a slick film before being washed away — slow down and increase following distance"
+        },
+        "correct_answer": "D",
+        "logic_breakdown": "Correct Answer Rationale: After a dry spell, oil and dust build up on the pavement. The first rain mixes with that film and floats it on top, making the road slickest right when the rain begins — before a hard rain finally washes it away. The fix is more space and less speed. The DPS Trap Explained: Option C is the comforting myth that 'rain washes the road clean instantly.' It does the opposite at first; the danger is highest at the start, exactly when many drivers relax."
+      },
+      "translations": {
+        "ru": {
+          "question": "После нескольких сухих недель начинается сильный дождь. Почему первые минуты дождя особенно опасны и как поступить?",
+          "options": {
+            "A": "Дождь охлаждает двигатель, поэтому можно ехать чуть быстрее",
+            "B": "Единственная угроза — лобовое стекло; включите дворники и держите скорость",
+            "C": "Свежий дождь сразу улучшает сцепление; опасны лишь глубокие лужи",
+            "D": "Масло и пыль поднимаются скользкой плёнкой, пока их не смоет — снизьте скорость и увеличьте дистанцию"
+          }
+        },
+        "tr": {
+          "question": "Birkaç kurak haftadan sonra şiddetli yağmur başlıyor. Yağmurun ilk anları neden özellikle tehlikelidir ve ne yapmalısın?",
+          "options": {
+            "A": "Yağmur motoru soğutur, bu yüzden biraz daha hızlı gidebilirsin",
+            "B": "Tek gerçek tehlike ön cam — silecekleri çalıştır ve hızını koru",
+            "C": "Taze yağmur tutuşu hemen artırır; sadece derin su birikintisi sorun olur",
+            "D": "Yoldaki yağ ve toz, yıkanıp gitmeden önce kaygan bir tabaka olur — yavaşla ve takip mesafesini artır"
+          }
+        },
+        "es": {
+          "question": "Empieza a llover fuerte tras varias semanas secas. ¿Por qué la primera parte de la lluvia es especialmente peligrosa y cómo debe responder?",
+          "options": {
+            "A": "La lluvia enfría el motor, así que puede ir un poco más rápido con seguridad",
+            "B": "El único peligro real es el parabrisas — use los limpiadores y mantenga la velocidad",
+            "C": "La lluvia nueva mejora la tracción de inmediato; solo el agua profunda preocupa",
+            "D": "El aceite y el polvo forman una capa resbalosa antes de lavarse — reduzca la velocidad y aumente la distancia"
+          }
+        },
+        "hi": {
+          "question": "कई सूखे हफ़्तों के बाद तेज़ बारिश शुरू होती है। बारिश का पहला हिस्सा विशेष रूप से खतरनाक क्यों है, और आपको क्या करना चाहिए?",
+          "options": {
+            "A": "बारिश इंजन को ठंडा करती है, इसलिए आप थोड़ा तेज़ चल सकते हैं",
+            "B": "एकमात्र असली खतरा विंडशील्ड है — वाइपर चलाएँ और गति बनाए रखें",
+            "C": "ताज़ा बारिश तुरंत पकड़ सुधारती है; केवल गहरा खड़ा पानी चिंता है",
+            "D": "सड़क पर तेल और धूल धुलने से पहले एक फिसलनदार परत बन जाते हैं — गति घटाएँ और दूरी बढ़ाएँ"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-WX-009",
+      "english": {
+        "question": "Driving at night on an unlit highway with low beams, you realize you cannot stop within the distance your headlights light up. The correct response is to:",
+        "options": {
+          "A": "Slow down so that you can stop within the distance you can see ahead",
+          "B": "Switch to high beams and hold your speed so you stay on schedule",
+          "C": "Move in close behind another truck and drive by its lights",
+          "D": "Keep your speed but watch the right edge line more closely"
+        },
+        "correct_answer": "A",
+        "logic_breakdown": "Correct Answer Rationale: You must never 'overdrive' your headlights — your speed has to let you stop within the distance you can actually see. With low beams that means slowing down. The DPS Trap Explained: Option B sounds reasonable because high beams do light up more, but high beams are not always usable (oncoming traffic), and the rule is about matching SPEED to sight distance, not just adding light. C — tailgating to borrow another driver's lights — trades one hazard for a worse one."
+      },
+      "translations": {
+        "ru": {
+          "question": "Ночью на неосвещённой трассе с ближним светом вы понимаете, что не успеете остановиться в пределах освещённого фарами участка. Правильное действие:",
+          "options": {
+            "A": "Снизить скорость, чтобы остановиться в пределах видимости",
+            "B": "Включить дальний свет и держать скорость, чтобы не выбиться из графика",
+            "C": "Подъехать ближе к другому грузовику и ехать по его свету",
+            "D": "Скорость не менять, но внимательнее следить за правой кромкой"
+          }
+        },
+        "tr": {
+          "question": "Geceleyin aydınlatmasız bir otoyolda kısa farlarla giderken, farların aydınlattığı mesafe içinde duramayacağını fark ediyorsun. Doğru hareket:",
+          "options": {
+            "A": "Görebildiğin mesafe içinde durabilecek kadar yavaşla",
+            "B": "Uzun farı yak ve programdan geri kalmamak için hızını koru",
+            "C": "Başka bir kamyonun arkasına yaklaşıp onun ışığıyla sür",
+            "D": "Hızını koru ama sağ kenar çizgisini daha dikkatli izle"
+          }
+        },
+        "es": {
+          "question": "Conduciendo de noche en una autopista sin alumbrado con luces bajas, nota que no puede detenerse dentro de la distancia que iluminan sus faros. La respuesta correcta es:",
+          "options": {
+            "A": "Reducir la velocidad para poder detenerse dentro de la distancia que ve",
+            "B": "Cambiar a luces altas y mantener la velocidad para no atrasarse",
+            "C": "Acercarse detrás de otro camión y guiarse por sus luces",
+            "D": "Mantener la velocidad pero vigilar más la línea del borde derecho"
+          }
+        },
+        "hi": {
+          "question": "रात में बिना रोशनी वाले हाईवे पर लो-बीम के साथ चलते हुए आप समझते हैं कि हेडलाइट जितनी दूरी दिखाती है, उसमें आप रुक नहीं सकते। सही प्रतिक्रिया है:",
+          "options": {
+            "A": "गति इतनी घटाएँ कि जितना दिखता है उतनी दूरी में रुक सकें",
+            "B": "हाई-बीम पर जाएँ और समय पर पहुँचने के लिए गति बनाए रखें",
+            "C": "किसी दूसरे ट्रक के पीछे करीब आकर उसकी रोशनी से चलें",
+            "D": "गति बनाए रखें पर दाएँ किनारे की रेखा को अधिक ध्यान से देखें"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-WX-010",
+      "english": {
+        "question": "You are about to enter a bank of dense fog. Which of the following is NOT a recommended practice?",
+        "options": {
+          "A": "Slow down before you actually reach the fog",
+          "B": "Use your low beams rather than high beams",
+          "C": "Switch on your high beams so the brighter light cuts through the fog",
+          "D": "Use your wipers and defroster to keep the windshield clear"
+        },
+        "correct_answer": "C",
+        "logic_breakdown": "Correct Answer Rationale: This is a NOT question, so you want the bad practice. High beams in fog reflect off the water droplets and bounce glare back at you, reducing what you can see — so high beams are NOT recommended; use low beams. The DPS Trap Explained: Option C is built on the everyday intuition 'brighter light = see better,' which is true in clear air but backwards in fog. The exam punishes applying clear-weather logic to fog."
+      },
+      "translations": {
+        "ru": {
+          "question": "Вы вот-вот въедете в полосу густого тумана. Что из перечисленного НЕ рекомендуется?",
+          "options": {
+            "A": "Снизить скорость ещё до того, как въедете в туман",
+            "B": "Использовать ближний свет, а не дальний",
+            "C": "Включить дальний свет, чтобы яркий луч пробивал туман",
+            "D": "Включить дворники и обдув, чтобы стекло оставалось чистым"
+          }
+        },
+        "tr": {
+          "question": "Yoğun bir sis bankına girmek üzeresin. Aşağıdakilerden hangisi önerilmez?",
+          "options": {
+            "A": "Sise varmadan önce yavaşlamak",
+            "B": "Uzun yerine kısa farları kullanmak",
+            "C": "Parlak ışık sisi delsin diye uzun farları yakmak",
+            "D": "Cam temiz kalsın diye sileceği ve defrostu kullanmak"
+          }
+        },
+        "es": {
+          "question": "Está a punto de entrar en un banco de niebla densa. ¿Cuál de las siguientes NO es una práctica recomendada?",
+          "options": {
+            "A": "Reducir la velocidad antes de llegar a la niebla",
+            "B": "Usar las luces bajas en lugar de las altas",
+            "C": "Encender las luces altas para que la luz más brillante atraviese la niebla",
+            "D": "Usar los limpiadores y el desempañador para mantener limpio el parabrisas"
+          }
+        },
+        "hi": {
+          "question": "आप घने कोहरे के क्षेत्र में घुसने वाले हैं। निम्न में से कौन-सा अभ्यास अनुशंसित नहीं है?",
+          "options": {
+            "A": "कोहरे तक पहुँचने से पहले ही गति घटाना",
+            "B": "हाई-बीम के बजाय लो-बीम का उपयोग करना",
+            "C": "हाई-बीम जलाना ताकि तेज़ रोशनी कोहरे को चीर सके",
+            "D": "विंडशील्ड साफ़ रखने के लिए वाइपर और डिफ़्रॉस्टर चलाना"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-WX-011",
+      "english": {
+        "question": "The air temperature is right at freezing and the roads look mostly clear. Which surface should you treat as icy first, even when the rest of the road seems fine?",
+        "options": {
+          "A": "Straight, open stretches that sit in full sun",
+          "B": "Uphill grades, because the engine warms the surface",
+          "C": "Bridges and overpasses, which freeze before the surrounding road",
+          "D": "Tunnels, which trap warm air and stay slick the longest"
+        },
+        "correct_answer": "C",
+        "logic_breakdown": "Correct Answer Rationale: Bridges and overpasses lose heat from above AND below because cold air flows under them, so they ice over before the road on solid ground — even when the rest of the pavement is still clear. The DPS Trap Explained: Option D (tunnels) is engineered to sound plausible by inverting the truth — tunnels are usually warmer and drier and are not the first to ice. The phrase 'freeze first' belongs to bridges, and DPS leans on candidates who guess instead of recall."
+      },
+      "translations": {
+        "ru": {
+          "question": "Температура около нуля, дороги в основном выглядят чистыми. Какую поверхность считать обледеневшей в первую очередь, даже если остальная дорога кажется нормальной?",
+          "options": {
+            "A": "Прямые открытые участки на полном солнце",
+            "B": "Подъёмы, потому что двигатель прогревает покрытие",
+            "C": "Мосты и эстакады — они замерзают раньше остальной дороги",
+            "D": "Тоннели — они держат тепло и дольше остаются скользкими"
+          }
+        },
+        "tr": {
+          "question": "Hava donma noktasında ve yollar çoğunlukla temiz görünüyor. Yolun geri kalanı iyi görünse bile hangi yüzeyi ilk buzlanmış say?",
+          "options": {
+            "A": "Tam güneş alan düz, açık kesimler",
+            "B": "Yokuş yukarı kesimler, çünkü motor yüzeyi ısıtır",
+            "C": "Çevredeki yoldan önce donan köprü ve üst geçitler",
+            "D": "Sıcak havayı tutan ve en uzun kaygan kalan tüneller"
+          }
+        },
+        "es": {
+          "question": "La temperatura está justo en el punto de congelación y los caminos se ven mayormente despejados. ¿Qué superficie debe tratar como helada primero, aunque el resto del camino parezca bien?",
+          "options": {
+            "A": "Tramos rectos y abiertos que reciben pleno sol",
+            "B": "Las subidas, porque el motor calienta la superficie",
+            "C": "Puentes y pasos elevados, que se congelan antes que el camino que los rodea",
+            "D": "Los túneles, que atrapan aire caliente y siguen resbalosos más tiempo"
+          }
+        },
+        "hi": {
+          "question": "तापमान बिलकुल जमाव बिंदु पर है और सड़कें ज़्यादातर साफ़ दिखती हैं। बाकी सड़क ठीक लगने पर भी किस सतह को पहले बर्फीली मानें?",
+          "options": {
+            "A": "पूरी धूप में पड़े सीधे, खुले हिस्से",
+            "B": "चढ़ाई वाले हिस्से, क्योंकि इंजन सतह को गर्म करता है",
+            "C": "पुल और ओवरपास, जो आसपास की सड़क से पहले जमते हैं",
+            "D": "सुरंगें, जो गर्म हवा रोकती हैं और सबसे देर तक फिसलन भरी रहती हैं"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-WX-012",
+      "english": {
+        "question": "On a very hot day you stop and find your tires noticeably hot, reading higher than the normal cold pressure. What is the correct action?",
+        "options": {
+          "A": "Bleed air out until the pressure returns to the normal cold setting",
+          "B": "Leave the tires alone; if one is too hot to touch, stop driving until it cools",
+          "C": "Pour water over the tires to cool them down quickly",
+          "D": "Drive faster so the airflow cools the tires"
+        },
+        "correct_answer": "B",
+        "logic_breakdown": "Correct Answer Rationale: Heat normally raises tire pressure, and that rise is expected — you do not let air out. If a tire is too hot to touch, that signals a problem (often under-inflation or overload) and you should stop until it cools to avoid a blowout. The DPS Trap Explained: Option A is the dangerous instinct — bleeding 'extra' air leaves the tire badly UNDER-inflated once it cools, which causes overheating and failure. The whole point is that hot, high pressure is normal, not something to release."
+      },
+      "translations": {
+        "ru": {
+          "question": "В очень жаркий день вы останавливаетесь и видите, что шины заметно горячие, а давление выше обычного холодного. Какое действие правильное?",
+          "options": {
+            "A": "Стравить воздух, пока давление не вернётся к норме холодной шины",
+            "B": "Не трогать шины; если одна слишком горяча на ощупь — остановиться, пока не остынет",
+            "C": "Полить шины водой, чтобы быстро охладить",
+            "D": "Ехать быстрее, чтобы поток воздуха охладил шины"
+          }
+        },
+        "tr": {
+          "question": "Çok sıcak bir günde durup lastiklerin belirgin sıcak ve basıncın normal soğuk değerin üstünde olduğunu görüyorsun. Doğru hareket nedir?",
+          "options": {
+            "A": "Basınç normal soğuk değere inene dek hava boşalt",
+            "B": "Lastiklere dokunma; biri elle tutulamayacak kadar sıcaksa soğuyana dek sürmeyi bırak",
+            "C": "Hızlı soğutmak için lastiklere su dök",
+            "D": "Hava akımı lastikleri soğutsun diye daha hızlı sür"
+          }
+        },
+        "es": {
+          "question": "En un día muy caluroso se detiene y encuentra las llantas notablemente calientes, con una presión mayor que la normal en frío. ¿Cuál es la acción correcta?",
+          "options": {
+            "A": "Sacar aire hasta que la presión vuelva al valor normal en frío",
+            "B": "Dejar las llantas en paz; si una está demasiado caliente al tacto, deje de conducir hasta que se enfríe",
+            "C": "Echar agua sobre las llantas para enfriarlas rápido",
+            "D": "Conducir más rápido para que el aire enfríe las llantas"
+          }
+        },
+        "hi": {
+          "question": "बहुत गर्म दिन पर आप रुकते हैं और पाते हैं कि टायर काफ़ी गर्म हैं और दबाव सामान्य ठंडे दबाव से अधिक है। सही कार्रवाई क्या है?",
+          "options": {
+            "A": "हवा निकालें जब तक दबाव सामान्य ठंडे मान पर न आ जाए",
+            "B": "टायरों को न छेड़ें; अगर कोई छूने में बहुत गर्म है तो ठंडा होने तक चलाना बंद करें",
+            "C": "जल्दी ठंडा करने के लिए टायरों पर पानी डालें",
+            "D": "तेज़ चलाएँ ताकि हवा का बहाव टायरों को ठंडा करे"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-RM-013",
+      "english": {
+        "question": "You are crossing a railroad track with a manual transmission and a heavy load. The single most important rule about gear selection at the crossing is:",
+        "options": {
+          "A": "Pick a gear before the tracks and do not change gears while any part of the vehicle is on the crossing",
+          "B": "Downshift about halfway across to keep enough engine power",
+          "C": "Shift into neutral and coast across to reduce vibration",
+          "D": "Use the highest gear available to clear the tracks as fast as possible"
+        },
+        "correct_answer": "A",
+        "logic_breakdown": "Correct Answer Rationale: Choose a gear that will pull you all the way across BEFORE you reach the tracks, and never shift while on the crossing. If you try to change gears on the rails and miss the shift, you can stall on the tracks — the worst possible place. The DPS Trap Explained: Option B sounds careful ('keep engine power') but it has you shifting in the most dangerous spot. C (neutral) leaves you with no power if you stall. The rule is choose-and-hold, not shift-while-crossing."
+      },
+      "translations": {
+        "ru": {
+          "question": "Вы пересекаете железнодорожный переезд на механической коробке с тяжёлым грузом. Главное правило выбора передачи на переезде:",
+          "options": {
+            "A": "Выбрать передачу до путей и не переключаться, пока хоть часть машины на переезде",
+            "B": "Переключиться вниз примерно на середине, чтобы хватило тяги",
+            "C": "Включить нейтраль и катиться, чтобы уменьшить вибрацию",
+            "D": "Включить самую высокую передачу, чтобы проскочить пути как можно быстрее"
+          }
+        },
+        "tr": {
+          "question": "Manuel vitesle ve ağır yükle bir demiryolu geçidini geçiyorsun. Geçitte vites seçimiyle ilgili en önemli kural:",
+          "options": {
+            "A": "Raylardan önce bir vites seç ve aracın herhangi bir kısmı geçitteyken vites değiştirme",
+            "B": "Yeterli güç için yaklaşık ortada vites küçült",
+            "C": "Titreşimi azaltmak için boşa alıp süzülerek geç",
+            "D": "Rayları olabildiğince hızlı geçmek için en yüksek vitesi kullan"
+          }
+        },
+        "es": {
+          "question": "Cruza una vía férrea con transmisión manual y carga pesada. La regla más importante sobre la selección de marcha en el cruce es:",
+          "options": {
+            "A": "Elegir la marcha antes de las vías y no cambiar mientras cualquier parte del vehículo esté sobre el cruce",
+            "B": "Reducir de marcha más o menos a mitad del cruce para mantener fuerza",
+            "C": "Poner neutro y cruzar en inercia para reducir la vibración",
+            "D": "Usar la marcha más alta para librar las vías lo más rápido posible"
+          }
+        },
+        "hi": {
+          "question": "आप मैनुअल ट्रांसमिशन और भारी लोड के साथ रेलवे ट्रैक पार कर रहे हैं। क्रॉसिंग पर गियर चुनने का सबसे ज़रूरी नियम है:",
+          "options": {
+            "A": "ट्रैक से पहले गियर चुनें और जब तक वाहन का कोई भी हिस्सा क्रॉसिंग पर है, गियर न बदलें",
+            "B": "पर्याप्त इंजन शक्ति के लिए लगभग आधे रास्ते पर गियर नीचे करें",
+            "C": "कंपन घटाने के लिए न्यूट्रल में डालकर पार करें",
+            "D": "ट्रैक जल्द से जल्द पार करने के लिए सबसे ऊँचा गियर इस्तेमाल करें"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-RM-014",
+      "english": {
+        "question": "You are approaching a long, steep downgrade. When and how should you choose your gear?",
+        "options": {
+          "A": "Wait until the brakes begin to fade, then downshift to a lower gear",
+          "B": "Shift to neutral to save fuel and control your speed with the brakes alone",
+          "C": "Stay in a high gear and ride the brakes lightly the whole way down",
+          "D": "Select a low gear before you start down — usually lower than the gear you would use to climb the same hill"
+        },
+        "correct_answer": "D",
+        "logic_breakdown": "Correct Answer Rationale: Pick your low gear BEFORE the descent so engine/compression braking holds your speed and saves the service brakes; on modern trucks the safe descent gear is often lower than the climbing gear. The DPS Trap Explained: Option A waits until the brakes are already overheating, by which point you may not be able to downshift at all. B (neutral) removes engine braking entirely and forces the service brakes to do everything, which leads straight to brake fade and a runaway."
+      },
+      "translations": {
+        "ru": {
+          "question": "Вы подъезжаете к длинному крутому спуску. Когда и как выбрать передачу?",
+          "options": {
+            "A": "Дождаться, пока тормоза начнут пропадать, и тогда понизить передачу",
+            "B": "Включить нейтраль для экономии топлива и держать скорость только тормозами",
+            "C": "Оставаться на высокой передаче и слегка притормаживать всю дорогу вниз",
+            "D": "Включить пониженную передачу до начала спуска — обычно ниже, чем для подъёма на тот же холм"
+          }
+        },
+        "tr": {
+          "question": "Uzun ve dik bir inişe yaklaşıyorsun. Vitesini ne zaman ve nasıl seçmelisin?",
+          "options": {
+            "A": "Frenler kaybetmeye başlayana dek bekle, sonra küçük vitese geç",
+            "B": "Yakıt için boşa al ve hızı yalnızca frenle kontrol et",
+            "C": "Yüksek viteste kal ve tüm iniş boyunca frene hafifçe bas",
+            "D": "İnişe başlamadan önce küçük vites seç — genelde aynı tepeyi çıkarken kullandığından daha küçük"
+          }
+        },
+        "es": {
+          "question": "Se acerca a una bajada larga y empinada. ¿Cuándo y cómo debe elegir la marcha?",
+          "options": {
+            "A": "Esperar a que los frenos empiecen a fallar y entonces reducir de marcha",
+            "B": "Poner neutro para ahorrar combustible y controlar la velocidad solo con los frenos",
+            "C": "Quedarse en marcha alta y frenar suavemente toda la bajada",
+            "D": "Elegir una marcha baja antes de empezar a bajar — normalmente más baja que la que usaría para subir la misma cuesta"
+          }
+        },
+        "hi": {
+          "question": "आप एक लंबी, तीखी ढलान के पास पहुँच रहे हैं। गियर कब और कैसे चुनें?",
+          "options": {
+            "A": "ब्रेक फेल होने लगें तब तक रुकें, फिर नीचे गियर में जाएँ",
+            "B": "ईंधन बचाने के लिए न्यूट्रल में डालें और गति केवल ब्रेक से नियंत्रित करें",
+            "C": "ऊँचे गियर में रहें और पूरे रास्ते हल्का-हल्का ब्रेक लगाते रहें",
+            "D": "उतरने से पहले ही नीचा गियर चुनें — आमतौर पर उसी पहाड़ी पर चढ़ने वाले गियर से भी नीचा"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-RM-015",
+      "english": {
+        "question": "On a long downgrade you are already in the correct low gear and your safe speed is 35 mph. Which braking technique correctly controls your speed?",
+        "options": {
+          "A": "Apply light, steady brake pressure continuously all the way down",
+          "B": "Pump the brakes rapidly and constantly to keep them cool",
+          "C": "Hold the brakes hard the entire way to the bottom",
+          "D": "When you reach about 40 mph, brake firmly down to about 30 mph, release, and repeat"
+        },
+        "correct_answer": "D",
+        "logic_breakdown": "Correct Answer Rationale: Proper 'snub' braking means letting speed rise to about 5 mph over your safe speed, then braking FIRMLY down to about 5 mph below it, releasing, and repeating — the off periods let the brakes cool. The DPS Trap Explained: Option A feels gentle and safe ('light, steady') but continuous pressure never lets the brakes cool and overheats them into fade. The dangerous answer is the one that sounds the gentlest; firm-then-release beats constant-light."
+      },
+      "translations": {
+        "ru": {
+          "question": "На длинном спуске вы уже на нужной пониженной передаче, безопасная скорость 35 миль/ч. Какой приём торможения верно контролирует скорость?",
+          "options": {
+            "A": "Постоянно держать лёгкое равномерное давление на тормоз всю дорогу вниз",
+            "B": "Часто и постоянно прокачивать тормоз, чтобы он не грелся",
+            "C": "Держать тормоз сильно нажатым до самого низа",
+            "D": "При ~40 миль/ч твёрдо притормозить до ~30, отпустить и повторять"
+          }
+        },
+        "tr": {
+          "question": "Uzun bir inişte zaten doğru küçük vittesin ve güvenli hızın 35 mil/saat. Hızını doğru kontrol eden fren tekniği hangisi?",
+          "options": {
+            "A": "Tüm iniş boyunca sürekli hafif ve sabit fren basıncı uygula",
+            "B": "Soğuk kalsın diye freni sürekli ve hızlı pompala",
+            "C": "En alta kadar freni sert basılı tut",
+            "D": "Yaklaşık 40 mil/saate gelince sert frenle ~30'a in, bırak ve tekrarla"
+          }
+        },
+        "es": {
+          "question": "En una bajada larga ya va en la marcha baja correcta y su velocidad segura es 35 mph. ¿Qué técnica de frenado controla bien su velocidad?",
+          "options": {
+            "A": "Aplicar presión de freno ligera y constante durante toda la bajada",
+            "B": "Bombear los frenos rápida y constantemente para mantenerlos fríos",
+            "C": "Mantener los frenos pisados con fuerza hasta el final de la bajada",
+            "D": "Al llegar a unas 40 mph, frenar con firmeza hasta unas 30, soltar y repetir"
+          }
+        },
+        "hi": {
+          "question": "एक लंबी ढलान पर आप पहले से सही नीचे गियर में हैं और सुरक्षित गति 35 मील/घंटा है। कौन-सी ब्रेकिंग तकनीक गति को सही ढंग से नियंत्रित करती है?",
+          "options": {
+            "A": "पूरी ढलान भर हल्का, स्थिर ब्रेक दबाव लगातार लगाएँ",
+            "B": "ब्रेक को ठंडा रखने के लिए तेज़ी और लगातार पंप करें",
+            "C": "नीचे तक पूरे रास्ते ब्रेक ज़ोर से दबाए रखें",
+            "D": "लगभग 40 मील/घंटा पर ज़ोर से ब्रेक लगाकर ~30 तक लाएँ, छोड़ें, और दोहराएँ"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-RM-016",
+      "english": {
+        "question": "Your brakes have faded badly on a mountain downgrade and you are picking up speed. You should do all of the following EXCEPT:",
+        "options": {
+          "A": "Look for and use an escape ramp if one is available",
+          "B": "Shift into neutral so the truck can coast down more smoothly",
+          "C": "If there is no ramp, look for an escape route such as an open field or side road",
+          "D": "Stay in the lowest gear and use any braking you have left to slow as much as possible"
+        },
+        "correct_answer": "B",
+        "logic_breakdown": "Correct Answer Rationale: This is an EXCEPT question. Shifting into neutral is exactly what you must NOT do — it removes engine braking and lets you accelerate faster. Everything else (escape ramp, escape route, lowest gear) helps you bleed off speed. The DPS Trap Explained: Option B rides the common myth that neutral gives smoother, more controllable coasting. On a runaway grade neutral does the opposite: it cuts your last source of drag and speeds you up."
+      },
+      "translations": {
+        "ru": {
+          "question": "На горном спуске тормоза сильно пропали, и вы набираете скорость. Делать нужно всё перечисленное, КРОМЕ:",
+          "options": {
+            "A": "Искать и использовать аварийную улавливающую полосу, если она есть",
+            "B": "Включить нейтраль, чтобы машина катилась плавнее",
+            "C": "Если полосы нет — искать путь съезда: открытое поле или боковую дорогу",
+            "D": "Оставаться на самой низкой передаче и тормозить всем, что ещё работает"
+          }
+        },
+        "tr": {
+          "question": "Dağ inişinde frenlerin ciddi şekilde kaybetti ve hız kazanıyorsun. Aşağıdakilerin hepsini yapmalısın, ŞU HARİÇ:",
+          "options": {
+            "A": "Varsa bir kaçış rampası ara ve kullan",
+            "B": "Kamyon daha yumuşak süzülsün diye boşa al",
+            "C": "Rampa yoksa açık tarla ya da yan yol gibi bir kaçış yolu ara",
+            "D": "En küçük viteste kal ve elinde kalan her frenle olabildiğince yavaşla"
+          }
+        },
+        "es": {
+          "question": "Sus frenos han fallado seriamente en una bajada de montaña y va ganando velocidad. Debe hacer todo lo siguiente, EXCEPTO:",
+          "options": {
+            "A": "Buscar y usar una rampa de escape si hay una disponible",
+            "B": "Poner neutro para que el camión baje en inercia de forma más suave",
+            "C": "Si no hay rampa, buscar una ruta de escape como un campo abierto o un camino lateral",
+            "D": "Mantener la marcha más baja y usar el frenado que le quede para reducir lo más posible"
+          }
+        },
+        "hi": {
+          "question": "पहाड़ी ढलान पर आपके ब्रेक बुरी तरह फेल हो गए हैं और गति बढ़ रही है। आपको निम्न सभी करने चाहिए, सिवाय:",
+          "options": {
+            "A": "उपलब्ध हो तो एस्केप रैंप ढूँढें और उसका उपयोग करें",
+            "B": "न्यूट्रल में डालें ताकि ट्रक अधिक सहजता से लुढ़क सके",
+            "C": "रैंप न हो तो खुला खेत या साइड रोड जैसा बचाव मार्ग ढूँढें",
+            "D": "सबसे नीचे गियर में रहें और बचे हुए किसी भी ब्रेक से जितना हो सके धीमा करें"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-EM-017",
+      "english": {
+        "question": "Your drive wheels start to skid on a slick road and the rear of your tractor begins sliding to the right. To regain control you should first:",
+        "options": {
+          "A": "Stop accelerating (and push in the clutch), then steer the way you want the front of the vehicle to go",
+          "B": "Brake hard to stop the slide right away",
+          "C": "Steer sharply to the left, opposite the direction of the slide",
+          "D": "Accelerate to pull the trailer back into line"
+        },
+        "correct_answer": "A",
+        "logic_breakdown": "Correct Answer Rationale: A drive-wheel skid usually comes from too much power or braking on a slick surface. First take away the cause — get off the accelerator (clutch in) so the drive wheels can regain grip — then steer in the direction you want the front to go. The DPS Trap Explained: Option B (hard braking) and C (a sharp opposite jerk) both over-correct and deepen the skid. The exam wants 'remove the cause first, then steer smoothly,' not a violent reaction."
+      },
+      "translations": {
+        "ru": {
+          "question": "Ведущие колёса начали скользить на скользкой дороге, и зад тягача поехал вправо. Чтобы вернуть управление, сначала нужно:",
+          "options": {
+            "A": "Перестать газовать (выжать сцепление) и рулить туда, куда нужно направить перёд машины",
+            "B": "Сильно затормозить, чтобы немедленно прекратить занос",
+            "C": "Резко вывернуть влево, против направления заноса",
+            "D": "Газовать, чтобы выровнять прицеп"
+          }
+        },
+        "tr": {
+          "question": "Çeker tekerlekler kaygan yolda kaymaya başlıyor ve çekicinin arkası sağa kaymaya başlıyor. Kontrolü geri almak için önce:",
+          "options": {
+            "A": "Gazı bırak (debriyaja bas), sonra aracın önünü gitmesini istediğin yöne doğru çevir",
+            "B": "Kaymayı hemen durdurmak için sert fren yap",
+            "C": "Kaymanın tersine, sert biçimde sola kır",
+            "D": "Dorseyi hizaya çekmek için gaz ver"
+          }
+        },
+        "es": {
+          "question": "Las ruedas de tracción empiezan a patinar en un camino resbaloso y la parte trasera del tractor comienza a irse a la derecha. Para recuperar el control, primero debe:",
+          "options": {
+            "A": "Dejar de acelerar (y pisar el embrague), luego dirigir hacia donde quiere que vaya el frente del vehículo",
+            "B": "Frenar fuerte para detener el patinazo de inmediato",
+            "C": "Girar bruscamente a la izquierda, en sentido contrario al patinazo",
+            "D": "Acelerar para volver a alinear el remolque"
+          }
+        },
+        "hi": {
+          "question": "फिसलन भरी सड़क पर आपके ड्राइव पहिये स्किड करने लगते हैं और ट्रैक्टर का पिछला हिस्सा दाईं ओर खिसकने लगता है। नियंत्रण वापस पाने के लिए पहले आपको:",
+          "options": {
+            "A": "एक्सेलेरेट करना बंद करें (और क्लच दबाएँ), फिर वाहन के अगले हिस्से को जिधर ले जाना है उधर स्टीयर करें",
+            "B": "स्किड तुरंत रोकने के लिए ज़ोर से ब्रेक लगाएँ",
+            "C": "स्किड की विपरीत दिशा में तेज़ी से बाईं ओर मोड़ें",
+            "D": "ट्रेलर को सीध में लाने के लिए एक्सेलेरेट करें"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-EM-018",
+      "english": {
+        "question": "On a sharp curve your front wheels lose traction and the truck keeps going straight even though the wheels are turned. The usual cause and correct response are:",
+        "options": {
+          "A": "Cause: too little speed — accelerate to restore steering",
+          "B": "Cause: over-inflated rear tires — pull over and let some air out",
+          "C": "Cause: driving too fast for conditions — ease off, and the front wheels will grip again as you slow",
+          "D": "Cause: the trailer pushing — apply the trailer hand valve hard"
+        },
+        "correct_answer": "C",
+        "logic_breakdown": "Correct Answer Rationale: A front-wheel skid means the front tires have lost grip, so turning the wheel does nothing — and the most common cause is simply too much speed for the curve or surface. You cannot steer out of it; you have to slow until the front tires grip again. The DPS Trap Explained: Option D borrows real-sounding language from jackknife/trailer-skid scenarios and misapplies it here. Reaching for the trailer hand valve in a front-wheel skid does not restore steering; recognizing it as a speed problem does."
+      },
+      "translations": {
+        "ru": {
+          "question": "На крутом повороте передние колёса теряют сцепление, и грузовик едет прямо, хотя колёса вывернуты. Обычная причина и верное действие:",
+          "options": {
+            "A": "Причина: слишком малая скорость — добавить газ, чтобы вернуть управление",
+            "B": "Причина: перекачаны задние шины — остановиться и стравить воздух",
+            "C": "Причина: слишком высокая скорость для условий — сбросить, и передние колёса снова возьмут при замедлении",
+            "D": "Причина: прицеп толкает — сильно нажать ручной кран прицепа"
+          }
+        },
+        "tr": {
+          "question": "Keskin bir virajda ön tekerlekler tutuşu kaybediyor ve tekerlekler kırık olmasına rağmen kamyon düz gidiyor. Olağan neden ve doğru tepki:",
+          "options": {
+            "A": "Neden: çok düşük hız — direksiyonu geri kazanmak için gaz ver",
+            "B": "Neden: aşırı şişmiş arka lastikler — kenara çekip hava boşalt",
+            "C": "Neden: koşullara göre çok hızlı — gazı bırak, yavaşladıkça ön tekerlekler yeniden tutar",
+            "D": "Neden: dorse itiyor — dorse el valfini sertçe çek"
+          }
+        },
+        "es": {
+          "question": "En una curva cerrada sus ruedas delanteras pierden tracción y el camión sigue derecho aunque las ruedas están giradas. La causa habitual y la respuesta correcta son:",
+          "options": {
+            "A": "Causa: poca velocidad — acelerar para recuperar la dirección",
+            "B": "Causa: llantas traseras sobreinfladas — orillarse y sacar algo de aire",
+            "C": "Causa: ir demasiado rápido para las condiciones — soltar el acelerador, y al bajar la velocidad las ruedas delanteras volverán a agarrar",
+            "D": "Causa: el remolque empuja — aplicar fuerte la válvula de mano del remolque"
+          }
+        },
+        "hi": {
+          "question": "एक तीखे मोड़ पर आपके अगले पहिये पकड़ खो देते हैं और पहिये मुड़े होने के बावजूद ट्रक सीधा चलता रहता है। सामान्य कारण और सही प्रतिक्रिया है:",
+          "options": {
+            "A": "कारण: बहुत कम गति — स्टीयरिंग वापस पाने के लिए एक्सेलेरेट करें",
+            "B": "कारण: पिछले टायर अधिक फूले हुए — किनारे लगाकर कुछ हवा निकालें",
+            "C": "कारण: परिस्थितियों के लिए बहुत तेज़ गति — गति छोड़ें, धीमे होते ही अगले पहिये फिर पकड़ लेंगे",
+            "D": "कारण: ट्रेलर धकेल रहा है — ट्रेलर हैंड वाल्व ज़ोर से लगाएँ"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-EM-019",
+      "english": {
+        "question": "A car suddenly stops in your lane and you do not have room to stop in time. In most cases the safer emergency action is to:",
+        "options": {
+          "A": "Brake as hard as you can and hope to stop just short of it",
+          "B": "Steer around the obstacle — you can usually turn to miss it in less distance than it takes to stop",
+          "C": "Lock the brakes and hold the wheel rigidly straight",
+          "D": "Brake hard and steer at the same time for maximum effect"
+        },
+        "correct_answer": "B",
+        "logic_breakdown": "Correct Answer Rationale: At highway speed you can almost always change direction faster than you can come to a complete stop, so steering around the hazard (then countersteering back) usually avoids the crash when stopping cannot. The DPS Trap Explained: Option D 'brake AND steer at the same time' sounds like the best of both, but on a vehicle without ABS, braking hard while steering can lock the wheels and cost you the steering you need. Choose the maneuver, not the panic combination."
+      },
+      "translations": {
+        "ru": {
+          "question": "Машина впереди внезапно останавливается в вашей полосе, и места затормозить не хватает. Чаще всего безопаснее:",
+          "options": {
+            "A": "Тормозить изо всех сил и надеяться остановиться чуть раньше",
+            "B": "Объехать препятствие — обычно повернуть успеваешь на меньшем расстоянии, чем остановиться",
+            "C": "Заблокировать тормоза и держать руль жёстко прямо",
+            "D": "Сильно тормозить и одновременно поворачивать для максимального эффекта"
+          }
+        },
+        "tr": {
+          "question": "Önündeki araç şeritte aniden duruyor ve durmaya yerin yok. Çoğu durumda daha güvenli acil hareket:",
+          "options": {
+            "A": "Var gücünle frenle ve hemen önünde durmayı um",
+            "B": "Engelin etrafından dön — genelde durmaktan daha kısa mesafede dönüp kaçabilirsin",
+            "C": "Frenleri kilitle ve direksiyonu katı biçimde düz tut",
+            "D": "Aynı anda sert frenle ve direksiyon kır, en yüksek etki için"
+          }
+        },
+        "es": {
+          "question": "Un auto se detiene de repente en su carril y no tiene espacio para frenar a tiempo. En la mayoría de los casos la acción de emergencia más segura es:",
+          "options": {
+            "A": "Frenar lo más fuerte posible y esperar detenerse justo antes",
+            "B": "Esquivar el obstáculo — suele poder girar para librarlo en menos distancia de la que toma frenar",
+            "C": "Bloquear los frenos y sujetar el volante rígidamente recto",
+            "D": "Frenar fuerte y girar al mismo tiempo para máximo efecto"
+          }
+        },
+        "hi": {
+          "question": "आपकी लेन में एक कार अचानक रुक जाती है और समय रहते रुकने की जगह नहीं है। ज़्यादातर मामलों में सुरक्षित आपातकालीन कार्रवाई है:",
+          "options": {
+            "A": "जितना हो सके ज़ोर से ब्रेक लगाएँ और बस उससे पहले रुकने की उम्मीद करें",
+            "B": "बाधा के चारों ओर से मोड़ें — आमतौर पर रुकने की तुलना में कम दूरी में मोड़कर बच सकते हैं",
+            "C": "ब्रेक लॉक करें और स्टीयरिंग को सख्ती से सीधा पकड़े रखें",
+            "D": "अधिकतम प्रभाव के लिए एक साथ ज़ोर से ब्रेक और स्टीयर करें"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-EM-020",
+      "english": {
+        "question": "At highway speed you hear a loud bang, the steering suddenly pulls hard to one side, and the vehicle thumps — signs of a front-tire blowout. Your immediate response should be to:",
+        "options": {
+          "A": "Brake firmly right away to slow down before you lose control",
+          "B": "Briefly accelerate to regain stability, then brake",
+          "C": "Steer quickly onto the shoulder while braking hard",
+          "D": "Hold the steering wheel firmly, stay off the brake, and let the vehicle slow before you ease off the road"
+        },
+        "correct_answer": "D",
+        "logic_breakdown": "Correct Answer Rationale: After a blowout the priority is keeping the vehicle straight. Grip the wheel firmly, stay OFF the brake, let the rig slow on its own, and only then brake gently and ease onto the shoulder. The DPS Trap Explained: Option A is the powerful wrong instinct — hard braking right after a blowout shifts weight and can throw the truck into a skid or pull it sideways. The counter-intuitive truth is 'hands tight, feet off the brake' first."
+      },
+      "translations": {
+        "ru": {
+          "question": "На трассе вы слышите громкий хлопок, руль резко тянет в сторону, машину бьёт — признаки разрыва передней шины. Немедленно следует:",
+          "options": {
+            "A": "Сразу твёрдо тормозить, чтобы замедлиться, пока не потеряли контроль",
+            "B": "Коротко газануть для устойчивости, затем тормозить",
+            "C": "Быстро уйти на обочину с сильным торможением",
+            "D": "Крепко держать руль, не трогать тормоз, дать машине замедлиться, затем съехать на обочину"
+          }
+        },
+        "tr": {
+          "question": "Otoyol hızında yüksek bir patlama duyuyorsun, direksiyon aniden bir yana sert çekiyor ve araç zıplıyor — ön lastik patlaması belirtileri. Anında tepkin:",
+          "options": {
+            "A": "Kontrolü kaybetmeden yavaşlamak için hemen sert fren yap",
+            "B": "Dengeyi geri kazanmak için kısaca gaz ver, sonra frenle",
+            "C": "Sert frenle hızlıca banket üzerine kır",
+            "D": "Direksiyonu sıkıca tut, frene basma, araç yavaşlasın, sonra yavaşça kenara çek"
+          }
+        },
+        "es": {
+          "question": "A velocidad de autopista escucha un fuerte estallido, la dirección jala con fuerza hacia un lado y el vehículo da tumbos — señales de un reventón de llanta delantera. Su respuesta inmediata debe ser:",
+          "options": {
+            "A": "Frenar con firmeza de inmediato para reducir antes de perder el control",
+            "B": "Acelerar un instante para recuperar estabilidad y luego frenar",
+            "C": "Dirigirse rápido al acotamiento mientras frena fuerte",
+            "D": "Sujetar el volante con firmeza, no tocar el freno y dejar que el vehículo reduzca antes de orillarse"
+          }
+        },
+        "hi": {
+          "question": "हाईवे की गति पर आप एक ज़ोरदार धमाका सुनते हैं, स्टीयरिंग अचानक एक ओर ज़ोर से खिंचता है और वाहन उछलता है — आगे के टायर फटने के संकेत। आपकी तत्काल प्रतिक्रिया होनी चाहिए:",
+          "options": {
+            "A": "नियंत्रण खोने से पहले धीमा होने के लिए तुरंत ज़ोर से ब्रेक लगाएँ",
+            "B": "स्थिरता पाने के लिए थोड़ा एक्सेलेरेट करें, फिर ब्रेक लगाएँ",
+            "C": "ज़ोर से ब्रेक लगाते हुए तेज़ी से शोल्डर पर मोड़ें",
+            "D": "स्टीयरिंग को मज़बूती से पकड़ें, ब्रेक से दूर रहें, वाहन को धीमा होने दें, फिर किनारे लगाएँ"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-CG-021",
+      "english": {
+        "question": "You are hauling a single 9-foot steel pipe. Using the cargo securement rules, the minimum number of tie-downs required is:",
+        "options": {
+          "A": "Two — at least two tie-downs are required no matter how short the cargo is",
+          "B": "One — it is under 10 feet, so one tie-down meets the one-per-10-feet rule",
+          "C": "None — cargo shorter than 10 feet is exempt from tie-down rules",
+          "D": "Four — one tie-down for each corner of the load"
+        },
+        "correct_answer": "A",
+        "logic_breakdown": "Correct Answer Rationale: There are two rules and you must satisfy BOTH: at least one tie-down per 10 feet of cargo, AND an absolute minimum of two tie-downs for any piece, no matter how short. A 9-foot pipe needs 2. The DPS Trap Explained: Option B correctly applies the 'one per 10 feet' rule and stops there — but it forgets the overriding 2-tie-down minimum. The trap is doing half the math right; the exam rewards knowing that the floor is always two."
+      },
+      "translations": {
+        "ru": {
+          "question": "Вы везёте одну стальную трубу длиной 9 футов. По правилам крепления груза минимальное число стяжек:",
+          "options": {
+            "A": "Две — минимум две стяжки нужны независимо от длины груза",
+            "B": "Одна — меньше 10 футов, значит, одной хватает по правилу одна на 10 футов",
+            "C": "Ни одной — груз короче 10 футов освобождён от правил крепления",
+            "D": "Четыре — по одной стяжке на каждый угол груза"
+          }
+        },
+        "tr": {
+          "question": "Tek bir 9 fitlik çelik boru taşıyorsun. Yük sabitleme kurallarına göre gereken asgari bağ (tie-down) sayısı:",
+          "options": {
+            "A": "İki — yük ne kadar kısa olursa olsun en az iki bağ gerekir",
+            "B": "Bir — 10 fitten kısa, yani 10 fitte bir bağ kuralına bir bağ yeter",
+            "C": "Hiç — 10 fitten kısa yük bağ kurallarından muaftır",
+            "D": "Dört — yükün her köşesi için bir bağ"
+          }
+        },
+        "es": {
+          "question": "Transporta un solo tubo de acero de 9 pies. Según las reglas de sujeción de carga, el número mínimo de amarres requerido es:",
+          "options": {
+            "A": "Dos — se requieren al menos dos amarres sin importar lo corta que sea la carga",
+            "B": "Uno — mide menos de 10 pies, así que un amarre cumple la regla de uno por cada 10 pies",
+            "C": "Ninguno — la carga de menos de 10 pies está exenta de las reglas de amarre",
+            "D": "Cuatro — un amarre por cada esquina de la carga"
+          }
+        },
+        "hi": {
+          "question": "आप 9 फुट का एक स्टील पाइप ले जा रहे हैं। माल-सुरक्षा नियमों के अनुसार न्यूनतम कितने टाई-डाउन ज़रूरी हैं?",
+          "options": {
+            "A": "दो — माल कितना भी छोटा हो, कम से कम दो टाई-डाउन ज़रूरी हैं",
+            "B": "एक — यह 10 फुट से कम है, तो प्रति-10-फुट नियम के लिए एक टाई-डाउन काफी है",
+            "C": "कोई नहीं — 10 फुट से छोटा माल टाई-डाउन नियमों से छूट है",
+            "D": "चार — माल के हर कोने के लिए एक टाई-डाउन"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-CG-022",
+      "english": {
+        "question": "Your cargo weighs 40,000 pounds. The combined working load limit (WLL) of all the tie-downs you use must be at least:",
+        "options": {
+          "A": "10,000 pounds",
+          "B": "20,000 pounds",
+          "C": "40,000 pounds",
+          "D": "80,000 pounds"
+        },
+        "correct_answer": "B",
+        "logic_breakdown": "Correct Answer Rationale: The aggregate working load limit of your tie-downs must equal at least one-half the weight of the cargo being secured. Half of 40,000 pounds is 20,000 pounds. The DPS Trap Explained: Option C (40,000, equal to the cargo) is the intuitive 'match the weight' answer and is the most common wrong pick — the rule is one-HALF, not equal. A (a quarter) under-reads the fraction the other direction."
+      },
+      "translations": {
+        "ru": {
+          "question": "Ваш груз весит 40 000 фунтов. Суммарный рабочий предел нагрузки (WLL) всех стяжек должен быть не меньше:",
+          "options": {
+            "A": "10 000 фунтов",
+            "B": "20 000 фунтов",
+            "C": "40 000 фунтов",
+            "D": "80 000 фунтов"
+          }
+        },
+        "tr": {
+          "question": "Yükün 40.000 pound ağırlığında. Kullandığın tüm bağların toplam çalışma yükü limiti (WLL) en az ne olmalı?",
+          "options": {
+            "A": "10.000 pound",
+            "B": "20.000 pound",
+            "C": "40.000 pound",
+            "D": "80.000 pound"
+          }
+        },
+        "es": {
+          "question": "Su carga pesa 40,000 libras. El límite de carga de trabajo (WLL) combinado de todos los amarres que use debe ser de al menos:",
+          "options": {
+            "A": "10,000 libras",
+            "B": "20,000 libras",
+            "C": "40,000 libras",
+            "D": "80,000 libras"
+          }
+        },
+        "hi": {
+          "question": "आपका माल 40,000 पाउंड का है। आप जितने टाई-डाउन इस्तेमाल करते हैं उनकी संयुक्त वर्किंग लोड लिमिट (WLL) कम से कम कितनी होनी चाहिए?",
+          "options": {
+            "A": "10,000 पाउंड",
+            "B": "20,000 पाउंड",
+            "C": "40,000 पाउंड",
+            "D": "80,000 पाउंड"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-CG-023",
+      "english": {
+        "question": "You can place a heavy load either low and spread across the trailer floor, or stacked high and centered. Which is correct, and why?",
+        "options": {
+          "A": "Stack it high and centered to keep weight off the edges of the axles",
+          "B": "Stack it high so the load shifts less in turns",
+          "C": "It makes no difference as long as the total weight is within legal limits",
+          "D": "Load it low and spread out to keep the center of gravity low and reduce rollover risk"
+        },
+        "correct_answer": "D",
+        "logic_breakdown": "Correct Answer Rationale: A low, evenly spread load keeps the center of gravity low, which is the single biggest factor in resisting rollover and keeping the truck stable in curves and quick lane changes. The DPS Trap Explained: Option B sounds reasonable ('high load shifts less') but trades a small concern for the big one — a high center of gravity dramatically raises rollover risk. Legal total weight (option C) is necessary but says nothing about how stable the load is."
+      },
+      "translations": {
+        "ru": {
+          "question": "Тяжёлый груз можно разместить низко и равномерно по полу прицепа или сложить высоко по центру. Что правильно и почему?",
+          "options": {
+            "A": "Сложить высоко по центру, чтобы снять нагрузку с краёв осей",
+            "B": "Сложить высоко, чтобы груз меньше смещался в поворотах",
+            "C": "Разницы нет, пока общий вес в пределах закона",
+            "D": "Уложить низко и распределить, чтобы центр тяжести был низким и снизился риск опрокидывания"
+          }
+        },
+        "tr": {
+          "question": "Ağır bir yükü ya alçak ve dorse tabanına yayarak ya da yüksek ve ortaya istifleyerek koyabilirsin. Hangisi doğru ve neden?",
+          "options": {
+            "A": "Ağırlığı aks kenarlarından uzak tutmak için yüksek ve ortaya istifle",
+            "B": "Yük dönüşlerde daha az kaysın diye yüksek istifle",
+            "C": "Toplam ağırlık yasal sınırda oldukça fark etmez",
+            "D": "Ağırlık merkezini alçak tutup devrilme riskini azaltmak için alçak ve yayarak yükle"
+          }
+        },
+        "es": {
+          "question": "Puede colocar una carga pesada baja y repartida por el piso del remolque, o apilada alta y centrada. ¿Cuál es lo correcto y por qué?",
+          "options": {
+            "A": "Apilarla alta y centrada para quitar peso de los bordes de los ejes",
+            "B": "Apilarla alta para que la carga se mueva menos en las curvas",
+            "C": "No hay diferencia mientras el peso total esté dentro de lo legal",
+            "D": "Cargarla baja y repartida para mantener bajo el centro de gravedad y reducir el riesgo de volcadura"
+          }
+        },
+        "hi": {
+          "question": "आप भारी माल को या तो नीचे और ट्रेलर के फर्श पर फैलाकर, या ऊँचा और बीच में स्टैक करके रख सकते हैं। क्या सही है और क्यों?",
+          "options": {
+            "A": "ऊँचा और बीच में स्टैक करें ताकि वज़न एक्सल के किनारों से दूर रहे",
+            "B": "ऊँचा स्टैक करें ताकि मोड़ों में माल कम खिसके",
+            "C": "जब तक कुल वज़न कानूनी सीमा में है, कोई फ़र्क नहीं पड़ता",
+            "D": "नीचे और फैलाकर लादें ताकि गुरुत्व केंद्र नीचा रहे और पलटने का जोखिम घटे"
+          }
+        }
+      }
+    },
+    {
+      "question_id": "GK-CG-024",
+      "english": {
+        "question": "Poor weight distribution can cause problems at both extremes. Which statement about weight and vehicle control is correct?",
+        "options": {
+          "A": "Overloading the drive axle always improves traction with no downside",
+          "B": "Weight distribution affects only fuel economy, not how the vehicle handles",
+          "C": "Too little weight on the steering axle can make the front tires lose grip and weaken your steering control",
+          "D": "A heavier axle load always shortens your stopping distance"
+        },
+        "correct_answer": "C",
+        "logic_breakdown": "Correct Answer Rationale: Distribution matters at both ends: too little weight over the steering axle reduces front-tire grip and weakens steering, while too much overloads tires and axles. Control depends on balance, not just total weight. The DPS Trap Explained: Option A states a half-truth ('more weight = more traction') as an absolute with 'always... no downside,' ignoring overload damage and handling loss. Watch for absolute words like 'always' and 'no downside' — DPS uses them to mark an overconfident wrong answer."
+      },
+      "translations": {
+        "ru": {
+          "question": "Плохое распределение веса вредит в обеих крайностях. Что верно о весе и управляемости?",
+          "options": {
+            "A": "Перегруз ведущей оси всегда улучшает сцепление без минусов",
+            "B": "Распределение веса влияет только на расход топлива, не на управляемость",
+            "C": "Слишком малый вес на рулевой оси снижает сцепление передних шин и ухудшает управление",
+            "D": "Большая нагрузка на ось всегда сокращает тормозной путь"
+          }
+        },
+        "tr": {
+          "question": "Kötü ağırlık dağılımı her iki uçta da sorun yaratır. Ağırlık ve araç kontrolü hakkında hangisi doğrudur?",
+          "options": {
+            "A": "Çeker aksı aşırı yüklemek hep tutuşu artırır, hiç dezavantajı yoktur",
+            "B": "Ağırlık dağılımı sadece yakıtı etkiler, yol tutuşunu değil",
+            "C": "Direksiyon aksında çok az ağırlık, ön lastiklerin tutuşunu ve direksiyon kontrolünü zayıflatabilir",
+            "D": "Daha ağır aks yükü hep durma mesafeni kısaltır"
+          }
+        },
+        "es": {
+          "question": "Una mala distribución del peso causa problemas en ambos extremos. ¿Qué afirmación sobre el peso y el control del vehículo es correcta?",
+          "options": {
+            "A": "Sobrecargar el eje de tracción siempre mejora la tracción sin desventajas",
+            "B": "La distribución del peso solo afecta el consumo de combustible, no el manejo",
+            "C": "Muy poco peso en el eje de dirección puede hacer que las llantas delanteras pierdan agarre y debilite el control de la dirección",
+            "D": "Una mayor carga por eje siempre acorta la distancia de frenado"
+          }
+        },
+        "hi": {
+          "question": "वज़न का खराब वितरण दोनों चरम पर समस्या पैदा करता है। वज़न और वाहन-नियंत्रण के बारे में कौन-सा कथन सही है?",
+          "options": {
+            "A": "ड्राइव एक्सल को अधिक लादना हमेशा बिना किसी नुकसान के पकड़ बढ़ाता है",
+            "B": "वज़न वितरण केवल ईंधन खपत को प्रभावित करता है, चालन को नहीं",
+            "C": "स्टीयरिंग एक्सल पर बहुत कम वज़न से अगले टायरों की पकड़ और स्टीयरिंग नियंत्रण कमज़ोर हो सकता है",
+            "D": "अधिक एक्सल भार हमेशा आपकी रुकने की दूरी घटाता है"
+          }
+        }
+      }
+    }
+  ]
+}
