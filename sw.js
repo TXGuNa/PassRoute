@@ -1,9 +1,9 @@
 /* PassRoute service worker — offline support (stale-while-revalidate).
    Bump CACHE when you ship new content so clients refresh. */
-const CACHE = 'passroute-v5';
+const CACHE = 'passroute-v6';
 const ASSETS = [
   './', 'index.html',
-  'questions.js', 'translations.js', 'endorsements.js', 'questions-extra.js', 'pretrip.js',
+  'questions.js', 'translations.js', 'translations-es.js', 'endorsements.js', 'questions-extra.js', 'pretrip.js',
   'logo.png', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'favicon-32.png', 'favicon-64.png',
   'manifest.json', 'Texas-CDL-Study-Guide.pdf'
 ];

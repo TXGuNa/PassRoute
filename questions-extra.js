@@ -11,16 +11,20 @@
   var D = window.CDL_DATA, I = window.I18N;
   if(!D || !I) return;
 
-  function ext(catId, en, tr, ru){
+  function ext(catId, en, tr, ru, es){
     var cat = D.categories.find(function(c){return c.id===catId;});
     if(!cat) return;
     I.q.tr[catId] = I.q.tr[catId] || {};
     I.q.ru[catId] = I.q.ru[catId] || {};
+    I.q.es = I.q.es || {};
+    I.q.es[catId] = I.q.es[catId] || {};
+    es = es || {};
     var base = cat.questions.length;
     en.forEach(function(q,k){
       cat.questions.push(q);
       if(tr[k]) I.q.tr[catId][base+k] = tr[k];
       if(ru[k]) I.q.ru[catId][base+k] = ru[k];
+      if(es[k]) I.q.es[catId][base+k] = es[k];
     });
   }
 
