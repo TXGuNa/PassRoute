@@ -85,3 +85,13 @@ DPS appointment, what to bring; official links left untranslated.
    TR/RU option counts match, no duplicate questions, easy→hard order, balanced option lengths,
    and 3-language answer alignment.
 4. Tell the user to `git add -A && git commit && git push` to deploy.
+
+## Google AdSense — publisher & ad slots
+- **Publisher ID:** `ca-pub-5005909536075464` (in `index.html` head, landing pages, FAQ, and `ads.txt`).
+- **Ad unit slots** (use these instead of any `0000000000` placeholder):
+  - **Horizontal** (in-content banner): `3385282635` — use in content breaks, results screen, FAQ.
+  - **Square** (rectangle): `3161921352` — use as a second in-content unit.
+  - **Vertical** (skyscraper): `2432464479` — place ONLY in a fixed right-side rail shown at
+    `min-width:1440px` (hidden below, so it never breaks the centered single-column layout).
+- Rules: max 2–3 units per page, never next to answer/next buttons, never timer-refreshed.
+  In the SPA, ads refresh only on genuine `pushState` navigation (results screen).

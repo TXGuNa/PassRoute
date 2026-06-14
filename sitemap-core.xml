@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://passroute.ai/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/faq.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://passroute.ai/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://passroute.ai/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+</urlset>
