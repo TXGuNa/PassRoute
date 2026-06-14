@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://passroute.ai/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/texas-special-requirements.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/texas-special-requirements.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/texas-special-requirements.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/texas-special-requirements.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/texas-special-requirements.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/texas-special-requirements.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/texas-special-requirements.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/texas-special-requirements.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/texas-special-requirements.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/texas-special-requirements.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/texas-special-requirements.ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/texas-special-requirements.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/texas-special-requirements.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/texas-special-requirements.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/texas-special-requirements.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/texas-special-requirements.tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/texas-special-requirements.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/texas-special-requirements.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/texas-special-requirements.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/texas-special-requirements.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/texas-special-requirements.hi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/texas-special-requirements.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/texas-special-requirements.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/texas-special-requirements.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/texas-special-requirements.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/texas-special-requirements.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/general-knowledge.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/general-knowledge.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/general-knowledge.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/general-knowledge.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/general-knowledge.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/general-knowledge.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/general-knowledge.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/general-knowledge.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/general-knowledge.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/general-knowledge.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/general-knowledge.ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/general-knowledge.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/general-knowledge.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/general-knowledge.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/general-knowledge.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/general-knowledge.tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/general-knowledge.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/general-knowledge.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/general-knowledge.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/general-knowledge.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/general-knowledge.hi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/general-knowledge.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/general-knowledge.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/general-knowledge.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/general-knowledge.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/general-knowledge.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/air-brakes.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/air-brakes.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/air-brakes.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/air-brakes.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/air-brakes.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/air-brakes.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/air-brakes.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/air-brakes.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/air-brakes.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/air-brakes.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/air-brakes.ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/air-brakes.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/air-brakes.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/air-brakes.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/air-brakes.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/air-brakes.tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/air-brakes.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/air-brakes.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/air-brakes.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/air-brakes.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/air-brakes.hi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/air-brakes.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/air-brakes.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/air-brakes.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/air-brakes.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/air-brakes.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/combination-vehicles.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/combination-vehicles.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/combination-vehicles.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/combination-vehicles.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/combination-vehicles.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/combination-vehicles.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/combination-vehicles.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/combination-vehicles.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/combination-vehicles.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/combination-vehicles.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/combination-vehicles.ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/combination-vehicles.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/combination-vehicles.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/combination-vehicles.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/combination-vehicles.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/combination-vehicles.tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/combination-vehicles.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/combination-vehicles.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/combination-vehicles.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/combination-vehicles.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/combination-vehicles.hi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/combination-vehicles.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/combination-vehicles.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/combination-vehicles.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/combination-vehicles.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/combination-vehicles.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/hazmat.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/hazmat.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/hazmat.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/hazmat.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/hazmat.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/hazmat.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/hazmat.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/hazmat.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/hazmat.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/hazmat.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/hazmat.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/hazmat.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/hazmat.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/hazmat.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/hazmat.ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/hazmat.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/hazmat.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/hazmat.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/hazmat.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/hazmat.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/hazmat.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/hazmat.tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/hazmat.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/hazmat.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/hazmat.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/hazmat.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/hazmat.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/hazmat.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/hazmat.hi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/hazmat.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/hazmat.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/hazmat.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/hazmat.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/hazmat.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/hazmat.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/tanker.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/tanker.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/tanker.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/tanker.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/tanker.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/tanker.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/tanker.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/tanker.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/tanker.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/tanker.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/tanker.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/tanker.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/tanker.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/tanker.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/tanker.ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/tanker.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/tanker.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/tanker.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/tanker.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/tanker.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/tanker.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/tanker.tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/tanker.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/tanker.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/tanker.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/tanker.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/tanker.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/tanker.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/tanker.hi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/tanker.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/tanker.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/tanker.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/tanker.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/tanker.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/tanker.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/doubles-triples.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/doubles-triples.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/doubles-triples.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/doubles-triples.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/doubles-triples.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/doubles-triples.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/doubles-triples.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/doubles-triples.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/doubles-triples.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/doubles-triples.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/doubles-triples.ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/doubles-triples.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/doubles-triples.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/doubles-triples.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/doubles-triples.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/doubles-triples.tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/doubles-triples.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/doubles-triples.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/doubles-triples.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/doubles-triples.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/doubles-triples.hi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/doubles-triples.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/doubles-triples.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/doubles-triples.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/doubles-triples.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/doubles-triples.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/passenger.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/passenger.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/passenger.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/passenger.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/passenger.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/passenger.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/passenger.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/passenger.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/passenger.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/passenger.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/passenger.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/passenger.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/passenger.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/passenger.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/passenger.ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/passenger.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/passenger.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/passenger.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/passenger.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/passenger.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/passenger.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/passenger.tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/passenger.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/passenger.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/passenger.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/passenger.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/passenger.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/passenger.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/passenger.hi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/passenger.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/passenger.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/passenger.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/passenger.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/passenger.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/passenger.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/school-bus.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/school-bus.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/school-bus.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/school-bus.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/school-bus.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/school-bus.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/school-bus.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/school-bus.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/school-bus.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/school-bus.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/school-bus.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/school-bus.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/school-bus.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/school-bus.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/school-bus.ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/school-bus.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/school-bus.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/school-bus.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/school-bus.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/school-bus.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/school-bus.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/school-bus.tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/school-bus.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/school-bus.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/school-bus.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/school-bus.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/school-bus.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/school-bus.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/learn/texas/school-bus.hi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/learn/texas/school-bus.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/learn/texas/school-bus.es.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/learn/texas/school-bus.ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/learn/texas/school-bus.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/learn/texas/school-bus.hi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/learn/texas/school-bus.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://passroute.ai/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+</urlset>

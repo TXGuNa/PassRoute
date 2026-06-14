@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Block nothing — all content is public study material.
+Sitemap: https://passroute.ai/sitemap.xml
