@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PassRoute — Free Texas CDL Practice Tests 2026 (EN · ES · RU · TR · HI)</title>
+<title>PassRoute — Free Practice Tests (CDL, DMV &amp; More) · 5 Languages</title>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -33,7 +33,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="PassRoute" />
-<meta property="og:title" content="PassRoute — Free Texas CDL Practice Tests (5 languages)" />
+<meta property="og:title" content="PassRoute — Free Practice Tests (5 languages)" />
 <meta property="og:description" content="2,200+ handbook-accurate Texas CDL practice questions with explanations, in English, Spanish, Russian, Turkish & Hindi. Pass on your first try." />
 <meta property="og:url" content="https://passroute.ai/" />
 <meta property="og:image" content="https://passroute.ai/icon-512.png" />
@@ -45,7 +45,7 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="PassRoute — Free Texas CDL Practice Tests" />
+<meta name="twitter:title" content="PassRoute — Free Practice Tests" />
 <meta name="twitter:description" content="2,200+ handbook-accurate CDL questions with explanations, in 5 languages. Pass on your first try." />
 <meta name="twitter:image" content="https://passroute.ai/icon-512.png" />
 
@@ -134,6 +134,8 @@
   .hbtn:hover{background:rgba(255,255,255,.22)}
   .hbtn.ic{width:36px;padding:0;font-size:1.02rem}
   .langdd{position:relative;display:inline-block}
+  .adrail{position:fixed;top:80px;right:14px;z-index:40}
+  @media(max-width:1439px){.adrail{display:none}}
   .langbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;color:#fff;background:rgba(255,255,255,.14);
     border:1px solid rgba(255,255,255,.22);border-radius:9px;height:36px;padding:0 11px;box-sizing:border-box;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.3px;line-height:1}
   .langbtn:hover{background:rgba(255,255,255,.22)}
@@ -521,6 +523,10 @@
     </div>
     <div class="top-spacer"></div>
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
+    <div class="langdd" id="statedd" style="margin-right:6px">
+      <button class="langbtn" id="stateBtn" onclick="toggleStateMenu(event)" aria-haspopup="listbox" aria-expanded="false" title="State"><span id="stateCur">TX</span><span class="cv">▾</span></button>
+      <div class="langmenu" id="stateMenu" role="listbox"></div>
+    </div>
     <div class="langdd" id="langdd">
       <button class="langbtn" id="langBtn" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false"><span id="langCur">EN</span><span class="cv">▾</span></button>
       <div class="langmenu" id="langMenu" role="listbox"></div>
@@ -562,11 +568,33 @@
   <script src="upgrades.airbrakes.js"></script>
   <script src="upgrades.general.js"></script>
   <script src="translations-hi-gk-extra.js"></script>
+<script src="state-special.js"></script>
 <script src="pretrip.js"></script>
 <script src="skills.js"></script>
 <script>
 /* ============================ STATE & STORAGE ============================ */
 const DATA = window.CDL_DATA;
+/* ===== multi-state: 8 federal categories are shared; the "special" bank swaps per state ===== */
+let STATE = (function(){ try{
+  var u=new URLSearchParams(location.search).get('state');
+  if(u){ u=u.toUpperCase(); if(window.STATE_SPECIAL && window.STATE_SPECIAL[u]){ try{localStorage.setItem('tx_cdl_state',u);}catch(e){} return u; } }
+  return localStorage.getItem('tx_cdl_state')||'TX';
+}catch(e){ return 'TX'; } })();
+const STATES = window.STATE_SPECIAL || { TX:{code:'TX',name:'Texas'} };
+let _defSpecEN=null, _defSpecQ=null;
+function _snapSpecial(){ const cat=DATA.categories.find(c=>c.id==='special'); if(!cat||!window.I18N) return;
+  _defSpecEN=cat.questions.slice(); _defSpecQ={};
+  for(const L of ['ru','tr','es','hi']){ I18N.q[L]=I18N.q[L]||{}; _defSpecQ[L]=Object.assign({}, I18N.q[L].special||{}); } }
+function applyState(code){ const cat=DATA.categories.find(c=>c.id==='special'); if(!cat) return; const s=STATES[code];
+  if(!s || code==='TX' || !s.en){ if(_defSpecEN){ cat.questions=_defSpecEN.slice(); for(const L of ['ru','tr','es','hi']) I18N.q[L].special=Object.assign({}, _defSpecQ[L]); } }
+  else { cat.questions=s.en; for(const L of ['ru','tr','es','hi']){ I18N.q[L]=I18N.q[L]||{}; I18N.q[L].special=s[L]||{}; } } }
+function setState(code){ if(!STATES[code]) return; STATE=code; try{localStorage.setItem('tx_cdl_state',code);}catch(e){} applyState(code); closeStateMenu(); renderStateMenu(); applyStaticI18n(); go('home'); }
+function renderStateMenu(){ const cur=document.getElementById('stateCur'); if(cur) cur.textContent=STATE;
+  const menu=document.getElementById('stateMenu');
+  if(menu) menu.innerHTML=Object.keys(STATES).filter(c=>c!==STATE).map(c=>`<button role="option" onclick="setState('${c}')">${STATES[c].name} (${c})</button>`).join(''); }
+function toggleStateMenu(e){ if(e) e.stopPropagation(); const dd=document.getElementById('statedd'); if(!dd) return; const open=dd.classList.toggle('open'); const b=document.getElementById('stateBtn'); if(b) b.setAttribute('aria-expanded',open?'true':'false'); }
+function closeStateMenu(){ const dd=document.getElementById('statedd'); if(dd) dd.classList.remove('open'); const b=document.getElementById('stateBtn'); if(b) b.setAttribute('aria-expanded','false'); }
+document.addEventListener('click', closeStateMenu);
 /* Test count auto-scales with the (unique) bank size: each pool is split into
    near-equal DISJOINT tests, so a question never repeats within or across the
    tests of a category. Target sizes below pick how big each test is. */
@@ -627,7 +655,7 @@ function t(key, vars){
   if(vars) for(const k in vars){ s = String(s).split('{'+k+'}').join(vars[k]); }
   return s;
 }
-function catName(c){ const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
+function catName(c){ if(c.id==='special' && typeof STATE!=='undefined' && STATE!=='TX' && typeof STATES!=='undefined' && STATES[STATE]) return STATES[STATE].name+' Special Requirements'; const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
 function catBlurb(c){ const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.blurb)||c.blurb; }
 function g(k){ const G=window.I18N&&I18N.guide; if(G&&G[LANG]&&G[LANG][k]!=null) return G[LANG][k]; return (G&&G.en&&G.en[k]!=null)?G.en[k]:k; }
 function qData(catId, qid){
@@ -658,7 +686,8 @@ function closeLangMenu(){ const dd=document.getElementById('langdd'); if(dd) dd.
 function pickLang(l){ closeLangMenu(); setLang(l); }
 document.addEventListener('click', closeLangMenu);
 function applyStaticI18n(){
-  const sub=document.getElementById('brandSub'); if(sub) sub.textContent=t('brandSub');
+  const TAGLINE={en:"Free Practice Tests",es:"Exámenes de práctica gratis",ru:"Бесплатные пробные тесты",tr:"Ücretsiz Deneme Sınavları",hi:"मुफ़्त अभ्यास परीक्षाएँ"};
+  const sub=document.getElementById('brandSub'); if(sub) sub.textContent=TAGLINE[LANG]||TAGLINE.en;
   const rl=document.getElementById('resetBtn'); if(rl){ rl.title=t('reset'); rl.setAttribute('aria-label',t('reset')); }
   const f=document.getElementById('siteFooter');
   if(f) f.innerHTML = t('footMain')+'<br>'+t('footSub')+
@@ -666,6 +695,8 @@ function applyStaticI18n(){
     '<a href="'+HANDBOOK_URL+'" target="_blank" rel="noopener">'+t('footHb')+'</a> · '+
     '<a href="Texas-CDL-Study-Guide.pdf" target="_blank" rel="noopener" download>'+t('footSg')+'</a> · '+
     '<a onclick="go(\'guide\')" style="cursor:pointer">'+t('footGuide')+'</a> · '+
+    '<a href="/cdl/">Tests</a> · '+
+    '<a href="faq.html">FAQ</a> · '+
     '<a href="privacy.html">Privacy</a> · '+
     '<a href="terms.html">Terms</a></div>';
 }
@@ -767,6 +798,39 @@ function go(view, opts={}){
   state = Object.assign({view}, opts);
   window.scrollTo(0,0);
   render();
+  syncURL(false);
+}
+/* ---- real-URL navigation: distinct pageviews + browser back/forward + deep links ---- */
+function urlForView(){
+  var p=new URLSearchParams();
+  if(state.view && state.view!=='home') p.set('v', state.view);
+  if(state.catId) p.set('cat', state.catId);
+  if(typeof state.idx==='number') p.set('n', state.idx+1);
+  if(typeof LANG!=='undefined' && LANG && LANG!=='en') p.set('lang', LANG);
+  var q=p.toString();
+  return location.pathname + (q ? '?'+q : '');
+}
+function syncURL(replace){
+  try{
+    var st={view:state.view, catId:state.catId||null, idx:(typeof state.idx==='number'?state.idx:null)};
+    if(replace) history.replaceState(st,'',urlForView()); else history.pushState(st,'',urlForView());
+  }catch(e){}
+}
+function navNoPush(view,opts){ stopTimer(); stopSpeak(); state=Object.assign({view},opts||{}); window.scrollTo(0,0); render(); }
+window.addEventListener('popstate', function(ev){
+  var st=ev.state||{}, v=st.view, cat=st.catId;
+  if(v==='category' && cat){ navNoPush('category',{catId:cat}); }
+  else if(['guide','pretrip','skills','basic','road','stats'].indexOf(v)>=0){ navNoPush(v); }
+  else { navNoPush('home'); } /* test/results need live state -> safe fallback */
+});
+function initRoute(){
+  try{
+    var p=new URLSearchParams(location.search), v=p.get('v'), cat=p.get('cat');
+    if(v==='category' && cat && DATA.categories.some(function(c){return c.id===cat;})){ state={view:'category',catId:cat}; }
+    else if(['guide','pretrip','skills','basic','road','stats'].indexOf(v)>=0){ state={view:v}; }
+    else { state={view:'home'}; }
+  }catch(e){ state={view:'home'}; }
+  window.scrollTo(0,0); render(); syncURL(true);
 }
 function render(){
   const el = document.getElementById('app');
@@ -779,7 +843,9 @@ function render(){
   else if(state.view==='test'){ renderTestShell(); return; }
   else if(state.view==='results') el.innerHTML = renderResults();
   else if(state.view==='stats') el.innerHTML = renderStats();
+  mountAds();
 }
+function mountAds(){ try{ var ins=document.querySelectorAll('ins.adsbygoogle:not([data-adsbygoogle-status])'); for(var i=0;i<ins.length;i++){ (window.adsbygoogle=window.adsbygoogle||[]).push({}); } }catch(e){} }
 
 /* ============================ PRE-TRIP GUIDE ============================ */
 function ptDiagram(){
@@ -1145,6 +1211,7 @@ function startTest(catId, idx){
   window.scrollTo(0,0);
   renderTestShell();
   startTimer();
+  syncURL(false);
 }
 
 function renderTestShell(){
@@ -1237,6 +1304,7 @@ function finishTest(){
   state.view='results';
   window.scrollTo(0,0);
   render();
+  syncURL(false);
 }
 
 /* ============================ RESULTS ============================ */
@@ -1274,6 +1342,7 @@ function renderResults(){
         <button class="btn ghost" onclick="go('home')">${t('rAllCats')}</button>
       </div>
     </div>
+    <ins class="adsbygoogle" style="display:block;margin:18px 0" data-ad-client="ca-pub-5005909536075464" data-ad-slot="3385282635" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <div class="review"><h3>${t('rReview',{t:total})}</h3>${reviews}</div>`;
 }
 
@@ -1359,9 +1428,11 @@ document.addEventListener('keydown',e=>{
 if(!DATA){ document.getElementById('app').innerHTML='<p style="padding:40px">⚠️ questions.js failed to load. Keep <b>index.html</b>, <b>questions.js</b> and <b>translations.js</b> together in the same folder.</p>'; }
 else {
   document.documentElement.setAttribute('lang', LANG);
+  _snapSpecial(); applyState(STATE); renderStateMenu();
   renderLangMenu();
   applyStaticI18n();
-  go('home');
+  initRoute();
+  if(window.innerWidth>=1440){ try{ var _r=document.createElement('div'); _r.className='adrail'; _r.innerHTML='<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-5005909536075464" data-ad-slot="2432464479"></ins>'; document.body.appendChild(_r); (window.adsbygoogle=window.adsbygoogle||[]).push({}); }catch(e){} }
 }
 /* PWA: register the service worker for offline use (HTTPS only, e.g. passroute.ai) */
 if('serviceWorker' in navigator){
