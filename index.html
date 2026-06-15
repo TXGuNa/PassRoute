@@ -679,6 +679,27 @@ const PKEY = "tx_cdl_progress_v2";
 const TKEY = "tx_cdl_theme";
 const LKEY = "tx_cdl_lang";
 const HKEY = "tx_cdl_history";
+const SKEY = "tx_cdl_session";   /* in-progress test cache (sessionStorage): survives refresh, cleared on reset */
+/* Cache the live test/results session so a page refresh resumes exactly where you were.
+   Uses sessionStorage (not localStorage) so it is a transient cache, not a permanent save. */
+function saveSession(){ try{
+  if(state && (state.view==='test'||state.view==='results') && state.test){
+    sessionStorage.setItem(SKEY, JSON.stringify({ view:state.view, catId:state.catId, idx:state.idx,
+      cur:state.cur, answers:state.answers, correct:state.correct, incorrect:state.incorrect,
+      locked:state.locked, startTime:state.startTime, elapsed:state.elapsed, test:state.test }));
+  } else { sessionStorage.removeItem(SKEY); }
+}catch(e){} }
+function clearSession(){ try{ sessionStorage.removeItem(SKEY); }catch(e){} }
+function restoreSession(){ try{
+  const raw=sessionStorage.getItem(SKEY); if(!raw) return false;
+  const s=JSON.parse(raw); const cat=DATA.categories.find(c=>c.id===s.catId);
+  if(!cat || !Array.isArray(s.test) || (s.view!=='test'&&s.view!=='results')){ clearSession(); return false; }
+  state={ view:s.view, catId:s.catId, idx:s.idx, cat, test:s.test, cur:s.cur||0,
+    answers:s.answers||new Array(s.test.length).fill(null), correct:s.correct||0, incorrect:s.incorrect||0,
+    locked:!!s.locked, startTime:s.startTime||Date.now(), elapsed:s.elapsed };
+  window.scrollTo(0,0); render(); if(state.view==='test') startTimer(); syncURL(true);
+  return true;
+}catch(e){ clearSession(); return false; } }
 
 let state = {};
 let LANG = (function(){ try{
@@ -701,7 +722,11 @@ function t(key, vars){
   if(vars) for(const k in vars){ s = String(s).split('{'+k+'}').join(vars[k]); }
   return stz(s);
 }
-function catName(c){ if(c.id==='special' && typeof STATE!=='undefined' && STATE!=='TX' && typeof STATES!=='undefined' && STATES[STATE]) return STATES[STATE].name+' Special Requirements'; const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
+/* a learn category (learn-general) belongs to its base category (general); show the base name
+   and navigate "back" to the base category, so Learning Tests live under the same category as
+   Practice Tests (no separate "— Learn" category surfaces in breadcrumbs/back). */
+function baseCatId(c){ const id=(typeof c==='string')?c:(c&&c.id); const cat=(typeof c==='string')?DATA.categories.find(x=>x.id===c):c; if(cat&&cat.kind==='learn'&&cat.learnSubject) return cat.learnSubject; return id; }
+function catName(c){ if(c.kind==='learn'&&c.learnSubject){ const base=DATA.categories.find(x=>x.id===c.learnSubject); if(base) c=base; } if(c.id==='special' && typeof STATE!=='undefined' && STATE!=='TX' && typeof STATES!=='undefined' && STATES[STATE]) return STATES[STATE].name+' Special Requirements'; const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
 function catBlurb(c){ const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.blurb)||c.blurb; }
 /* breadcrumb/results label for a test: learn categories read "Lesson N", everything else "Test N" */
 function testLabel(c, idx){ return (c && c.kind==='learn') ? t('tileLessonN',{n:idx+1}) : t('tileTest',{n:idx+1}); }
@@ -851,6 +876,7 @@ function go(view, opts={}){
   window.scrollTo(0,0);
   render();
   syncURL(false);
+  saveSession();   /* clears the cached session when navigating away from a test/results */
 }
 /* ---- real-URL navigation: distinct pageviews + browser back/forward + deep links ---- */
 function urlForView(){
@@ -1283,11 +1309,12 @@ function startTest(catId, idx){
   renderTestShell();
   startTimer();
   syncURL(false);
+  saveSession();
 }
 
 function renderTestShell(){
   const el = document.getElementById('app');
-  el.innerHTML = `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${state.catId}'})">${catName(state.cat)}</a> › <span>${testLabel(state.cat,state.idx)}</span></div>
+  el.innerHTML = `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${baseCatId(state.cat)}'})">${catName(state.cat)}</a> › <span>${testLabel(state.cat,state.idx)}</span></div>
     <div class="runner" id="runner"></div>`;
   paintQuestion();
 }
@@ -1358,16 +1385,17 @@ function choose(i){
   s.answers[s.cur]=i;
   if(i===s.test[s.cur].answer) s.correct++; else s.incorrect++;
   paintQuestion();
+  saveSession();
   // scroll explanation into view a touch
   const ex=document.querySelector('.explain'); if(ex) ex.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function next(){
   stopSpeak();
   const s=state;
-  if(s.cur < s.test.length-1){ s.cur++; paintQuestion(); window.scrollTo({top:0,behavior:'smooth'}); }
+  if(s.cur < s.test.length-1){ s.cur++; paintQuestion(); saveSession(); window.scrollTo({top:0,behavior:'smooth'}); }
   else finishTest();
 }
-function confirmQuit(){ askConfirm(t('confirmQuit'), ()=>go('category',{catId:state.catId})); }
+function confirmQuit(){ askConfirm(t('confirmQuit'), ()=>go('category',{catId:baseCatId(state.cat)})); }
 function finishTest(){
   state.elapsed = Date.now() - (state.startTime||Date.now());
   stopTimer();
@@ -1377,6 +1405,7 @@ function finishTest(){
   window.scrollTo(0,0);
   render();
   syncURL(false);
+  saveSession();
 }
 
 /* ============================ RESULTS ============================ */
@@ -1401,7 +1430,7 @@ function renderResults(){
     </div>`;
   }).join('');
 
-  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${s.catId}'})">${catName(s.cat)}</a> › <span>${s.cat&&s.cat.kind==='learn'?t('resultsCrumbLesson',{n:s.idx+1}):t('resultsCrumb',{n:s.idx+1})}</span></div>
+  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${baseCatId(s.cat)}'})">${catName(s.cat)}</a> › <span>${s.cat&&s.cat.kind==='learn'?t('resultsCrumbLesson',{n:s.idx+1}):t('resultsCrumb',{n:s.idx+1})}</span></div>
     <div class="result ${passed?'pass':'fail'}">
       <div class="seal">${passed?'✓':'✗'}</div>
       <h2>${passed? t('rPassed') : t('rFailed')}</h2>
@@ -1410,7 +1439,7 @@ function renderResults(){
       <div class="rtime">${t('resTime',{t:fmtTime(s.elapsed||0)})} · ${t('resAvg',{s:Math.max(1,Math.round((s.elapsed||0)/1000/total))})}</div>
       <div class="actions">
         <button class="btn primary" onclick="startTest('${s.catId}',${s.idx})">${t('rRetake')}</button>
-        <button class="btn ghost" onclick="go('category',{catId:'${s.catId}'})">${t('rBackTo',{cat:catName(s.cat)})}</button>
+        <button class="btn ghost" onclick="go('category',{catId:'${baseCatId(s.cat)}'})">${t('rBackTo',{cat:catName(s.cat)})}</button>
         <button class="btn ghost" onclick="go('home')">${t('rAllCats')}</button>
       </div>
     </div>
@@ -1474,7 +1503,7 @@ function askConfirm(msg, onYes){
   document.addEventListener('keydown',onKey);
   requestAnimationFrame(()=>ov.classList.add('show'));
 }
-function resetAll(){ askConfirm(t('confirmReset'), ()=>{ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); toast(t('toastReset')); go('home'); }); }
+function resetAll(){ askConfirm(t('confirmReset'), ()=>{ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); clearSession(); toast(t('toastReset')); go('home'); }); }
 function clearHistory(){ askConfirm(t('confirmClearHistory'), ()=>{ localStorage.removeItem(HKEY); toast(t('toastHistoryCleared')); render(); }); }
 function toggleTheme(){
   const cur=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
@@ -1503,7 +1532,8 @@ else {
   _snapSpecial(); applyState(STATE); renderStateMenu();
   renderLangMenu();
   applyStaticI18n();
-  initRoute();
+  /* resume an in-progress test/results from the session cache on refresh; else normal routing */
+  if(!restoreSession()) initRoute();
   if(window.innerWidth>=1440){ try{ var _r=document.createElement('div'); _r.className='adrail'; _r.innerHTML='<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-5005909536075464" data-ad-slot="2432464479"></ins>'; document.body.appendChild(_r); (window.adsbygoogle=window.adsbygoogle||[]).push({}); }catch(e){} }
 }
 /* PWA: register the service worker for offline use (HTTPS only, e.g. passroute.ai) */
