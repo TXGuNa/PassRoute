@@ -206,6 +206,10 @@
   .tcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#cfd9ea}
   .tcard .num{font-size:.74rem;color:var(--muted);font-weight:650;letter-spacing:.4px;text-transform:uppercase}
   .tcard .ttl{font-size:1.04rem;font-weight:740;margin:2px 0 10px}
+  /* Learning-test tiles: green accent + green label so they read distinctly from practice tiles in the mixed grid */
+  .tcard.learn{border-left:4px solid #0a7c43}
+  .tcard.learn .num{color:#0a7c43}
+  [data-theme="dark"] .tcard.learn .num{color:#4ecb86}
   .badge{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;
     padding:4px 9px;border-radius:999px}
   .b-new{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
@@ -361,6 +365,8 @@
   .kt-opt{background:#eef2f6;color:#64748b}
   .kt-air{background:#e9f9f3;color:#0f9d8c}
   .kt-tx{background:#fdeedf;color:#b4530f}
+  .kt-learn{background:#eafaf0;color:#0a7c43}
+  [data-theme="dark"] .kt-learn{background:#0e2a1b;color:#4ecb86}
   [data-theme="dark"] .kt-req{background:#15233f;color:#7aa2ee}
   [data-theme="dark"] .kt-opt{background:#1f2630;color:#9aa6b4}
   [data-theme="dark"] .kt-air{background:#0f2a23;color:#4ecbac}
@@ -567,6 +573,7 @@
   <script src="upgrades.special.js"></script>
   <script src="upgrades.airbrakes.js"></script>
   <script src="upgrades.general.js"></script>
+  <script src="learn.cdl.js"></script>
   <script src="translations-hi-gk-extra.js"></script>
 <script src="state-special.js"></script>
 <script src="pretrip.js"></script>
@@ -581,6 +588,34 @@ let STATE = (function(){ try{
   return localStorage.getItem('tx_cdl_state')||'TX';
 }catch(e){ return 'TX'; } })();
 const STATES = window.STATE_SPECIAL || { TX:{code:'TX',name:'Texas'} };
+/* ---- state-aware copy: the 8 federal subjects are nationally identical, so we keep ONE
+   shared bank and restate any "Texas / Texas DPS" wording + the handbook link for the
+   active state at render time. Each state row may carry {name, agency, agencyShort, handbook}. */
+function stateMeta(){ const s=(typeof STATE!=='undefined' && STATES[STATE]) || STATES.TX || {name:'Texas'};
+  return { code:s.code||'TX', name:s.name||'Texas', agency:s.agency||((s.name||'Texas')+' DMV'), agencyShort:s.agencyShort||'DMV', handbook:s.handbook||'', links:s.links||{} }; }
+/* CLP-guide link for the active state. Falls back to that state's handbook/DMV page when a
+   specific link isn't defined — never a wrong-state link. Returns first item if value is an array. */
+function sLink(key){ const m=stateMeta(); let v=m.links&&m.links[key]; if(Array.isArray(v)) v=v[0]; return v || m.handbook || HANDBOOK_URL; }
+function sLinkAll(key){ const m=stateMeta(); const v=m.links&&m.links[key]; return Array.isArray(v)?v:(v?[v]:[]); }
+/* replace Texas-specific wording with the active state's. Order matters: agency phrases first. */
+function stz(str){ if(str==null) return str; const m=stateMeta(); if(m.code==='TX') return str;
+  return String(str)
+    // compound phrases FIRST (before the bare "Texas" -> name swap), to avoid double substitution
+    .replace(/Texas Special Requirements §14/g, m.name+' Special Requirements')
+    .replace(/§14/g, '')
+    .replace(/Texas DPS\/DMV/g, m.agency)
+    .replace(/Texas DPS/g, m.agency)
+    .replace(/Texas DMV/g, m.agency)
+    .replace(/\bTexas CDL Handbook\b/g, m.name+' CDL Handbook')
+    .replace(/\bTexas CDL\b/g, m.name+' CDL')
+    .replace(/\bTexas CLP\b/g, m.name+' CLP')
+    .replace(/\bTexas exam\b/gi, m.name+' exam')
+    // Texas-only form identifiers -> agency-neutral wording.
+    .replace(/\(\s*(form\s+)?DL-7CS?\s*\)/gi, '(CDL manual)')                 // "(DL-7C)" -> "(CDL manual)"
+    .replace(/\s*·?\s*(form\s+)?DL-7CS?\b\s*(\(PDF\))?\s*(—\s*the source of truth)?/gi, ' · official CDL manual')
+    .replace(/\b(form\s+)?DL-7CS?\b/gi, m.agencyShort+' CDL manual')
+    .replace(/\bTexas\b/g, m.name)
+    .replace(/ {2,}/g, ' ').replace(/\s+·\s*$/,''); }
 let _defSpecEN=null, _defSpecQ=null;
 function _snapSpecial(){ const cat=DATA.categories.find(c=>c.id==='special'); if(!cat||!window.I18N) return;
   _defSpecEN=cat.questions.slice(); _defSpecQ={};
@@ -601,7 +636,15 @@ document.addEventListener('click', closeStateMenu);
 if(DATA && DATA.categories){
   const CLP = {special:20, general:50, airbrakes:25, combination:20, hazmat:30, tanker:20, doubles:20, passenger:20, schoolbus:20};
   DATA.categories.forEach(c=>{
-    const P = c.questions.length, E = Math.min(CLP[c.id] || 25, P);  // each test = the real CLP exam size
+    const P = c.questions.length;
+    if(c.kind==="learn"){
+      // Learn (educational) categories: ONE single test that walks the WHOLE handbook section,
+      // every question in order, start to finish. Not split into multiple lessons.
+      c.examSize=P; c.numTests=1; c.passNeed=Math.max(1,Math.round(P*0.8)); c.readyTarget=1;
+      return;
+    }
+    const target = CLP[c.id] || 25;
+    const E = Math.min(target, P);                                   // each test = the real CLP exam size
     c.examSize   = E;
     c.numTests   = Math.max(1, Math.ceil(P / E));                    // enough tests so every unique question is shown
     c.passNeed   = Math.max(1, Math.round(E * 0.8));
@@ -622,6 +665,9 @@ const CLASS_META = {
 };
 if(DATA && DATA.categories){
   DATA.categories.forEach(c=>{
+    // Learn (educational) categories are NOT shown as home cards — they surface as
+    // "Learning Test" tiles inside their base category. Never reclassify them.
+    if(c.kind==="learn") return;
     const m = CLASS_META[c.id] || {classes:["A","B","C"], kind:(c.endorsement?"endorse":"core")};
     c.classes = m.classes; c.kind = m.kind;
   });
@@ -653,17 +699,21 @@ function t(key, vars){
   let s = (window.I18N && I18N.ui[LANG] && I18N.ui[LANG][key]);
   if(s==null) s = (window.I18N && I18N.ui.en[key]!=null) ? I18N.ui.en[key] : key;
   if(vars) for(const k in vars){ s = String(s).split('{'+k+'}').join(vars[k]); }
-  return s;
+  return stz(s);
 }
 function catName(c){ if(c.id==='special' && typeof STATE!=='undefined' && STATE!=='TX' && typeof STATES!=='undefined' && STATES[STATE]) return STATES[STATE].name+' Special Requirements'; const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
 function catBlurb(c){ const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.blurb)||c.blurb; }
+/* breadcrumb/results label for a test: learn categories read "Lesson N", everything else "Test N" */
+function testLabel(c, idx){ return (c && c.kind==='learn') ? t('tileLessonN',{n:idx+1}) : t('tileTest',{n:idx+1}); }
 function g(k){ const G=window.I18N&&I18N.guide; if(G&&G[LANG]&&G[LANG][k]!=null) return G[LANG][k]; return (G&&G.en&&G.en[k]!=null)?G.en[k]:k; }
 function qData(catId, qid){
   const en = CAT(catId).questions[qid];
   const tr = window.I18N && I18N.q[LANG] && I18N.q[LANG][catId] && I18N.q[LANG][catId][qid];
   const src = (LANG!=='en' && tr) ? tr : en;
-  return { q: src.q||en.q, options: src.options||en.options, explanation: src.explanation||en.explanation,
-           handbook: en.handbook, hbref: en.hbref, translated: !!(LANG!=='en' && tr) };
+  // restate "Texas/Texas DPS/Texas CDL Handbook" -> active state for the shared federal banks.
+  // (special is already the state's own bank; stz is a no-op there since it won't contain "Texas".)
+  return { q: stz(src.q||en.q), options: src.options||en.options, explanation: stz(src.explanation||en.explanation),
+           handbook: stz(en.handbook), hbref: en.hbref, translated: !!(LANG!=='en' && tr) };
 }
 function langBadge(translated){ return (LANG==='en'||translated) ? '' : ` <span class="enflag" title="${t('langWipNote')}">${t('enBadge')}</span>`; }
 function setLang(l){
@@ -690,10 +740,12 @@ function applyStaticI18n(){
   const sub=document.getElementById('brandSub'); if(sub) sub.textContent=TAGLINE[LANG]||TAGLINE.en;
   const rl=document.getElementById('resetBtn'); if(rl){ rl.title=t('reset'); rl.setAttribute('aria-label',t('reset')); }
   const f=document.getElementById('siteFooter');
+  const _m=stateMeta(); const _hb=_m.handbook||HANDBOOK_URL;
+  const _sg=_m.code==='TX' ? '<a href="Texas-CDL-Study-Guide.pdf" target="_blank" rel="noopener" download>'+t('footSg')+'</a> · ' : '';
   if(f) f.innerHTML = t('footMain')+'<br>'+t('footSub')+
     '<div class="dlinks">'+
-    '<a href="'+HANDBOOK_URL+'" target="_blank" rel="noopener">'+t('footHb')+'</a> · '+
-    '<a href="Texas-CDL-Study-Guide.pdf" target="_blank" rel="noopener" download>'+t('footSg')+'</a> · '+
+    '<a href="'+_hb+'" target="_blank" rel="noopener">'+t('footHb')+'</a> · '+
+    _sg+
     '<a onclick="go(\'guide\')" style="cursor:pointer">'+t('footGuide')+'</a> · '+
     '<a href="/cdl/">Tests</a> · '+
     '<a href="faq.html">FAQ</a> · '+
@@ -933,7 +985,9 @@ function renderSkillDetail(which){
 
 /* ============================ HOME ============================ */
 const ACCENTS = {special:"#d7263d", general:"#2563eb", airbrakes:"#0f9d8c", combination:"#7c3aed",
-  hazmat:"#ea580c", tanker:"#0891b2", doubles:"#ca8a04", passenger:"#db2777", schoolbus:"#65a30d"};
+  hazmat:"#ea580c", tanker:"#0891b2", doubles:"#ca8a04", passenger:"#db2777", schoolbus:"#65a30d",
+  "learn-special":"#0a7c43","learn-general":"#0a7c43","learn-airbrakes":"#0a7c43","learn-combination":"#0a7c43",
+  "learn-hazmat":"#0a7c43","learn-tanker":"#0a7c43","learn-doubles":"#0a7c43","learn-passenger":"#0a7c43","learn-schoolbus":"#0a7c43"};
 
 function catStats(cat){
   let passed=0, attempted=0;
@@ -949,7 +1003,8 @@ function catLevel(cat){
   return {lvl, passed:s.passed, total:cat.numTests};
 }
 /* knowledge tests (core + Texas + air) that apply to a class */
-function classKnowCats(cls){ return DATA.categories.filter(c=>c.kind!=="endorse" && (c.classes||[]).includes(cls)); }
+function classKnowCats(cls){ return DATA.categories.filter(c=>c.kind!=="endorse" && c.kind!=="learn" && (c.classes||[]).includes(cls)); }
+function learnCats(){ return DATA.categories.filter(c=>c.kind==="learn"); }
 /* readiness counts every knowledge test shown for the class (core + Texas + air) */
 function classReady(cls){
   const reqs=classKnowCats(cls);
@@ -1015,20 +1070,25 @@ function renderRoadmap(){
 const HANDBOOK_URL = "https://www.dps.texas.gov/internetforms/Forms/DL-7C.pdf";
 const HANDBOOK_ES  = "https://www.dps.texas.gov/Internetforms/Forms/DL-7CS.pdf";
 function renderDownloads(){
-  return `<section class="downloads">
-    <div class="dl-head"><h3>${t('dlTitle')}</h3>
-      <div class="rm-tag">${t('dlTag')}</div></div>
-    <div class="dl-row">
-      <a class="dl-card" href="${HANDBOOK_URL}" target="_blank" rel="noopener">
-        <div class="dl-ico">📕</div>
-        <div class="dl-txt"><b>${t('dlHbT')}</b><span>${t('dlHbS')}</span></div>
-        <span class="dl-go">${t('dlOpen')}</span>
-      </a>
+  const m = stateMeta();
+  const hbUrl = m.handbook || HANDBOOK_URL;     // active state's official handbook landing page
+  // The quick study-guide PDF is Texas-specific; only show it on Texas.
+  const sgCard = m.code==='TX' ? `
       <a class="dl-card" href="Texas-CDL-Study-Guide.pdf" target="_blank" rel="noopener" download>
         <div class="dl-ico">📗</div>
         <div class="dl-txt"><b>${t('dlSgT')}</b><span>${t('dlSgS')}</span></div>
         <span class="dl-go">${t('dlDownload')}</span>
+      </a>` : '';
+  return `<section class="downloads">
+    <div class="dl-head"><h3>${t('dlTitle')}</h3>
+      <div class="rm-tag">${t('dlTag')}</div></div>
+    <div class="dl-row">
+      <a class="dl-card" href="${hbUrl}" target="_blank" rel="noopener">
+        <div class="dl-ico">📕</div>
+        <div class="dl-txt"><b>${t('dlHbT')}</b><span>${t('dlHbS')}</span></div>
+        <span class="dl-go">${t('dlOpen')}</span>
       </a>
+      ${sgCard}
     </div>
   </section>`;
 }
@@ -1047,7 +1107,7 @@ function renderGuide(){
     <div class="step"><div class="sn">1</div><div class="sc">
       <h3>${g('s1T')}</h3>
       <p>${g('s1P')}</p>
-      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/how-apply-texas-driver-license" target="_blank" rel="noopener">How to apply for a Texas DL ↗</a>
+      <a class="linkbtn" href="${sLink('applyDL')}" target="_blank" rel="noopener">${stz('How to apply for a Texas DL')} ↗</a>
     </div></div>
 
     <div class="step"><div class="sn">2</div><div class="sc">
@@ -1055,42 +1115,41 @@ function renderGuide(){
       <p>${g('s2P')}</p>
       <p class="muted">${g('s2Note')}</p>
       <a class="linkbtn" href="https://nationalregistry.fmcsa.dot.gov/" target="_blank" rel="noopener">Find a certified DOT examiner ↗</a>
-      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/commercial-driver-license-cdl-medical-certification-requirement" target="_blank" rel="noopener">DPS medical certification info ↗</a>
+      <a class="linkbtn" href="${sLink('medical')}" target="_blank" rel="noopener">${stz('DPS medical certification info')} ↗</a>
     </div></div>
 
     <div class="step"><div class="sn">3</div><div class="sc">
       <h3>${g('s3T')}</h3>
       <p>${g('s3P')}</p>
-      <a class="linkbtn" href="https://www.dps.texas.gov/Internetforms/Forms/CDL-4.pdf" target="_blank" rel="noopener">Form CDL-4 (PDF) ↗</a>
-      <a class="linkbtn" href="https://www.dps.texas.gov/Internetforms/Forms/CDL-5.pdf" target="_blank" rel="noopener">Form CDL-5 (PDF) ↗</a>
-      <a class="linkbtn" href="https://www.dps.texas.gov/Internetforms/Forms/CDL-10.pdf" target="_blank" rel="noopener">Form CDL-10 (PDF) ↗</a>
+      ${sLinkAll('selfCert').length
+        ? sLinkAll('selfCert').map((u,i)=>`<a class="linkbtn" href="${u}" target="_blank" rel="noopener">${stz('Form CDL-'+([4,5,10][i]||(i+1))+' (PDF)')} ↗</a>`).join('\n      ')
+        : `<a class="linkbtn" href="${sLink('cdlApp')}" target="_blank" rel="noopener">${stz('Self-certification info')} ↗</a>`}
     </div></div>
 
     <div class="step"><div class="sn">4</div><div class="sc">
       <h3>${g('s4T')}</h3>
       <p>${g('s4P')}</p>
-      <a class="linkbtn" href="https://www.dps.texas.gov/Internetforms/Forms/CDL-1.pdf" target="_blank" rel="noopener">Form CDL-1 application (PDF) ↗</a>
+      <a class="linkbtn" href="${sLink('cdlApp')}" target="_blank" rel="noopener">${stz('CDL application')} ↗</a>
     </div></div>
 
     <div class="step"><div class="sn">5</div><div class="sc">
       <h3>${g('s5T')}</h3>
       <p>${g('s5P')}</p>
-      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/entry-level-driver-training-eldt" target="_blank" rel="noopener">About ELDT ↗</a>
+      <a class="linkbtn" href="${sLink('eldt')}" target="_blank" rel="noopener">About ELDT ↗</a>
     </div></div>
 
     <div class="step"><div class="sn">6</div><div class="sc">
       <h3>${g('s6T')}</h3>
       <p>${g('s6P')}</p>
-      <a class="linkbtn go" href="https://public.txdpsscheduler.com/" target="_blank" rel="noopener">Schedule a DPS appointment ↗</a>
-      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/driver-license-services-appointments" target="_blank" rel="noopener">Appointment help ↗</a>
+      <a class="linkbtn go" href="${sLink('appointment')}" target="_blank" rel="noopener">${stz('Schedule a DPS appointment')} ↗</a>
     </div></div>
 
     <div class="step"><div class="sn">7</div><div class="sc">
       <h3>${g('s7T')}</h3>
       <ul class="checklist">${c7}</ul>
-      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/us-citizenship-or-lawful-presence-requirement" target="_blank" rel="noopener">Citizenship / lawful presence docs ↗</a>
-      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/identification-requirements" target="_blank" rel="noopener">Identity docs ↗</a>
-      <a class="linkbtn" href="https://www.dps.texas.gov/section/driver-license/driver-license-fees" target="_blank" rel="noopener">Fees ↗</a>
+      <a class="linkbtn" href="${sLink('citizenship')}" target="_blank" rel="noopener">Citizenship / lawful presence docs ↗</a>
+      <a class="linkbtn" href="${sLink('idDocs')}" target="_blank" rel="noopener">Identity docs ↗</a>
+      <a class="linkbtn" href="${sLink('fees')}" target="_blank" rel="noopener">Fees ↗</a>
     </div></div>
 
     <div class="step"><div class="sn">8</div><div class="sc">
@@ -1112,12 +1171,12 @@ function renderGuide(){
       <p>${g('s9P')}</p>
       <p class="muted">${g('s9Note')}</p>
       <p class="muted">${g('s9Retake')}</p>
-      <a class="linkbtn" href="https://www.dps.texas.gov/internetforms/Forms/DL-60a.pdf" target="_blank" rel="noopener">Driving-test requirements ↗</a>
+      <a class="linkbtn" href="${sLink('drivingTest')}" target="_blank" rel="noopener">Driving-test requirements ↗</a>
       <a class="linkbtn go" onclick="go('skills')">${t('skGuideTitle')} →</a>
     </div></div>
 
     <div class="callout">⚠️ <b>${g('calloutBold')}</b>${g('calloutText')}
-      <a href="https://www.dps.texas.gov/section/driver-license/how-do-i-apply-commercial-driver-license" target="_blank" rel="noopener" style="font-weight:700"> Official DPS: Apply for a CDL/CLP ↗</a></div>
+      <a href="${sLink('officialApply')}" target="_blank" rel="noopener" style="font-weight:700"> ${stz('Official DPS: Apply for a CDL/CLP')} ↗</a></div>
 
     <div style="text-align:center;margin:8px 0 30px">
       <button class="btn ghost" onclick="go('home')">${g('back')}</button>
@@ -1175,24 +1234,36 @@ function renderHome(){
 }
 
 /* ============================ CATEGORY ============================ */
-function renderCategory(catId){
-  const cat = DATA.categories.find(c=>c.id===catId);
-  const s = catStats(cat);
+/* The learn (educational) bank for a base category lives in a sibling category
+   `learn-<id>`. It is NOT shown as its own home card; instead its lessons appear
+   as a "Learning Tests" section inside the base category page. */
+function learnCatFor(catId){ return DATA.categories.find(c=>c.kind==='learn' && c.learnSubject===catId) || null; }
+function catTiles(cat){
   let tiles='';
+  const isLearn = cat.kind==='learn';
   for(let i=0;i<cat.numTests;i++){
-    const r = getResult(catId,i);
+    const r = getResult(cat.id,i);
     let badge = `<span class="badge b-new">${t('notStarted')}</span>`, best='';
     if(r){
       badge = r.passed ? `<span class="badge b-pass">${t('passedB')}</span>`
                        : `<span class="badge b-fail">${t('notYet')}</span>`;
       best = `<div class="best">${t('bestLine',{c:r.bestCorrect,t:r.total,pct:r.bestPct,a:r.attempts})}</div>`;
     }
-    tiles += `<div class="tcard" onclick="startTest('${catId}',${i})">
-      <div class="num">${t('tilePractice')}</div>
-      <div class="ttl">${t('tileTest',{n:i+1})}</div>
+    tiles += `<div class="tcard${isLearn?' learn':''}" onclick="startTest('${cat.id}',${i})">
+      <div class="num">${isLearn?t('tileLesson'):t('tilePractice')}</div>
+      <div class="ttl">${isLearn?t('tileLessonN',{n:i+1}):t('tileTest',{n:i+1})}</div>
       ${badge}${best}
     </div>`;
   }
+  return tiles;
+}
+function renderCategory(catId){
+  const cat = DATA.categories.find(c=>c.id===catId);
+  const s = catStats(cat);
+  const learn = learnCatFor(catId);
+  // One single grid: learning-test tiles first (labelled "LEARNING TEST"), then the
+  // practice-test tiles (labelled "PRACTICE TEST"). No sub-sections.
+  const tiles = (learn ? catTiles(learn) : '') + catTiles(cat);
   return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <span>${catName(cat)}</span></div>
     <div class="section-head">
       <div><h2>${catName(cat)}</h2>
@@ -1216,7 +1287,7 @@ function startTest(catId, idx){
 
 function renderTestShell(){
   const el = document.getElementById('app');
-  el.innerHTML = `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${state.catId}'})">${catName(state.cat)}</a> › <span>${t('tileTest',{n:state.idx+1})}</span></div>
+  el.innerHTML = `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${state.catId}'})">${catName(state.cat)}</a> › <span>${testLabel(state.cat,state.idx)}</span></div>
     <div class="runner" id="runner"></div>`;
   paintQuestion();
 }
@@ -1224,6 +1295,7 @@ function renderTestShell(){
 function paintQuestion(){
   const s = state, it = s.test[s.cur], qd = qData(s.catId, it.qid);
   const dispOpts = it.optOrder.map(oi=>qd.options[oi]);
+  const isLearn = s.cat && s.cat.kind==="learn";        // learning tests have no pass/fail "misses" pressure
   const allowMiss = s.test.length - passMark(s.test.length);
   const missLeft = allowMiss - s.incorrect;
   const pct = Math.round((s.cur)/s.test.length*100);
@@ -1251,7 +1323,7 @@ function paintQuestion(){
     explain = `<div class="explain show ${good?'good':'bad'}">
       <div class="verdict">${good? t('vCorrect',{L:L}) : t('vWrong',{L:L})}</div>
       <p>${qd.explanation}</p>
-      <div class="hb"><span class="src">${t('hbSrc',{ref:qd.hbref})}</span><i>“${qd.handbook}”</i></div>
+      ${(qd.handbook||qd.explanation) ? `<div class="hb"><span class="src">${t('hbSrc',{ref:qd.hbref})}</span><i>“${qd.handbook||qd.explanation}”</i></div>` : ''}
     </div>`;
   }
 
@@ -1263,7 +1335,7 @@ function paintQuestion(){
         <span class="chip time" id="qtimer">${fmtTime(Date.now()-(s.startTime||Date.now()))}</span>
         <span class="chip ok">✓ ${s.correct}</span>
         <span class="chip no">✗ ${s.incorrect}</span>
-        <span class="chip left">${t('chipMiss',{n:(missLeft<0?0:missLeft)})}</span>
+        ${isLearn ? '' : `<span class="chip left">${t('chipMiss',{n:(missLeft<0?0:missLeft)})}</span>`}
       </div>
     </div>
     <div class="pbar"><i style="width:${pct}%"></i></div>
@@ -1329,7 +1401,7 @@ function renderResults(){
     </div>`;
   }).join('');
 
-  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${s.catId}'})">${catName(s.cat)}</a> › <span>${t('resultsCrumb',{n:s.idx+1})}</span></div>
+  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${s.catId}'})">${catName(s.cat)}</a> › <span>${s.cat&&s.cat.kind==='learn'?t('resultsCrumbLesson',{n:s.idx+1}):t('resultsCrumb',{n:s.idx+1})}</span></div>
     <div class="result ${passed?'pass':'fail'}">
       <div class="seal">${passed?'✓':'✗'}</div>
       <h2>${passed? t('rPassed') : t('rFailed')}</h2>
@@ -1365,7 +1437,7 @@ function renderStats(){
     const c=DATA.categories.find(x=>x.id===r.cat);
     let d=''; try{ d=new Date(r.ts).toLocaleString(LANG,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }catch(e){ d=new Date(r.ts).toLocaleString(); }
     return `<div class="srow ${r.passed?'p':'f'}">
-      <div class="sr-cat">${c?catName(c):r.cat} · ${t('tileTest',{n:r.idx+1})}</div>
+      <div class="sr-cat">${c?catName(c):r.cat} · ${c?testLabel(c,r.idx):t('tileTest',{n:r.idx+1})}</div>
       <div class="sr-sc">${r.correct}/${r.total} · ${r.pct}%</div>
       <div class="sr-tm">⏱ ${fmtTime((r.secs||0)*1000)}</div>
       <div class="sr-st">${r.passed?'✓':'✗'}</div>
