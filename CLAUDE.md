@@ -1,8 +1,25 @@
 # PassRoute — Project Rules & Requirements
 
-PassRoute is a static, multilingual Texas CDL practice-test web app hosted at **passroute.ai**.
+PassRoute is a static, multilingual practice-test web app hosted at **passroute.ai**.
 This file records the **non-negotiable rules** the project must always follow. Read it before
 making any change to questions, translations, or the app.
+
+## Architecture (multi-vertical, 50-state)
+This repo (`CDL-Practice/`) **is the whole site root**. Two verticals share one engine:
+- `/` → **CDL app** (`index.html`). On first visit it shows the **onboarding picker** (choose
+  exam CDL/DL + state, cached in `localStorage` as `pr_exam`/`pr_state`, then routes). A header
+  **exam switcher** (CDL ⇄ DL) and **state selector** (all 50) are always available.
+- `/dl/` → **DL app** (`dl/index.html` + `dl/dl-data.js`) — the regular driver-license vertical.
+  It is its OWN hub (lists subjects); landing-gen does NOT write a static `/dl/index.html`.
+- `/cdl/...` and `/dl/*.html` → SEO landing pages (built by `content-engine/landing-gen.cjs`).
+- `/states-meta.js` → **shared 50-state metadata** (agency name, CDL+DL handbook, appointment &
+  apply URLs) loaded by BOTH apps. Real researched official .gov URLs.
+- Both apps share `localStorage` (same origin): `pr_exam`, `pr_state`.
+- Build tools live in `../content-engine/` (NOT in this repo): `import-dl.cjs` writes `dl/dl-data.js`;
+  `programs/{cdl,dl}.cjs` + `landing-gen.cjs` build landing pages; `import-learn.cjs` builds `learn.cdl.js`.
+- State-awareness: federal CDL subjects are shared and restated per state (`stz()`); CDL Special
+  Requirements is **hidden** for states without their own question bank; DL question bodies stay
+  Texas-based (honestly labeled) with a per-state handbook/appointment banner.
 
 ## Stack & files
 - Static single-page app, **no build step**. Served as-is.
