@@ -589,6 +589,7 @@
 <script src="translations-es.js"></script>
 <script src="translations-hi.js"></script>
 <script src="translations-ar.js"></script>
+<script src="translations-ar-q.js"></script>
 <script src="endorsements.js"></script>
 <script src="questions-extra.js"></script>
   <script src="upgrades.schoolbus.js"></script>
@@ -790,7 +791,7 @@ function qData(catId, qid){
   // restate "Texas/Texas DPS/Texas CDL Handbook" -> active state for the shared federal banks.
   // (special is already the state's own bank; stz is a no-op there since it won't contain "Texas".)
   return { q: stz(src.q||en.q), options: src.options||en.options, explanation: stz(src.explanation||en.explanation),
-           handbook: stz(en.handbook), hbref: en.hbref, translated: !!(LANG!=='en' && tr) };
+           handbook: stz(src.explanation||en.explanation), hbref: en.hbref, translated: !!(LANG!=='en' && tr) };
 }
 function langBadge(translated){ return (LANG==='en'||translated) ? '' : ` <span class="enflag" title="${t('langWipNote')}">${t('enBadge')}</span>`; }
 function setLang(l){
