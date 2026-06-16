@@ -26,7 +26,8 @@
   { "@type": "ItemList", "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "CDL — Commercial License practice test", "url": "https://passroute.ai/" },
     { "@type": "ListItem", "position": 2, "name": "DL — Driver License practice test", "url": "https://passroute.ai/dl/" },
-    { "@type": "ListItem", "position": 3, "name": "US Citizenship civics practice test", "url": "https://passroute.ai/citizenship/" }
+    { "@type": "ListItem", "position": 3, "name": "US Citizenship civics practice test", "url": "https://passroute.ai/citizenship/" },
+    { "@type": "ListItem", "position": 4, "name": "Digital SAT Math practice", "url": "https://passroute.ai/sat/" }
   ] },
   { "@type": "FAQPage", "mainEntity": [
     { "@type": "Question", "name": "What practice tests does PassRoute offer?", "acceptedAnswer": { "@type": "Answer", "text": "Commercial Driver License (CDL), regular Driver License (DL), and US Citizenship (USCIS civics) — all free, with answers and explanations." } },
@@ -60,7 +61,7 @@ body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMac
 .statebar{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; margin:22px 0 4px; }
 .statebar label{ font-weight:700; font-size:.9rem; } .statebar .hint{ font-size:.8rem; color:var(--muted); }
 .stsel{ padding:10px 12px; border-radius:11px; border:1.5px solid var(--line); background:var(--card); color:var(--ink); font-size:.96rem; min-width:190px; }
-.cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:26px; }
+.cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(232px,1fr)); gap:18px; margin-top:26px; }
 @media(max-width:820px){ .cards{ grid-template-columns:1fr; } .hero h2{ font-size:1.7rem; } }
 .xcard{ position:relative; background:var(--card); border:1px solid var(--line); border-radius:20px; padding:24px 22px 22px; cursor:pointer; transition:transform .14s, box-shadow .14s, border-color .14s; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
 .xcard:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--accent); }
@@ -176,18 +177,21 @@ function fillStates(){ var sel=document.getElementById('stateSel');
   sel.innerHTML=sorted.map(function(c){ return '<option value="'+c+'"'+(c===STATE?' selected':'')+'>'+SMETA[c].name+' ('+c+')</option>'; }).join('');
   sel.onchange=function(){ STATE=sel.value; try{ localStorage.setItem('pr_state',STATE); }catch(e){} };
 }
-function pick(exam){ try{ localStorage.setItem('pr_exam',exam); if(exam!=='civ') localStorage.setItem('pr_state',STATE); sessionStorage.setItem('pr_entered','1'); }catch(e){}
-  var parts=[]; if(exam==='cdl') parts.push('exam=cdl'); if(exam!=='civ') parts.push('state='+STATE); if(LANG!=='en') parts.push('lang='+LANG);
+function pick(exam){ try{ localStorage.setItem('pr_exam',exam); if(exam!=='civ'&&exam!=='sat') localStorage.setItem('pr_state',STATE); sessionStorage.setItem('pr_entered','1'); }catch(e){}
+  var parts=[]; if(exam==='cdl') parts.push('exam=cdl'); if(exam!=='civ'&&exam!=='sat') parts.push('state='+STATE); if(LANG!=='en') parts.push('lang='+LANG);
   var qs=parts.length?'?'+parts.join('&'):'';
   if(exam==='cdl') location.href='../index.html'+qs;
   else if(exam==='dl') location.href='../dl/index.html'+qs;
+  else if(exam==='sat') location.href='../sat/index.html'+(LANG!=='en'?'?lang='+LANG:'');
   else location.href='../citizenship/index.html'+qs;
 }
+var SAT_T={en:{tag:"SAT · Math",name:"SAT Math",desc:"Digital SAT Math practice: Algebra, Advanced Math, Problem-Solving & Data, Geometry & Trig — original questions with explanations."},es:{tag:"SAT · Mate",name:"Matemáticas SAT",desc:"Práctica de Matemáticas del SAT Digital: Álgebra, Matemáticas avanzadas, Datos, Geometría y Trigonometría — con explicaciones."},ru:{tag:"SAT · Матем.",name:"Математика SAT",desc:"Практика по математике Digital SAT: алгебра, высшая математика, анализ данных, геометрия — с разбором."},tr:{tag:"SAT · Mat.",name:"SAT Matematik",desc:"Digital SAT Matematik pratiği: Cebir, İleri Matematik, Veri Analizi, Geometri ve Trigonometri — açıklamalı."},hi:{tag:"SAT · गणित",name:"SAT गणित",desc:"डिजिटल SAT गणित अभ्यास: बीजगणित, उन्नत गणित, डेटा, ज्यामिति — व्याख्या सहित।"},ar:{tag:"SAT · رياضيات",name:"رياضيات SAT",desc:"تدريب رياضيات SAT الرقمي: الجبر، الرياضيات المتقدمة، تحليل البيانات، الهندسة — مع الشرح."}};
 function renderCards(){
   var defs=[
     {ex:'cdl', ic:'📋', acc:'var(--blue)', tag:tr('cdlTag'), name:tr('cdlName'), desc:tr('cdlDesc'), subs:['General Knowledge','Air Brakes','Combination','Endorsements']},
     {ex:'dl',  ic:'🚗', acc:'var(--green)', tag:tr('dlTag'), name:tr('dlName'), desc:tr('dlDesc'), subs:['Road Signs','Rules of the Road','Safe Driving','Penalties']},
-    {ex:'civ', ic:'🛂', acc:'var(--teal)', tag:tr('civTag'), name:tr('civName'), desc:tr('civDesc'), subs:['Government','History','Symbols & Holidays']}
+    {ex:'civ', ic:'🛂', acc:'var(--teal)', tag:tr('civTag'), name:tr('civName'), desc:tr('civDesc'), subs:['Government','History','Symbols & Holidays']},
+    {ex:'sat', ic:'🎓', acc:'#7c3aed', tag:(SAT_T[LANG]||SAT_T.en).tag, name:(SAT_T[LANG]||SAT_T.en).name, desc:(SAT_T[LANG]||SAT_T.en).desc, subs:['Algebra','Advanced Math','Data Analysis','Geometry & Trig']}
   ];
   document.getElementById('cards').innerHTML=defs.map(function(d){
     return '<div class="xcard" style="--accent:'+d.acc+'" onclick="pick(\''+d.ex+'\')">'+
@@ -212,7 +216,7 @@ function applyI18n(){
   document.getElementById('stateLbl').textContent=tr('stateLbl');
   document.getElementById('stateHint').textContent=tr('stateHint');
   document.getElementById('footNote').textContent=tr('footNote');
-  document.getElementById('siteFoot').innerHTML=tr('foot')+'<div style="margin-top:8px"><a href="../index.html">CDL</a> · <a href="../dl/index.html">DL</a> · <a href="../citizenship/index.html">Citizenship</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>';
+  document.getElementById('siteFoot').innerHTML=tr('foot')+'<div style="margin-top:8px"><a href="../index.html">CDL</a> · <a href="../dl/index.html">DL</a> · <a href="../citizenship/index.html">Citizenship</a> · <a href="../sat/index.html">SAT</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>';
   renderCards();
 }
 /* language menu */
