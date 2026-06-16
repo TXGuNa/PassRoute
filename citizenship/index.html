@@ -8,7 +8,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://passroute.ai/citizenship/" />
 <meta property="og:type" content="website" /><meta property="og:title" content="Free US Citizenship Practice Test — PassRoute" />
-<meta property="og:description" content="Practice the official USCIS civics questions in 5 languages with answers and explanations." />
+<meta property="og:description" content="Practice the official USCIS civics questions in 6 languages with answers and explanations." />
 <meta property="og:url" content="https://passroute.ai/citizenship/" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="alternate" hreflang="en" href="https://passroute.ai/citizenship/?lang=en" />
@@ -16,6 +16,7 @@
 <link rel="alternate" hreflang="ru" href="https://passroute.ai/citizenship/?lang=ru" />
 <link rel="alternate" hreflang="tr" href="https://passroute.ai/citizenship/?lang=tr" />
 <link rel="alternate" hreflang="hi" href="https://passroute.ai/citizenship/?lang=hi" />
+<link rel="alternate" hreflang="ar" href="https://passroute.ai/citizenship/?lang=ar" />
 <link rel="alternate" hreflang="x-default" href="https://passroute.ai/citizenship/" />
 <script type="application/ld+json">
 { "@context": "https://schema.org", "@graph": [
@@ -470,6 +471,9 @@
   @media(max-width:560px){ #examBtn .exam-txt{display:none} #examBtn{padding-left:10px;padding-right:9px} }
   html{overflow-x:clip}
   @media(max-width:480px){ .top-inner{gap:6px;padding:10px 10px} .brand h1{display:none} .brand img,.brand .star{width:32px;height:32px} .langbtn{padding:0 8px} .hbtn.ic{width:32px;font-size:.98rem} }
+  [dir="rtl"] .opt,[dir="rtl"] .desc,[dir="rtl"] .info,[dir="rtl"] .qtext,[dir="rtl"] .rq,[dir="rtl"] .hb,[dir="rtl"] .verdict,[dir="rtl"] .best{text-align:right}
+  [dir="rtl"] .langmenu{left:0;right:auto}
+  [dir="rtl"] .opt .key{margin-left:10px;margin-right:0}
 </style>
 </head>
 <body>
@@ -480,18 +484,18 @@
       <div><h1>PassRoute</h1><p id="brandSub">US Citizenship · Civics</p></div>
     </div>
     <div class="top-spacer"></div>
-    <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">ð </button>
+    <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
-      <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span class="exam-ic">ð</span><span class="exam-txt">Citizenship</span><span class="cv">¾</span></button>
-      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('cdl')">ð Commercial (CDL)</button><button role="option" onclick="switchExam('dl')">ð Driver License (DL)</button><button role="option" onclick="switchExam('home')">ð  All exams</button></div>
+      <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span class="exam-ic">🛂</span><span class="exam-txt">Citizenship</span><span class="cv">▾</span></button>
+      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('cdl')">📋 Commercial (CDL)</button><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="langdd">
-      <button class="langbtn" id="langBtn" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false"><span id="langCur">EN</span><span class="cv">¾</span></button>
+      <button class="langbtn" id="langBtn" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false"><span id="langCur">EN</span><span class="cv">▾</span></button>
       <div class="langmenu" id="langMenu" role="listbox"></div>
     </div>
-    <button class="hbtn ic" onclick="go('stats')" id="statsBtn" title="Stats" aria-label="Stats">ð</button>
-    <button class="hbtn ic" onclick="toggleTheme()" id="themeBtn" title="Theme" aria-label="Theme">ð</button>
-    <button class="hbtn ic" onclick="resetAll()" id="resetBtn" title="Reset" aria-label="Reset">ð</button>
+    <button class="hbtn ic" onclick="go('stats')" id="statsBtn" title="Stats" aria-label="Stats">📊</button>
+    <button class="hbtn ic" onclick="toggleTheme()" id="themeBtn" title="Theme" aria-label="Theme">🌙</button>
+    <button class="hbtn ic" onclick="resetAll()" id="resetBtn" title="Reset" aria-label="Reset">🔄</button>
   </div>
 </header>
 <div id="app" class="wrap"></div>
@@ -510,13 +514,14 @@ var SMC={
  es:{title:"Material de estudio",tag:"USCIS oficial",open:"Abrir",q100T:"128 preguntas y respuestas (2025)",q100S:"PDF oficial de USCIS",fcT:"Tarjetas de civismo",fcS:"Tarjetas PDF para imprimir",allT:"Prepárate para el examen",allS:"Todos los materiales oficiales de USCIS"},
  ru:{title:"Учебные материалы",tag:"Официально (USCIS)",open:"Открыть",q100T:"128 вопросов и ответов (2025)",q100S:"Официальный PDF USCIS",fcT:"Карточки по обществознанию",fcS:"PDF-карточки для печати",allT:"Подготовка к тесту",allS:"Все официальные материалы USCIS"},
  tr:{title:"Çalışma materyalleri",tag:"Resmi USCIS",open:"Aç",q100T:"128 Soru & Cevap (2025)",q100S:"Resmi USCIS çalışma PDF'i",fcT:"Yurttaşlık Kartları",fcS:"Yazdırılabilir PDF kartlar",allT:"Sınava Hazırlık",allS:"Tüm resmi USCIS materyalleri"},
- hi:{title:"अध्ययन सामग्री",tag:"आधिकारिक USCIS",open:"खोलें",q100T:"128 प्रश्न-उत्तर (2025)",q100S:"आधिकारिक USCIS अध्ययन PDF",fcT:"नागरिक फ्लैश कार्ड",fcS:"प्रिंट करने योग्य PDF कार्ड",allT:"परीक्षा की तैयारी",allS:"सभी आधिकारिक USCIS सामग्री"}
+ hi:{title:"अध्ययन सामग्री",tag:"आधिकारिक USCIS",open:"खोलें",q100T:"128 प्रश्न-उत्तर (2025)",q100S:"आधिकारिक USCIS अध्ययन PDF",fcT:"नागरिक फ्लैश कार्ड",fcS:"प्रिंट करने योग्य PDF कार्ड",allT:"परीक्षा की तैयारी",allS:"सभी आधिकारिक USCIS सामग्री"},
+ ar:{title:"مواد الدراسة",tag:"USCIS الرسمي",open:"فتح",q100T:"128 سؤالاً وجوابًا (2025)",q100S:"PDF دراسي رسمي من USCIS",fcT:"بطاقات المواطنة",fcS:"بطاقات PDF للطباعة",allT:"استعد للاختبار",allS:"كل مواد USCIS الرسمية"}
 };
 
 /* ===== full UI strings (5 languages) — every key the shared engine calls via t() ===== */
 var UI = {
  en:{ sub:"US Citizenship · Civics Test", home:"Home",
-   heroTitle:"U.S. Citizenship — Civics Test", heroSub:"Practice the official USCIS civics questions in 5 languages. Choose a subject to begin.",
+   heroTitle:"U.S. Citizenship — Civics Test", heroSub:"Practice the official USCIS civics questions in 6 languages. Choose a subject to begin.",
    officeNote:"Note: some answers (the current President, Vice President, Speaker, your state's Senators, Governor and capital) change over time and by state — the official test accepts the current / your-state answer.",
    ccTests:"{n} tests", ccQEach:"{n} questions", ccPass:"Pass {need}/{exam}", ccPassedOf:"{p} of {t} passed",
    notStarted:"Not started", passedB:"Passed", notYet:"Not yet", bestLine:"Best {c}/{t} ({pct}%) · {a} attempts",
@@ -584,7 +589,21 @@ var UI = {
    resTime:"⏱ {t} में पूरा", resAvg:"~{s} सेकंड/प्रश्न", retake:"फिर प्रयास करें", backTo:"{cat} पर वापस", allCats:"सभी विषय",
    statsT:"आपके आँकड़े", noData:"अभी कोई प्रयास नहीं। आँकड़े देखने के लिए एक परीक्षा दें।", taken:"दिए गए", passed:"पास", testN:"परीक्षा {n}",
    footMain:"PassRoute — मुफ्त नागरिकता और लाइसेंस अभ्यास परीक्षाएँ।", footSub:"सामग्री आधिकारिक USCIS नागरिक शास्त्र परीक्षा (2025 संस्करण, 128 प्रश्न) पर आधारित है।",
-   footHb:"USCIS आधिकारिक 128 प्रश्न", confirmReset:"सारी प्रगति और इतिहास रीसेट करें?", enBadge:"EN", ttsNo:"इस ब्राउज़र में टेक्स्ट-टू-स्पीच उपलब्ध नहीं है।", mockT:"मॉक परीक्षा", mockB:"असली 2025 परीक्षा जैसी 20 यादृच्छिक प्रश्न — पास के लिए 12 सही।", mockMeta:"20 प्रश्न · पास 12/20 (60%)", mockStart:"मॉक परीक्षा शुरू करें" }
+   footHb:"USCIS आधिकारिक 128 प्रश्न", confirmReset:"सारी प्रगति और इतिहास रीसेट करें?", enBadge:"EN", ttsNo:"इस ब्राउज़र में टेक्स्ट-टू-स्पीच उपलब्ध नहीं है।", mockT:"मॉक परीक्षा", mockB:"असली 2025 परीक्षा जैसी 20 यादृच्छिक प्रश्न — पास के लिए 12 सही।", mockMeta:"20 प्रश्न · पास 12/20 (60%)", mockStart:"मॉक परीक्षा शुरू करें" },
+ ar:{ sub:"الجنسية الأمريكية · اختبار المواطنة", home:"الرئيسية",
+   heroTitle:"الجنسية الأمريكية — اختبار المواطنة", heroSub:"تدرّب على أسئلة المواطنة الرسمية من USCIS بـ 6 لغات. اختر موضوعًا للبدء.",
+   officeNote:"ملاحظة: بعض الإجابات (الرئيس ونائب الرئيس ورئيس المجلس الحاليون، وأعضاء مجلس الشيوخ والحاكم وعاصمة ولايتك) تتغيّر بمرور الوقت وحسب الولاية — يقبل الاختبار الرسمي الإجابة الحالية / الخاصة بولايتك.",
+   ccTests:"{n} اختبارات", ccQEach:"{n} سؤالاً", ccPass:"النجاح {need}/{exam}", ccPassedOf:"نجح {p} من {t}",
+   notStarted:"لم يبدأ", passedB:"ناجح", notYet:"ليس بعد", bestLine:"الأفضل {c}/{t} ({pct}%) · {a} محاولات",
+   tilePractice:"تدريب", tileLesson:"درس", tileTest:"اختبار {n}", tileLessonN:"درس {n}",
+   passedBadge:"نجح {p}/{t}", catInfo:"{exam} سؤالاً لكل اختبار · اجتَز {need}/{exam}",
+   question:"سؤال", speak:"استمع", correctV:"✓ صحيح — {L}", wrongV:"✗ غير صحيح — الصحيح هو {L}", src:"📘 {ref}",
+   pick:"اختر إجابة للمتابعة", next:"التالي", seeRes:"عرض النتائج", quit:"خروج", confirmQuit:"الخروج من هذا الاختبار؟ سيُفقد تقدّمك فيه.",
+   resPass:"لقد نجحت!", resFail:"واصل التدريب", scoreLine:"{c} من {t} صحيحة · تحتاج {need} للنجاح",
+   resTime:"⏱ انتهى في {t}", resAvg:"~{s} ثانية/سؤال", retake:"حاول مجددًا", backTo:"العودة إلى {cat}", allCats:"كل المواضيع",
+   statsT:"إحصاءاتك", noData:"لا محاولات بعد. أجرِ اختبارًا لرؤية إحصاءاتك هنا.", taken:"المنجزة", passed:"الناجحة", testN:"اختبار {n}",
+   footMain:"PassRoute — اختبارات تدريبية مجانية للمواطنة والرخصة.", footSub:"المحتوى مبني على اختبار المواطنة الرسمي من USCIS (نسخة 2025، 128 سؤالاً).",
+   footHb:"128 سؤالاً رسميًا من USCIS", confirmReset:"إعادة تعيين كل التقدّم والسجل؟", enBadge:"EN", ttsNo:"قراءة النص غير متاحة في هذا المتصفح.", mockT:"اختبار تجريبي للمواطنة", mockB:"20 سؤالاً عشوائيًا مثل اختبار 2025 الحقيقي — أجب عن 12 بشكل صحيح للنجاح.", mockMeta:"20 سؤالاً · النجاح 12/20 (60%)", mockStart:"ابدأ الاختبار التجريبي" }
 };
 
 /* ===== adapt window.CIV → engine's DATA + I18N shape ===== */
@@ -610,6 +629,11 @@ var DATA={categories:[]}, I18N={cat:{en:{},es:{},ru:{},tr:{},hi:{}}, q:{en:{},es
   DATA.categories.push({ id:'mock', kind:'core', mock:true, accent:'#0f766e', name:'Mock Civics Test', blurb:'', questions:pool });
   LANGS.forEach(function(L){ I18N.q[L]['mock']=poolI[L]; I18N.cat[L]['mock']={ name:(UI[L]&&UI[L].mockT)||'Mock Civics Test', blurb:(UI[L]&&UI[L].mockB)||'' }; });
 })();
+/* Arabic category names/blurbs (questions fall back to English until translated) */
+I18N.cat.ar={ gov:{name:"الحكومة الأمريكية",blurb:"الدستور والفروع والكونغرس والحقوق والمسؤوليات."},
+  hist:{name:"التاريخ الأمريكي",blurb:"الاستقلال والقرن التاسع عشر والتاريخ الحديث والشخصيات المهمة."},
+  sym:{name:"الرموز والأعياد",blurb:"الجغرافيا والعلم والنشيد والأعياد الوطنية."},
+  mock:{name:(UI.ar&&UI.ar.mockT)||"Mock Civics Test",blurb:""} };
 
 var PKEY="pr_civ_progress", TKEY="pr_civ_theme", LKEY="pr_civ_lang", HKEY="pr_civ_history", SKEY="pr_civ_session";
 var LANG=(function(){ try{ var u=new URLSearchParams(location.search).get('lang'); if(u&&UI[u]){localStorage.setItem(LKEY,u);return u;} return localStorage.getItem(LKEY)||'en'; }catch(e){ return 'en'; } })();
@@ -650,7 +674,7 @@ function startTimer(){ stopTimer(); timerInt=setInterval(tick,1000); tick(); }
 function stopTimer(){ if(timerInt){clearInterval(timerInt);timerInt=null;} }
 
 /* TTS */
-function langBCP(){ return LANG==='tr'?'tr-TR':LANG==='ru'?'ru-RU':LANG==='es'?'es-MX':LANG==='hi'?'hi-IN':'en-US'; }
+function langBCP(){ return LANG==='tr'?'tr-TR':LANG==='ru'?'ru-RU':LANG==='es'?'es-MX':LANG==='hi'?'hi-IN':LANG==='ar'?'ar-SA':'en-US'; }
 function stopSpeak(){ try{ if(window.speechSynthesis) speechSynthesis.cancel(); }catch(e){} }
 function speakQuestion(e){ if(e) e.stopPropagation(); if(!('speechSynthesis' in window)){ toast(t('ttsNo')); return; } var it=state.test&&state.test[state.cur]; if(!it) return; if(speechSynthesis.speaking){ stopSpeak(); return; } var qd=qData(state.catId,it.qid); var opts=it.optOrder.map(function(oi,i){ return String.fromCharCode(65+i)+'. '+qd.options[oi]; }); var u=new SpeechSynthesisUtterance(qd.q+'. '+opts.join('. ')); u.lang=qd.translated?langBCP():'en-US'; u.rate=.95; stopSpeak(); speechSynthesis.speak(u); }
 function toast(msg){ var d=document.createElement('div'); d.className='toast'; d.textContent=msg; document.body.appendChild(d); setTimeout(function(){d.remove();},2600); }
@@ -747,12 +771,12 @@ function renderStats(){ var h=loadHistory(); var head='<div class="crumb"><a onc
   return head+'<h2>'+t('statsT')+'</h2><div class="meta" style="margin:10px 0 16px"><span class="pill">'+t('taken')+': '+h.length+'</span><span class="pill">'+t('passed')+': '+passed+'</span></div>'+rows; }
 
 /* chrome: dropdowns, lang, theme, exam switch */
-function renderLangMenu(){ var names={en:'English',es:'Español',ru:'Русский',tr:'Türkçe',hi:'हिन्दी'}; var cur=document.getElementById('langCur'); if(cur) cur.textContent=LANG.toUpperCase();
+function renderLangMenu(){ var names={en:'English',es:'Español',ru:'Русский',tr:'Türkçe',hi:'हिन्दी',ar:'العربية'}; var cur=document.getElementById('langCur'); if(cur) cur.textContent=LANG.toUpperCase();
   document.getElementById('langMenu').innerHTML=Object.keys(names).filter(function(l){return l!==LANG;}).map(function(l){ return '<button role="option" onclick="setLang(\''+l+'\')">'+names[l]+'</button>'; }).join(''); }
 function toggleLangMenu(e){ if(e) e.stopPropagation(); document.getElementById('langdd').classList.toggle('open'); }
 function toggleExamMenu(e){ if(e) e.stopPropagation(); document.getElementById('examdd').classList.toggle('open'); }
 document.addEventListener('click',function(){ ['langdd','examdd'].forEach(function(id){ var d=document.getElementById(id); if(d) d.classList.remove('open'); }); });
-function setLang(l){ LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){} document.documentElement.setAttribute('lang',l); renderLangMenu(); applyChrome(); render(); }
+function setLang(l){ LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){} document.documentElement.setAttribute('lang',l); document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr'); renderLangMenu(); applyChrome(); render(); }
 function switchExam(ex){ if(ex==='home'){ location.href='../home/index.html'+(LANG!=='en'?'?lang='+LANG:''); return; } try{ localStorage.setItem('pr_exam',ex); }catch(e){} var st=''; try{ st=localStorage.getItem('pr_state')||''; }catch(e){} var qs=(st?'?state='+st:'')+(LANG!=='en'?(st?'&':'?')+'lang='+LANG:''); if(ex==='cdl') location.href='../index.html?exam=cdl'+(st?'&state='+st:'')+(LANG!=='en'?'&lang='+LANG:''); else if(ex==='dl') location.href='../dl/index.html'+qs; }
 function toggleTheme(){ var d=document.documentElement.getAttribute('data-theme')==='dark'?'':'dark'; document.documentElement.setAttribute('data-theme',d); try{ localStorage.setItem(TKEY,d); }catch(e){} var b=document.getElementById('themeBtn'); if(b) b.textContent=d==='dark'?'☀️':'🌙'; }
 function resetAll(){ if(confirm(t('confirmReset'))){ try{ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); }catch(e){} clearSession(); go('home'); } }
@@ -761,7 +785,7 @@ function applyChrome(){ var bs=document.getElementById('brandSub'); if(bs) bs.te
 
 /* boot */
 (function(){ try{ var th=localStorage.getItem(TKEY); if(th==='dark') document.documentElement.setAttribute('data-theme','dark'); }catch(e){}
-  document.documentElement.setAttribute('lang',LANG);
+  document.documentElement.setAttribute('lang',LANG); document.documentElement.setAttribute('dir',LANG==='ar'?'rtl':'ltr');
   var tb=document.getElementById('themeBtn'); if(tb) tb.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'☀️':'🌙';
   renderLangMenu(); applyChrome();
   if(!restoreSession()) initRoute();
