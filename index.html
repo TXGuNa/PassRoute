@@ -588,8 +588,8 @@
 <script src="translations.js"></script>
 <script src="translations-es.js"></script>
 <script src="translations-hi.js"></script>
-<script src="translations-ar.js"></script>
-<script src="translations-ar-q.js"></script>
+<!-- Arabic UI + question translations (~3.2 MB) are loaded on demand by ensureLangPack(),
+     only when Arabic is actually selected — see setLang()/boot. EN fallback covers the gap. -->
 <script src="endorsements.js"></script>
 <script src="questions-extra.js"></script>
   <script src="upgrades.schoolbus.js"></script>
@@ -794,12 +794,30 @@ function qData(catId, qid){
            handbook: stz(src.explanation||en.explanation), hbref: en.hbref, translated: !!(LANG!=='en' && tr) };
 }
 function langBadge(translated){ return (LANG==='en'||translated) ? '' : ` <span class="enflag" title="${t('langWipNote')}">${t('enBadge')}</span>`; }
-function setLang(l){
+/* Arabic UI + question translations are ~3.2 MB — by far the largest assets and pure waste on
+   the ~99% of visits that aren't in Arabic. Load them on demand, only when Arabic is selected;
+   every i18n getter (t/qData/catName/g) already falls back to English until the pack arrives. */
+var _arLoaded=false;
+function ensureLangPack(l, cb){
+  if(l!=='ar' || _arLoaded){ if(cb) cb(); return; }
+  var files=['translations-ar.js','translations-ar-q.js'], i=0;
+  (function next(){
+    if(i>=files.length){ _arLoaded=true; if(cb) cb(); return; }
+    var s=document.createElement('script'); s.src=files[i++];
+    s.onload=next; s.onerror=next; document.head.appendChild(s);
+  })();
+}
+function _applyLang(l){
   LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){}
   document.documentElement.setAttribute('lang', l); document.documentElement.setAttribute('dir', l==='ar'?'rtl':'ltr');
   renderLangMenu();
   applyStaticI18n();
   render();
+}
+function setLang(l){
+  /* defer the whole switch until the Arabic pack is in, so the view never flashes English-in-RTL */
+  if(l==='ar' && !_arLoaded){ document.documentElement.setAttribute('dir','rtl'); ensureLangPack('ar', function(){ _applyLang('ar'); }); return; }
+  _applyLang(l);
 }
 /* language dropdown (shows only the non-active languages) */
 const LANGS=['en','es','ru','tr','hi','ar'];
@@ -1642,6 +1660,8 @@ else {
   else {
   /* resume an in-progress test/results from the session cache on refresh; else normal routing */
   if(!restoreSession()) initRoute();
+  /* if booting straight into the CDL app in Arabic, pull the on-demand Arabic pack then re-render */
+  if(LANG==='ar') ensureLangPack('ar', function(){ applyStaticI18n(); render(); });
   if(window.innerWidth>=1440){ try{ var _r=document.createElement('div'); _r.className='adrail'; _r.innerHTML='<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-5005909536075464" data-ad-slot="2432464479"></ins>'; document.body.appendChild(_r); (window.adsbygoogle=window.adsbygoogle||[]).push({}); }catch(e){} }
   }
 }
