@@ -751,7 +751,8 @@ function catName(c){ if(c.kind==='learn'&&c.learnSubject){ const base=DATA.categ
 function catBlurb(c){ const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.blurb)||c.blurb; }
 /* breadcrumb/results label for a test: learn categories read "Lesson N", everything else "Test N" */
 function testLabel(c, idx){ return (c && c.kind==='learn') ? t('tileLessonN',{n:idx+1}) : t('tileTest',{n:idx+1}); }
-function g(k){ const G=window.I18N&&I18N.guide; if(G&&G[LANG]&&G[LANG][k]!=null) return G[LANG][k]; return (G&&G.en&&G.en[k]!=null)?G.en[k]:k; }
+function g(k){ const G=window.I18N&&I18N.guide; var s=(G&&G[LANG]&&G[LANG][k]!=null)?G[LANG][k]:((G&&G.en&&G.en[k]!=null)?G.en[k]:k);
+  if(Array.isArray(s)) return s.map(function(x){ return typeof x==='string'?stz(x):x; }); return typeof s==='string'?stz(s):s; }
 function qData(catId, qid){
   const en = CAT(catId).questions[qid];
   const tr = window.I18N && I18N.q[LANG] && I18N.q[LANG][catId] && I18N.q[LANG][catId][qid];
