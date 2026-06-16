@@ -190,8 +190,8 @@ function renderCards(){
   var defs=[
     {ex:'cdl', ic:'📋', acc:'var(--blue)', tag:tr('cdlTag'), name:tr('cdlName'), desc:tr('cdlDesc'), subs:['General Knowledge','Air Brakes','Combination','Endorsements']},
     {ex:'dl',  ic:'🚗', acc:'var(--green)', tag:tr('dlTag'), name:tr('dlName'), desc:tr('dlDesc'), subs:['Road Signs','Rules of the Road','Safe Driving','Penalties']},
-    {ex:'civ', ic:'🛂', acc:'var(--teal)', tag:tr('civTag'), name:tr('civName'), desc:tr('civDesc'), subs:['Government','History','Symbols & Holidays']},
-    {ex:'sat', ic:'🎓', acc:'#7c3aed', tag:(SAT_T[LANG]||SAT_T.en).tag, name:(SAT_T[LANG]||SAT_T.en).name, desc:(SAT_T[LANG]||SAT_T.en).desc, subs:['Algebra','Advanced Math','Data Analysis','Geometry & Trig']}
+    {ex:'sat', ic:'🎓', acc:'#7c3aed', tag:(SAT_T[LANG]||SAT_T.en).tag, name:(SAT_T[LANG]||SAT_T.en).name, desc:(SAT_T[LANG]||SAT_T.en).desc, subs:['Algebra','Advanced Math','Data Analysis','Geometry & Trig']},
+    {ex:'civ', ic:'🛂', acc:'var(--teal)', tag:tr('civTag'), name:tr('civName'), desc:tr('civDesc'), subs:['Government','History','Symbols & Holidays']}
   ];
   document.getElementById('cards').innerHTML=defs.map(function(d){
     return '<div class="xcard" style="--accent:'+d.acc+'" onclick="pick(\''+d.ex+'\')">'+
