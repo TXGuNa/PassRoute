@@ -509,7 +509,8 @@
 <script src="../states-meta.js"></script>
 <script src="dl-data.js"></script>
 <script src="dl-signs.js"></script>
-<script src="dl-data-ar.js"></script>
+<!-- dl-data-ar.js (~405 KB Arabic question translations) is loaded on demand by ensureArPack(),
+     only when Arabic is selected. The Arabic UI is inline, so it shows immediately. -->
 <script>
 "use strict";
 var DATA = window.DL_DATA, I18N = window.DL_I18N;
@@ -754,7 +755,11 @@ function toggleLangMenu(e){ if(e) e.stopPropagation(); document.getElementById('
 function toggleStateMenu(e){ if(e) e.stopPropagation(); document.getElementById('statedd').classList.toggle('open'); }
 function toggleExamMenu(e){ if(e) e.stopPropagation(); document.getElementById('examdd').classList.toggle('open'); }
 document.addEventListener('click',function(){ ['langdd','statedd','examdd'].forEach(function(id){ var d=document.getElementById(id); if(d) d.classList.remove('open'); }); });
-function setLang(l){ LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){} document.documentElement.setAttribute('lang',l); document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr'); renderLangMenu(); renderStateMenu(); applyChrome(); render(); }
+/* Arabic question translations (dl-data-ar.js, ~405 KB) load on demand — only when Arabic is
+   picked. The Arabic UI is inline, so only question text falls back to English until the pack lands. */
+var _arLoaded=false;
+function ensureArPack(cb){ if(_arLoaded){ if(cb)cb(); return; } var s=document.createElement('script'); s.src='dl-data-ar.js'; s.onload=function(){ _arLoaded=true; if(cb)cb(); }; s.onerror=function(){ _arLoaded=true; if(cb)cb(); }; document.head.appendChild(s); }
+function setLang(l){ LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){} document.documentElement.setAttribute('lang',l); document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr'); renderLangMenu(); renderStateMenu(); applyChrome(); render(); if(l==='ar'&&!_arLoaded) ensureArPack(function(){ render(); }); }
 function setState(c){ if(!SMETA[c]) return; STATE=c; try{ localStorage.setItem('pr_state',c); }catch(e){} HANDBOOK=stateMeta().handbook||HANDBOOK; document.getElementById('statedd').classList.remove('open'); renderStateMenu(); applyChrome(); go('home'); }
 function switchExam(ex){ if(ex==='home'){ location.href='../home/index.html'+(LANG!=='en'?'?lang='+LANG:''); return; } try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){} if(ex==='cdl') location.href='../index.html?exam=cdl&state='+STATE+(LANG!=='en'?'&lang='+LANG:''); else if(ex==='civ') location.href='../citizenship/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
 function toggleTheme(){ var d=document.documentElement.getAttribute('data-theme')==='dark'?'':'dark'; document.documentElement.setAttribute('data-theme',d); try{ localStorage.setItem(TKEY,d); }catch(e){} var b=document.getElementById('themeBtn'); if(b) b.textContent=d==='dark'?'☀️':'🌙'; }
@@ -768,6 +773,7 @@ function applyChrome(){ var bs=document.getElementById('brandSub'); if(bs) bs.te
   var tb=document.getElementById('themeBtn'); if(tb) tb.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'☀️':'🌙';
   renderLangMenu(); renderStateMenu(); applyChrome();
   if(!restoreSession()) initRoute();
+  if(LANG==='ar') ensureArPack(function(){ render(); });
 })();
 </script>
 </body>
