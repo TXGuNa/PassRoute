@@ -223,7 +223,9 @@ function applyI18n(){
   document.getElementById('stateLbl').textContent=tr('stateLbl');
   document.getElementById('stateHint').textContent=tr('stateHint');
   document.getElementById('footNote').textContent=tr('footNote');
-  document.getElementById('siteFoot').innerHTML=tr('foot')+'<div style="margin-top:8px"><a href="../index.html">CDL</a> · <a href="../dl/index.html">DL</a> · <a href="../citizenship/index.html">Citizenship</a> · <a href="../sat/index.html">SAT</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>';
+  var _qsfx=(LANG==='en'?'':'.'+LANG), _ql={en:'Free practice questions',es:'Preguntas de práctica gratis',ru:'Бесплатные вопросы для практики',tr:'Ücretsiz deneme soruları',hi:'मुफ्त अभ्यास प्रश्न',ar:'أسئلة تدريب مجانية'};
+  document.getElementById('siteFoot').innerHTML=tr('foot')+'<div style="margin-top:8px"><a href="../index.html">CDL</a> · <a href="../dl/index.html">DL</a> · <a href="../citizenship/index.html">Citizenship</a> · <a href="../sat/index.html">SAT</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>'+
+    '<div style="margin-top:6px"><b>'+(_ql[LANG]||_ql.en)+':</b> <a href="../cdl-practice-questions'+_qsfx+'.html">CDL</a> · <a href="../dl-practice-questions'+_qsfx+'.html">DL</a> · <a href="../citizenship-practice-questions'+_qsfx+'.html">Citizenship</a> · <a href="../sat-practice-questions'+_qsfx+'.html">SAT</a></div>';
   renderCards();
 }
 /* language menu */
