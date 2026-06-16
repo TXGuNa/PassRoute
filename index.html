@@ -37,7 +37,9 @@
 <meta property="og:title" content="PassRoute — Free Practice Tests (5 languages)" />
 <meta property="og:description" content="2,200+ handbook-accurate Texas CDL practice questions with explanations, in English, Spanish, Russian, Turkish & Hindi. Pass on your first try." />
 <meta property="og:url" content="https://passroute.ai/" />
-<meta property="og:image" content="https://passroute.ai/icon-512.png" />
+<meta property="og:image" content="https://passroute.ai/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="es_MX" />
 <meta property="og:locale:alternate" content="ru_RU" />
@@ -48,7 +50,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="PassRoute — Free Practice Tests" />
 <meta name="twitter:description" content="2,200+ handbook-accurate CDL questions with explanations, in 6 languages. Pass on your first try." />
-<meta name="twitter:image" content="https://passroute.ai/icon-512.png" />
+<meta name="twitter:image" content="https://passroute.ai/og-image.jpg" />
 
 <!-- Structured data: site + org + FAQ (rich results) -->
 <script type="application/ld+json">
@@ -253,6 +255,7 @@
     border-radius:12px;padding:14px 15px;cursor:pointer;transition:.13s;font-size:1rem;text-align:left;width:100%;color:var(--ink)}
   .opt:hover:not(:disabled){border-color:var(--blue);background:#f5f8ff}
   [data-theme="dark"] .opt:hover:not(:disabled){background:#16223b}
+  .opt.kbfocus{outline:3px solid var(--blue);outline-offset:2px}
   .opt .key{flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
     display:grid;place-items:center;font-weight:740;font-size:.85rem}
   .opt.correct{border-color:var(--green);background:var(--green-bg)}
@@ -662,8 +665,12 @@ function _snapSpecial(){ const cat=DATA.categories.find(c=>c.id==='special'); if
   _defSpecEN=cat.questions.slice(); _defSpecQ={};
   for(const L of ['ru','tr','es','hi']){ I18N.q[L]=I18N.q[L]||{}; _defSpecQ[L]=Object.assign({}, I18N.q[L].special||{}); } }
 function applyState(code){ const cat=DATA.categories.find(c=>c.id==='special'); if(!cat) return; const s=STATES[code];
-  if(!s || code==='TX' || !s.en){ if(_defSpecEN){ cat.questions=_defSpecEN.slice(); for(const L of ['ru','tr','es','hi']) I18N.q[L].special=Object.assign({}, _defSpecQ[L]); } }
-  else { cat.questions=s.en; for(const L of ['ru','tr','es','hi']){ I18N.q[L]=I18N.q[L]||{}; I18N.q[L].special=s[L]||{}; } } }
+  /* Arabic is lazy-loaded, so I18N.q.ar may not exist yet; only touch it when present. The TX-default
+     Arabic special bank is snapshotted into _defSpecQ.ar by ensureLangPack the moment the pack loads. */
+  if(!s || code==='TX' || !s.en){ if(_defSpecEN){ cat.questions=_defSpecEN.slice(); for(const L of ['ru','tr','es','hi']) I18N.q[L].special=Object.assign({}, _defSpecQ[L]);
+    if(I18N.q.ar && _defSpecQ && _defSpecQ.ar) I18N.q.ar.special=Object.assign({}, _defSpecQ.ar); } }
+  else { cat.questions=s.en; for(const L of ['ru','tr','es','hi']){ I18N.q[L]=I18N.q[L]||{}; I18N.q[L].special=s[L]||{}; }
+    if(I18N.q.ar) I18N.q.ar.special=s.ar||{}; } }
 function setState(code){ if(!STATES[code]) return; STATE=code; try{localStorage.setItem('tx_cdl_state',code);localStorage.setItem(SHARED_STATE_KEY,code);}catch(e){} applyState(code); closeStateMenu(); renderStateMenu(); applyStaticI18n(); go('home'); }
 function renderStateMenu(){ const cur=document.getElementById('stateCur'); if(cur) cur.textContent=STATE;
   const menu=document.getElementById('stateMenu');
@@ -802,7 +809,12 @@ function ensureLangPack(l, cb){
   if(l!=='ar' || _arLoaded){ if(cb) cb(); return; }
   var files=['translations-ar.js','translations-ar-q.js'], i=0;
   (function next(){
-    if(i>=files.length){ _arLoaded=true; if(cb) cb(); return; }
+    if(i>=files.length){ _arLoaded=true;
+      /* The pack ships the DEFAULT (TX) Arabic special bank. Snapshot it once, then re-apply the
+         active state so a non-TX state (e.g. California) keeps its OWN Arabic special bank — otherwise
+         translations-ar-q.js (a full I18N.q.ar assignment) would clobber the state's special.ar. */
+      try{ if(window.I18N && I18N.q && I18N.q.ar){ if(_defSpecQ && _defSpecQ.ar===undefined) _defSpecQ.ar=Object.assign({}, I18N.q.ar.special||{}); if(typeof STATE!=='undefined') applyState(STATE); } }catch(e){}
+      if(cb) cb(); return; }
     var s=document.createElement('script'); s.src=files[i++];
     s.onload=next; s.onerror=next; document.head.appendChild(s);
   })();
@@ -1453,7 +1465,9 @@ function paintQuestion(){
       <span class="top-spacer" style="flex:1"></span>
       <button class="btn ghost" onclick="confirmQuit()">${t('quit')}</button>
     </div>`;
+  state.kb=-1;
 }
+function setKbFocus(i){ const nodes=document.querySelectorAll('.opts .opt'); if(!nodes.length) return; const n=nodes.length; state.kb=((i%n)+n)%n; for(let k=0;k<n;k++) nodes[k].classList.toggle('kbfocus',k===state.kb); const el=nodes[state.kb]; if(el&&el.scrollIntoView) el.scrollIntoView({block:'nearest'}); }
 
 function choose(i){
   const s=state; if(s.answers[s.cur]!==null) return;
@@ -1592,12 +1606,15 @@ function toggleTheme(){
   window.addEventListener('DOMContentLoaded',()=>{ const b=document.getElementById('themeBtn'); if(b) b.textContent=t==='dark'?'☀️':'🌙'; });
 })();
 
-/* keyboard: 1-4 to answer, Enter to advance */
+/* keyboard: ↑/↓ move the focus ring across answers, Enter selects (or advances when answered); 1-4 still answer directly */
 document.addEventListener('keydown',e=>{
   if(state.view!=='test') return;
-  const s=state, answered=s.answers[s.cur]!==null;
-  if(!answered && ['1','2','3','4'].includes(e.key)){ const i=+e.key-1; if(i<s.test[s.cur].optOrder.length) choose(i); }
-  else if(answered && (e.key==='Enter'||e.key==='n'||e.key===' ')){ e.preventDefault(); next(); }
+  if(e.target&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+  const s=state, answered=s.answers[s.cur]!==null, n=s.test[s.cur].optOrder.length, kb=(typeof s.kb==='number'&&s.kb>=0)?s.kb:-1;
+  if(!answered && (e.key==='ArrowDown'||e.key==='ArrowUp')){ e.preventDefault(); setKbFocus(kb<0?(e.key==='ArrowDown'?0:n-1):kb+(e.key==='ArrowDown'?1:-1)); }
+  else if(e.key==='Enter'){ e.preventDefault(); if(!answered) choose(kb<0?0:kb); else next(); }
+  else if(!answered && ['1','2','3','4'].includes(e.key)){ const i=+e.key-1; if(i<n) choose(i); }
+  else if(answered && (e.key==='n'||e.key===' ')){ e.preventDefault(); next(); }
 });
 
 /* ============================ ONBOARDING PICKER ============================ */
