@@ -514,7 +514,7 @@ function stateMeta(){ var s=SMETA[STATE]||SMETA.TX||{name:'Texas'}; return { cod
 var HANDBOOK = stateMeta().handbook || "https://www.dps.texas.gov/section/driver-license/texas-driver-handbook";
 /* DL content is Texas-based (road signs national; speed limits/penalties state-specific): restate only
    the agency-affiliation disclaimer, not handbook/content references. */
-function stz(str){ if(str==null) return str; var m=stateMeta(); if(m.code==='TX') return str; return String(str).replace(/Texas DPS\/DMV/g,m.agency).replace(/Texas DPS\b/g,m.agency).replace(/Texas DMV\b/g,m.agency); }
+function stz(str){ if(str==null) return str; var m=stateMeta(); if(m.code==='TX') return str; return String(str).replace(/Texas DPS\/DMV/g,m.agency).replace(/Texas DPS\b/g,m.agency).replace(/Texas DMV\b/g,m.agency).replace(/\bTexas DL\b/g,m.name+' DL').replace(/\bTexas Driver/g,m.name+' Driver').replace(/\bTexas\b/g,m.name); }
 
 var UI = {
   en:{ sub:"Texas DL · Practice Tests", heroT:"Pass your Texas driver license test.", heroS:"Free, handbook-accurate practice in 5 languages — with answers and explanations.",
@@ -596,8 +596,8 @@ Object.keys(UI).forEach(function(l){ var u=UI[l]; u.ccTests=u.tests; u.ccQEach=u
 var PKEY="tx_dl_progress", TKEY="tx_dl_theme", LKEY="tx_dl_lang", HKEY="tx_dl_history", SKEY="tx_dl_session";
 var LANG=(function(){ try{ var u=new URLSearchParams(location.search).get('lang'); if(u&&UI[u]){localStorage.setItem(LKEY,u);return u;} return localStorage.getItem(LKEY)||'en'; }catch(e){ return 'en'; } })();
 function t(k,v){ var s=(UI[LANG]&&UI[LANG][k]!=null)?UI[LANG][k]:(UI.en[k]!=null?UI.en[k]:k); if(v) for(var x in v) s=String(s).split('{'+x+'}').join(v[x]); return stz(s); }
-function catName(c){ if(c.kind==='learn'&&c.learnSubject){ var b=DATA.categories.find(function(x){return x.id===c.learnSubject;}); if(b) c=b; } var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
-function catBlurb(c){ var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.blurb)||c.blurb; }
+function catName(c){ if(c.kind==='learn'&&c.learnSubject){ var b=DATA.categories.find(function(x){return x.id===c.learnSubject;}); if(b) c=b; } var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return stz((o&&o.name)||c.name); }
+function catBlurb(c){ var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return stz((o&&o.blurb)||c.blurb); }
 function baseCatId(c){ var cat=(typeof c==='string')?DATA.categories.find(function(x){return x.id===c;}):c; return (cat&&cat.kind==='learn'&&cat.learnSubject)?cat.learnSubject:(cat?cat.id:c); }
 function learnCatFor(id){ return DATA.categories.find(function(c){return c.kind==='learn'&&c.learnSubject===id;})||null; }
 function qData(catId,qid){ var en=DATA.categories.find(function(c){return c.id===catId;}).questions[qid]; var tr=I18N.q[LANG]&&I18N.q[LANG][catId]&&I18N.q[LANG][catId][qid]; var s=(LANG!=='en'&&tr)?tr:en; return { q:s.q||en.q, options:s.options||en.options, explanation:s.explanation||en.explanation, handbook:en.handbook, hbref:en.hbref, translated:!!(LANG!=='en'&&tr) }; }
