@@ -84,6 +84,7 @@
 <header class="top">
   <a class="brand" href="/" style="color:#fff"><b>PassRoute</b><span id="brandSub">Texas DL · Practice Tests</span></a>
   <div class="tbtns">
+    <div class="dd" id="examdd"><button class="hbtn" onclick="toggleExam(event)" id="examBtn">🚗 DL ▾</button><div class="menu" id="examMenu"><a onclick="switchExam('cdl')">📋 Commercial (CDL)</a></div></div>
     <div class="dd" id="statedd"><button class="hbtn" onclick="toggleState(event)" id="stateBtn">📍 <span id="stateCur">TX</span> ▾</button><div class="menu" id="stateMenu" style="max-height:280px;overflow:auto"></div></div>
     <div class="dd" id="langdd"><button class="hbtn" onclick="toggleLang(event)" id="langBtn">🌐 EN ▾</button><div class="menu" id="langMenu"></div></div>
     <button class="hbtn" onclick="toggleTheme()" id="themeBtn">🌙</button>
@@ -339,7 +340,7 @@ function renderLangMenu(){ var names={en:'English',es:'Español',ru:'Русск�
   document.getElementById('langMenu').innerHTML=Object.keys(names).filter(function(l){return l!==LANG;}).map(function(l){ return '<a onclick="setLang(\''+l+'\')">'+names[l]+'</a>'; }).join('');
   document.getElementById('langBtn').textContent='🌐 '+LANG.toUpperCase()+' ▾'; }
 function toggleLang(e){ if(e) e.stopPropagation(); document.getElementById('langdd').classList.toggle('open'); }
-document.addEventListener('click',function(){ ['langdd','statedd'].forEach(function(id){ var d=document.getElementById(id); if(d) d.classList.remove('open'); }); });
+document.addEventListener('click',function(){ ['langdd','statedd','examdd'].forEach(function(id){ var d=document.getElementById(id); if(d) d.classList.remove('open'); }); });
 function setLang(l){ LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){} document.documentElement.setAttribute('lang',l); renderLangMenu(); renderStateMenu(); applyChrome(); render(); }
 /* ---------- state selector ---------- */
 function renderStateMenu(){ var cur=document.getElementById('stateCur'); if(cur) cur.textContent=STATE;
@@ -347,6 +348,10 @@ function renderStateMenu(){ var cur=document.getElementById('stateCur'); if(cur)
   var sorted=Object.keys(SMETA).sort(function(a,b){return SMETA[a].name.localeCompare(SMETA[b].name);});
   menu.innerHTML=sorted.filter(function(c){return c!==STATE;}).map(function(c){ return '<a onclick="setState(\''+c+'\')">'+SMETA[c].name+' ('+c+')</a>'; }).join(''); }
 function toggleState(e){ if(e) e.stopPropagation(); document.getElementById('statedd').classList.toggle('open'); }
+function toggleExam(e){ if(e) e.stopPropagation(); document.getElementById('examdd').classList.toggle('open'); }
+/* switch from the DL app (/dl/) to the CDL app (/), carrying the selected state */
+function switchExam(ex){ try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){}
+  if(ex==='cdl') location.href='/?state='+STATE+(LANG!=='en'?'&lang='+LANG:''); }
 function setState(c){ if(!SMETA[c]) return; STATE=c; try{ localStorage.setItem('pr_state',c); }catch(e){} HANDBOOK=stateMeta().handbook||HANDBOOK; document.getElementById('statedd').classList.remove('open'); renderStateMenu(); applyChrome(); go('home'); }
 function toggleTheme(){ var d=document.documentElement.getAttribute('data-theme')==='dark'?'':'dark'; document.documentElement.setAttribute('data-theme',d); try{ localStorage.setItem(TKEY,d); }catch(e){} document.getElementById('themeBtn').textContent=d==='dark'?'☀️':'🌙'; }
 function resetAll(){ if(confirm(t('confirmReset'))){ try{ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); }catch(e){} clearSession(); go('home'); } }
