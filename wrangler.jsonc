@@ -1,10 +1,18 @@
 {
   // Cloudflare Worker that just serves the static site files.
-  // "assets.directory" tells wrangler where the files are (the repo root),
-  // which fixes "Missing entry-point to Worker script or to assets directory".
+  // "assets.directory" tells wrangler where the files are (the repo root).
+  // PassRoute is a multi-vertical static site:
+  //   /            -> CDL app (index.html)        — also shows the first-visit exam/state picker
+  //   /cdl/...     -> CDL SEO landing pages
+  //   /dl/         -> DL app (dl/index.html)      — the DL hub + tests
+  //   /dl/*.html   -> DL SEO landing pages
+  //   /states-meta.js -> shared 50-state metadata (both apps)
+  // "html_handling: auto-trailing-slash" makes /dl/ resolve to /dl/index.html reliably.
   "name": "passroute",
   "compatibility_date": "2026-06-10",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
   }
 }

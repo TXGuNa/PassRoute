@@ -1,8 +1,41 @@
 # PassRoute — Project Rules & Requirements
 
-PassRoute is a static, multilingual Texas CDL practice-test web app hosted at **passroute.ai**.
+PassRoute is a static, multilingual practice-test web app hosted at **passroute.ai**.
 This file records the **non-negotiable rules** the project must always follow. Read it before
 making any change to questions, translations, or the app.
+
+## Architecture (multi-vertical, 50-state)
+This repo (`PassRoute/`) **is the whole site root**. Three verticals share one engine + design system:
+- `/home/` → **homepage chooser** (`home/index.html`): a 5-language landing page with three cards
+  (CDL / DL / US Citizenship) + a state selector (for CDL & DL). Picking a card sets `pr_exam`
+  (+`pr_state`) and routes into the app. **First-time** visitors to `/` are redirected here.
+- `/` → **CDL app** (`index.html`). Boot routing: a deep link (`?v=`/`?cat=`) or cached
+  `pr_exam==='cdl'` renders CDL; `pr_exam==='dl'`→`/dl/`, `'civ'`→`/citizenship/`, none→`/home/`.
+  Header **exam switcher** offers DL, US Citizenship, and 🏠 All exams (homepage); **state selector**
+  (all 50) always available. (The legacy inline onboarding overlay still exists but is no longer the
+  entry path — `/home/` is.)
+- `/dl/` → **DL app** (`dl/index.html` + `dl/dl-data.js` + `dl/dl-signs.js`) — regular driver license.
+  `dl-signs.js` adds inline SVG road signs (STOP/YIELD/…) + image-based sign-recognition questions in
+  the Road Signs Learning Test. Its OWN hub; landing-gen does NOT write a static `/dl/index.html`.
+- `/citizenship/` → **US Citizenship app** (`citizenship/index.html` + `citizenship/citizenship-data.js`):
+  the official USCIS civics test (2008 version), 3 subjects (Government / History / Symbols & Holidays),
+  65 questions × 5 languages, practice + learn lessons. Federal (NO state selector); volatile
+  current-officeholder/state-specific items are intentionally omitted (noted on the home screen).
+- `/cdl/...` and `/dl/*.html` → SEO landing pages (built by `content-engine/landing-gen.cjs`).
+- `/states-meta.js` → **shared 50-state metadata** (agency, CDL+DL handbook, appointment & apply URLs)
+  loaded by CDL, DL, and the homepage. Real researched official .gov URLs.
+- All apps share `localStorage` (same origin): `pr_exam`, `pr_state`.
+- Build tools live in `../content-engine/` (NOT in this repo): `import-dl.cjs` writes `dl/dl-data.js`;
+  `build-dl.cjs` assembles `dl/index.html`; `build-citizenship.cjs` assembles `citizenship/index.html`
+  (both reuse CDL's `<style>` from `/tmp/cdl-style-block.html`); `import-learn.cjs` builds `learn.cdl.js`.
+  `learn.cristcdl.js` appends 180 extra handbook-accurate learn questions (20/subject, 5 langs, ORIGINAL
+  wording modeled on cristcdl coverage — not verbatim) via `gen-cristcdl-workflow.cjs` (multi-agent gen)
+  + `assemble-cristcdl.cjs` (dedup/validate); loaded right after `learn.cdl.js`.
+- Learning tests are split into numbered "Lesson N" sized to each subject's real exam question count
+  (General 50, Air Brakes 25, others 20/30) — every unique question shown once across a subject's lessons.
+- State-awareness: federal CDL subjects are shared and restated per state (`stz()`); CDL Special
+  Requirements is **hidden** for states without their own question bank; DL question bodies stay
+  Texas-based (honestly labeled) with a per-state handbook/appointment banner.
 
 ## Stack & files
 - Static single-page app, **no build step**. Served as-is.
