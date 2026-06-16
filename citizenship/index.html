@@ -193,6 +193,7 @@
   .opt{display:flex;align-items:flex-start;gap:12px;border:1.5px solid var(--line);background:var(--card);
     border-radius:12px;padding:14px 15px;cursor:pointer;transition:.13s;font-size:1rem;text-align:left;width:100%;color:var(--ink)}
   .opt:hover:not(:disabled){border-color:var(--blue);background:#f5f8ff}
+  .opt.kbfocus{outline:3px solid var(--blue);outline-offset:2px}
   [data-theme="dark"] .opt:hover:not(:disabled){background:#16223b}
   .opt .key{flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
     display:grid;place-items:center;font-weight:740;font-size:.85rem}
@@ -795,6 +796,17 @@ function resetAll(){ if(confirm(t('confirmReset'))){ try{ localStorage.removeIte
 function applyChrome(){ var bs=document.getElementById('brandSub'); if(bs) bs.textContent=t('sub');
   document.getElementById('siteFooter').innerHTML=t('footMain')+'<br>'+t('footSub')+'<div class="dlinks" style="margin-top:8px"><a href="'+HANDBOOK+'" target="_blank" rel="noopener">'+t('footHb')+'</a> · <a href="../index.html">CDL</a> · <a href="../dl/index.html">DL</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>'; }
 
+/* keyboard: ↑/↓ move the focus ring across answers, Enter selects (or advances when answered); 1-4 answer directly */
+function setKbFocus(i){ var nodes=document.querySelectorAll('.opts .opt'); if(!nodes.length) return; var n=nodes.length; state.kb=((i%n)+n)%n; state.kbFor=state.cur; for(var k=0;k<n;k++) nodes[k].classList.toggle('kbfocus',k===state.kb); var el=nodes[state.kb]; if(el&&el.scrollIntoView) el.scrollIntoView({block:'nearest'}); }
+document.addEventListener('keydown',function(e){
+  if(state.view!=='test'||!state.test) return;
+  if(e.target&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+  var s=state, answered=s.answers[s.cur]!==null, n=s.test[s.cur].optOrder.length, kb=(s.kbFor===s.cur&&typeof s.kb==='number'&&s.kb>=0)?s.kb:-1;
+  if(!answered&&(e.key==='ArrowDown'||e.key==='ArrowUp')){ e.preventDefault(); setKbFocus(kb<0?(e.key==='ArrowDown'?0:n-1):kb+(e.key==='ArrowDown'?1:-1)); }
+  else if(e.key==='Enter'){ e.preventDefault(); if(!answered) choose(kb<0?0:kb); else next(); }
+  else if(!answered&&['1','2','3','4'].indexOf(e.key)>=0){ var i=+e.key-1; if(i<n) choose(i); }
+  else if(answered&&(e.key==='n'||e.key===' ')){ e.preventDefault(); next(); }
+});
 /* boot */
 (function(){ try{ var th=localStorage.getItem(TKEY); if(th==='dark') document.documentElement.setAttribute('data-theme','dark'); }catch(e){}
   document.documentElement.setAttribute('lang',LANG); document.documentElement.setAttribute('dir',LANG==='ar'?'rtl':'ltr');

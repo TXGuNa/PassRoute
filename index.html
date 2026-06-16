@@ -255,6 +255,7 @@
     border-radius:12px;padding:14px 15px;cursor:pointer;transition:.13s;font-size:1rem;text-align:left;width:100%;color:var(--ink)}
   .opt:hover:not(:disabled){border-color:var(--blue);background:#f5f8ff}
   [data-theme="dark"] .opt:hover:not(:disabled){background:#16223b}
+  .opt.kbfocus{outline:3px solid var(--blue);outline-offset:2px}
   .opt .key{flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
     display:grid;place-items:center;font-weight:740;font-size:.85rem}
   .opt.correct{border-color:var(--green);background:var(--green-bg)}
@@ -1464,7 +1465,9 @@ function paintQuestion(){
       <span class="top-spacer" style="flex:1"></span>
       <button class="btn ghost" onclick="confirmQuit()">${t('quit')}</button>
     </div>`;
+  state.kb=-1;
 }
+function setKbFocus(i){ const nodes=document.querySelectorAll('.opts .opt'); if(!nodes.length) return; const n=nodes.length; state.kb=((i%n)+n)%n; for(let k=0;k<n;k++) nodes[k].classList.toggle('kbfocus',k===state.kb); const el=nodes[state.kb]; if(el&&el.scrollIntoView) el.scrollIntoView({block:'nearest'}); }
 
 function choose(i){
   const s=state; if(s.answers[s.cur]!==null) return;
@@ -1603,12 +1606,15 @@ function toggleTheme(){
   window.addEventListener('DOMContentLoaded',()=>{ const b=document.getElementById('themeBtn'); if(b) b.textContent=t==='dark'?'☀️':'🌙'; });
 })();
 
-/* keyboard: 1-4 to answer, Enter to advance */
+/* keyboard: ↑/↓ move the focus ring across answers, Enter selects (or advances when answered); 1-4 still answer directly */
 document.addEventListener('keydown',e=>{
   if(state.view!=='test') return;
-  const s=state, answered=s.answers[s.cur]!==null;
-  if(!answered && ['1','2','3','4'].includes(e.key)){ const i=+e.key-1; if(i<s.test[s.cur].optOrder.length) choose(i); }
-  else if(answered && (e.key==='Enter'||e.key==='n'||e.key===' ')){ e.preventDefault(); next(); }
+  if(e.target&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+  const s=state, answered=s.answers[s.cur]!==null, n=s.test[s.cur].optOrder.length, kb=(typeof s.kb==='number'&&s.kb>=0)?s.kb:-1;
+  if(!answered && (e.key==='ArrowDown'||e.key==='ArrowUp')){ e.preventDefault(); setKbFocus(kb<0?(e.key==='ArrowDown'?0:n-1):kb+(e.key==='ArrowDown'?1:-1)); }
+  else if(e.key==='Enter'){ e.preventDefault(); if(!answered) choose(kb<0?0:kb); else next(); }
+  else if(!answered && ['1','2','3','4'].includes(e.key)){ const i=+e.key-1; if(i<n) choose(i); }
+  else if(answered && (e.key==='n'||e.key===' ')){ e.preventDefault(); next(); }
 });
 
 /* ============================ ONBOARDING PICKER ============================ */
