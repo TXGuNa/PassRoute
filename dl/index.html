@@ -8,8 +8,27 @@
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://passroute.ai/dl/" />
 <meta property="og:type" content="website" /><meta property="og:title" content="Free Texas DL Practice Test — PassRoute" />
-<meta property="og:description" content="Free Texas driver license practice tests in 5 languages with answers and explanations." />
+<meta property="og:description" content="Free Texas driver license practice tests in 6 languages with answers and explanations." />
 <meta property="og:url" content="https://passroute.ai/dl/" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="en" href="https://passroute.ai/dl/?lang=en" />
+<link rel="alternate" hreflang="es" href="https://passroute.ai/dl/?lang=es" />
+<link rel="alternate" hreflang="ru" href="https://passroute.ai/dl/?lang=ru" />
+<link rel="alternate" hreflang="tr" href="https://passroute.ai/dl/?lang=tr" />
+<link rel="alternate" hreflang="hi" href="https://passroute.ai/dl/?lang=hi" />
+<link rel="alternate" hreflang="ar" href="https://passroute.ai/dl/?lang=ar" />
+<link rel="alternate" hreflang="x-default" href="https://passroute.ai/dl/" />
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@graph": [
+  { "@type": "WebSite", "name": "PassRoute", "url": "https://passroute.ai/dl/", "inLanguage": ["en","es","ru","tr","hi","ar"], "description": "Free driver license (DL) practice tests in 6 languages." },
+  { "@type": "Course", "name": "Driver License (DL) Practice Test", "provider": { "@type": "EducationalOrganization", "name": "PassRoute", "url": "https://passroute.ai/" }, "description": "Free DL practice tests: road signs, rules of the road, signals & markings, safe driving, and penalties — with answers and explanations in English, Spanish, Russian, Turkish, and Hindi.", "inLanguage": ["en","es","ru","tr","hi","ar"], "isAccessibleForFree": true },
+  { "@type": "FAQPage", "mainEntity": [
+    { "@type": "Question", "name": "Is the PassRoute DL practice test free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. PassRoute offers free driver license practice tests covering road signs, rules of the road, signals and markings, safe driving, and penalties, with answers and explanations." } },
+    { "@type": "Question", "name": "What languages are the DL practice tests in?", "acceptedAnswer": { "@type": "Answer", "text": "English, Spanish, Russian, Turkish, and Hindi — including questions, answer options, and explanations." } },
+    { "@type": "Question", "name": "Does it teach road signs with pictures?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Road Signs learning test includes image-based questions that teach the standard US (MUTCD) road signs visually." } }
+  ] }
+] }
+</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5005909536075464" crossorigin="anonymous"></script>
 <style>
   :root{
@@ -450,19 +469,25 @@
   /* collapse ad slots that don't get filled so they leave no empty gap */
   ins.adsbygoogle{display:block;min-height:0}
   ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!important;height:0!important}
+  @media(max-width:560px){ #examBtn .exam-txt{display:none} #examBtn{padding-left:10px;padding-right:9px} }
+  html{overflow-x:clip}
+  @media(max-width:480px){ .top-inner{gap:6px;padding:10px 10px} .brand h1{display:none} .brand img,.brand .star{width:32px;height:32px} .langbtn{padding:0 8px} .hbtn.ic{width:32px;font-size:.98rem} }
+  [dir="rtl"] .opt,[dir="rtl"] .desc,[dir="rtl"] .info,[dir="rtl"] .qtext,[dir="rtl"] .rq,[dir="rtl"] .hb,[dir="rtl"] .verdict,[dir="rtl"] .best,[dir="rtl"] .dlnote{text-align:right}
+  [dir="rtl"] .langmenu{left:auto}
+  [dir="rtl"] .opt .key{margin-left:10px;margin-right:0}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="top-inner">
-    <div class="brand" onclick="go('home')">
+    <div class="brand" onclick="switchExam('home')" title="All exams">
       <img class="star" src="../icon-192.png" alt="PassRoute logo" />
       <div><h1>PassRoute</h1><p id="brandSub">Texas DL · Practice Tests</p></div>
     </div>
     <div class="top-spacer"></div>
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
-      <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span>🚗 DL</span><span class="cv">▾</span></button>
+      <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span class="exam-ic">🚗</span><span class="exam-txt">DL</span><span class="cv">▾</span></button>
       <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('cdl')">📋 Commercial (CDL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="statedd" style="margin-right:6px">
@@ -484,19 +509,22 @@
 <script src="../states-meta.js"></script>
 <script src="dl-data.js"></script>
 <script src="dl-signs.js"></script>
+<script src="dl-data-ar.js"></script>
 <script>
 "use strict";
 var DATA = window.DL_DATA, I18N = window.DL_I18N;
+/* Arabic category names/blurbs (question content falls back to English until translated) */
+I18N.cat=I18N.cat||{}; I18N.cat.ar={ "road-signs":{name:"إشارات الطريق",blurb:"إشارات الطريق الأمريكية: اختبارات تدريبية واختبار تعليمي يغطي قسم الدليل بالكامل."}, "rules-of-the-road":{name:"قواعد الطريق",blurb:"قواعد الطريق: اختبارات تدريبية واختبار تعليمي."}, "signals-and-markings":{name:"الإشارات والعلامات",blurb:"إشارات المرور وعلامات الطريق."}, "safe-driving":{name:"القيادة الآمنة",blurb:"القيادة الآمنة والظروف الصعبة."}, "alcohol-and-penalties":{name:"الكحول والعقوبات",blurb:"الكحول والمخدرات والعقوبات."} };
 var SMETA = window.STATE_META || { TX:{name:"Texas",agency:"Texas DPS",agencyShort:"DPS",dlHandbook:"https://www.dps.texas.gov/section/driver-license/texas-driver-handbook"} };
 var STATE = (function(){ try{ var u=new URLSearchParams(location.search).get('state'); if(u){ u=u.toUpperCase(); if(SMETA[u]){ localStorage.setItem('pr_state',u); return u; } } var s=localStorage.getItem('pr_state')||'TX'; return SMETA[s]?s:'TX'; }catch(e){ return 'TX'; } })();
 function stateMeta(){ var s=SMETA[STATE]||SMETA.TX||{name:'Texas'}; return { code:STATE, name:s.name||'Texas', agency:s.agency||((s.name||'Texas')+' '+(s.agencyShort||'DMV')), agencyShort:s.agencyShort||'DMV', handbook:s.dlHandbook||'', appointmentUrl:s.appointmentUrl||'', applyUrl:s.applyUrl||'' }; }
 var HANDBOOK = stateMeta().handbook || "https://www.dps.texas.gov/section/driver-license/texas-driver-handbook";
 /* DL content is Texas-based (road signs national; speed limits/penalties state-specific): restate only
    the agency-affiliation disclaimer, not handbook/content references. */
-function stz(str){ if(str==null) return str; var m=stateMeta(); if(m.code==='TX') return str; return String(str).replace(/Texas DPS\/DMV/g,m.agency).replace(/Texas DPS\b/g,m.agency).replace(/Texas DMV\b/g,m.agency); }
+function stz(str){ if(str==null) return str; var m=stateMeta(); if(m.code==='TX') return str; return String(str).replace(/Texas DPS\/DMV/g,m.agency).replace(/Texas DPS\b/g,m.agency).replace(/Texas DMV\b/g,m.agency).replace(/\bTexas DL\b/g,m.name+' DL').replace(/\bTexas Driver/g,m.name+' Driver').replace(/\bTexas\b/g,m.name); }
 
 var UI = {
-  en:{ sub:"Texas DL · Practice Tests", heroT:"Pass your Texas driver license test.", heroS:"Free, handbook-accurate practice in 5 languages — with answers and explanations.",
+  en:{ sub:"Texas DL · Practice Tests", heroT:"Pass your Texas driver license test.", heroS:"Free, handbook-accurate practice in 6 languages — with answers and explanations.",
     tests:"{n} tests", qEach:"{n} questions", pass:"Pass 80%", passedOf:"{p} of {t} passed",
     practiceTile:"Practice Test", learnTile:"Learning Test", testN:"Test {n}", lessonN:"Lesson {n}",
     notStarted:"Not started", passedB:"✓ Passed", notYet:"✗ Not yet", best:"Best {c}/{t} · {pct}% · {a}×",
@@ -509,7 +537,7 @@ var UI = {
     confirmReset:"Erase all your saved results on this device?", confirmQuit:"Quit this test? Your progress on it won't be saved.",
     footMain:"Practice questions are written from the official Texas Driver Handbook (DL-7).", footSub:"Study aid only — not affiliated with the Texas DPS/DMV.", footHb:"📕 Official Texas Driver Handbook",
     stateNote:"These questions follow the Texas handbook. Road signs & signals are national, but {state} speed limits and penalties can differ —", bookAppt:"Book your {agency} appointment", stateHb:"{state} Driver Handbook" },
-  es:{ sub:"Texas DL · Exámenes de práctica", heroT:"Aprueba tu examen de licencia de Texas.", heroS:"Práctica gratis basada en el manual, en 5 idiomas — con respuestas y explicaciones.",
+  es:{ sub:"Texas DL · Exámenes de práctica", heroT:"Aprueba tu examen de licencia de Texas.", heroS:"Práctica gratis basada en el manual, en 6 idiomas — con respuestas y explicaciones.",
     tests:"{n} exámenes", qEach:"{n} preguntas", pass:"Aprobar 80%", passedOf:"{p} de {t} aprobados",
     practiceTile:"Examen de práctica", learnTile:"Examen de aprendizaje", testN:"Examen {n}", lessonN:"Lección {n}",
     notStarted:"Sin empezar", passedB:"✓ Aprobado", notYet:"✗ Aún no", best:"Mejor {c}/{t} · {pct}% · {a}×",
@@ -522,7 +550,7 @@ var UI = {
     confirmReset:"¿Borrar todos tus resultados guardados?", confirmQuit:"¿Salir del examen? No se guardará tu progreso.",
     footMain:"Las preguntas se basan en el Manual del Conductor de Texas (DL-7).", footSub:"Solo ayuda de estudio — no afiliado al DPS/DMV de Texas.", footHb:"📕 Manual oficial del Conductor de Texas",
     stateNote:"Estas preguntas siguen el manual de Texas. Las señales son nacionales, pero los límites de velocidad y sanciones de {state} pueden variar —", bookAppt:"Reserva tu cita en {agency}", stateHb:"Manual del Conductor de {state}" },
-  ru:{ sub:"Texas DL · Пробные тесты", heroT:"Сдай экзамен на права Техаса.", heroS:"Бесплатная подготовка по справочнику на 5 языках — с ответами и пояснениями.",
+  ru:{ sub:"Texas DL · Пробные тесты", heroT:"Сдай экзамен на права Техаса.", heroS:"Бесплатная подготовка по справочнику на 6 языках — с ответами и пояснениями.",
     tests:"{n} тестов", qEach:"{n} вопросов", pass:"Порог 80%", passedOf:"{p} из {t} сдано",
     practiceTile:"Пробный тест", learnTile:"Учебный тест", testN:"Тест {n}", lessonN:"Урок {n}",
     notStarted:"Не начат", passedB:"✓ Сдан", notYet:"✗ Ещё нет", best:"Лучший {c}/{t} · {pct}% · {a}×",
@@ -535,7 +563,7 @@ var UI = {
     confirmReset:"Стереть все сохранённые результаты?", confirmQuit:"Выйти из теста? Прогресс не сохранится.",
     footMain:"Вопросы составлены по официальному справочнику водителя Техаса (DL-7).", footSub:"Только учебное пособие — не связано с DPS/DMV Техаса.", footHb:"📕 Справочник водителя Техаса",
     stateNote:"Эти вопросы основаны на справочнике Техаса. Знаки общенациональные, но ограничения скорости и штрафы в штате {state} могут отличаться —", bookAppt:"Записаться на приём в {agency}", stateHb:"Справочник водителя {state}" },
-  tr:{ sub:"Texas DL · Deneme Sınavları", heroT:"Texas sürücü belgesi sınavını geç.", heroS:"El kitabına uygun, 5 dilde ücretsiz hazırlık — cevaplar ve açıklamalarla.",
+  tr:{ sub:"Texas DL · Deneme Sınavları", heroT:"Texas sürücü belgesi sınavını geç.", heroS:"El kitabına uygun, 6 dilde ücretsiz hazırlık — cevaplar ve açıklamalarla.",
     tests:"{n} test", qEach:"{n} soru", pass:"Geçme %80", passedOf:"{t} testin {p} geçildi",
     practiceTile:"Deneme Sınavı", learnTile:"Öğrenme Testi", testN:"Test {n}", lessonN:"Ders {n}",
     notStarted:"Başlanmadı", passedB:"✓ Geçti", notYet:"✗ Henüz değil", best:"En iyi {c}/{t} · {pct}% · {a}×",
@@ -548,7 +576,7 @@ var UI = {
     confirmReset:"Bu cihazdaki tüm sonuçların silinsin mi?", confirmQuit:"Testten çıkılsın mı? İlerlemen kaydedilmez.",
     footMain:"Sorular resmi Texas Sürücü El Kitabı'ndan (DL-7) yazılmıştır.", footSub:"Yalnızca çalışma aracı — Texas DPS/DMV ile bağlantılı değildir.", footHb:"📕 Resmi Texas Sürücü El Kitabı",
     stateNote:"Bu sorular Texas el kitabını izler. Trafik işaretleri ulusaldır, ancak {state} hız limitleri ve cezaları farklı olabilir —", bookAppt:"{agency} randevunu al", stateHb:"{state} Sürücü El Kitabı" },
-  hi:{ sub:"Texas DL · अभ्यास परीक्षाएँ", heroT:"अपना Texas ड्राइवर लाइसेंस टेस्ट पास करें।", heroS:"हैंडबुक-आधारित मुफ़्त अभ्यास, 5 भाषाओं में — उत्तर और व्याख्या के साथ।",
+  hi:{ sub:"Texas DL · अभ्यास परीक्षाएँ", heroT:"अपना Texas ड्राइवर लाइसेंस टेस्ट पास करें।", heroS:"हैंडबुक-आधारित मुफ़्त अभ्यास, 6 भाषाओं में — उत्तर और व्याख्या के साथ।",
     tests:"{n} परीक्षाएँ", qEach:"{n} प्रश्न", pass:"पास 80%", passedOf:"{t} में से {p} पास",
     practiceTile:"अभ्यास परीक्षा", learnTile:"लर्निंग टेस्ट", testN:"परीक्षा {n}", lessonN:"पाठ {n}",
     notStarted:"शुरू नहीं", passedB:"✓ पास", notYet:"✗ अभी नहीं", best:"सर्वश्रेष्ठ {c}/{t} · {pct}% · {a}×",
@@ -560,14 +588,28 @@ var UI = {
     speak:"सुनें", enBadge:"EN", statsT:"आपके आँकड़े", taken:"दी गई परीक्षाएँ", passed:"पास", noData:"अभी कोई परीक्षा नहीं।",
     confirmReset:"इस डिवाइस पर सहेजे सभी परिणाम मिटाएँ?", confirmQuit:"परीक्षा छोड़ें? आपकी प्रगति सहेजी नहीं जाएगी।",
     footMain:"प्रश्न आधिकारिक Texas Driver Handbook (DL-7) से लिखे गए हैं।", footSub:"केवल अध्ययन सहायता — Texas DPS/DMV से संबद्ध नहीं।", footHb:"📕 आधिकारिक Texas ड्राइवर हैंडबुक",
-    stateNote:"ये प्रश्न Texas हैंडबुक का अनुसरण करते हैं। सड़क संकेत राष्ट्रीय हैं, लेकिन {state} की गति सीमाएँ और दंड भिन्न हो सकते हैं —", bookAppt:"{agency} में अपॉइंटमेंट बुक करें", stateHb:"{state} ड्राइवर हैंडबुक" }
+    stateNote:"ये प्रश्न Texas हैंडबुक का अनुसरण करते हैं। सड़क संकेत राष्ट्रीय हैं, लेकिन {state} की गति सीमाएँ और दंड भिन्न हो सकते हैं —", bookAppt:"{agency} में अपॉइंटमेंट बुक करें", stateHb:"{state} ड्राइवर हैंडबुक" },
+  ar:{ sub:"رخصة القيادة · اختبارات تدريبية", heroT:"اجتَز اختبار رخصة القيادة.", heroS:"تدريب مجاني مطابق للدليل بـ 6 لغات — مع الإجابات والشرح.",
+    tests:"{n} اختبارات", qEach:"{n} سؤالاً", pass:"النجاح 80%", passedOf:"نجح {p} من {t}",
+    practiceTile:"اختبار تدريبي", learnTile:"اختبار تعليمي", testN:"اختبار {n}", lessonN:"درس {n}",
+    notStarted:"لم يبدأ", passedB:"✓ ناجح", notYet:"✗ ليس بعد", best:"الأفضل {c}/{t} · {pct}% · {a}×",
+    home:"الرئيسية", back:"رجوع", catInfo:"{exam} سؤالاً لكل اختبار · اجتَز {need} (80%)",
+    question:"سؤال", correctV:"✓ صحيح — الإجابة هي {L}.", wrongV:"✗ غير صحيح — الإجابة هي {L}.",
+    why:"لماذا", src:"📘 دليل سائق تكساس — {ref}", pick:"اختر إجابة لرؤية الشرح.",
+    next:"السؤال التالي →", seeRes:"عرض النتائج", quit:"خروج", retake:"↻ إعادة", backTo:"← العودة إلى {cat}",
+    allCats:"كل الاختبارات", resPass:"ناجح", resFail:"غير ناجح", scoreLine:"{c} من {t} صحيحة · تحتاج {need} (80%)",
+    speak:"استمع", enBadge:"EN", statsT:"إحصاءاتك", taken:"الاختبارات المُجراة", passed:"الناجحة", noData:"لا اختبارات بعد — أجرِ واحدًا لرؤية الإحصاءات.",
+    confirmReset:"محو كل نتائجك المحفوظة على هذا الجهاز؟", confirmQuit:"الخروج من هذا الاختبار؟ لن يُحفظ تقدّمك فيه.",
+    footMain:"الأسئلة مكتوبة من دليل سائق تكساس الرسمي (DL-7).", footSub:"مساعدة دراسية فقط — غير تابعة لـ Texas DPS/DMV.", footHb:"📕 دليل سائق تكساس الرسمي",
+    stateNote:"تتبع هذه الأسئلة دليل تكساس. إشارات الطريق وطنية، لكن حدود السرعة والعقوبات في {state} قد تختلف —", bookAppt:"احجز موعدك لدى {agency}", stateHb:"دليل سائق {state}" }
 };
 /* alias the existing DL string keys to the CDL-markup render keys + add the few missing ones (5 langs) */
-var _RT={en:{passedBadge:"{p}/{t} passed",resTime:"⏱ Finished in {t}",resAvg:"~{s} sec/question",rCorrect:"Correct:",rYour:"Your answer:"},
-  es:{passedBadge:"{p} de {t}",resTime:"⏱ Terminado en {t}",resAvg:"~{s} seg/pregunta",rCorrect:"Correcta:",rYour:"Tu respuesta:"},
-  ru:{passedBadge:"{p} из {t}",resTime:"⏱ Завершено за {t}",resAvg:"~{s} сек/вопрос",rCorrect:"Правильно:",rYour:"Твой ответ:"},
-  tr:{passedBadge:"{t} testin {p}",resTime:"⏱ {t} sürede bitti",resAvg:"~{s} sn/soru",rCorrect:"Doğru:",rYour:"Senin cevabın:"},
-  hi:{passedBadge:"{t} में से {p}",resTime:"⏱ {t} में पूरा",resAvg:"~{s} सेकंड/प्रश्न",rCorrect:"सही:",rYour:"आपका उत्तर:"}};
+var _RT={en:{passedBadge:"{p}/{t} passed",resTime:"⏱ Finished in {t}",resAvg:"~{s} sec/question",rCorrect:"Correct:",rYour:"Your answer:",smTitle:"Study materials",smTag:"Official",smHbT:"Official Driver Handbook",smHbS:"Open the current {state} driver handbook (PDF)",smOpen:"Open"},
+  es:{passedBadge:"{p} de {t}",resTime:"⏱ Terminado en {t}",resAvg:"~{s} seg/pregunta",rCorrect:"Correcta:",rYour:"Tu respuesta:",smTitle:"Material de estudio",smTag:"Oficial",smHbT:"Manual oficial del conductor",smHbS:"Abre el manual del conductor de {state} (PDF)",smOpen:"Abrir"},
+  ru:{passedBadge:"{p} из {t}",resTime:"⏱ Завершено за {t}",resAvg:"~{s} сек/вопрос",rCorrect:"Правильно:",rYour:"Твой ответ:",smTitle:"Учебные материалы",smTag:"Официально",smHbT:"Официальный справочник водителя",smHbS:"Откройте справочник водителя ({state}, PDF)",smOpen:"Открыть"},
+  tr:{passedBadge:"{t} testin {p}",resTime:"⏱ {t} sürede bitti",resAvg:"~{s} sn/soru",rCorrect:"Doğru:",rYour:"Senin cevabın:",smTitle:"Çalışma materyalleri",smTag:"Resmi",smHbT:"Resmi Sürücü El Kitabı",smHbS:"{state} sürücü el kitabını aç (PDF)",smOpen:"Aç"},
+  hi:{passedBadge:"{t} में से {p}",resTime:"⏱ {t} में पूरा",resAvg:"~{s} सेकंड/प्रश्न",rCorrect:"सही:",rYour:"आपका उत्तर:",smTitle:"अध्ययन सामग्री",smTag:"आधिकारिक",smHbT:"आधिकारिक ड्राइवर हैंडबुक",smHbS:"{state} ड्राइवर हैंडबुक खोलें (PDF)",smOpen:"खोलें"},
+  ar:{passedBadge:"نجح {p}/{t}",resTime:"⏱ انتهى في {t}",resAvg:"~{s} ثانية/سؤال",rCorrect:"صحيح:",rYour:"إجابتك:",smTitle:"مواد الدراسة",smTag:"رسمي",smHbT:"دليل السائق الرسمي",smHbS:"افتح دليل سائق {state} الحالي (PDF)",smOpen:"فتح"}};
 Object.keys(UI).forEach(function(l){ var u=UI[l]; u.ccTests=u.tests; u.ccQEach=u.qEach; u.ccPass=u.pass; u.ccPassedOf=u.passedOf;
   u.heroTitle=u.heroT; u.heroSub=u.heroS; u.tilePractice=u.practiceTile; u.tileLesson=u.learnTile; u.tileTest=u.testN; u.tileLessonN=u.lessonN; u.bestLine=u.best; u.statsT=u.statsT;
   var r=_RT[l]||_RT.en; for(var k in r){ if(u[k]==null) u[k]=r[k]; } });
@@ -575,11 +617,11 @@ Object.keys(UI).forEach(function(l){ var u=UI[l]; u.ccTests=u.tests; u.ccQEach=u
 var PKEY="tx_dl_progress", TKEY="tx_dl_theme", LKEY="tx_dl_lang", HKEY="tx_dl_history", SKEY="tx_dl_session";
 var LANG=(function(){ try{ var u=new URLSearchParams(location.search).get('lang'); if(u&&UI[u]){localStorage.setItem(LKEY,u);return u;} return localStorage.getItem(LKEY)||'en'; }catch(e){ return 'en'; } })();
 function t(k,v){ var s=(UI[LANG]&&UI[LANG][k]!=null)?UI[LANG][k]:(UI.en[k]!=null?UI.en[k]:k); if(v) for(var x in v) s=String(s).split('{'+x+'}').join(v[x]); return stz(s); }
-function catName(c){ if(c.kind==='learn'&&c.learnSubject){ var b=DATA.categories.find(function(x){return x.id===c.learnSubject;}); if(b) c=b; } var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
-function catBlurb(c){ var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.blurb)||c.blurb; }
+function catName(c){ if(c.kind==='learn'&&c.learnSubject){ var b=DATA.categories.find(function(x){return x.id===c.learnSubject;}); if(b) c=b; } var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return stz((o&&o.name)||c.name); }
+function catBlurb(c){ var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return stz((o&&o.blurb)||c.blurb); }
 function baseCatId(c){ var cat=(typeof c==='string')?DATA.categories.find(function(x){return x.id===c;}):c; return (cat&&cat.kind==='learn'&&cat.learnSubject)?cat.learnSubject:(cat?cat.id:c); }
 function learnCatFor(id){ return DATA.categories.find(function(c){return c.kind==='learn'&&c.learnSubject===id;})||null; }
-function qData(catId,qid){ var en=DATA.categories.find(function(c){return c.id===catId;}).questions[qid]; var tr=I18N.q[LANG]&&I18N.q[LANG][catId]&&I18N.q[LANG][catId][qid]; var s=(LANG!=='en'&&tr)?tr:en; return { q:s.q||en.q, options:s.options||en.options, explanation:s.explanation||en.explanation, handbook:en.handbook, hbref:en.hbref, translated:!!(LANG!=='en'&&tr) }; }
+function qData(catId,qid){ var en=DATA.categories.find(function(c){return c.id===catId;}).questions[qid]; var tr=I18N.q[LANG]&&I18N.q[LANG][catId]&&I18N.q[LANG][catId][qid]; var s=(LANG!=='en'&&tr)?tr:en; return { q:s.q||en.q, options:s.options||en.options, explanation:s.explanation||en.explanation, handbook:s.explanation||en.explanation, hbref:en.hbref, translated:!!(LANG!=='en'&&tr) }; }
 function langBadge(tr){ return (LANG==='en'||tr)?'':' <span class="enflag" title="'+t('enBadge')+'">'+t('enBadge')+'</span>'; }
 var ACCENTS={};DATA.categories.forEach(function(c){ACCENTS[c.id]=c.accent||(c.kind==='learn'?'#0a7c43':'#64748b');});
 
@@ -610,7 +652,7 @@ function startTimer(){ stopTimer(); timerInt=setInterval(tick,1000); tick(); }
 function stopTimer(){ if(timerInt){clearInterval(timerInt);timerInt=null;} }
 
 /* TTS */
-function langBCP(){ return LANG==='tr'?'tr-TR':LANG==='ru'?'ru-RU':LANG==='es'?'es-MX':LANG==='hi'?'hi-IN':'en-US'; }
+function langBCP(){ return LANG==='tr'?'tr-TR':LANG==='ru'?'ru-RU':LANG==='es'?'es-MX':LANG==='hi'?'hi-IN':LANG==='ar'?'ar-SA':'en-US'; }
 function stopSpeak(){ try{ if(window.speechSynthesis) speechSynthesis.cancel(); }catch(e){} }
 function speakQuestion(e){ if(e) e.stopPropagation(); if(!('speechSynthesis' in window)){ toast(t('ttsNo')); return; } var it=state.test&&state.test[state.cur]; if(!it) return; if(speechSynthesis.speaking){ stopSpeak(); return; } var qd=qData(state.catId,it.qid); var opts=it.optOrder.map(function(oi,i){ return String.fromCharCode(65+i)+'. '+qd.options[oi]; }); var u=new SpeechSynthesisUtterance(qd.q+'. '+opts.join('. ')); u.lang=qd.translated?langBCP():'en-US'; u.rate=.95; stopSpeak(); speechSynthesis.speak(u); }
 function toast(msg){ var d=document.createElement('div'); d.className='toast'; d.textContent=msg; document.body.appendChild(d); setTimeout(function(){d.remove();},2600); }
@@ -641,7 +683,11 @@ function renderHome(){
   if(m.code!=='TX'){ note='<div class="dlnote">'+t('stateNote',{state:m.name})+' '+
     (m.appointmentUrl?'<a href="'+m.appointmentUrl+'" target="_blank" rel="noopener">'+t('bookAppt',{agency:m.agency})+'</a> · ':'')+
     (m.handbook?'<a href="'+m.handbook+'" target="_blank" rel="noopener">'+t('stateHb',{state:m.name})+'</a>':'')+'</div>'; }
-  return '<section class="hero"><h2>'+t('heroTitle')+'</h2><div class="sub">'+t('heroSub')+'</div></section>'+note+AD+'<div class="grid">'+cards+'</div>'; }
+  return '<section class="hero"><h2>'+t('heroTitle')+'</h2><div class="sub">'+t('heroSub')+'</div></section>'+note+AD+'<div class="grid">'+cards+'</div>'+renderDownloads(); }
+function renderDownloads(){ var m=stateMeta(); var hb=m.handbook||HANDBOOK; if(!hb) return '';
+  return '<section class="downloads"><div class="dl-head"><h3>'+t('smTitle')+'</h3><div class="rm-tag">'+t('smTag')+'</div></div>'+
+    '<div class="dl-row"><a class="dl-card" href="'+hb+'" target="_blank" rel="noopener"><div class="dl-ico">📕</div>'+
+    '<div class="dl-txt"><b>'+t('smHbT')+'</b><span>'+t('smHbS',{state:m.name})+'</span></div><span class="dl-go">'+t('smOpen')+'</span></a></div></section>'; }
 function tiles(cat){ var html='',isL=cat.kind==='learn';
   for(var i=0;i<cat.numTests;i++){ var r=getResult(cat.id,i), badge='<span class="badge b-new">'+t('notStarted')+'</span>', best='';
     if(r){ badge=r.passed?'<span class="badge b-pass">'+t('passedB')+'</span>':'<span class="badge b-fail">'+t('notYet')+'</span>'; best='<div class="best">'+t('bestLine',{c:r.bestCorrect,t:r.total,pct:r.bestPct,a:r.attempts})+'</div>'; }
@@ -699,7 +745,7 @@ function renderStats(){ var h=loadHistory(); var head='<div class="crumb"><a onc
   return head+'<h2>'+t('statsT')+'</h2><div class="meta" style="margin:10px 0 16px"><span class="pill">'+t('taken')+': '+h.length+'</span><span class="pill">'+t('passed')+': '+passed+'</span></div>'+rows; }
 
 /* chrome: dropdowns (CDL ids + button items), lang, theme, exam switch, state */
-function renderLangMenu(){ var names={en:'English',es:'Español',ru:'Русский',tr:'Türkçe',hi:'हिन्दी'}; var cur=document.getElementById('langCur'); if(cur) cur.textContent=LANG.toUpperCase();
+function renderLangMenu(){ var names={en:'English',es:'Español',ru:'Русский',tr:'Türkçe',hi:'हिन्दी',ar:'العربية'}; var cur=document.getElementById('langCur'); if(cur) cur.textContent=LANG.toUpperCase();
   document.getElementById('langMenu').innerHTML=Object.keys(names).filter(function(l){return l!==LANG;}).map(function(l){ return '<button role="option" onclick="setLang(\''+l+'\')">'+names[l]+'</button>'; }).join(''); }
 function renderStateMenu(){ var cur=document.getElementById('stateCur'); if(cur) cur.textContent=STATE; var menu=document.getElementById('stateMenu'); if(!menu) return;
   var sorted=Object.keys(SMETA).sort(function(a,b){return SMETA[a].name.localeCompare(SMETA[b].name);});
@@ -708,7 +754,7 @@ function toggleLangMenu(e){ if(e) e.stopPropagation(); document.getElementById('
 function toggleStateMenu(e){ if(e) e.stopPropagation(); document.getElementById('statedd').classList.toggle('open'); }
 function toggleExamMenu(e){ if(e) e.stopPropagation(); document.getElementById('examdd').classList.toggle('open'); }
 document.addEventListener('click',function(){ ['langdd','statedd','examdd'].forEach(function(id){ var d=document.getElementById(id); if(d) d.classList.remove('open'); }); });
-function setLang(l){ LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){} document.documentElement.setAttribute('lang',l); renderLangMenu(); renderStateMenu(); applyChrome(); render(); }
+function setLang(l){ LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){} document.documentElement.setAttribute('lang',l); document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr'); renderLangMenu(); renderStateMenu(); applyChrome(); render(); }
 function setState(c){ if(!SMETA[c]) return; STATE=c; try{ localStorage.setItem('pr_state',c); }catch(e){} HANDBOOK=stateMeta().handbook||HANDBOOK; document.getElementById('statedd').classList.remove('open'); renderStateMenu(); applyChrome(); go('home'); }
 function switchExam(ex){ if(ex==='home'){ location.href='../home/index.html'+(LANG!=='en'?'?lang='+LANG:''); return; } try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){} if(ex==='cdl') location.href='../index.html?exam=cdl&state='+STATE+(LANG!=='en'?'&lang='+LANG:''); else if(ex==='civ') location.href='../citizenship/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
 function toggleTheme(){ var d=document.documentElement.getAttribute('data-theme')==='dark'?'':'dark'; document.documentElement.setAttribute('data-theme',d); try{ localStorage.setItem(TKEY,d); }catch(e){} var b=document.getElementById('themeBtn'); if(b) b.textContent=d==='dark'?'☀️':'🌙'; }
@@ -718,7 +764,7 @@ function applyChrome(){ var bs=document.getElementById('brandSub'); if(bs) bs.te
 
 /* boot */
 (function(){ try{ var th=localStorage.getItem(TKEY); if(th==='dark') document.documentElement.setAttribute('data-theme','dark'); }catch(e){}
-  document.documentElement.setAttribute('lang',LANG);
+  document.documentElement.setAttribute('lang',LANG); document.documentElement.setAttribute('dir',LANG==='ar'?'rtl':'ltr');
   var tb=document.getElementById('themeBtn'); if(tb) tb.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'☀️':'🌙';
   renderLangMenu(); renderStateMenu(); applyChrome();
   if(!restoreSession()) initRoute();

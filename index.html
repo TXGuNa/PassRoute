@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PassRoute — Free Practice Tests (CDL, DMV &amp; More) · 5 Languages</title>
+<title>PassRoute — Free Practice Tests (CDL, DMV &amp; More) · 6 Languages</title>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -28,6 +28,7 @@
 <link rel="alternate" hreflang="ru" href="https://passroute.ai/?lang=ru" />
 <link rel="alternate" hreflang="tr" href="https://passroute.ai/?lang=tr" />
 <link rel="alternate" hreflang="hi" href="https://passroute.ai/?lang=hi" />
+<link rel="alternate" hreflang="ar" href="https://passroute.ai/?lang=ar" />
 <link rel="alternate" hreflang="x-default" href="https://passroute.ai/" />
 
 <!-- Open Graph -->
@@ -46,7 +47,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="PassRoute — Free Practice Tests" />
-<meta name="twitter:description" content="2,200+ handbook-accurate CDL questions with explanations, in 5 languages. Pass on your first try." />
+<meta name="twitter:description" content="2,200+ handbook-accurate CDL questions with explanations, in 6 languages. Pass on your first try." />
 <meta name="twitter:image" content="https://passroute.ai/icon-512.png" />
 
 <!-- Structured data: site + org + FAQ (rich results) -->
@@ -55,8 +56,8 @@
   "@context": "https://schema.org",
   "@graph": [
     { "@type": "WebSite", "name": "PassRoute", "url": "https://passroute.ai/",
-      "inLanguage": ["en","es","ru","tr","hi"],
-      "description": "Free Texas CDL practice tests in 5 languages." },
+      "inLanguage": ["en","es","ru","tr","hi","ar"],
+      "description": "Free Texas CDL practice tests in 6 languages." },
     { "@type": "EducationalOrganization", "name": "PassRoute",
       "url": "https://passroute.ai/", "logo": "https://passroute.ai/icon-512.png",
       "description": "Free, handbook-accurate Texas CDL/CLP practice tests and study tools." },
@@ -526,19 +527,32 @@
   /* collapse ad slots that don't get filled so they leave no empty gap */
   ins.adsbygoogle{display:block;min-height:0}
   ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!important;height:0!important}
+  /* mobile: top buttons icon-only — hide the exam-switcher text label so the header never overflows */
+  @media(max-width:560px){ #examBtn .exam-txt{display:none} #examBtn{padding-left:10px;padding-right:9px} }
+  [dir="rtl"] .opt,[dir="rtl"] .cat .desc,[dir="rtl"] .info,[dir="rtl"] .qtext,[dir="rtl"] .rev,[dir="rtl"] .hb,[dir="rtl"] .verdict,[dir="rtl"] .step,[dir="rtl"] .rm-card{text-align:right}
+  [dir="rtl"] .opt .key{margin-left:10px;margin-right:0} [dir="rtl"] .langmenu{left:auto}
+  /* mobile: keep the whole header on one line (no horizontal overflow / cut-off buttons) */
+  html{overflow-x:clip}
+  @media(max-width:480px){
+    .top-inner{gap:6px;padding:10px 10px}
+    .brand h1{display:none}            /* phone: logo only — frees space so all buttons fit */
+    .brand img,.brand .star{width:32px;height:32px}
+    .langbtn{padding:0 8px}
+    .hbtn.ic{width:32px;font-size:.98rem}
+  }
 </style>
 </head>
 <body>
 <header class="top">
   <div class="top-inner">
-    <div class="brand" onclick="go('home')">
+    <div class="brand" onclick="switchExam('home')" title="All exams">
       <img class="star" src="icon-192.png" alt="PassRoute logo" />
       <div><h1>PassRoute</h1><p id="brandSub">Texas CDL · Practice Tests</p></div>
     </div>
     <div class="top-spacer"></div>
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
-      <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span>📋 CDL</span><span class="cv">▾</span></button>
+      <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span class="exam-ic">📋</span><span class="exam-txt">CDL</span><span class="cv">▾</span></button>
       <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="statedd" style="margin-right:6px">
@@ -574,6 +588,8 @@
 <script src="translations.js"></script>
 <script src="translations-es.js"></script>
 <script src="translations-hi.js"></script>
+<script src="translations-ar.js"></script>
+<script src="translations-ar-q.js"></script>
 <script src="endorsements.js"></script>
 <script src="questions-extra.js"></script>
   <script src="upgrades.schoolbus.js"></script>
@@ -740,7 +756,7 @@ function restoreSession(){ try{
 let state = {};
 let LANG = (function(){ try{
   var u=new URLSearchParams(location.search).get('lang');
-  if(u && ['en','es','ru','tr','hi'].indexOf(u)>=0){ try{localStorage.setItem(LKEY,u);}catch(e){} return u; }
+  if(u && ['en','es','ru','tr','hi','ar'].indexOf(u)>=0){ try{localStorage.setItem(LKEY,u);}catch(e){} return u; }
   return localStorage.getItem(LKEY) || 'en';
 }catch(e){ return 'en'; } })();
 
@@ -775,18 +791,18 @@ function qData(catId, qid){
   // restate "Texas/Texas DPS/Texas CDL Handbook" -> active state for the shared federal banks.
   // (special is already the state's own bank; stz is a no-op there since it won't contain "Texas".)
   return { q: stz(src.q||en.q), options: src.options||en.options, explanation: stz(src.explanation||en.explanation),
-           handbook: stz(en.handbook), hbref: en.hbref, translated: !!(LANG!=='en' && tr) };
+           handbook: stz(src.explanation||en.explanation), hbref: en.hbref, translated: !!(LANG!=='en' && tr) };
 }
 function langBadge(translated){ return (LANG==='en'||translated) ? '' : ` <span class="enflag" title="${t('langWipNote')}">${t('enBadge')}</span>`; }
 function setLang(l){
   LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){}
-  document.documentElement.setAttribute('lang', l);
+  document.documentElement.setAttribute('lang', l); document.documentElement.setAttribute('dir', l==='ar'?'rtl':'ltr');
   renderLangMenu();
   applyStaticI18n();
   render();
 }
 /* language dropdown (shows only the non-active languages) */
-const LANGS=['en','es','ru','tr','hi'];
+const LANGS=['en','es','ru','tr','hi','ar'];
 function renderLangMenu(){
   const cur=document.getElementById('langCur'); if(cur) cur.textContent=LANG.toUpperCase();
   const menu=document.getElementById('langMenu');
@@ -798,7 +814,7 @@ function closeLangMenu(){ const dd=document.getElementById('langdd'); if(dd) dd.
 function pickLang(l){ closeLangMenu(); setLang(l); }
 document.addEventListener('click', closeLangMenu);
 function applyStaticI18n(){
-  const TAGLINE={en:"Free Practice Tests",es:"Exámenes de práctica gratis",ru:"Бесплатные пробные тесты",tr:"Ücretsiz Deneme Sınavları",hi:"मुफ़्त अभ्यास परीक्षाएँ"};
+  const TAGLINE={en:"Free Practice Tests",es:"Exámenes de práctica gratis",ru:"Бесплатные пробные тесты",tr:"Ücretsiz Deneme Sınavları",hi:"मुफ़्त अभ्यास परीक्षाएँ",ar:"اختبارات تدريبية مجانية"};
   const sub=document.getElementById('brandSub'); if(sub) sub.textContent=TAGLINE[LANG]||TAGLINE.en;
   const rl=document.getElementById('resetBtn'); if(rl){ rl.title=t('reset'); rl.setAttribute('aria-label',t('reset')); }
   const f=document.getElementById('siteFooter');
@@ -885,7 +901,7 @@ function buildTest(cat, idx){
 }
 
 /* ============================ TEXT-TO-SPEECH ============================ */
-function langBCP(){ return LANG==='tr'?'tr-TR':LANG==='ru'?'ru-RU':LANG==='es'?'es-MX':LANG==='hi'?'hi-IN':'en-US'; }
+function langBCP(){ return LANG==='tr'?'tr-TR':LANG==='ru'?'ru-RU':LANG==='es'?'es-MX':LANG==='hi'?'hi-IN':LANG==='ar'?'ar-SA':'en-US'; }
 function stopSpeak(){ try{ if(window.speechSynthesis) speechSynthesis.cancel(); }catch(e){} }
 function speakQuestion(e){
   if(e) e.stopPropagation();
@@ -1609,7 +1625,7 @@ function showOnboarding(){
 /* boot */
 if(!DATA){ document.getElementById('app').innerHTML='<p style="padding:40px">⚠️ questions.js failed to load. Keep <b>index.html</b>, <b>questions.js</b> and <b>translations.js</b> together in the same folder.</p>'; }
 else {
-  document.documentElement.setAttribute('lang', LANG);
+  document.documentElement.setAttribute('lang', LANG); document.documentElement.setAttribute('dir', LANG==='ar'?'rtl':'ltr');
   _snapSpecial(); applyState(STATE); renderStateMenu();
   renderLangMenu();
   applyStaticI18n();
