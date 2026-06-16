@@ -478,7 +478,18 @@
 <script src="citizenship-data.js"></script>
 <script>
 "use strict";
-var HANDBOOK="https://www.uscis.gov/citizenship/find-study-materials-and-resources/study-for-the-test/100-civics-questions-and-answers-2008-version";
+var HANDBOOK="https://www.uscis.gov/sites/default/files/document/questions-and-answers/100q.pdf";
+/* official USCIS study-material links (federal — same nationwide), all verified 200 */
+var USCIS={ q100:"https://www.uscis.gov/sites/default/files/document/questions-and-answers/100q.pdf",
+  fc:"https://www.uscis.gov/sites/default/files/document/flash-cards/M-623_red_slides.pdf",
+  all:"https://www.uscis.gov/citizenship/find-study-materials-and-resources/study-for-the-test" };
+var SMC={
+ en:{title:"Study materials",tag:"Official USCIS",open:"Open",q100T:"100 Civics Questions & Answers",q100S:"Official USCIS study PDF",fcT:"Civics Flash Cards",fcS:"Printable PDF flash cards",allT:"Study for the Test",allS:"All official USCIS materials"},
+ es:{title:"Material de estudio",tag:"USCIS oficial",open:"Abrir",q100T:"100 preguntas y respuestas cívicas",q100S:"PDF oficial de USCIS",fcT:"Tarjetas de civismo",fcS:"Tarjetas PDF para imprimir",allT:"Prepárate para el examen",allS:"Todos los materiales oficiales de USCIS"},
+ ru:{title:"Учебные материалы",tag:"Официально (USCIS)",open:"Открыть",q100T:"100 вопросов и ответов",q100S:"Официальный PDF USCIS",fcT:"Карточки по обществознанию",fcS:"PDF-карточки для печати",allT:"Подготовка к тесту",allS:"Все официальные материалы USCIS"},
+ tr:{title:"Çalışma materyalleri",tag:"Resmi USCIS",open:"Aç",q100T:"100 Yurttaşlık Soru & Cevabı",q100S:"Resmi USCIS çalışma PDF'i",fcT:"Yurttaşlık Kartları",fcS:"Yazdırılabilir PDF kartlar",allT:"Sınava Hazırlık",allS:"Tüm resmi USCIS materyalleri"},
+ hi:{title:"अध्ययन सामग्री",tag:"आधिकारिक USCIS",open:"खोलें",q100T:"100 नागरिक प्रश्न-उत्तर",q100S:"आधिकारिक USCIS अध्ययन PDF",fcT:"नागरिक फ्लैश कार्ड",fcS:"प्रिंट करने योग्य PDF कार्ड",allT:"परीक्षा की तैयारी",allS:"सभी आधिकारिक USCIS सामग्री"}
+};
 
 /* ===== full UI strings (5 languages) — every key the shared engine calls via t() ===== */
 var UI = {
@@ -635,10 +646,15 @@ function catCard(c){ var s=catStats(c),p=s.total?Math.round(s.passed/s.total*100
     '<div class="meta"><span class="pill">'+t('ccTests',{n:nTests})+'</span><span class="pill">'+t('ccQEach',{n:nq})+'</span><span class="pill">'+t('ccPass',{need:c.passNeed,exam:c.examSize})+'</span></div>'+
     '<div class="bar"><i style="width:'+p+'%"></i></div>'+
     '<div class="prog-lbl"><span>'+t('ccPassedOf',{p:s.passed,t:s.total})+'</span><span>'+p+'%</span></div></div>'; }
+function smc(k){ return (SMC[LANG]&&SMC[LANG][k])||SMC.en[k]; }
+function renderDownloads(){
+  function card(ico,url,tt,ss){ return '<a class="dl-card" href="'+url+'" target="_blank" rel="noopener"><div class="dl-ico">'+ico+'</div><div class="dl-txt"><b>'+tt+'</b><span>'+ss+'</span></div><span class="dl-go">'+smc('open')+'</span></a>'; }
+  return '<section class="downloads"><div class="dl-head"><h3>'+smc('title')+'</h3><div class="rm-tag">'+smc('tag')+'</div></div><div class="dl-row">'+
+    card('📕',USCIS.q100,smc('q100T'),smc('q100S'))+card('🃏',USCIS.fc,smc('fcT'),smc('fcS'))+card('📚',USCIS.all,smc('allT'),smc('allS'))+'</div></section>'; }
 function renderHome(){
   var cards=DATA.categories.filter(function(c){return c.kind!=='learn';}).map(catCard).join('');
   return '<section class="hero"><h2>'+t('heroTitle')+'</h2><div class="sub">'+t('heroSub')+'</div></section>'+
-    '<div class="dlnote">'+t('officeNote')+'</div>'+AD+'<div class="grid">'+cards+'</div>'; }
+    '<div class="dlnote">'+t('officeNote')+'</div>'+AD+'<div class="grid">'+cards+'</div>'+renderDownloads(); }
 function tiles(cat){ var html='',isL=cat.kind==='learn';
   for(var i=0;i<cat.numTests;i++){ var r=getResult(cat.id,i), badge='<span class="badge b-new">'+t('notStarted')+'</span>', best='';
     if(r){ badge=r.passed?'<span class="badge b-pass">'+t('passedB')+'</span>':'<span class="badge b-fail">'+t('notYet')+'</span>'; best='<div class="best">'+t('bestLine',{c:r.bestCorrect,t:r.total,pct:r.bestPct,a:r.attempts})+'</div>'; }

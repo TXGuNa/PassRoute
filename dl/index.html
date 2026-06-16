@@ -563,11 +563,11 @@ var UI = {
     stateNote:"ये प्रश्न Texas हैंडबुक का अनुसरण करते हैं। सड़क संकेत राष्ट्रीय हैं, लेकिन {state} की गति सीमाएँ और दंड भिन्न हो सकते हैं —", bookAppt:"{agency} में अपॉइंटमेंट बुक करें", stateHb:"{state} ड्राइवर हैंडबुक" }
 };
 /* alias the existing DL string keys to the CDL-markup render keys + add the few missing ones (5 langs) */
-var _RT={en:{passedBadge:"{p}/{t} passed",resTime:"⏱ Finished in {t}",resAvg:"~{s} sec/question",rCorrect:"Correct:",rYour:"Your answer:"},
-  es:{passedBadge:"{p} de {t}",resTime:"⏱ Terminado en {t}",resAvg:"~{s} seg/pregunta",rCorrect:"Correcta:",rYour:"Tu respuesta:"},
-  ru:{passedBadge:"{p} из {t}",resTime:"⏱ Завершено за {t}",resAvg:"~{s} сек/вопрос",rCorrect:"Правильно:",rYour:"Твой ответ:"},
-  tr:{passedBadge:"{t} testin {p}",resTime:"⏱ {t} sürede bitti",resAvg:"~{s} sn/soru",rCorrect:"Doğru:",rYour:"Senin cevabın:"},
-  hi:{passedBadge:"{t} में से {p}",resTime:"⏱ {t} में पूरा",resAvg:"~{s} सेकंड/प्रश्न",rCorrect:"सही:",rYour:"आपका उत्तर:"}};
+var _RT={en:{passedBadge:"{p}/{t} passed",resTime:"⏱ Finished in {t}",resAvg:"~{s} sec/question",rCorrect:"Correct:",rYour:"Your answer:",smTitle:"Study materials",smTag:"Official",smHbT:"Official Driver Handbook",smHbS:"Open the current {state} driver handbook (PDF)",smOpen:"Open"},
+  es:{passedBadge:"{p} de {t}",resTime:"⏱ Terminado en {t}",resAvg:"~{s} seg/pregunta",rCorrect:"Correcta:",rYour:"Tu respuesta:",smTitle:"Material de estudio",smTag:"Oficial",smHbT:"Manual oficial del conductor",smHbS:"Abre el manual del conductor de {state} (PDF)",smOpen:"Abrir"},
+  ru:{passedBadge:"{p} из {t}",resTime:"⏱ Завершено за {t}",resAvg:"~{s} сек/вопрос",rCorrect:"Правильно:",rYour:"Твой ответ:",smTitle:"Учебные материалы",smTag:"Официально",smHbT:"Официальный справочник водителя",smHbS:"Откройте справочник водителя ({state}, PDF)",smOpen:"Открыть"},
+  tr:{passedBadge:"{t} testin {p}",resTime:"⏱ {t} sürede bitti",resAvg:"~{s} sn/soru",rCorrect:"Doğru:",rYour:"Senin cevabın:",smTitle:"Çalışma materyalleri",smTag:"Resmi",smHbT:"Resmi Sürücü El Kitabı",smHbS:"{state} sürücü el kitabını aç (PDF)",smOpen:"Aç"},
+  hi:{passedBadge:"{t} में से {p}",resTime:"⏱ {t} में पूरा",resAvg:"~{s} सेकंड/प्रश्न",rCorrect:"सही:",rYour:"आपका उत्तर:",smTitle:"अध्ययन सामग्री",smTag:"आधिकारिक",smHbT:"आधिकारिक ड्राइवर हैंडबुक",smHbS:"{state} ड्राइवर हैंडबुक खोलें (PDF)",smOpen:"खोलें"}};
 Object.keys(UI).forEach(function(l){ var u=UI[l]; u.ccTests=u.tests; u.ccQEach=u.qEach; u.ccPass=u.pass; u.ccPassedOf=u.passedOf;
   u.heroTitle=u.heroT; u.heroSub=u.heroS; u.tilePractice=u.practiceTile; u.tileLesson=u.learnTile; u.tileTest=u.testN; u.tileLessonN=u.lessonN; u.bestLine=u.best; u.statsT=u.statsT;
   var r=_RT[l]||_RT.en; for(var k in r){ if(u[k]==null) u[k]=r[k]; } });
@@ -641,7 +641,11 @@ function renderHome(){
   if(m.code!=='TX'){ note='<div class="dlnote">'+t('stateNote',{state:m.name})+' '+
     (m.appointmentUrl?'<a href="'+m.appointmentUrl+'" target="_blank" rel="noopener">'+t('bookAppt',{agency:m.agency})+'</a> · ':'')+
     (m.handbook?'<a href="'+m.handbook+'" target="_blank" rel="noopener">'+t('stateHb',{state:m.name})+'</a>':'')+'</div>'; }
-  return '<section class="hero"><h2>'+t('heroTitle')+'</h2><div class="sub">'+t('heroSub')+'</div></section>'+note+AD+'<div class="grid">'+cards+'</div>'; }
+  return '<section class="hero"><h2>'+t('heroTitle')+'</h2><div class="sub">'+t('heroSub')+'</div></section>'+note+AD+'<div class="grid">'+cards+'</div>'+renderDownloads(); }
+function renderDownloads(){ var m=stateMeta(); var hb=m.handbook||HANDBOOK; if(!hb) return '';
+  return '<section class="downloads"><div class="dl-head"><h3>'+t('smTitle')+'</h3><div class="rm-tag">'+t('smTag')+'</div></div>'+
+    '<div class="dl-row"><a class="dl-card" href="'+hb+'" target="_blank" rel="noopener"><div class="dl-ico">📕</div>'+
+    '<div class="dl-txt"><b>'+t('smHbT')+'</b><span>'+t('smHbS',{state:m.name})+'</span></div><span class="dl-go">'+t('smOpen')+'</span></a></div></section>'; }
 function tiles(cat){ var html='',isL=cat.kind==='learn';
   for(var i=0;i<cat.numTests;i++){ var r=getResult(cat.id,i), badge='<span class="badge b-new">'+t('notStarted')+'</span>', best='';
     if(r){ badge=r.passed?'<span class="badge b-pass">'+t('passedB')+'</span>':'<span class="badge b-fail">'+t('notYet')+'</span>'; best='<div class="best">'+t('bestLine',{c:r.bestCorrect,t:r.total,pct:r.bestPct,a:r.attempts})+'</div>'; }
