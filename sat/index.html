@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PassRoute — Free Digital SAT Practice Test · 6 Languages</title>
-<meta name="description" content="Free Digital SAT Math practice: Algebra, Advanced Math, Problem-Solving & Data Analysis, Geometry & Trigonometry. Original practice questions with worked explanations; interface in English, Spanish, Russian, Turkish, Hindi & Arabic." />
+<meta name="description" content="Free Digital SAT practice: Math (Algebra, Advanced Math, Data Analysis, Geometry & Trig) and Reading & Writing. Original practice questions with worked explanations; interface in English, Spanish, Russian, Turkish, Hindi & Arabic." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://passroute.ai/sat/" />
 <meta property="og:type" content="website" /><meta property="og:title" content="Free Digital SAT Practice — PassRoute" />
@@ -503,10 +503,10 @@
 <script src="sat-data.js"></script>
 <script>
 "use strict";
-var ACC={algebra:'#1d4ed8', advanced:'#7c3aed', data:'#0f766e', geometry:'#b45309'};
+var ACC={algebra:'#1d4ed8', advanced:'#7c3aed', data:'#0f766e', geometry:'#b45309', information:'#0891b2', craft:'#c026d3', expression:'#ca8a04', conventions:'#dc2626'};
 /* ===== UI strings (6 languages) ===== */
 var UI = {
- en:{ sub:"Digital SAT", home:"Home", heroTitle:"Digital SAT — Practice", heroSub:"Free practice for all four SAT Math domains, with worked explanations. Choose a topic to begin.",
+ en:{ sub:"Digital SAT", home:"Home", heroTitle:"Digital SAT — Practice", heroSub:"Free practice for SAT Math and Reading & Writing, with worked explanations. Choose a topic to begin.",
    note:"Questions are in English (the SAT is an English-language test); the interface is available in 6 languages.",
    ccTests:"{n} tests", ccQEach:"{n} questions", ccPass:"Pass {need}/{exam}", ccPassedOf:"{p} of {t} passed",
    notStarted:"Not started", passedB:"Passed", notYet:"Not yet", bestLine:"Best {c}/{t} ({pct}%) · {a} attempts",
@@ -519,7 +519,7 @@ var UI = {
    statsT:"Your statistics", noData:"No attempts yet. Take a test to see your stats here.", taken:"Taken", passed:"Passed", testN:"Test {n}",
    footMain:"PassRoute — free SAT, CDL, driver license & citizenship practice.", footSub:"Original SAT Math practice questions with explanations. Not affiliated with the College Board.",
    footHb:"About the Digital SAT", confirmReset:"Reset all progress and history?", enBadge:"EN", ttsNo:"Text-to-speech isn't available in this browser." },
- es:{ sub:"SAT Digital", home:"Inicio", heroTitle:"SAT Digital — Práctica", heroSub:"Práctica gratuita de los cuatro dominios de Matemáticas del SAT, con explicaciones. Elige un tema para empezar.",
+ es:{ sub:"SAT Digital", home:"Inicio", heroTitle:"SAT Digital — Práctica", heroSub:"Práctica gratuita de Matemáticas y Lectura y redacción del SAT, con explicaciones. Elige un tema para empezar.",
    note:"Las preguntas están en inglés (el SAT es un examen en inglés); la interfaz está disponible en 6 idiomas.",
    ccTests:"{n} exámenes", ccQEach:"{n} preguntas", ccPass:"Aprobar {need}/{exam}", ccPassedOf:"{p} de {t} aprobados",
    notStarted:"Sin empezar", passedB:"Aprobado", notYet:"Aún no", bestLine:"Mejor {c}/{t} ({pct}%) · {a} intentos",
@@ -532,7 +532,7 @@ var UI = {
    statsT:"Tus estadísticas", noData:"Aún no hay intentos. Haz un examen para ver tus estadísticas.", taken:"Realizados", passed:"Aprobados", testN:"Examen {n}",
    footMain:"PassRoute — práctica gratuita de SAT, CDL, licencia y ciudadanía.", footSub:"Preguntas de práctica originales de Matemáticas del SAT con explicaciones. No afiliado al College Board.",
    footHb:"Sobre el SAT Digital", confirmReset:"¿Restablecer todo el progreso y el historial?", enBadge:"EN", ttsNo:"La lectura por voz no está disponible en este navegador." },
- ru:{ sub:"Digital SAT", home:"Главная", heroTitle:"Digital SAT — Практика", heroSub:"Бесплатная практика по всем четырём разделам математики SAT с разбором решений. Выберите тему, чтобы начать.",
+ ru:{ sub:"Digital SAT", home:"Главная", heroTitle:"Digital SAT — Практика", heroSub:"Бесплатная практика по математике и чтению и письму SAT с разбором. Выберите тему, чтобы начать.",
    note:"Вопросы на английском (SAT — экзамен на английском); интерфейс доступен на 6 языках.",
    ccTests:"тестов: {n}", ccQEach:"{n} вопросов", ccPass:"Сдать {need}/{exam}", ccPassedOf:"сдано {p} из {t}",
    notStarted:"Не начато", passedB:"Сдано", notYet:"Ещё нет", bestLine:"Лучший {c}/{t} ({pct}%) · попыток: {a}",
@@ -545,7 +545,7 @@ var UI = {
    statsT:"Ваша статистика", noData:"Пока нет попыток. Пройдите тест, чтобы увидеть статистику.", taken:"Пройдено", passed:"Сдано", testN:"Тест {n}",
    footMain:"PassRoute — бесплатная практика SAT, CDL, прав и гражданства.", footSub:"Оригинальные вопросы по математике SAT с разбором. Не аффилировано с College Board.",
    footHb:"О Digital SAT", confirmReset:"Сбросить весь прогресс и историю?", enBadge:"EN", ttsNo:"Озвучивание недоступно в этом браузере." },
- tr:{ sub:"Digital SAT", home:"Ana sayfa", heroTitle:"Digital SAT — Pratik", heroSub:"Dört SAT Matematik alanının tamamı için ücretsiz pratik, çözümlü açıklamalarla. Başlamak için bir konu seç.",
+ tr:{ sub:"Digital SAT", home:"Ana sayfa", heroTitle:"Digital SAT — Pratik", heroSub:"SAT Matematik ve Okuma & Yazma için ücretsiz pratik, çözümlü açıklamalarla. Başlamak için bir konu seç.",
    note:"Sorular İngilizce (SAT İngilizce bir sınavdır); arayüz 6 dilde mevcuttur.",
    ccTests:"{n} sınav", ccQEach:"{n} soru", ccPass:"Geç {need}/{exam}", ccPassedOf:"{t} testin {p}",
    notStarted:"Başlanmadı", passedB:"Geçti", notYet:"Henüz değil", bestLine:"En iyi {c}/{t} ({pct}%) · {a} deneme",
@@ -558,7 +558,7 @@ var UI = {
    statsT:"İstatistiklerin", noData:"Henüz deneme yok. İstatistik için bir sınav çöz.", taken:"Çözülen", passed:"Geçilen", testN:"Sınav {n}",
    footMain:"PassRoute — ücretsiz SAT, CDL, ehliyet ve vatandaşlık pratiği.", footSub:"Özgün SAT Matematik soruları, açıklamalı. College Board ile bağlantılı değildir.",
    footHb:"Digital SAT hakkında", confirmReset:"Tüm ilerleme ve geçmiş sıfırlansın mı?", enBadge:"EN", ttsNo:"Sesli okuma bu tarayıcıda kullanılamıyor." },
- hi:{ sub:"डिजिटल SAT", home:"होम", heroTitle:"डिजिटल SAT — अभ्यास", heroSub:"चारों SAT गणित क्षेत्रों के लिए मुफ्त अभ्यास, हल सहित। शुरू करने के लिए एक विषय चुनें।",
+ hi:{ sub:"डिजिटल SAT", home:"होम", heroTitle:"डिजिटल SAT — अभ्यास", heroSub:"SAT गणित और पठन-लेखन के लिए मुफ्त अभ्यास, हल सहित। शुरू करने के लिए एक विषय चुनें।",
    note:"प्रश्न अंग्रेज़ी में हैं (SAT एक अंग्रेज़ी परीक्षा है); इंटरफ़ेस 6 भाषाओं में उपलब्ध है।",
    ccTests:"{n} परीक्षाएँ", ccQEach:"{n} प्रश्न", ccPass:"पास {need}/{exam}", ccPassedOf:"{t} में से {p} पास",
    notStarted:"शुरू नहीं", passedB:"पास", notYet:"अभी नहीं", bestLine:"सर्वश्रेष्ठ {c}/{t} ({pct}%) · {a} प्रयास",
@@ -571,7 +571,7 @@ var UI = {
    statsT:"आपके आँकड़े", noData:"अभी कोई प्रयास नहीं। आँकड़े देखने के लिए एक परीक्षा दें।", taken:"दिए गए", passed:"पास", testN:"परीक्षा {n}",
    footMain:"PassRoute — मुफ्त SAT, CDL, ड्राइवर लाइसेंस और नागरिकता अभ्यास।", footSub:"मूल SAT गणित अभ्यास प्रश्न, व्याख्या सहित। College Board से संबद्ध नहीं।",
    footHb:"डिजिटल SAT के बारे में", confirmReset:"सारी प्रगति और इतिहास रीसेट करें?", enBadge:"EN", ttsNo:"इस ब्राउज़र में टेक्स्ट-टू-स्पीच उपलब्ध नहीं है।" },
- ar:{ sub:"SAT الرقمي", home:"الرئيسية", heroTitle:"SAT الرقمي — تدريب", heroSub:"تدريب مجاني على مجالات رياضيات SAT الأربعة، مع شرح الحلول. اختر موضوعًا للبدء.",
+ ar:{ sub:"SAT الرقمي", home:"الرئيسية", heroTitle:"SAT الرقمي — تدريب", heroSub:"تدريب مجاني على رياضيات SAT والقراءة والكتابة، مع الشرح. اختر موضوعًا للبدء.",
    note:"الأسئلة بالإنجليزية (اختبار SAT بالإنجليزية)؛ الواجهة متاحة بـ 6 لغات.",
    ccTests:"{n} اختبارات", ccQEach:"{n} سؤالاً", ccPass:"النجاح {need}/{exam}", ccPassedOf:"نجح {p} من {t}",
    notStarted:"لم يبدأ", passedB:"ناجح", notYet:"ليس بعد", bestLine:"الأفضل {c}/{t} ({pct}%) · {a} محاولات",
