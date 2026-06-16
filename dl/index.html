@@ -467,6 +467,24 @@
     .guide-banner b{font-size:.98rem}
   }
 
+  .pr-streak{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:14px 0;box-shadow:var(--shadow)}
+  .pr-fire{font-size:1.7rem;line-height:1}
+  .pr-streak-body{flex:1;min-width:0}
+  .pr-streak-n{font-weight:740;font-size:1.02rem}
+  .pr-goal{display:flex;align-items:center;gap:10px;margin-top:5px}
+  .pr-goal-bar{flex:1;height:7px;background:var(--bg);border-radius:99px;overflow:hidden}
+  .pr-goal-bar i{display:block;height:100%;background:linear-gradient(90deg,#3b82f6,#22d3a8);border-radius:99px}
+  .pr-goal span{font-size:.8rem;color:var(--muted);white-space:nowrap}
+  .revcard{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:14px;padding:14px 18px;margin:14px 0;cursor:pointer;box-shadow:var(--shadow)}
+  .revcard:hover{border-color:#f59e0b}
+  .rev-ic{font-size:1.7rem}
+  .rev-body{flex:1;min-width:0}
+  .rev-body h3{margin:0;font-size:1.08rem}
+  .rev-body p{margin:2px 0 0;font-size:.9rem;color:var(--muted);line-height:1.45}
+  [dir="rtl"] .revcard{border-left:1px solid var(--line);border-right:4px solid #f59e0b}
+  [dir="rtl"] .rev-body p,[dir="rtl"] .pr-streak-n{text-align:right}
+  @media(max-width:560px){ .revcard{flex-wrap:wrap} .revcard .btn{width:100%} }
+
   .dlnote{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:12px;padding:12px 14px;margin:14px 0;font-size:.9rem}
   .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:var(--card);padding:10px 18px;border-radius:10px;font-weight:600;z-index:200;box-shadow:var(--shadow-lg)}
   .signimg{display:flex;justify-content:center;align-items:center;padding:18px;margin:0 0 14px;background:linear-gradient(180deg,#eef2f7,#e3e9f1);border:1px solid var(--line);border-radius:14px}
@@ -514,6 +532,7 @@
 <script src="../states-meta.js"></script>
 <script src="dl-data.js"></script>
 <script src="dl-signs.js"></script>
+<script src="../pr-engagement.js"></script>
 <!-- dl-data-ar.js (~405 KB Arabic question translations) is loaded on demand by ensureArPack(),
      only when Arabic is selected. The Arabic UI is inline, so it shows immediately. -->
 <script>
@@ -622,6 +641,14 @@ Object.keys(UI).forEach(function(l){ var u=UI[l]; u.ccTests=u.tests; u.ccQEach=u
 
 var PKEY="tx_dl_progress", TKEY="tx_dl_theme", LKEY="tx_dl_lang", HKEY="tx_dl_history", SKEY="tx_dl_session";
 var LANG=(function(){ try{ var u=new URLSearchParams(location.search).get('lang'); if(u&&UI[u]){localStorage.setItem(LKEY,u);return u;} return localStorage.getItem(LKEY)||'en'; }catch(e){ return 'en'; } })();
+(function(){ var E={
+ en:{ streakN:"{n}-day streak", streakStart:"Start a streak today", goalToday:"{c}/{g} questions today", reviewCard:"Review your mistakes", reviewSub:"Drill the {n} questions you've missed — they leave the list once you get them right.", reviewBtn:"Start review", reviewLabel:"Mistake review", share:"Share result", reviewEmpty:"No mistakes to review — great work!" },
+ es:{ streakN:"Racha de {n} días", streakStart:"Empieza una racha hoy", goalToday:"{c}/{g} preguntas hoy", reviewCard:"Repasa tus errores", reviewSub:"Practica las {n} preguntas que fallaste; salen de la lista cuando las aciertas.", reviewBtn:"Empezar repaso", reviewLabel:"Repaso de errores", share:"Compartir resultado", reviewEmpty:"No hay errores que repasar, ¡bien hecho!" },
+ ru:{ streakN:"Серия: {n} дн.", streakStart:"Начните серию сегодня", goalToday:"{c}/{g} вопросов сегодня", reviewCard:"Разбор ошибок", reviewSub:"Проработайте {n} вопросов, где вы ошиблись — они уходят из списка, когда вы отвечаете верно.", reviewBtn:"Начать разбор", reviewLabel:"Разбор ошибок", share:"Поделиться", reviewEmpty:"Ошибок для разбора нет — отлично!" },
+ tr:{ streakN:"{n} günlük seri", streakStart:"Bugün bir seri başlat", goalToday:"Bugün {c}/{g} soru", reviewCard:"Hatalarını tekrar et", reviewSub:"Yanlış yaptığın {n} soruyu çöz — doğru yapınca listeden çıkar.", reviewBtn:"Tekrara başla", reviewLabel:"Hata tekrarı", share:"Sonucu paylaş", reviewEmpty:"Tekrar edilecek hata yok — harika!" },
+ hi:{ streakN:"{n}-दिन की लय", streakStart:"आज लय शुरू करें", goalToday:"आज {c}/{g} प्रश्न", reviewCard:"अपनी गलतियाँ दोहराएँ", reviewSub:"जो {n} प्रश्न आपने गलत किए उन्हें हल करें — सही करने पर वे सूची से हट जाते हैं।", reviewBtn:"दोहराव शुरू करें", reviewLabel:"गलती दोहराव", share:"परिणाम साझा करें", reviewEmpty:"दोहराने के लिए कोई गलती नहीं — बढ़िया!" },
+ ar:{ streakN:"سلسلة {n} يوم", streakStart:"ابدأ سلسلة اليوم", goalToday:"{c}/{g} سؤالاً اليوم", reviewCard:"راجع أخطاءك", reviewSub:"تدرّب على الأسئلة الـ{n} التي أخطأت فيها — تُحذف من القائمة عند إجابتها بشكل صحيح.", reviewBtn:"ابدأ المراجعة", reviewLabel:"مراجعة الأخطاء", share:"مشاركة النتيجة", reviewEmpty:"لا أخطاء للمراجعة — أحسنت!" } };
+ Object.keys(E).forEach(function(L){ UI[L]=UI[L]||{}; for(var k in E[L]) if(UI[L][k]==null) UI[L][k]=E[L][k]; }); })();
 function t(k,v){ var s=(UI[LANG]&&UI[LANG][k]!=null)?UI[LANG][k]:(UI.en[k]!=null?UI.en[k]:k); if(v) for(var x in v) s=String(s).split('{'+x+'}').join(v[x]); return stz(s); }
 function catName(c){ if(c.kind==='learn'&&c.learnSubject){ var b=DATA.categories.find(function(x){return x.id===c.learnSubject;}); if(b) c=b; } var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return stz((o&&o.name)||c.name); }
 function catBlurb(c){ var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return stz((o&&o.blurb)||c.blurb); }
@@ -689,7 +716,10 @@ function renderHome(){
   if(m.code!=='TX'){ note='<div class="dlnote">'+t('stateNote',{state:m.name})+' '+
     (m.appointmentUrl?'<a href="'+m.appointmentUrl+'" target="_blank" rel="noopener">'+t('bookAppt',{agency:m.agency})+'</a> · ':'')+
     (m.handbook?'<a href="'+m.handbook+'" target="_blank" rel="noopener">'+t('stateHb',{state:m.name})+'</a>':'')+'</div>'; }
-  return '<section class="hero"><h2>'+t('heroTitle')+'</h2><div class="sub">'+t('heroSub')+'</div></section>'+note+AD+'<div class="grid">'+cards+'</div>'+renderDownloads(); }
+  var streak=(window.PR?PR.streakHTML({streak:t('streakN'),start:t('streakStart'),goal:t('goalToday')}):'');
+  var mc=(window.PR?PR.mistakeCount('dl'):0);
+  var reviewCard=mc>0?('<div class="revcard" onclick="startReview()"><div class="rev-ic">🎯</div><div class="rev-body"><h3>'+t('reviewCard')+'</h3><p>'+t('reviewSub',{n:mc})+'</p></div><button class="btn primary" onclick="event.stopPropagation();startReview()">'+t('reviewBtn')+'</button></div>'):'';
+  return '<section class="hero"><h2>'+t('heroTitle')+'</h2><div class="sub">'+t('heroSub')+'</div></section>'+streak+reviewCard+note+AD+'<div class="grid">'+cards+'</div>'+renderDownloads(); }
 function renderDownloads(){ var m=stateMeta(); var hb=m.handbook||HANDBOOK; if(!hb) return '';
   return '<section class="downloads"><div class="dl-head"><h3>'+t('smTitle')+'</h3><div class="rm-tag">'+t('smTag')+'</div></div>'+
     '<div class="dl-row"><a class="dl-card" href="'+hb+'" target="_blank" rel="noopener"><div class="dl-ico">📕</div>'+
@@ -699,7 +729,7 @@ function tiles(cat){ var html='',isL=cat.kind==='learn';
     if(r){ badge=r.passed?'<span class="badge b-pass">'+t('passedB')+'</span>':'<span class="badge b-fail">'+t('notYet')+'</span>'; best='<div class="best">'+t('bestLine',{c:r.bestCorrect,t:r.total,pct:r.bestPct,a:r.attempts})+'</div>'; }
     html+='<div class="tcard'+(isL?' learn':'')+'" onclick="startTest(\''+cat.id+'\','+i+')"><div class="num">'+(isL?t('tileLesson'):t('tilePractice'))+'</div><div class="ttl">'+(isL?t('tileLessonN',{n:i+1}):t('tileTest',{n:i+1}))+'</div>'+badge+best+'</div>'; }
   return html; }
-function renderCategory(catId){ var cat=DATA.categories.find(function(c){return c.id===catId;}); var s=catStats(cat); var lc=learnCatFor(catId);
+function renderCategory(catId){ var cat=DATA.categories.find(function(c){return c.id===catId;}); if(!cat){ state={view:'home'}; return renderHome(); } var s=catStats(cat); var lc=learnCatFor(catId);
   var all=(lc?tiles(lc):'')+tiles(cat);
   return '<div class="crumb"><a onclick="go(\'home\')">'+t('home')+'</a> › <span>'+catName(cat)+'</span></div>'+
     '<div class="section-head"><div><h2>'+catName(cat)+'</h2><div class="info">'+t('catInfo',{exam:cat.examSize,need:cat.passNeed,sec:cat.hbref||''})+'</div></div>'+
@@ -713,7 +743,7 @@ function buildTest(cat,idx){ var P=cat.questions.length,E=Math.min(cat.examSize,
 function startTest(catId,idx){ var cat=DATA.categories.find(function(c){return c.id===catId;}); var test=buildTest(cat,idx); state={view:'test',catId:catId,idx:idx,cat:cat,test:test,cur:0,answers:new Array(test.length).fill(null),correct:0,incorrect:0,startTime:Date.now()}; window.scrollTo(0,0); renderTestShell(); startTimer(); syncURL(); saveSession(); }
 function testLabel(c,idx){ return c.kind==='learn'?t('tileLessonN',{n:idx+1}):t('tileTest',{n:idx+1}); }
 function renderTestShell(){ document.getElementById('app').innerHTML='<div class="crumb"><a onclick="go(\'home\')">'+t('home')+'</a> › <a onclick="go(\'category\',{catId:\''+baseCatId(state.cat)+'\'})">'+catName(state.cat)+'</a> › <span>'+testLabel(state.cat,state.idx)+'</span></div><div class="runner" id="runner"></div>'; paintQuestion(); }
-function paintQuestion(){ var s=state,it=s.test[s.cur],qd=qData(s.catId,it.qid),isL=s.cat.kind==='learn';
+function paintQuestion(){ var s=state,it=s.test[s.cur],qd=qData(it.catId||s.catId,it.qid),isL=s.cat.kind==='learn';
   var disp=it.optOrder.map(function(oi){return qd.options[oi];}); var prev=s.answers[s.cur],ans=prev!==null;
   var opts=disp.map(function(txt,i){ var cls='opt'; if(ans){ if(i===it.answer) cls+=' correct'; else if(i===prev) cls+=' wrong'; } var mark=''; if(ans&&i===it.answer) mark='<span class="mark" style="color:var(--green)">✓</span>'; else if(ans&&i===prev) mark='<span class="mark" style="color:var(--red)">✗</span>'; return '<button class="'+cls+'" '+(ans?'disabled':'')+' onclick="choose('+i+')"><span class="key">'+String.fromCharCode(65+i)+'</span><span>'+txt+'</span>'+mark+'</button>'; }).join('');
   var explain=''; if(ans){ var good=prev===it.answer,L=String.fromCharCode(65+it.answer); explain='<div class="explain show '+(good?'good':'bad')+'"><div class="verdict">'+(good?t('correctV',{L:L}):t('wrongV',{L:L}))+'</div><p>'+qd.explanation+'</p>'+((qd.handbook||qd.explanation)?'<div class="hb"><span class="src">'+t('src',{ref:qd.hbref})+'</span><i>“'+(qd.handbook||qd.explanation)+'”</i></div>':'')+'</div>'; }
@@ -730,17 +760,28 @@ function paintQuestion(){ var s=state,it=s.test[s.cur],qd=qData(s.catId,it.qid),
 function choose(i){ var s=state; if(s.answers[s.cur]!==null) return; s.answers[s.cur]=i; if(i===s.test[s.cur].answer) s.correct++; else s.incorrect++; paintQuestion(); saveSession(); var ex=document.querySelector('.explain'); if(ex) ex.scrollIntoView({behavior:'smooth',block:'nearest'}); }
 function next(){ stopSpeak(); var s=state; if(s.cur<s.test.length-1){ s.cur++; paintQuestion(); saveSession(); window.scrollTo({top:0,behavior:'smooth'}); } else finishTest(); }
 function confirmQuit(){ if(confirm(t('confirmQuit'))) go('category',{catId:baseCatId(state.cat)}); }
-function finishTest(){ state.elapsed=Date.now()-(state.startTime||Date.now()); stopTimer(); recordResult(state.catId,state.idx,state.correct,state.test.length); pushHistory({ts:Date.now(),cat:state.catId,idx:state.idx,correct:state.correct,total:state.test.length,passed:state.correct>=passMark(state.test.length)}); state.view='results'; window.scrollTo(0,0); render(); syncURL(); saveSession(); }
+function finishTest(){ state.elapsed=Date.now()-(state.startTime||Date.now()); stopTimer();
+  try{ if(window.PR){ PR.recordActivity(state.test.length); state.test.forEach(function(it,i){ var ok=state.answers[i]===it.answer, cid=it.catId||state.catId; if(state.review){ if(ok) PR.clearMistake('dl',cid,it.qid); } else if(!ok) PR.recordMistakes('dl',cid,[it.qid]); }); } }catch(e){}
+  if(!state.review){ recordResult(state.catId,state.idx,state.correct,state.test.length); pushHistory({ts:Date.now(),cat:state.catId,idx:state.idx,correct:state.correct,total:state.test.length,passed:state.correct>=passMark(state.test.length)}); }
+  state.view='results'; window.scrollTo(0,0); render(); syncURL(); saveSession(); }
+function startReview(){ var miss=(window.PR?PR.mistakeList('dl',30):[]); if(!miss.length){ toast(t('reviewEmpty')); return; }
+  var test=miss.map(function(m){ var cat=DATA.categories.find(function(c){return c.id===m.catId;}); if(!cat||!cat.questions[m.qid]) return null; var q=cat.questions[m.qid]; var idxs=q.options.map(function(_,i){return i;}); var pin=idxs.filter(function(i){return /^(all|none)\b/i.test(String(q.options[i]).trim());}); var free=idxs.filter(function(i){return pin.indexOf(i)<0;}); var oo=rs(free).concat(pin); return {catId:m.catId,qid:m.qid,optOrder:oo,answer:oo.indexOf(q.answer)}; }).filter(Boolean);
+  if(!test.length){ toast(t('reviewEmpty')); return; }
+  state={view:'test',review:true,catId:'__review__',idx:0,cat:{id:'__review__',kind:'core',name:t('reviewLabel')},test:test,cur:0,answers:new Array(test.length).fill(null),correct:0,incorrect:0,startTime:Date.now()};
+  window.scrollTo(0,0); renderTestShell(); startTimer(); syncURL(); saveSession(); }
+function shareDL(){ if(!window.PR||!state.test) return; var total=state.test.length,correct=state.correct,pct=Math.round(correct/total*100),pass=correct>=passMark(total);
+  PR.shareScore({exam:'Driver License · '+catName(state.cat), score:pct+'%', scoreSub:correct+' / '+total, title:(pass?t('resPass'):t('resFail')), tag:(pass?'PASS':null), pass:pass, shareText:'DL practice: '+pct+'% ('+correct+'/'+total+')'}); }
 function renderResults(){ var s=state,total=s.test.length,correct=s.correct,pct=Math.round(correct/total*100),need=passMark(total),pass=correct>=need;
-  var reviews=s.test.map(function(it,i){ var qd=qData(s.catId,it.qid),disp=it.optOrder.map(function(oi){return qd.options[oi];}),you=s.answers[i],ok=you===it.answer,youTxt=you===null?'—':disp[you];
+  var reviews=s.test.map(function(it,i){ var qd=qData(it.catId||s.catId,it.qid),disp=it.optOrder.map(function(oi){return qd.options[oi];}),you=s.answers[i],ok=you===it.answer,youTxt=you===null?'—':disp[you];
     var rows=ok?'<div class="ra correct">'+t('rCorrect')+' '+disp[it.answer]+'</div>':'<div class="ra you-wrong">'+t('rYour')+' '+youTxt+'</div><div class="ra correct">'+t('rCorrect')+' '+disp[it.answer]+'</div>';
     return '<div class="rev"><div class="rq">'+(i+1)+'. '+qd.q+'</div>'+rows+'<div class="rhb"><b>📘 '+qd.hbref+':</b> '+qd.explanation+'</div></div>'; }).join('');
   return '<div class="crumb"><a onclick="go(\'home\')">'+t('home')+'</a> › <a onclick="go(\'category\',{catId:\''+baseCatId(s.cat)+'\'})">'+catName(s.cat)+'</a> › <span>'+testLabel(s.cat,s.idx)+'</span></div>'+
     '<div class="result '+(pass?'pass':'fail')+'"><div class="seal">'+(pass?'✓':'✗')+'</div><h2>'+(pass?t('resPass'):t('resFail'))+'</h2><div class="score">'+pct+'%</div>'+
     '<div class="line">'+t('scoreLine',{c:correct,t:total,need:need})+'</div>'+
     '<div class="rtime">'+t('resTime',{t:fmtTime(s.elapsed||0)})+' · '+t('resAvg',{s:Math.max(1,Math.round((s.elapsed||0)/1000/total))})+'</div>'+
-    '<div class="actions"><button class="btn primary" onclick="startTest(\''+s.catId+'\','+s.idx+')">'+t('retake')+'</button>'+
-    '<button class="btn ghost" onclick="go(\'category\',{catId:\''+baseCatId(s.cat)+'\'})">'+t('backTo',{cat:catName(s.cat)})+'</button>'+
+    '<div class="actions"><button class="btn primary" onclick="'+(s.review?'startReview()':'startTest(\''+s.catId+'\','+s.idx+')')+'">'+t('retake')+'</button>'+
+    '<button class="btn ghost" onclick="shareDL()">'+t('share')+'</button>'+
+    (s.review?'':'<button class="btn ghost" onclick="go(\'category\',{catId:\''+baseCatId(s.cat)+'\'})">'+t('backTo',{cat:catName(s.cat)})+'</button>')+
     '<button class="btn ghost" onclick="go(\'home\')">'+t('allCats')+'</button></div></div>'+AD+
     '<div class="review"><h3>'+t('seeRes')+'</h3>'+reviews+'</div>'; }
 function renderStats(){ var h=loadHistory(); var head='<div class="crumb"><a onclick="go(\'home\')">'+t('home')+'</a> › <span>'+t('statsT')+'</span></div>';
