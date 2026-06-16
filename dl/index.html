@@ -509,6 +509,7 @@
 <script src="../states-meta.js"></script>
 <script src="dl-data.js"></script>
 <script src="dl-signs.js"></script>
+<script src="dl-data-ar.js"></script>
 <script>
 "use strict";
 var DATA = window.DL_DATA, I18N = window.DL_I18N;
@@ -620,7 +621,7 @@ function catName(c){ if(c.kind==='learn'&&c.learnSubject){ var b=DATA.categories
 function catBlurb(c){ var o=I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return stz((o&&o.blurb)||c.blurb); }
 function baseCatId(c){ var cat=(typeof c==='string')?DATA.categories.find(function(x){return x.id===c;}):c; return (cat&&cat.kind==='learn'&&cat.learnSubject)?cat.learnSubject:(cat?cat.id:c); }
 function learnCatFor(id){ return DATA.categories.find(function(c){return c.kind==='learn'&&c.learnSubject===id;})||null; }
-function qData(catId,qid){ var en=DATA.categories.find(function(c){return c.id===catId;}).questions[qid]; var tr=I18N.q[LANG]&&I18N.q[LANG][catId]&&I18N.q[LANG][catId][qid]; var s=(LANG!=='en'&&tr)?tr:en; return { q:s.q||en.q, options:s.options||en.options, explanation:s.explanation||en.explanation, handbook:en.handbook, hbref:en.hbref, translated:!!(LANG!=='en'&&tr) }; }
+function qData(catId,qid){ var en=DATA.categories.find(function(c){return c.id===catId;}).questions[qid]; var tr=I18N.q[LANG]&&I18N.q[LANG][catId]&&I18N.q[LANG][catId][qid]; var s=(LANG!=='en'&&tr)?tr:en; return { q:s.q||en.q, options:s.options||en.options, explanation:s.explanation||en.explanation, handbook:s.explanation||en.explanation, hbref:en.hbref, translated:!!(LANG!=='en'&&tr) }; }
 function langBadge(tr){ return (LANG==='en'||tr)?'':' <span class="enflag" title="'+t('enBadge')+'">'+t('enBadge')+'</span>'; }
 var ACCENTS={};DATA.categories.forEach(function(c){ACCENTS[c.id]=c.accent||(c.kind==='learn'?'#0a7c43':'#64748b');});
 
