@@ -466,6 +466,8 @@
   /* collapse ad slots that don't get filled so they leave no empty gap */
   ins.adsbygoogle{display:block;min-height:0}
   ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!important;height:0!important}
+  /* mobile: top buttons icon-only — hide exam-switcher text so the header never overflows */
+  @media(max-width:560px){ #examBtn .exam-txt{display:none} #examBtn{padding-left:10px;padding-right:9px} }
 </style>
 </head>
 <body>
@@ -478,7 +480,7 @@
     <div class="top-spacer"></div>
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
-      <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span>🛂 Citizenship</span><span class="cv">▾</span></button>
+      <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span class="exam-ic">🛂</span><span class="exam-txt">Citizenship</span><span class="cv">▾</span></button>
       <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('cdl')">📋 Commercial (CDL)</button><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="langdd">
