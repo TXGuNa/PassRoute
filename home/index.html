@@ -8,7 +8,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://passroute.ai/home/" />
 <meta property="og:type" content="website" /><meta property="og:title" content="PassRoute — Free CDL, DL & US Citizenship Practice Tests" />
-<meta property="og:description" content="Pick your exam and study in 5 languages with answers and explanations." />
+<meta property="og:description" content="Pick your exam and study in 6 languages with answers and explanations." />
 <meta property="og:url" content="https://passroute.ai/home/" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="alternate" hreflang="en" href="https://passroute.ai/home/?lang=en" />
@@ -16,11 +16,12 @@
 <link rel="alternate" hreflang="ru" href="https://passroute.ai/home/?lang=ru" />
 <link rel="alternate" hreflang="tr" href="https://passroute.ai/home/?lang=tr" />
 <link rel="alternate" hreflang="hi" href="https://passroute.ai/home/?lang=hi" />
+<link rel="alternate" hreflang="ar" href="https://passroute.ai/home/?lang=ar" />
 <link rel="alternate" hreflang="x-default" href="https://passroute.ai/home/" />
 <link rel="icon" href="../icon-192.png" />
 <script type="application/ld+json">
 { "@context": "https://schema.org", "@graph": [
-  { "@type": "WebSite", "name": "PassRoute", "url": "https://passroute.ai/", "inLanguage": ["en","es","ru","tr","hi"], "description": "Free CDL, driver license, and US citizenship practice tests in 5 languages." },
+  { "@type": "WebSite", "name": "PassRoute", "url": "https://passroute.ai/", "inLanguage": ["en","es","ru","tr","hi"], "description": "Free CDL, driver license, and US citizenship practice tests in 6 languages." },
   { "@type": "EducationalOrganization", "name": "PassRoute", "url": "https://passroute.ai/", "logo": "https://passroute.ai/icon-512.png", "description": "Free, handbook-accurate practice tests: Commercial Driver License (CDL), Driver License (DL), and US Citizenship (USCIS civics)." },
   { "@type": "ItemList", "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "CDL — Commercial License practice test", "url": "https://passroute.ai/" },
@@ -72,6 +73,7 @@ body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMac
 .xcard .cta{ display:inline-flex; align-items:center; justify-content:center; gap:7px; background:var(--accent); color:#fff; border:0; border-radius:12px; padding:12px 14px; font-weight:760; font-size:.96rem; cursor:pointer; width:100%; }
 .note{ text-align:center; color:var(--muted); font-size:.84rem; margin:30px auto 0; max-width:680px; }
 .foot{ border-top:1px solid var(--line); color:var(--muted); font-size:.82rem; text-align:center; padding:22px 18px 40px; }
+[dir="rtl"] .langmenu{ left:0; right:auto; } [dir="rtl"] .langmenu button{ text-align:right; }
 .foot a{ color:var(--blue2); text-decoration:none; } .foot a:hover{ text-decoration:underline; }
 </style>
 </head>
@@ -80,7 +82,7 @@ body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMac
   <div class="top-inner">
     <div class="brand" onclick="location.reload()">
       <img src="../icon-192.png" alt="PassRoute logo" />
-      <div><h1>PassRoute</h1><p id="brandSub">Free practice tests · 5 languages</p></div>
+      <div><h1>PassRoute</h1><p id="brandSub">Free practice tests · 6 languages</p></div>
     </div>
     <div class="spacer"></div>
     <div class="langdd" id="langdd">
@@ -96,7 +98,7 @@ body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMac
     <span class="eyebrow" id="eyebrow">100% free · no sign-up</span>
     <h2 id="heroTitle">Pass your test with confidence</h2>
     <p id="heroSub">Choose your exam and practice real questions with answers and explanations — in your language.</p>
-    <div class="flags">🇺🇸 English · 🇪🇸 Español · 🇷🇺 Русский · 🇹🇷 Türkçe · 🇮🇳 हिन्दी</div>
+    <div class="flags">🇺🇸 English · 🇪🇸 Español · 🇷🇺 Русский · 🇹🇷 Türkçe · 🇮🇳 हिन्दी · 🇸🇦 العربية</div>
     <div class="statebar">
       <label id="stateLbl" for="stateSel">Your state</label>
       <select id="stateSel" class="stsel"></select>
@@ -116,46 +118,54 @@ body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMac
 "use strict";
 var SMETA = window.STATE_META || { TX:{name:"Texas"} };
 var T = {
-  en:{ brandSub:"Free practice tests · 5 languages", eyebrow:"100% free · no sign-up", heroTitle:"Pass your test with confidence",
+  en:{ brandSub:"Free practice tests · 6 languages", eyebrow:"100% free · no sign-up", heroTitle:"Pass your test with confidence",
     heroSub:"Choose your exam and practice real questions with answers and explanations — in your language.",
     stateLbl:"Your state", stateHint:"Applies to CDL & DL",
     cdlTag:"Commercial", cdlName:"CDL — Commercial License", cdlDesc:"Class A CDL knowledge tests: general knowledge, air brakes, combination vehicles, special requirements and endorsements.",
     dlTag:"Driver License", dlName:"DL — Driver License", dlDesc:"Regular driver license: road signs (with images), rules of the road, signals & markings, safe driving and penalties.",
     civTag:"Citizenship", civName:"US Citizenship", civDesc:"Official USCIS civics test (2025 version, 128 questions): American government, history, and symbols & holidays.",
     start:"Start studying", footNote:"State sets your agency, handbook and appointment links for CDL & DL. US Citizenship is federal (same nationwide).",
-    foot:"PassRoute — free CDL, driver license & US citizenship practice tests in 5 languages." },
-  es:{ brandSub:"Exámenes de práctica gratis · 5 idiomas", eyebrow:"100% gratis · sin registro", heroTitle:"Aprueba tu examen con confianza",
+    foot:"PassRoute — free CDL, driver license & US citizenship practice tests in 6 languages." },
+  es:{ brandSub:"Exámenes de práctica gratis · 6 idiomas", eyebrow:"100% gratis · sin registro", heroTitle:"Aprueba tu examen con confianza",
     heroSub:"Elige tu examen y practica preguntas reales con respuestas y explicaciones — en tu idioma.",
     stateLbl:"Tu estado", stateHint:"Para CDL y DL",
     cdlTag:"Comercial", cdlName:"CDL — Licencia comercial", cdlDesc:"Exámenes de conocimiento CDL Clase A: conocimiento general, frenos de aire, vehículos combinados, requisitos especiales y endosos.",
     dlTag:"Licencia", dlName:"DL — Licencia de conducir", dlDesc:"Licencia regular: señales de tránsito (con imágenes), reglas de la vía, señales y marcas, conducción segura y sanciones.",
     civTag:"Ciudadanía", civName:"Ciudadanía de EE. UU.", civDesc:"Examen cívico oficial de USCIS (versión 2025, 128 preguntas): gobierno, historia y símbolos y festivos.",
     start:"Empezar a estudiar", footNote:"El estado define tu agencia, manual y enlaces de cita para CDL y DL. La ciudadanía es federal (igual en todo el país).",
-    foot:"PassRoute — exámenes gratuitos de CDL, licencia y ciudadanía en 5 idiomas." },
-  ru:{ brandSub:"Бесплатные тесты · 5 языков", eyebrow:"100% бесплатно · без регистрации", heroTitle:"Сдайте экзамен уверенно",
+    foot:"PassRoute — exámenes gratuitos de CDL, licencia y ciudadanía en 6 idiomas." },
+  ru:{ brandSub:"Бесплатные тесты · 6 языков", eyebrow:"100% бесплатно · без регистрации", heroTitle:"Сдайте экзамен уверенно",
     heroSub:"Выберите экзамен и тренируйтесь на реальных вопросах с ответами и пояснениями — на вашем языке.",
     stateLbl:"Ваш штат", stateHint:"Для CDL и DL",
     cdlTag:"Коммерческие", cdlName:"CDL — Коммерческие права", cdlDesc:"Тесты CDL класса A: общие знания, пневмотормоза, составные ТС, особые требования и допуски.",
     dlTag:"Права", dlName:"DL — Водительские права", dlDesc:"Обычные права: дорожные знаки (с картинками), правила дороги, сигналы и разметка, безопасное вождение и штрафы.",
     civTag:"Гражданство", civName:"Гражданство США", civDesc:"Официальный тест USCIS (версия 2025, 128 вопросов): государство, история, символы и праздники.",
     start:"Начать обучение", footNote:"Штат задаёт ведомство, справочник и ссылки на запись для CDL и DL. Гражданство — федеральное (одинаково по всей стране).",
-    foot:"PassRoute — бесплатные тесты CDL, водительских прав и гражданства на 5 языках." },
-  tr:{ brandSub:"Ücretsiz deneme sınavları · 5 dil", eyebrow:"%100 ücretsiz · kayıt yok", heroTitle:"Sınavını güvenle geç",
+    foot:"PassRoute — бесплатные тесты CDL, водительских прав и гражданства на 6 языках." },
+  tr:{ brandSub:"Ücretsiz deneme sınavları · 6 dil", eyebrow:"%100 ücretsiz · kayıt yok", heroTitle:"Sınavını güvenle geç",
     heroSub:"Sınavını seç, gerçek soruları cevap ve açıklamalarıyla — kendi dilinde — çalış.",
     stateLbl:"Eyaletin", stateHint:"CDL ve DL için",
     cdlTag:"Ticari", cdlName:"CDL — Ticari Ehliyet", cdlDesc:"A Sınıfı CDL bilgi testleri: genel bilgi, hava frenleri, bağlantılı araçlar, özel gereklilikler ve onaylar.",
     dlTag:"Sürücü Belgesi", dlName:"DL — Sürücü Belgesi", dlDesc:"Normal ehliyet: trafik işaretleri (görselli), yol kuralları, işaret ve çizgiler, güvenli sürüş ve cezalar.",
     civTag:"Vatandaşlık", civName:"ABD Vatandaşlığı", civDesc:"Resmi USCIS yurttaşlık sınavı (2025 sürümü, 128 soru): Amerikan hükümeti, tarihi, semboller ve bayramlar.",
     start:"Çalışmaya başla", footNote:"Eyalet; CDL ve DL için kurumunu, el kitabını ve randevu bağlantılarını belirler. Vatandaşlık federaldir (ülke genelinde aynı).",
-    foot:"PassRoute — 5 dilde ücretsiz CDL, ehliyet ve vatandaşlık deneme sınavları." },
-  hi:{ brandSub:"मुफ्त अभ्यास परीक्षाएँ · 5 भाषाएँ", eyebrow:"100% मुफ्त · कोई साइन-अप नहीं", heroTitle:"आत्मविश्वास के साथ अपनी परीक्षा पास करें",
+    foot:"PassRoute — 6 dilde ücretsiz CDL, ehliyet ve vatandaşlık deneme sınavları." },
+  hi:{ brandSub:"मुफ्त अभ्यास परीक्षाएँ · 6 भाषाएँ", eyebrow:"100% मुफ्त · कोई साइन-अप नहीं", heroTitle:"आत्मविश्वास के साथ अपनी परीक्षा पास करें",
     heroSub:"अपनी परीक्षा चुनें और असली प्रश्नों का उत्तर व व्याख्या के साथ — अपनी भाषा में — अभ्यास करें।",
     stateLbl:"आपका राज्य", stateHint:"CDL और DL के लिए",
     cdlTag:"वाणिज्यिक", cdlName:"CDL — वाणिज्यिक लाइसेंस", cdlDesc:"क्लास A CDL ज्ञान परीक्षाएँ: सामान्य ज्ञान, एयर ब्रेक, संयोजन वाहन, विशेष आवश्यकताएँ और एंडोर्समेंट।",
     dlTag:"ड्राइवर लाइसेंस", dlName:"DL — ड्राइवर लाइसेंस", dlDesc:"सामान्य लाइसेंस: सड़क संकेत (चित्रों के साथ), सड़क नियम, सिग्नल व मार्किंग, सुरक्षित ड्राइविंग और दंड।",
     civTag:"नागरिकता", civName:"अमेरिकी नागरिकता", civDesc:"आधिकारिक USCIS नागरिक शास्त्र परीक्षा (2025 संस्करण, 128 प्रश्न): अमेरिकी सरकार, इतिहास, और प्रतीक व अवकाश।",
     start:"पढ़ाई शुरू करें", footNote:"राज्य CDL और DL के लिए आपकी एजेंसी, हैंडबुक और अपॉइंटमेंट लिंक तय करता है। नागरिकता संघीय है (देशभर में समान)।",
-    foot:"PassRoute — 5 भाषाओं में मुफ्त CDL, ड्राइवर लाइसेंस और नागरिकता अभ्यास परीक्षाएँ।" }
+    foot:"PassRoute — 6 भाषाओं में मुफ्त CDL, ड्राइवर लाइसेंस और नागरिकता अभ्यास परीक्षाएँ।" },
+  ar:{ brandSub:"اختبارات تدريبية مجانية · 6 لغات", eyebrow:"مجاني 100% · بدون تسجيل", heroTitle:"اجتَز اختبارك بثقة",
+    heroSub:"اختر اختبارك وتدرّب على أسئلة حقيقية مع الإجابات والشرح — بلغتك.",
+    stateLbl:"ولايتك", stateHint:"لـ CDL و DL",
+    cdlTag:"تجاري", cdlName:"CDL — رخصة تجارية", cdlDesc:"اختبارات معرفة CDL من الفئة A: المعرفة العامة، الفرامل الهوائية، المركبات المركبة، المتطلبات الخاصة والتصديقات.",
+    dlTag:"رخصة القيادة", dlName:"DL — رخصة القيادة", dlDesc:"الرخصة العادية: إشارات الطريق (بالصور)، قواعد الطريق، الإشارات والعلامات، القيادة الآمنة والعقوبات.",
+    civTag:"الجنسية", civName:"الجنسية الأمريكية", civDesc:"اختبار المواطنة الرسمي من USCIS (نسخة 2025، 128 سؤالاً): الحكومة الأمريكية، التاريخ، والرموز والأعياد.",
+    start:"ابدأ الدراسة", footNote:"تحدد الولاية وكالتك ودليلك وروابط المواعيد لـ CDL و DL. الجنسية اتحادية (نفسها في كل البلاد).",
+    foot:"PassRoute — اختبارات تدريبية مجانية لـ CDL ورخصة القيادة والجنسية الأمريكية بـ 6 لغات." }
 };
 var LANG=(function(){ try{ var u=new URLSearchParams(location.search).get('lang'); if(u&&T[u]) return u; return localStorage.getItem('pr_civ_lang')||localStorage.getItem('tx_cdl_lang')||'en'; }catch(e){ return 'en'; } })();
 function tr(k){ return (T[LANG]&&T[LANG][k])||T.en[k]; }
@@ -193,6 +203,7 @@ function renderCards(){
 }
 function applyI18n(){
   document.documentElement.setAttribute('lang',LANG);
+  document.documentElement.setAttribute('dir', LANG==='ar'?'rtl':'ltr');
   document.getElementById('langCur').textContent=LANG.toUpperCase();
   document.getElementById('brandSub').textContent=tr('brandSub');
   document.getElementById('eyebrow').textContent=tr('eyebrow');
@@ -205,7 +216,7 @@ function applyI18n(){
   renderCards();
 }
 /* language menu */
-function renderLangMenu(){ var names={en:'English',es:'Español',ru:'Русский',tr:'Türkçe',hi:'हिन्दी'};
+function renderLangMenu(){ var names={en:'English',es:'Español',ru:'Русский',tr:'Türkçe',hi:'हिन्दी',ar:'العربية'};
   document.getElementById('langMenu').innerHTML=Object.keys(names).filter(function(l){return l!==LANG;}).map(function(l){ return '<button role="option" onclick="setLang(\''+l+'\')">'+names[l]+'</button>'; }).join(''); }
 function toggleLang(e){ if(e) e.stopPropagation(); document.getElementById('langdd').classList.toggle('open'); }
 document.addEventListener('click',function(){ var d=document.getElementById('langdd'); if(d) d.classList.remove('open'); });
