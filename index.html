@@ -256,6 +256,23 @@
   .opt:hover:not(:disabled){border-color:var(--blue);background:#f5f8ff}
   [data-theme="dark"] .opt:hover:not(:disabled){background:#16223b}
   .opt.kbfocus{outline:3px solid var(--blue);outline-offset:2px}
+  .pr-streak{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:14px 0;box-shadow:var(--shadow)}
+  .pr-fire{font-size:1.7rem;line-height:1}
+  .pr-streak-body{flex:1;min-width:0}
+  .pr-streak-n{font-weight:740;font-size:1.02rem}
+  .pr-goal{display:flex;align-items:center;gap:10px;margin-top:5px}
+  .pr-goal-bar{flex:1;height:7px;background:var(--bg);border-radius:99px;overflow:hidden}
+  .pr-goal-bar i{display:block;height:100%;background:linear-gradient(90deg,#3b82f6,#22d3a8);border-radius:99px}
+  .pr-goal span{font-size:.8rem;color:var(--muted);white-space:nowrap}
+  .revcard{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:14px;padding:14px 18px;margin:14px 0;cursor:pointer;box-shadow:var(--shadow)}
+  .revcard:hover{border-color:#f59e0b}
+  .rev-ic{font-size:1.7rem}
+  .rev-body{flex:1;min-width:0}
+  .rev-body h3{margin:0;font-size:1.08rem}
+  .rev-body p{margin:2px 0 0;font-size:.9rem;color:var(--muted);line-height:1.45}
+  [dir="rtl"] .revcard{border-left:1px solid var(--line);border-right:4px solid #f59e0b}
+  [dir="rtl"] .rev-body p,[dir="rtl"] .pr-streak-n{text-align:right}
+  @media(max-width:560px){ .revcard{flex-wrap:wrap} .revcard .btn{width:100%} }
   .opt .key{flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
     display:grid;place-items:center;font-weight:740;font-size:.85rem}
   .opt.correct{border-color:var(--green);background:var(--green-bg)}
@@ -611,6 +628,7 @@
 <script src="state-special.js"></script>
 <script src="pretrip.js"></script>
 <script src="skills.js"></script>
+<script src="pr-engagement.js"></script>
 <script>
 /* ============================ STATE & STORAGE ============================ */
 const DATA = window.CDL_DATA;
@@ -775,6 +793,15 @@ function startTimer(){ stopTimer(); timerInt=setInterval(updateTimer,1000); upda
 function stopTimer(){ if(timerInt){ clearInterval(timerInt); timerInt=null; } }
 
 /* ============================ i18n ============================ */
+/* engagement UI strings (streak / mistake review / share) merged into I18N.ui */
+(function(){ var E={
+ en:{ streakN:"{n}-day streak", streakStart:"Start a streak today", goalToday:"{c}/{g} questions today", reviewCard:"Review your mistakes", reviewSub:"Drill the {n} questions you've missed — they leave the list once you get them right.", reviewBtn:"Start review", reviewLabel:"Mistake review", share:"Share result", reviewEmpty:"No mistakes to review — great work!" },
+ es:{ streakN:"Racha de {n} días", streakStart:"Empieza una racha hoy", goalToday:"{c}/{g} preguntas hoy", reviewCard:"Repasa tus errores", reviewSub:"Practica las {n} preguntas que fallaste; salen de la lista cuando las aciertas.", reviewBtn:"Empezar repaso", reviewLabel:"Repaso de errores", share:"Compartir resultado", reviewEmpty:"No hay errores que repasar, ¡bien hecho!" },
+ ru:{ streakN:"Серия: {n} дн.", streakStart:"Начните серию сегодня", goalToday:"{c}/{g} вопросов сегодня", reviewCard:"Разбор ошибок", reviewSub:"Проработайте {n} вопросов, где вы ошиблись — они уходят из списка, когда вы отвечаете верно.", reviewBtn:"Начать разбор", reviewLabel:"Разбор ошибок", share:"Поделиться", reviewEmpty:"Ошибок для разбора нет — отлично!" },
+ tr:{ streakN:"{n} günlük seri", streakStart:"Bugün bir seri başlat", goalToday:"Bugün {c}/{g} soru", reviewCard:"Hatalarını tekrar et", reviewSub:"Yanlış yaptığın {n} soruyu çöz — doğru yapınca listeden çıkar.", reviewBtn:"Tekrara başla", reviewLabel:"Hata tekrarı", share:"Sonucu paylaş", reviewEmpty:"Tekrar edilecek hata yok — harika!" },
+ hi:{ streakN:"{n}-दिन की लय", streakStart:"आज लय शुरू करें", goalToday:"आज {c}/{g} प्रश्न", reviewCard:"अपनी गलतियाँ दोहराएँ", reviewSub:"जो {n} प्रश्न आपने गलत किए उन्हें हल करें — सही करने पर वे सूची से हट जाते हैं।", reviewBtn:"दोहराव शुरू करें", reviewLabel:"गलती दोहराव", share:"परिणाम साझा करें", reviewEmpty:"दोहराने के लिए कोई गलती नहीं — बढ़िया!" },
+ ar:{ streakN:"سلسلة {n} يوم", streakStart:"ابدأ سلسلة اليوم", goalToday:"{c}/{g} سؤالاً اليوم", reviewCard:"راجع أخطاءك", reviewSub:"تدرّب على الأسئلة الـ{n} التي أخطأت فيها — تُحذف من القائمة عند إجابتها بشكل صحيح.", reviewBtn:"ابدأ المراجعة", reviewLabel:"مراجعة الأخطاء", share:"مشاركة النتيجة", reviewEmpty:"لا أخطاء للمراجعة — أحسنت!" } };
+ if(window.I18N&&I18N.ui) Object.keys(E).forEach(function(L){ I18N.ui[L]=I18N.ui[L]||{}; for(var k in E[L]) if(I18N.ui[L][k]==null) I18N.ui[L][k]=E[L][k]; }); })();
 function t(key, vars){
   let s = (window.I18N && I18N.ui[LANG] && I18N.ui[LANG][key]);
   if(s==null) s = (window.I18N && I18N.ui.en[key]!=null) ? I18N.ui.en[key] : key;
@@ -1335,6 +1362,8 @@ function renderHome(){
         <div>${t('overallDesc')}</div>
       </div>
     </div>
+    ${(window.PR?PR.streakHTML({streak:t('streakN'),start:t('streakStart'),goal:t('goalToday')}):'')}
+    ${(window.PR&&PR.mistakeCount('cdl')>0?`<div class="revcard" onclick="startReview()"><div class="rev-ic">🎯</div><div class="rev-body"><h3>${t('reviewCard')}</h3><p>${t('reviewSub',{n:PR.mistakeCount('cdl')})}</p></div><button class="btn primary" onclick="event.stopPropagation();startReview()">${t('reviewBtn')}</button></div>`:'')}
     ${renderRoadmap()}
     <div class="guide-banner" onclick="go('guide')">
       <div class="gb-ico">🪪</div>
@@ -1372,6 +1401,7 @@ function catTiles(cat){
 }
 function renderCategory(catId){
   const cat = DATA.categories.find(c=>c.id===catId);
+  if(!cat){ state={view:'home'}; return renderHome(); }
   const s = catStats(cat);
   const learn = learnCatFor(catId);
   // One single grid: learning-test tiles first (labelled "LEARNING TEST"), then the
@@ -1407,7 +1437,7 @@ function renderTestShell(){
 }
 
 function paintQuestion(){
-  const s = state, it = s.test[s.cur], qd = qData(s.catId, it.qid);
+  const s = state, it = s.test[s.cur], qd = qData(it.catId||s.catId, it.qid);
   const dispOpts = it.optOrder.map(oi=>qd.options[oi]);
   const isLearn = s.cat && s.cat.kind==="learn";        // learning tests have no pass/fail "misses" pressure
   const allowMiss = s.test.length - passMark(s.test.length);
@@ -1488,14 +1518,28 @@ function confirmQuit(){ askConfirm(t('confirmQuit'), ()=>go('category',{catId:ba
 function finishTest(){
   state.elapsed = Date.now() - (state.startTime||Date.now());
   stopTimer();
-  recordResult(state.catId, state.idx, state.correct, state.test.length);
-  pushHistory({ts:Date.now(), cat:state.catId, idx:state.idx, correct:state.correct, total:state.test.length, pct:Math.round(state.correct/state.test.length*100), passed:state.correct>=passMark(state.test.length), secs:Math.round((state.elapsed||0)/1000)});
+  try{ if(window.PR){ PR.recordActivity(state.test.length); state.test.forEach((it,i)=>{ const ok=state.answers[i]===it.answer, cid=it.catId||state.catId; if(state.review){ if(ok) PR.clearMistake('cdl',cid,it.qid); } else if(!ok) PR.recordMistakes('cdl',cid,[it.qid]); }); } }catch(e){}
+  if(!state.review){
+    recordResult(state.catId, state.idx, state.correct, state.test.length);
+    pushHistory({ts:Date.now(), cat:state.catId, idx:state.idx, correct:state.correct, total:state.test.length, pct:Math.round(state.correct/state.test.length*100), passed:state.correct>=passMark(state.test.length), secs:Math.round((state.elapsed||0)/1000)});
+  }
   state.view='results';
   window.scrollTo(0,0);
   render();
   syncURL(false);
   saveSession();
 }
+function startReview(){
+  const miss = (window.PR?PR.mistakeList('cdl',30):[]); if(!miss.length){ toast(t('reviewEmpty')); return; }
+  const test = miss.map(m=>{ const cat=DATA.categories.find(c=>c.id===m.catId); if(!cat||!cat.questions[m.qid]) return null;
+    const q=cat.questions[m.qid]; const _idx=q.options.map((o,i)=>i); const _pin=_idx.filter(i=>/^(all|none)\b/i.test(String(q.options[i]).trim())); const _free=_idx.filter(i=>_pin.indexOf(i)<0); const optOrder=randShuffle(_free).concat(_pin);
+    return { catId:m.catId, qid:m.qid, optOrder, answer:optOrder.indexOf(q.answer) }; }).filter(Boolean);
+  if(!test.length){ toast(t('reviewEmpty')); return; }
+  state = { view:'test', review:true, catId:'__review__', idx:0, cat:{id:'__review__',name:t('reviewLabel')}, test, cur:0, answers:new Array(test.length).fill(null), correct:0, incorrect:0, locked:false, startTime:Date.now() };
+  window.scrollTo(0,0); renderTestShell(); startTimer(); syncURL(false); saveSession();
+}
+function shareCDL(){ if(!window.PR||!state.test) return; const total=state.test.length,correct=state.correct,pct=Math.round(correct/total*100),passed=correct>=passMark(total);
+  PR.shareScore({exam:'CDL · '+catName(state.cat), score:pct+'%', scoreSub:correct+' / '+total, title:(passed?t('rPassed'):t('rFailed')), tag:(passed?'PASS':null), pass:passed, shareText:'CDL practice: '+pct+'% ('+correct+'/'+total+')'}); }
 
 /* ============================ RESULTS ============================ */
 function renderResults(){
@@ -1505,7 +1549,7 @@ function renderResults(){
   const passed = correct >= need;
 
   const reviews = s.test.map((it,i)=>{
-    const qd = qData(s.catId, it.qid);
+    const qd = qData(it.catId||s.catId, it.qid);
     const dispOpts = it.optOrder.map(oi=>qd.options[oi]);
     const you=s.answers[i]; const ok=you===it.answer;
     const youTxt = you===null? '—' : dispOpts[you];
@@ -1527,8 +1571,9 @@ function renderResults(){
       <div class="line">${t('rScoreLine',{c:correct,t:total,need:need})}${passed?'': t('rMore',{n:need-correct})}</div>
       <div class="rtime">${t('resTime',{t:fmtTime(s.elapsed||0)})} · ${t('resAvg',{s:Math.max(1,Math.round((s.elapsed||0)/1000/total))})}</div>
       <div class="actions">
-        <button class="btn primary" onclick="startTest('${s.catId}',${s.idx})">${t('rRetake')}</button>
-        <button class="btn ghost" onclick="go('category',{catId:'${baseCatId(s.cat)}'})">${t('rBackTo',{cat:catName(s.cat)})}</button>
+        <button class="btn primary" onclick="${s.review?`startReview()`:`startTest('${s.catId}',${s.idx})`}">${t('rRetake')}</button>
+        <button class="btn ghost" onclick="shareCDL()">${t('share')}</button>
+        ${s.review?'':`<button class="btn ghost" onclick="go('category',{catId:'${baseCatId(s.cat)}'})">${t('rBackTo',{cat:catName(s.cat)})}</button>`}
         <button class="btn ghost" onclick="go('home')">${t('rAllCats')}</button>
       </div>
     </div>
