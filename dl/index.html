@@ -82,7 +82,7 @@
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="/" style="color:#fff"><b>PassRoute</b><span id="brandSub">Texas DL · Practice Tests</span></a>
+  <a class="brand" href="../index.html" style="color:#fff"><b>PassRoute</b><span id="brandSub">Texas DL · Practice Tests</span></a>
   <div class="tbtns">
     <div class="dd" id="examdd"><button class="hbtn" onclick="toggleExam(event)" id="examBtn">🚗 DL ▾</button><div class="menu" id="examMenu"><a onclick="switchExam('cdl')">📋 Commercial (CDL)</a></div></div>
     <div class="dd" id="statedd"><button class="hbtn" onclick="toggleState(event)" id="stateBtn">📍 <span id="stateCur">TX</span> ▾</button><div class="menu" id="stateMenu" style="max-height:280px;overflow:auto"></div></div>
@@ -95,7 +95,7 @@
 <div id="app" class="wrap"></div>
 <footer class="foot" id="siteFooter"></footer>
 
-<script src="/states-meta.js"></script>
+<script src="../states-meta.js"></script>
 <script src="dl-data.js"></script>
 <script>
 "use strict";
@@ -351,12 +351,12 @@ function toggleState(e){ if(e) e.stopPropagation(); document.getElementById('sta
 function toggleExam(e){ if(e) e.stopPropagation(); document.getElementById('examdd').classList.toggle('open'); }
 /* switch from the DL app (/dl/) to the CDL app (/), carrying the selected state */
 function switchExam(ex){ try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){}
-  if(ex==='cdl') location.href='/?state='+STATE+(LANG!=='en'?'&lang='+LANG:''); }
+  if(ex==='cdl') location.href='../index.html?state='+STATE+(LANG!=='en'?'&lang='+LANG:''); }
 function setState(c){ if(!SMETA[c]) return; STATE=c; try{ localStorage.setItem('pr_state',c); }catch(e){} HANDBOOK=stateMeta().handbook||HANDBOOK; document.getElementById('statedd').classList.remove('open'); renderStateMenu(); applyChrome(); go('home'); }
 function toggleTheme(){ var d=document.documentElement.getAttribute('data-theme')==='dark'?'':'dark'; document.documentElement.setAttribute('data-theme',d); try{ localStorage.setItem(TKEY,d); }catch(e){} document.getElementById('themeBtn').textContent=d==='dark'?'☀️':'🌙'; }
 function resetAll(){ if(confirm(t('confirmReset'))){ try{ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); }catch(e){} clearSession(); go('home'); } }
 function applyChrome(){ document.getElementById('brandSub').textContent=t('sub');
-  document.getElementById('siteFooter').innerHTML=t('footMain')+'<br>'+t('footSub')+'<div style="margin-top:8px"><a href="'+HANDBOOK+'" target="_blank" rel="noopener">'+t('footHb')+'</a> · <a href="/cdl/">CDL</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>'; }
+  document.getElementById('siteFooter').innerHTML=t('footMain')+'<br>'+t('footSub')+'<div style="margin-top:8px"><a href="'+HANDBOOK+'" target="_blank" rel="noopener">'+t('footHb')+'</a> · <a href="../cdl/index.html">CDL</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>'; }
 
 /* ---------- boot ---------- */
 (function(){ try{ var th=localStorage.getItem(TKEY); if(th==='dark'){ document.documentElement.setAttribute('data-theme','dark'); } }catch(e){}

@@ -579,7 +579,7 @@
   <script src="upgrades.general.js"></script>
   <script src="learn.cdl.js"></script>
   <script src="translations-hi-gk-extra.js"></script>
-<script src="/states-meta.js"></script>
+<script src="states-meta.js"></script>
 <script src="state-special.js"></script>
 <script src="pretrip.js"></script>
 <script src="skills.js"></script>
@@ -647,7 +647,7 @@ function toggleStateMenu(e){ if(e) e.stopPropagation(); const dd=document.getEle
 function toggleExamMenu(e){ if(e) e.stopPropagation(); const dd=document.getElementById('examdd'); if(dd) dd.classList.toggle('open'); }
 /* switch between the CDL app (/) and the DL app (/dl/), carrying the selected state */
 function switchExam(ex){ try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){}
-  if(ex==='dl') location.href='/dl/?state='+STATE+(LANG!=='en'?'&lang='+LANG:''); }
+  if(ex==='dl') location.href='dl/index.html?state='+STATE+(LANG!=='en'?'&lang='+LANG:''); }
 document.addEventListener('click', function(){ var d=document.getElementById('examdd'); if(d) d.classList.remove('open'); });
 function closeStateMenu(){ const dd=document.getElementById('statedd'); if(dd) dd.classList.remove('open'); const b=document.getElementById('stateBtn'); if(b) b.setAttribute('aria-expanded','false'); }
 document.addEventListener('click', closeStateMenu);
@@ -793,8 +793,8 @@ function applyStaticI18n(){
     '<a href="'+_hb+'" target="_blank" rel="noopener">'+t('footHb')+'</a> · '+
     _sg+
     '<a onclick="go(\'guide\')" style="cursor:pointer">'+t('footGuide')+'</a> · '+
-    '<a href="/cdl/">CDL Tests</a> · '+
-    '<a href="/dl/">Driver License (DL)</a> · '+
+    '<a href="cdl/index.html">CDL Tests</a> · '+
+    '<a href="dl/index.html">Driver License (DL)</a> · '+
     '<a href="faq.html">FAQ</a> · '+
     '<a href="privacy.html">Privacy</a> · '+
     '<a href="terms.html">Terms</a></div>';
@@ -1564,7 +1564,7 @@ var _obExam=null;
 function obPick(btn){ _obExam=btn.getAttribute('data-exam'); var a=document.querySelectorAll('.ob-exam'); for(var i=0;i<a.length;i++)a[i].classList.remove('on'); btn.classList.add('on'); document.getElementById('obGo').disabled=false; }
 function obConfirm(){ if(!_obExam) return; var st=document.getElementById('obState').value;
   try{ localStorage.setItem('pr_exam',_obExam); localStorage.setItem('pr_state',st); localStorage.setItem('tx_cdl_state',st); }catch(e){}
-  if(_obExam==='dl'){ location.href='/dl/?state='+st; return; }
+  if(_obExam==='dl'){ location.href='dl/index.html?state='+st; return; }
   STATE=STATES[st]?st:'TX'; applyState(STATE); var o=document.getElementById('onboard'); if(o) o.remove(); renderStateMenu(); applyStaticI18n(); go('home'); }
 function showOnboarding(){
   if(!document.getElementById('ob-style')){ var s=document.createElement('style'); s.id='ob-style'; s.textContent=
@@ -1599,7 +1599,7 @@ else {
   applyStaticI18n();
   /* on return visits, honor the cached exam: a DL chooser sends you to /dl/ */
   (function(){ try{ var ex=localStorage.getItem('pr_exam'); var p=new URLSearchParams(location.search);
-    if(ex==='dl' && !p.get('v') && !p.get('cat')){ location.replace('/dl/'+(p.get('lang')?'?lang='+p.get('lang'):'')); return; } }catch(e){} })();
+    if(ex==='dl' && !p.get('v') && !p.get('cat')){ location.replace('dl/index.html'+(p.get('lang')?'?lang='+p.get('lang'):'')); return; } }catch(e){} })();
   /* resume an in-progress test/results from the session cache on refresh; else normal routing */
   if(!restoreSession()) initRoute();
   if(needsOnboarding()) showOnboarding();
