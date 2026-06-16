@@ -147,6 +147,9 @@
   .langmenu button{display:block;width:100%;text-align:left;background:transparent;border:none;color:var(--ink);
     padding:8px 16px;font-size:.82rem;font-weight:700;cursor:pointer;border-radius:7px;letter-spacing:.3px}
   .langmenu button:hover{background:var(--bg)}
+  /* the state menu lists all 50 states — make it scrollable + safe on mobile */
+  #stateMenu{max-height:min(62vh,380px);overflow-y:auto;-webkit-overflow-scrolling:touch;min-width:170px}
+  @media(max-width:560px){ #stateMenu{max-height:56vh;min-width:150px} .langmenu{max-width:calc(100vw - 24px)} }
   .enflag{display:inline-block;font-size:.58rem;font-weight:800;vertical-align:middle;background:var(--bg);color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-left:6px;letter-spacing:.4px}
   /* Stats */
   .scards{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:12px;margin:14px 0 6px}
@@ -426,6 +429,8 @@
   /* Phone */
   @media (max-width:480px){
     .wrap{padding:0 12px}
+    #homeBtn{display:none}            /* logo is the home button on phones — frees header space */
+    .top-inner{gap:6px}
     .star{width:30px;height:30px}
     .brand h1{font-size:.9rem}
     .hero h2{font-size:1.1rem}
