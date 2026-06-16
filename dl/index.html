@@ -445,6 +445,11 @@
 
   .dlnote{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:12px;padding:12px 14px;margin:14px 0;font-size:.9rem}
   .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:var(--card);padding:10px 18px;border-radius:10px;font-weight:600;z-index:200;box-shadow:var(--shadow-lg)}
+  .signimg{display:flex;justify-content:center;align-items:center;padding:18px;margin:0 0 14px;background:linear-gradient(180deg,#eef2f7,#e3e9f1);border:1px solid var(--line);border-radius:14px}
+  .signimg svg{filter:drop-shadow(0 4px 10px rgba(0,0,0,.18))}
+  /* collapse ad slots that don't get filled so they leave no empty gap */
+  ins.adsbygoogle{display:block;min-height:0}
+  ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!important;height:0!important}
 </style>
 </head>
 <body>
@@ -458,7 +463,7 @@
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
       <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span>🚗 DL</span><span class="cv">▾</span></button>
-      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('cdl')">📋 Commercial (CDL)</button></div>
+      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('cdl')">📋 Commercial (CDL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="statedd" style="margin-right:6px">
       <button class="langbtn" id="stateBtn" onclick="toggleStateMenu(event)" aria-haspopup="listbox" aria-expanded="false" title="State"><span id="stateCur">TX</span><span class="cv">▾</span></button>
@@ -478,6 +483,7 @@
 
 <script src="../states-meta.js"></script>
 <script src="dl-data.js"></script>
+<script src="dl-signs.js"></script>
 <script>
 "use strict";
 var DATA = window.DL_DATA, I18N = window.DL_I18N;
@@ -578,9 +584,8 @@ function langBadge(tr){ return (LANG==='en'||tr)?'':' <span class="enflag" title
 var ACCENTS={};DATA.categories.forEach(function(c){ACCENTS[c.id]=c.accent||(c.kind==='learn'?'#0a7c43':'#64748b');});
 
 /* auto-scale: learn = one test (all questions); practice = 20-question tests */
-DATA.categories.forEach(function(c){ var P=c.questions.length;
-  if(c.kind==='learn'){ c.examSize=P; c.numTests=1; c.passNeed=Math.max(1,Math.round(P*0.8)); }
-  else { var E=Math.min(20,P); c.examSize=E; c.numTests=Math.max(1,Math.ceil(P/E)); c.passNeed=Math.max(1,Math.round(E*0.8)); } });
+DATA.categories.forEach(function(c){ var P=c.questions.length; var E=Math.min(20,P);
+  c.examSize=E; c.numTests=Math.max(1,Math.ceil(P/E)); c.passNeed=Math.max(1,Math.round(E*0.8)); });
 
 /* progress + history (localStorage) */
 function loadProg(){ try{ return JSON.parse(localStorage.getItem(PKEY))||{}; }catch(e){ return {}; } }
@@ -661,11 +666,12 @@ function paintQuestion(){ var s=state,it=s.test[s.cur],qd=qData(s.catId,it.qid),
   var opts=disp.map(function(txt,i){ var cls='opt'; if(ans){ if(i===it.answer) cls+=' correct'; else if(i===prev) cls+=' wrong'; } var mark=''; if(ans&&i===it.answer) mark='<span class="mark" style="color:var(--green)">✓</span>'; else if(ans&&i===prev) mark='<span class="mark" style="color:var(--red)">✗</span>'; return '<button class="'+cls+'" '+(ans?'disabled':'')+' onclick="choose('+i+')"><span class="key">'+String.fromCharCode(65+i)+'</span><span>'+txt+'</span>'+mark+'</button>'; }).join('');
   var explain=''; if(ans){ var good=prev===it.answer,L=String.fromCharCode(65+it.answer); explain='<div class="explain show '+(good?'good':'bad')+'"><div class="verdict">'+(good?t('correctV',{L:L}):t('wrongV',{L:L}))+'</div><p>'+qd.explanation+'</p>'+((qd.handbook||qd.explanation)?'<div class="hb"><span class="src">'+t('src',{ref:qd.hbref})+'</span><i>“'+(qd.handbook||qd.explanation)+'”</i></div>':'')+'</div>'; }
   var last=s.cur===s.test.length-1, pct=Math.round(s.cur/s.test.length*100);
+  var sgnKey=(s.cat&&s.cat.questions&&s.cat.questions[it.qid]&&s.cat.questions[it.qid].sign)||''; var sgn=(sgnKey&&window.SIGN_SVG&&window.SIGN_SVG[sgnKey])?'<div class="signimg">'+window.SIGN_SVG[sgnKey]+'</div>':'';
   document.getElementById('runner').innerHTML=
     '<div class="runbar"><span class="qpos">'+t('question')+' '+(s.cur+1)+' <span style="color:var(--muted);font-weight:600">/ '+s.test.length+'</span></span>'+
     '<div class="tally"><span class="chip time" id="qtimer">'+fmtTime(Date.now()-(s.startTime||Date.now()))+'</span><span class="chip ok">✓ '+s.correct+'</span><span class="chip no">✗ '+s.incorrect+'</span></div></div>'+
     '<div class="pbar"><i style="width:'+pct+'%"></i></div>'+
-    '<div class="qbody"><div class="qtext">'+qd.q+langBadge(qd.translated)+'<button class="speakbtn" id="speakBtn" onclick="speakQuestion(event)" title="'+t('speak')+'">🔊</button></div>'+
+    '<div class="qbody">'+sgn+'<div class="qtext">'+qd.q+langBadge(qd.translated)+'<button class="speakbtn" id="speakBtn" onclick="speakQuestion(event)" title="'+t('speak')+'">🔊</button></div>'+
     '<div class="opts">'+opts+'</div>'+explain+'</div>'+
     '<div class="runfoot">'+(ans?'<button class="btn primary" onclick="next()">'+(last?t('seeRes'):t('next'))+'</button>':'<span class="hint">'+t('pick')+'</span>')+'<span class="top-spacer" style="flex:1"></span><button class="btn ghost" onclick="confirmQuit()">'+t('quit')+'</button></div>';
   tick(); }
@@ -704,7 +710,7 @@ function toggleExamMenu(e){ if(e) e.stopPropagation(); document.getElementById('
 document.addEventListener('click',function(){ ['langdd','statedd','examdd'].forEach(function(id){ var d=document.getElementById(id); if(d) d.classList.remove('open'); }); });
 function setLang(l){ LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){} document.documentElement.setAttribute('lang',l); renderLangMenu(); renderStateMenu(); applyChrome(); render(); }
 function setState(c){ if(!SMETA[c]) return; STATE=c; try{ localStorage.setItem('pr_state',c); }catch(e){} HANDBOOK=stateMeta().handbook||HANDBOOK; document.getElementById('statedd').classList.remove('open'); renderStateMenu(); applyChrome(); go('home'); }
-function switchExam(ex){ try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){} if(ex==='cdl') location.href='../index.html?state='+STATE+(LANG!=='en'?'&lang='+LANG:''); }
+function switchExam(ex){ if(ex==='home'){ location.href='../home/index.html'+(LANG!=='en'?'?lang='+LANG:''); return; } try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){} if(ex==='cdl') location.href='../index.html?exam=cdl&state='+STATE+(LANG!=='en'?'&lang='+LANG:''); else if(ex==='civ') location.href='../citizenship/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
 function toggleTheme(){ var d=document.documentElement.getAttribute('data-theme')==='dark'?'':'dark'; document.documentElement.setAttribute('data-theme',d); try{ localStorage.setItem(TKEY,d); }catch(e){} var b=document.getElementById('themeBtn'); if(b) b.textContent=d==='dark'?'☀️':'🌙'; }
 function resetAll(){ if(confirm(t('confirmReset'))){ try{ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); }catch(e){} clearSession(); go('home'); } }
 function applyChrome(){ var bs=document.getElementById('brandSub'); if(bs) bs.textContent=t('sub');
