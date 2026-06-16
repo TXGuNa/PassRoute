@@ -523,6 +523,9 @@
     .step h3{font-size:1.02rem}
     .guide-banner b{font-size:.98rem}
   }
+  /* collapse ad slots that don't get filled so they leave no empty gap */
+  ins.adsbygoogle{display:block;min-height:0}
+  ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!important;height:0!important}
 </style>
 </head>
 <body>
@@ -536,7 +539,7 @@
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
       <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span>📋 CDL</span><span class="cv">▾</span></button>
-      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button></div>
+      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="statedd" style="margin-right:6px">
       <button class="langbtn" id="stateBtn" onclick="toggleStateMenu(event)" aria-haspopup="listbox" aria-expanded="false" title="State"><span id="stateCur">TX</span><span class="cv">▾</span></button>
@@ -583,6 +586,7 @@
   <script src="upgrades.airbrakes.js"></script>
   <script src="upgrades.general.js"></script>
   <script src="learn.cdl.js"></script>
+  <script src="learn.cristcdl.js"></script>
   <script src="translations-hi-gk-extra.js"></script>
 <script src="states-meta.js"></script>
 <script src="state-special.js"></script>
@@ -651,8 +655,10 @@ function renderStateMenu(){ const cur=document.getElementById('stateCur'); if(cu
 function toggleStateMenu(e){ if(e) e.stopPropagation(); const dd=document.getElementById('statedd'); if(!dd) return; const open=dd.classList.toggle('open'); const b=document.getElementById('stateBtn'); if(b) b.setAttribute('aria-expanded',open?'true':'false'); }
 function toggleExamMenu(e){ if(e) e.stopPropagation(); const dd=document.getElementById('examdd'); if(dd) dd.classList.toggle('open'); }
 /* switch between the CDL app (/) and the DL app (/dl/), carrying the selected state */
-function switchExam(ex){ try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){}
-  if(ex==='dl') location.href='dl/index.html?state='+STATE+(LANG!=='en'?'&lang='+LANG:''); }
+function switchExam(ex){ if(ex==='home'){ location.href='home/index.html'+(LANG!=='en'?'?lang='+LANG:''); return; }
+  try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){}
+  if(ex==='dl') location.href='dl/index.html?state='+STATE+(LANG!=='en'?'&lang='+LANG:'');
+  else if(ex==='civ') location.href='citizenship/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
 document.addEventListener('click', function(){ var d=document.getElementById('examdd'); if(d) d.classList.remove('open'); });
 function closeStateMenu(){ const dd=document.getElementById('statedd'); if(dd) dd.classList.remove('open'); const b=document.getElementById('stateBtn'); if(b) b.setAttribute('aria-expanded','false'); }
 document.addEventListener('click', closeStateMenu);
@@ -664,9 +670,13 @@ if(DATA && DATA.categories){
   DATA.categories.forEach(c=>{
     const P = c.questions.length;
     if(c.kind==="learn"){
-      // Learn (educational) categories: ONE single test that walks the WHOLE handbook section,
-      // every question in order, start to finish. Not split into multiple lessons.
-      c.examSize=P; c.numTests=1; c.passNeed=Math.max(1,Math.round(P*0.8)); c.readyTarget=1;
+      // Learn (educational) lessons are sized to the real per-subject exam question count (same as the
+      // matching Practice test), then split into as many numbered "Lesson N" as needed to walk the WHOLE
+      // bank — every unique question shown once across the lessons, easy→hard within each.
+      const subj = c.learnSubject || c.id;
+      const LE = Math.min(CLP[subj] || 25, P);
+      c.examSize = LE; c.numTests = Math.max(1, Math.ceil(P / LE));
+      c.passNeed = Math.max(1, Math.round(LE*0.8)); c.readyTarget = c.numTests;
       return;
     }
     const target = CLP[c.id] || 25;
@@ -1603,13 +1613,21 @@ else {
   _snapSpecial(); applyState(STATE); renderStateMenu();
   renderLangMenu();
   applyStaticI18n();
-  /* on return visits, honor the cached exam: a DL chooser sends you to /dl/ */
-  (function(){ try{ var ex=localStorage.getItem('pr_exam'); var p=new URLSearchParams(location.search);
-    if(ex==='dl' && !p.get('v') && !p.get('cat')){ location.replace('dl/index.html'+(p.get('lang')?'?lang='+p.get('lang'):'')); return; } }catch(e){} })();
+  /* entry routing: the All-exams homepage (/home/) is the DEFAULT landing — every fresh visit opens
+     it first. A deep link (?v=/?cat=) or an explicit ?exam=cdl from the homepage renders the CDL app;
+     once you've entered an exam this browser session, root keeps showing CDL (no re-prompt on refresh
+     or in-app navigation). */
+  if((function(){ try{ var p=new URLSearchParams(location.search); if(p.get('v')||p.get('cat')) return false;
+    if(p.get('exam')==='cdl'){ try{ sessionStorage.setItem('pr_entered','1'); }catch(e){} return false; }
+    var entered=false; try{ entered=!!sessionStorage.getItem('pr_entered'); }catch(e){}
+    if(entered) return false;
+    location.replace('home/index.html'+(p.get('lang')?'?lang='+p.get('lang'):'')); return true;
+  }catch(e){ return false; } })()) { /* redirected to the homepage */ }
+  else {
   /* resume an in-progress test/results from the session cache on refresh; else normal routing */
   if(!restoreSession()) initRoute();
-  if(needsOnboarding()) showOnboarding();
   if(window.innerWidth>=1440){ try{ var _r=document.createElement('div'); _r.className='adrail'; _r.innerHTML='<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-5005909536075464" data-ad-slot="2432464479"></ins>'; document.body.appendChild(_r); (window.adsbygoogle=window.adsbygoogle||[]).push({}); }catch(e){} }
+  }
 }
 /* PWA: register the service worker for offline use (HTTPS only, e.g. passroute.ai) */
 if('serviceWorker' in navigator){
