@@ -76,7 +76,13 @@ body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMac
 .xcard .subjects{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; }
 .xcard .subjects span{ font-size:.74rem; background:var(--bg); border:1px solid var(--line); border-radius:999px; padding:4px 9px; color:var(--muted); }
 .xcard .cta{ display:inline-flex; align-items:center; justify-content:center; gap:7px; background:var(--accent); color:#fff; border:0; border-radius:12px; padding:12px 14px; font-weight:760; font-size:.96rem; cursor:pointer; width:100%; }
-.note{ text-align:center; color:var(--muted); font-size:.84rem; margin:30px auto 0; max-width:680px; }
+.note{ text-align:center; color:var(--muted); font-size:.84rem; margin:30px auto 0; max-width:680px; min-height:38px; }
+/* reserve space for late/JS-rendered blocks so they don't cause layout shift (CLS) */
+.top-inner{ min-height:56px; }
+.cards{ min-height:640px; }
+.foot{ min-height:72px; }
+ins.adsbygoogle{ min-height:100px; }
+@media(max-width:820px){ .cards{ min-height:1590px; } }
 .foot{ border-top:1px solid var(--line); color:var(--muted); font-size:.82rem; text-align:center; padding:22px 18px 40px; }
 [dir="rtl"] .langmenu{ left:0; right:auto; } [dir="rtl"] .langmenu button{ text-align:right; }
 .foot a{ color:var(--blue2); text-decoration:none; } .foot a:hover{ text-decoration:underline; }
@@ -86,7 +92,7 @@ body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMac
 <header class="top">
   <div class="top-inner">
     <div class="brand" onclick="location.reload()">
-      <img src="../icon-192.png" alt="PassRoute logo" />
+      <img src="../icon-192.png" alt="PassRoute logo" width="38" height="38" />
       <div><h1>PassRoute</h1><p id="brandSub">Free practice tests · 6 languages</p></div>
     </div>
     <div class="spacer"></div>
@@ -184,21 +190,30 @@ function fillStates(){ var sel=document.getElementById('stateSel');
   sel.innerHTML=sorted.map(function(c){ return '<option value="'+c+'"'+(c===STATE?' selected':'')+'>'+SMETA[c].name+' ('+c+')</option>'; }).join('');
   sel.onchange=function(){ STATE=sel.value; try{ localStorage.setItem('pr_state',STATE); }catch(e){} };
 }
-function pick(exam){ try{ localStorage.setItem('pr_exam',exam); if(exam!=='civ'&&exam!=='sat') localStorage.setItem('pr_state',STATE); sessionStorage.setItem('pr_entered','1'); }catch(e){}
-  var parts=[]; if(exam==='cdl') parts.push('exam=cdl'); if(exam!=='civ'&&exam!=='sat') parts.push('state='+STATE); if(LANG!=='en') parts.push('lang='+LANG);
+function pick(exam){ try{ localStorage.setItem('pr_exam',exam); if(exam!=='civ'&&exam!=='sat'&&exam!=='moto'&&exam!=='ged'&&exam!=='fh') localStorage.setItem('pr_state',STATE); sessionStorage.setItem('pr_entered','1'); }catch(e){}
+  var parts=[]; if(exam==='cdl') parts.push('exam=cdl'); if(exam!=='civ'&&exam!=='sat'&&exam!=='moto'&&exam!=='ged'&&exam!=='fh') parts.push('state='+STATE); if(LANG!=='en') parts.push('lang='+LANG);
   var qs=parts.length?'?'+parts.join('&'):'';
   if(exam==='cdl') location.href='../index.html'+qs;
   else if(exam==='dl') location.href='../dl/index.html'+qs;
   else if(exam==='sat') location.href='../sat/index.html'+(LANG!=='en'?'?lang='+LANG:'');
+  else if(exam==='moto') location.href='../motorcycle/index.html'+(LANG!=='en'?'?lang='+LANG:'');
+  else if(exam==='ged') location.href='../ged/index.html'+(LANG!=='en'?'?lang='+LANG:'');
+  else if(exam==='fh') location.href='../food-handler/index.html'+(LANG!=='en'?'?lang='+LANG:'');
   else location.href='../citizenship/index.html'+qs;
 }
 var SAT_T={en:{tag:"Digital SAT",name:"SAT",desc:"Digital SAT practice: Math (Algebra, Advanced Math, Data, Geometry) and Reading & Writing — original questions with explanations."},es:{tag:"SAT Digital",name:"SAT",desc:"Práctica del SAT Digital: Matemáticas (Álgebra, Avanzadas, Datos, Geometría) y Lectura y redacción — preguntas originales con explicaciones."},ru:{tag:"Цифровой SAT",name:"SAT",desc:"Практика Digital SAT: математика (алгебра, высшая, данные, геометрия) и чтение и письмо — оригинальные вопросы с разбором."},tr:{tag:"Dijital SAT",name:"SAT",desc:"Digital SAT pratiği: Matematik (Cebir, İleri, Veri, Geometri) ve Okuma & Yazma — özgün sorular, açıklamalı."},hi:{tag:"डिजिटल SAT",name:"SAT",desc:"डिजिटल SAT अभ्यास: गणित (बीजगणित, उन्नत, डेटा, ज्यामिति) और पठन-लेखन — मूल प्रश्न, व्याख्या सहित।"},ar:{tag:"SAT الرقمي",name:"SAT",desc:"تدريب SAT الرقمي: الرياضيات (الجبر، المتقدمة، البيانات، الهندسة) والقراءة والكتابة — أسئلة أصلية مع الشرح."}};
+var MOTO_T={en:{tag:"MSF Manual",name:"Motorcycle",desc:"Motorcycle permit practice from the official MSF Motorcycle Operator Manual: controls, gear, braking, cornering, the SEE strategy and hazards — with explanations."},es:{tag:"Manual MSF",name:"Motocicleta",desc:"Práctica del permiso de motocicleta con el Manual del Operador de Motocicletas oficial de MSF: controles, equipo, frenado, curvas, estrategia SEE y peligros — con explicaciones."},ru:{tag:"Руководство MSF",name:"Мотоцикл",desc:"Подготовка к правам на мотоцикл по официальному Motorcycle Operator Manual (MSF): управление, экипировка, торможение, повороты, стратегия SEE и опасности — с разбором."},tr:{tag:"MSF Kılavuzu",name:"Motosiklet",desc:"Resmi MSF Motosiklet Sürücü Kılavuzu'ndan motosiklet ehliyeti pratiği: kumandalar, ekipman, frenleme, viraj, SEE stratejisi ve tehlikeler — açıklamalı."},hi:{tag:"MSF मैनुअल",name:"मोटरसाइकिल",desc:"आधिकारिक MSF मोटरसाइकिल ऑपरेटर मैनुअल से मोटरसाइकिल परमिट अभ्यास: नियंत्रण, गियर, ब्रेकिंग, कॉर्नरिंग, SEE रणनीति और खतरे — व्याख्या सहित।"},ar:{tag:"دليل MSF",name:"دراجة نارية",desc:"تدريب تصريح الدراجة النارية من دليل مشغّل الدراجات النارية الرسمي (MSF): التحكم، المعدات، الكبح، المنعطفات، استراتيجية SEE والمخاطر — مع شرح."}};
+var GED_T={en:{tag:"All 4 subjects",name:"GED",desc:"Free GED practice for Math, Language Arts, Science & Social Studies, based on 2024 GED standards — with explanations."},es:{tag:"Las 4 materias",name:"GED",desc:"Práctica gratuita del GED: Matemáticas, Artes del Lenguaje, Ciencias y Estudios Sociales, según los estándares de 2024 — con explicaciones."},ru:{tag:"Все 4 предмета",name:"GED",desc:"Бесплатная подготовка к GED: математика, языковые искусства, естественные науки и обществознание (стандарты 2024) — с разбором."},tr:{tag:"4 dersin tümü",name:"GED",desc:"Ücretsiz GED pratiği: Matematik, Dil Sanatları, Fen ve Sosyal Bilgiler — 2024 standartları, açıklamalı."},hi:{tag:"चारों विषय",name:"GED",desc:"मुफ्त GED अभ्यास: गणित, भाषा कला, विज्ञान और सामाजिक अध्ययन — 2024 मानक, व्याख्या सहित।"},ar:{tag:"المواد الأربع",name:"GED",desc:"تدريب GED مجاني: الرياضيات وفنون اللغة والعلوم والدراسات الاجتماعية — معايير 2024 مع الشرح."}};
+var FH_T={en:{tag:"Food safety",name:"Food Handler",desc:"Free food handler / food safety practice based on the FDA Food Code — hygiene, temperatures, allergens, illness and cleaning, with explanations."},es:{tag:"Seguridad alimentaria",name:"Manipulador de Alimentos",desc:"Práctica gratuita de manipulador de alimentos según el FDA Food Code — higiene, temperaturas, alérgenos, enfermedades y limpieza, con explicaciones."},ru:{tag:"Пищевая безопасность",name:"Food Handler",desc:"Бесплатная практика по пищевой безопасности по FDA Food Code — гигиена, температуры, аллергены, болезни и уборка, с разбором."},tr:{tag:"Gıda güvenliği",name:"Gıda Çalışanı",desc:"FDA Food Code'a göre ücretsiz gıda çalışanı pratiği — hijyen, sıcaklıklar, alerjenler, hastalıklar ve temizlik, açıklamalı."},hi:{tag:"खाद्य सुरक्षा",name:"फूड हैंडलर",desc:"FDA Food Code पर आधारित मुफ्त फूड हैंडलर अभ्यास — स्वच्छता, तापमान, एलर्जेन, बीमारी और सफाई, व्याख्या सहित।"},ar:{tag:"سلامة الغذاء",name:"متداول الأغذية",desc:"تدريب مجاني لمتداولي الأغذية وفق FDA Food Code — النظافة ودرجات الحرارة ومسببات الحساسية والأمراض والتنظيف، مع الشرح."}};
 function renderCards(){
   var defs=[
     {ex:'cdl', ic:'📋', acc:'var(--blue)', tag:tr('cdlTag'), name:tr('cdlName'), desc:tr('cdlDesc'), subs:['General Knowledge','Air Brakes','Combination','Endorsements']},
     {ex:'dl',  ic:'🚗', acc:'var(--green)', tag:tr('dlTag'), name:tr('dlName'), desc:tr('dlDesc'), subs:['Road Signs','Rules of the Road','Safe Driving','Penalties']},
+    {ex:'moto', ic:'🏍️', acc:'#dc2626', tag:(MOTO_T[LANG]||MOTO_T.en).tag, name:(MOTO_T[LANG]||MOTO_T.en).name, desc:(MOTO_T[LANG]||MOTO_T.en).desc, subs:['Controls','Braking','Cornering','Hazards']},
     {ex:'sat', ic:'🎓', acc:'#7c3aed', tag:(SAT_T[LANG]||SAT_T.en).tag, name:(SAT_T[LANG]||SAT_T.en).name, desc:(SAT_T[LANG]||SAT_T.en).desc, subs:['Math','Reading & Writing']},
-    {ex:'civ', ic:'🛂', acc:'var(--teal)', tag:tr('civTag'), name:tr('civName'), desc:tr('civDesc'), subs:['Government','History','Symbols & Holidays']}
+    {ex:'ged', ic:'📚', acc:'#0d9488', tag:(GED_T[LANG]||GED_T.en).tag, name:(GED_T[LANG]||GED_T.en).name, desc:(GED_T[LANG]||GED_T.en).desc, subs:['Math','Language Arts','Science','Social Studies']},
+    {ex:'civ', ic:'🛂', acc:'var(--teal)', tag:tr('civTag'), name:tr('civName'), desc:tr('civDesc'), subs:['Government','History','Symbols & Holidays']},
+    {ex:'fh', ic:'🍽️', acc:'#0f766e', tag:(FH_T[LANG]||FH_T.en).tag, name:(FH_T[LANG]||FH_T.en).name, desc:(FH_T[LANG]||FH_T.en).desc, subs:['Hygiene','Temperature','Allergens','Cleaning']}
   ];
   document.getElementById('cards').innerHTML=defs.map(function(d){
     return '<div class="xcard" style="--accent:'+d.acc+'" onclick="pick(\''+d.ex+'\')">'+
@@ -224,7 +239,7 @@ function applyI18n(){
   document.getElementById('stateHint').textContent=tr('stateHint');
   document.getElementById('footNote').textContent=tr('footNote');
   var _qsfx=(LANG==='en'?'':'.'+LANG), _ql={en:'Free practice questions',es:'Preguntas de práctica gratis',ru:'Бесплатные вопросы для практики',tr:'Ücretsiz deneme soruları',hi:'मुफ्त अभ्यास प्रश्न',ar:'أسئلة تدريب مجانية'};
-  document.getElementById('siteFoot').innerHTML=tr('foot')+'<div style="margin-top:8px"><a href="../index.html">CDL</a> · <a href="../dl/index.html">DL</a> · <a href="../citizenship/index.html">Citizenship</a> · <a href="../sat/index.html">SAT</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>'+
+  document.getElementById('siteFoot').innerHTML=tr('foot')+'<div style="margin-top:8px"><a href="../index.html">CDL</a> · <a href="../dl/index.html">DL</a> · <a href="../motorcycle/index.html">Motorcycle</a> · <a href="../citizenship/index.html">Citizenship</a> · <a href="../sat/index.html">SAT</a> · <a href="../ged/index.html">GED</a> · <a href="../food-handler/index.html">Food Handler</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>'+
     '<div style="margin-top:6px"><b>'+(_ql[LANG]||_ql.en)+':</b> <a href="../cdl-practice-questions'+_qsfx+'.html">CDL</a> · <a href="../dl-practice-questions'+_qsfx+'.html">DL</a> · <a href="../citizenship-practice-questions'+_qsfx+'.html">Citizenship</a> · <a href="../sat-practice-questions'+_qsfx+'.html">SAT</a></div>';
   renderCards();
 }
