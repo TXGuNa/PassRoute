@@ -76,7 +76,13 @@ body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMac
 .xcard .subjects{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; }
 .xcard .subjects span{ font-size:.74rem; background:var(--bg); border:1px solid var(--line); border-radius:999px; padding:4px 9px; color:var(--muted); }
 .xcard .cta{ display:inline-flex; align-items:center; justify-content:center; gap:7px; background:var(--accent); color:#fff; border:0; border-radius:12px; padding:12px 14px; font-weight:760; font-size:.96rem; cursor:pointer; width:100%; }
-.note{ text-align:center; color:var(--muted); font-size:.84rem; margin:30px auto 0; max-width:680px; }
+.note{ text-align:center; color:var(--muted); font-size:.84rem; margin:30px auto 0; max-width:680px; min-height:38px; }
+/* reserve space for late/JS-rendered blocks so they don't cause layout shift (CLS) */
+.top-inner{ min-height:56px; }
+.cards{ min-height:340px; }
+.foot{ min-height:72px; }
+ins.adsbygoogle{ min-height:100px; }
+@media(max-width:820px){ .cards{ min-height:900px; } }
 .foot{ border-top:1px solid var(--line); color:var(--muted); font-size:.82rem; text-align:center; padding:22px 18px 40px; }
 [dir="rtl"] .langmenu{ left:0; right:auto; } [dir="rtl"] .langmenu button{ text-align:right; }
 .foot a{ color:var(--blue2); text-decoration:none; } .foot a:hover{ text-decoration:underline; }
@@ -86,7 +92,7 @@ body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMac
 <header class="top">
   <div class="top-inner">
     <div class="brand" onclick="location.reload()">
-      <img src="../icon-192.png" alt="PassRoute logo" />
+      <img src="../icon-192.png" alt="PassRoute logo" width="38" height="38" />
       <div><h1>PassRoute</h1><p id="brandSub">Free practice tests · 6 languages</p></div>
     </div>
     <div class="spacer"></div>
