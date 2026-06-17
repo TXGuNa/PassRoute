@@ -573,7 +573,7 @@
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
       <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span class="exam-ic">📋</span><span class="exam-txt">CDL</span><span class="cv">▾</span></button>
-      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('sat')">🎓 SAT</button><button role="option" onclick="switchExam('moto')">🏍️ Motorcycle</button><button role="option" onclick="switchExam('ged')">📚 GED</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
+      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('sat')">🎓 SAT</button><button role="option" onclick="switchExam('moto')">🏍️ Motorcycle</button><button role="option" onclick="switchExam('ged')">📚 GED</button><button role="option" onclick="switchExam('fh')">🍽️ Food Handler</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="statedd" style="margin-right:6px">
       <button class="langbtn" id="stateBtn" onclick="toggleStateMenu(event)" aria-haspopup="listbox" aria-expanded="false" title="State"><span id="stateCur">TX</span><span class="cv">▾</span></button>
@@ -721,7 +721,8 @@ function switchExam(ex){ if(ex==='home'){ location.href='home/index.html'+(LANG!
   else if(ex==='civ') location.href='citizenship/index.html'+(LANG!=='en'?'?lang='+LANG:'');
   else if(ex==='sat') location.href='sat/index.html'+(LANG!=='en'?'?lang='+LANG:'');
   else if(ex==='moto') location.href='motorcycle/index.html'+(LANG!=='en'?'?lang='+LANG:'');
-  else if(ex==='ged') location.href='ged/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
+  else if(ex==='ged') location.href='ged/index.html'+(LANG!=='en'?'?lang='+LANG:'');
+  else if(ex==='fh') location.href='food-handler/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
 document.addEventListener('click', function(){ var d=document.getElementById('examdd'); if(d) d.classList.remove('open'); });
 function closeStateMenu(){ const dd=document.getElementById('statedd'); if(dd) dd.classList.remove('open'); const b=document.getElementById('stateBtn'); if(b) b.setAttribute('aria-expanded','false'); }
 document.addEventListener('click', closeStateMenu);
