@@ -573,7 +573,7 @@
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
       <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span class="exam-ic">📋</span><span class="exam-txt">CDL</span><span class="cv">▾</span></button>
-      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('sat')">🎓 SAT</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
+      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('sat')">🎓 SAT</button><button role="option" onclick="switchExam('moto')">🏍️ Motorcycle</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="statedd" style="margin-right:6px">
       <button class="langbtn" id="stateBtn" onclick="toggleStateMenu(event)" aria-haspopup="listbox" aria-expanded="false" title="State"><span id="stateCur">TX</span><span class="cv">▾</span></button>
@@ -625,7 +625,7 @@
   <script src="learn.cristcdl.js"></script>
   <script src="translations-hi-gk-extra.js"></script>
 <script src="states-meta.js"></script>
-<script src="state-special.js"></script>
+<script src="state-special-index.js"></script>
 <script src="pretrip.js"></script>
 <script src="skills.js"></script>
 <script src="pr-engagement.js"></script>
@@ -638,9 +638,11 @@ const DATA = window.CDL_DATA;
    Requirements question swap only happens where a bank exists, else that category is hidden. */
 const SMETA = window.STATE_META || {};
 const STATES = (function(){ var o={}; Object.keys(SMETA).forEach(function(c){ o[c]=Object.assign({code:c}, SMETA[c]); });
+  /* merge the LIGHT per-state metadata/links from the eager manifest (question banks are lazy) */
+  if(window.STATE_SPECIAL_META) Object.keys(window.STATE_SPECIAL_META).forEach(function(c){ o[c]=Object.assign(o[c]||{code:c}, window.STATE_SPECIAL_META[c]); });
   if(window.STATE_SPECIAL) Object.keys(window.STATE_SPECIAL).forEach(function(c){ o[c]=Object.assign(o[c]||{code:c}, window.STATE_SPECIAL[c]); });
   if(!o.TX) o.TX={code:'TX',name:'Texas'}; return o; })();
-function hasSpecialBank(code){ return code==='TX' || !!(window.STATE_SPECIAL && window.STATE_SPECIAL[code] && window.STATE_SPECIAL[code].en); }
+function hasSpecialBank(code){ return code==='TX' || !!(window.STATE_SPECIAL_META && window.STATE_SPECIAL_META[code]); }
 const SHARED_STATE_KEY='pr_state';   /* shared with the DL app + onboarding picker */
 let STATE = (function(){ try{
   var u=new URLSearchParams(location.search).get('state');
@@ -678,17 +680,34 @@ function stz(str){ if(str==null) return str; const m=stateMeta(); if(m.code==='T
     .replace(/\b(form\s+)?DL-7CS?\b/gi, m.agencyShort+' CDL manual')
     .replace(/\bTexas\b/g, m.name)
     .replace(/ {2,}/g, ' ').replace(/\s+·\s*$/,''); }
-let _defSpecEN=null, _defSpecQ=null;
+let _defSpecEN=null, _defSpecQ=null, _booted=false, _specLoading={};
+/* lazy-load a state's Special Requirements question bank only when that state is active — keeps the
+   CDL page from shipping every state's questions up front. Metadata/links are already eager (manifest). */
+function ensureStateSpecial(code, cb){
+  if(code==='TX' || !window.STATE_SPECIAL_META || !window.STATE_SPECIAL_META[code]){ if(cb) cb(false); return; }
+  if(window.STATE_SPECIAL && window.STATE_SPECIAL[code] && window.STATE_SPECIAL[code].en){ if(cb) cb(true); return; }
+  if(_specLoading[code]){ _specLoading[code].push(cb); return; }
+  _specLoading[code]=[cb];
+  var sc=document.createElement('script'); sc.src='state-special/'+code+'.js?v=9'; sc.async=true;
+  sc.onload=function(){ try{ if(window.STATE_SPECIAL && window.STATE_SPECIAL[code]) STATES[code]=Object.assign(STATES[code]||{code:code}, window.STATE_SPECIAL[code]); }catch(e){}
+    var cbs=_specLoading[code]||[]; delete _specLoading[code]; cbs.forEach(function(f){ if(f) f(true); }); };
+  sc.onerror=function(){ var cbs=_specLoading[code]||[]; delete _specLoading[code]; cbs.forEach(function(f){ if(f) f(false); }); };
+  document.head.appendChild(sc);
+}
 function _snapSpecial(){ const cat=DATA.categories.find(c=>c.id==='special'); if(!cat||!window.I18N) return;
   _defSpecEN=cat.questions.slice(); _defSpecQ={};
   for(const L of ['ru','tr','es','hi']){ I18N.q[L]=I18N.q[L]||{}; _defSpecQ[L]=Object.assign({}, I18N.q[L].special||{}); } }
-function applyState(code){ const cat=DATA.categories.find(c=>c.id==='special'); if(!cat) return; const s=STATES[code];
+function _applyStateNow(code){ const cat=DATA.categories.find(c=>c.id==='special'); if(!cat) return; const s=STATES[code];
   /* Arabic is lazy-loaded, so I18N.q.ar may not exist yet; only touch it when present. The TX-default
      Arabic special bank is snapshotted into _defSpecQ.ar by ensureLangPack the moment the pack loads. */
   if(!s || code==='TX' || !s.en){ if(_defSpecEN){ cat.questions=_defSpecEN.slice(); for(const L of ['ru','tr','es','hi']) I18N.q[L].special=Object.assign({}, _defSpecQ[L]);
     if(I18N.q.ar && _defSpecQ && _defSpecQ.ar) I18N.q.ar.special=Object.assign({}, _defSpecQ.ar); } }
   else { cat.questions=s.en; for(const L of ['ru','tr','es','hi']){ I18N.q[L]=I18N.q[L]||{}; I18N.q[L].special=s[L]||{}; }
     if(I18N.q.ar) I18N.q.ar.special=s.ar||{}; } }
+/* apply now with whatever's loaded (TX default until the bank arrives), then lazy-load the real bank
+   and re-apply + re-render once it's in. Most states/TX need no fetch at all. */
+function applyState(code){ _applyStateNow(code);
+  ensureStateSpecial(code, function(ok){ if(ok && STATE===code){ _applyStateNow(code); if(_booted && typeof render==='function') render(); } }); }
 function setState(code){ if(!STATES[code]) return; STATE=code; try{localStorage.setItem('tx_cdl_state',code);localStorage.setItem(SHARED_STATE_KEY,code);}catch(e){} applyState(code); closeStateMenu(); renderStateMenu(); applyStaticI18n(); go('home'); }
 function renderStateMenu(){ const cur=document.getElementById('stateCur'); if(cur) cur.textContent=STATE;
   const menu=document.getElementById('stateMenu');
@@ -700,7 +719,8 @@ function switchExam(ex){ if(ex==='home'){ location.href='home/index.html'+(LANG!
   try{ localStorage.setItem('pr_exam',ex); localStorage.setItem('pr_state',STATE); }catch(e){}
   if(ex==='dl') location.href='dl/index.html?state='+STATE+(LANG!=='en'?'&lang='+LANG:'');
   else if(ex==='civ') location.href='citizenship/index.html'+(LANG!=='en'?'?lang='+LANG:'');
-  else if(ex==='sat') location.href='sat/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
+  else if(ex==='sat') location.href='sat/index.html'+(LANG!=='en'?'?lang='+LANG:'');
+  else if(ex==='moto') location.href='motorcycle/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
 document.addEventListener('click', function(){ var d=document.getElementById('examdd'); if(d) d.classList.remove('open'); });
 function closeStateMenu(){ const dd=document.getElementById('statedd'); if(dd) dd.classList.remove('open'); const b=document.getElementById('stateBtn'); if(b) b.setAttribute('aria-expanded','false'); }
 document.addEventListener('click', closeStateMenu);
@@ -1725,6 +1745,7 @@ else {
   else {
   /* resume an in-progress test/results from the session cache on refresh; else normal routing */
   if(!restoreSession()) initRoute();
+  _booted=true;
   /* if booting straight into the CDL app in Arabic, pull the on-demand Arabic pack then re-render */
   if(LANG==='ar') ensureLangPack('ar', function(){ applyStaticI18n(); render(); });
   if(window.innerWidth>=1440){ try{ var _r=document.createElement('div'); _r.className='adrail'; _r.innerHTML='<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-5005909536075464" data-ad-slot="2432464479"></ins>'; document.body.appendChild(_r); (window.adsbygoogle=window.adsbygoogle||[]).push({}); }catch(e){} }
