@@ -802,6 +802,8 @@ function stopTimer(){ if(timerInt){ clearInterval(timerInt); timerInt=null; } }
  hi:{ streakN:"{n}-दिन की लय", streakStart:"आज लय शुरू करें", goalToday:"आज {c}/{g} प्रश्न", reviewCard:"अपनी गलतियाँ दोहराएँ", reviewSub:"जो {n} प्रश्न आपने गलत किए उन्हें हल करें — सही करने पर वे सूची से हट जाते हैं।", reviewBtn:"दोहराव शुरू करें", reviewLabel:"गलती दोहराव", share:"परिणाम साझा करें", reviewEmpty:"दोहराने के लिए कोई गलती नहीं — बढ़िया!" },
  ar:{ streakN:"سلسلة {n} يوم", streakStart:"ابدأ سلسلة اليوم", goalToday:"{c}/{g} سؤالاً اليوم", reviewCard:"راجع أخطاءك", reviewSub:"تدرّب على الأسئلة الـ{n} التي أخطأت فيها — تُحذف من القائمة عند إجابتها بشكل صحيح.", reviewBtn:"ابدأ المراجعة", reviewLabel:"مراجعة الأخطاء", share:"مشاركة النتيجة", reviewEmpty:"لا أخطاء للمراجعة — أحسنت!" } };
  if(window.I18N&&I18N.ui) Object.keys(E).forEach(function(L){ I18N.ui[L]=I18N.ui[L]||{}; for(var k in E[L]) if(I18N.ui[L][k]==null) I18N.ui[L][k]=E[L][k]; }); })();
+/* localized "Special Requirements" suffix for the state-specific special category name */
+(function(){ var R={en:"Special Requirements",es:"Requisitos especiales",ru:"Особые требования",tr:"Özel Gereklilikler",hi:"विशेष आवश्यकताएँ",ar:"المتطلبات الخاصة"}; if(window.I18N&&I18N.ui) for(var L in R){ I18N.ui[L]=I18N.ui[L]||{}; if(I18N.ui[L].specReq==null) I18N.ui[L].specReq=R[L]; } })();
 function t(key, vars){
   let s = (window.I18N && I18N.ui[LANG] && I18N.ui[LANG][key]);
   if(s==null) s = (window.I18N && I18N.ui.en[key]!=null) ? I18N.ui.en[key] : key;
@@ -812,7 +814,7 @@ function t(key, vars){
    and navigate "back" to the base category, so Learning Tests live under the same category as
    Practice Tests (no separate "— Learn" category surfaces in breadcrumbs/back). */
 function baseCatId(c){ const id=(typeof c==='string')?c:(c&&c.id); const cat=(typeof c==='string')?DATA.categories.find(x=>x.id===c):c; if(cat&&cat.kind==='learn'&&cat.learnSubject) return cat.learnSubject; return id; }
-function catName(c){ if(c.kind==='learn'&&c.learnSubject){ const base=DATA.categories.find(x=>x.id===c.learnSubject); if(base) c=base; } if(c.id==='special' && typeof STATE!=='undefined' && STATE!=='TX' && typeof STATES!=='undefined' && STATES[STATE]) return STATES[STATE].name+' Special Requirements'; const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
+function catName(c){ if(c.kind==='learn'&&c.learnSubject){ const base=DATA.categories.find(x=>x.id===c.learnSubject); if(base) c=base; } if(c.id==='special' && typeof STATE!=='undefined' && STATE!=='TX' && typeof STATES!=='undefined' && STATES[STATE]) return STATES[STATE].name+' '+t('specReq'); const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.name)||c.name; }
 function catBlurb(c){ const o=window.I18N&&I18N.cat[LANG]&&I18N.cat[LANG][c.id]; return (o&&o.blurb)||c.blurb; }
 /* breadcrumb/results label for a test: learn categories read "Lesson N", everything else "Test N" */
 function testLabel(c, idx){ return (c && c.kind==='learn') ? t('tileLessonN',{n:idx+1}) : t('tileTest',{n:idx+1}); }
@@ -834,7 +836,7 @@ function langBadge(translated){ return (LANG==='en'||translated) ? '' : ` <span 
 var _arLoaded=false;
 function ensureLangPack(l, cb){
   if(l!=='ar' || _arLoaded){ if(cb) cb(); return; }
-  var files=['translations-ar.js','translations-ar-q.js'], i=0;
+  var files=['translations-ar.js','translations-ar-cat.js','translations-ar-q.js'], i=0;
   (function next(){
     if(i>=files.length){ _arLoaded=true;
       /* The pack ships the DEFAULT (TX) Arabic special bank. Snapshot it once, then re-apply the
