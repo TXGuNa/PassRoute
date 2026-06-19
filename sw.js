@@ -1,6 +1,6 @@
 /* PassRoute service worker — offline support (stale-while-revalidate).
    Bump CACHE when you ship new content so clients refresh. */
-const CACHE = 'passroute-v12';
+const CACHE = 'passroute-v13';
 const ASSETS = [
   './', 'index.html',
   'questions.js', 'translations.js', 'translations-es.js', 'endorsements.js', 'questions-extra.js', 'pretrip.js',
