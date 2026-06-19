@@ -590,7 +590,7 @@ function langBadge(tr){ return (LANG==='en'||tr)?'':' <span class="enflag" title
 /* auto-scale: mock = 20 random from the full pool, pass 12/20 (60%); study (learn) = 20-question lessons */
 DATA.categories.forEach(function(c){ var P=c.questions.length;
   if(c.mock){ c.examSize=Math.min(40,P); c.numTests=1; c.passNeed=Math.max(1,Math.round(c.examSize*0.75)); }
-  else { var E=Math.min(20,P); c.examSize=E; c.numTests=Math.max(1,Math.ceil(P/E)); c.passNeed=Math.max(1,Math.round(E*0.75)); } });
+  else { var E=Math.min(10,P); c.examSize=E; c.numTests=Math.max(1,Math.ceil(P/E)); c.passNeed=Math.max(1,Math.round(E*0.75)); } });
 function needFor(catId,total){ var c=DATA.categories.find(function(x){return x.id===catId;}); return Math.max(1,Math.round(total*0.75)); }
 
 /* progress + history (localStorage) */
