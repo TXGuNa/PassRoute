@@ -1,18 +1,35 @@
 {
-  // Cloudflare Worker that just serves the static site files.
-  // "assets.directory" tells wrangler where the files are (the repo root).
-  // PassRoute is a multi-vertical static site:
-  //   /            -> CDL app (index.html)        — also shows the first-visit exam/state picker
-  //   /cdl/...     -> CDL SEO landing pages
-  //   /dl/         -> DL app (dl/index.html)      — the DL hub + tests
-  //   /dl/*.html   -> DL SEO landing pages
-  //   /states-meta.js -> shared 50-state metadata (both apps)
-  // "html_handling: auto-trailing-slash" makes /dl/ resolve to /dl/index.html reliably.
+  // Cloudflare Worker that serves the static site AND a tiny first-party analytics API.
+  //
+  // Static files live at the repo root ("assets.directory": "./"). With "main" set, the Worker
+  // runs ONLY for requests that don't match a static asset (assets take precedence), so the
+  // existing site is served exactly as before and the Worker just handles "/api/*".
+  //
+  //   /admin/   -> password-protected analytics dashboard (static page; talks to /api/admin/*)
+  //   /api/*    -> Worker (src/worker.js): event tracking + admin auth + stats
+  //
+  // Storage = Cloudflare KV (binding ANALYTICS_KV) — NOT SQLite, NOT a Durable Object, so it
+  // deploys with `wrangler versions upload` (no migration) and is free on the Workers Free plan.
+  //
+  // SETUP (one time): create the KV namespace and paste its id below:
+  //     npx wrangler kv namespace create ANALYTICS_KV
+  //   (or Cloudflare dashboard -> Storage & Databases -> KV -> Create namespace), then put the
+  //   resulting id in "kv_namespaces[0].id". The admin password is set on first /admin visit
+  //   (or via the ADMIN_PASSWORD secret).
   "name": "passroute",
+  "main": "src/worker.js",
   "compatibility_date": "2026-06-10",
   "assets": {
     "directory": "./",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
-  }
+  },
+  // Analytics storage is Cloudflare KV. To TURN IT ON, create a namespace and uncomment the block
+  // below with its id (`npx wrangler kv namespace create ANALYTICS_KV`, or dashboard ->
+  // Storage & Databases -> KV -> Create namespace). Until then the API degrades gracefully
+  // (tracking no-ops; /admin shows "Storage not connected") and the static site is unaffected.
+  // "kv_namespaces": [
+  //   { "binding": "ANALYTICS_KV", "id": "PASTE_YOUR_KV_NAMESPACE_ID_HERE" }
+  // ]
 }

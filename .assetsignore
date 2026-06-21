@@ -1,0 +1,14 @@
+# Files in the assets dir (repo root) that must NOT be served publicly.
+# NOTE: providing this file replaces Cloudflare's built-in default ignores, so we must re-list
+# .git, node_modules, etc. here ourselves. gitignore-style patterns.
+.git
+.gitignore
+.wrangler
+node_modules
+.DS_Store
+.fuse_hidden*
+/src
+/analytics
+/wrangler.jsonc
+/.assetsignore
+*.map

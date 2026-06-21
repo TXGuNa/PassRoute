@@ -8,3 +8,6 @@ zifrLuAX
 # OS junk
 .DS_Store
 Thumbs.db
+
+# wrangler local dev state
+.wrangler/

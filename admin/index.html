@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>PassRoute Admin · Analytics</title>
+<link rel="icon" href="../icon-192.png" />
+<style>
+:root{ --bg:#0b1220; --card:#121c2e; --ink:#e9eef6; --muted:#9fb0c6; --line:#23314a; --blue:#3b82f6; --blue2:#2563eb;
+  --green:#16a34a; --bar:#2563eb; --bar2:#0ea5e9; --shadow:0 10px 30px rgba(0,0,0,.45); }
+*{ box-sizing:border-box; } html,body{ margin:0; }
+body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased; }
+a{ color:var(--blue); }
+.wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 70px; }
+.top{ display:flex; align-items:center; gap:12px; padding:6px 0 18px; border-bottom:1px solid var(--line); margin-bottom:22px; }
+.top img{ width:34px; height:34px; border-radius:9px; }
+.top h1{ font-size:1.15rem; margin:0; letter-spacing:-.02em; }
+.top .sp{ flex:1; }
+.btn{ background:var(--blue2); color:#fff; border:0; border-radius:10px; padding:10px 14px; font-weight:650; font-size:.92rem; cursor:pointer; }
+.btn.ghost{ background:transparent; border:1px solid var(--line); color:var(--ink); }
+.btn:disabled{ opacity:.55; cursor:default; }
+select{ background:var(--card); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:9px 11px; font-size:.92rem; }
+/* auth gate */
+.gate{ max-width:380px; margin:8vh auto 0; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 24px; box-shadow:var(--shadow); }
+.gate h2{ margin:0 0 4px; font-size:1.3rem; }
+.gate p{ color:var(--muted); margin:0 0 18px; font-size:.92rem; }
+.gate label{ display:block; font-size:.82rem; color:var(--muted); margin:0 0 6px; }
+.gate input{ width:100%; background:#0b1220; color:var(--ink); border:1px solid var(--line); border-radius:11px; padding:12px 13px; font-size:1rem; margin-bottom:14px; }
+.gate .btn{ width:100%; padding:12px; }
+.err{ color:#fca5a5; font-size:.86rem; min-height:20px; margin:2px 0 10px; }
+.hide{ display:none !important; }
+/* dashboard */
+.cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-bottom:22px; }
+.kpi{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
+.kpi .n{ font-size:1.7rem; font-weight:780; letter-spacing:-.02em; }
+.kpi .l{ color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; margin-top:2px; }
+.grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media(max-width:760px){ .grid{ grid-template-columns:1fr; } }
+.panel{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 20px; }
+.panel h3{ margin:0 0 14px; font-size:1.02rem; letter-spacing:-.01em; }
+.panel.full{ grid-column:1 / -1; }
+table{ width:100%; border-collapse:collapse; font-size:.9rem; }
+.row{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:10px; padding:7px 0; border-top:1px solid var(--line); }
+.row:first-child{ border-top:0; }
+.row .nm{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.row .ct{ font-variant-numeric:tabular-nums; color:var(--muted); font-weight:650; }
+.bar{ height:7px; border-radius:99px; background:linear-gradient(90deg,var(--bar),var(--bar2)); margin-top:5px; grid-column:1 / -1; }
+.empty{ color:var(--muted); font-size:.9rem; padding:8px 0; }
+/* daily chart */
+.chart{ display:flex; align-items:flex-end; gap:3px; height:140px; padding-top:8px; }
+.chart .cb{ flex:1; background:linear-gradient(180deg,var(--bar2),var(--bar)); border-radius:3px 3px 0 0; min-height:2px; position:relative; }
+.chart .cb:hover::after{ content:attr(data-t); position:absolute; bottom:100%; left:50%; transform:translateX(-50%); background:#000; color:#fff; font-size:.72rem; padding:3px 6px; border-radius:6px; white-space:nowrap; }
+.axis{ display:flex; justify-content:space-between; color:var(--muted); font-size:.72rem; margin-top:6px; }
+.recent{ font-size:.85rem; }
+.recent .re{ display:grid; grid-template-columns:auto auto 1fr; gap:10px; padding:5px 0; border-top:1px solid var(--line); color:var(--muted); }
+.recent .re .ty{ color:var(--ink); font-weight:600; }
+.note{ color:var(--muted); font-size:.8rem; margin-top:26px; text-align:center; }
+.tag{ display:inline-block; background:#0b1220; border:1px solid var(--line); border-radius:6px; padding:1px 6px; font-size:.72rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- auth gate -->
+  <div id="gate" class="gate hide">
+    <h2 id="gateTitle">Sign in</h2>
+    <p id="gateSub">Enter the admin password to view analytics.</p>
+    <form id="gateForm">
+      <label id="pwLabel" for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" required />
+      <div id="pw2wrap" class="hide">
+        <label for="pw2">Confirm password</label>
+        <input id="pw2" type="password" autocomplete="new-password" />
+      </div>
+      <div class="err" id="err"></div>
+      <button class="btn" id="gateBtn" type="submit">Sign in</button>
+    </form>
+  </div>
+
+  <!-- dashboard -->
+  <div id="dash" class="hide">
+    <div class="top">
+      <img src="../icon-192.png" alt="" />
+      <h1>PassRoute Analytics</h1>
+      <span class="sp"></span>
+      <select id="range">
+        <option value="7">Last 7 days</option>
+        <option value="30" selected>Last 30 days</option>
+        <option value="90">Last 90 days</option>
+        <option value="365">Last year</option>
+      </select>
+      <button class="btn ghost" id="changePw">Change password</button>
+      <button class="btn ghost" id="logout">Log out</button>
+    </div>
+
+    <div id="pwPanel" class="panel hide" style="margin-bottom:18px;max-width:460px">
+      <h3>Change admin password</h3>
+      <form id="pwForm">
+        <input id="curPw" type="password" placeholder="Current password" autocomplete="current-password"
+          style="width:100%;background:#0b1220;color:var(--ink);border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:1rem;margin-bottom:10px" />
+        <input id="newPw" type="password" placeholder="New password (at least 8 characters)" autocomplete="new-password"
+          style="width:100%;background:#0b1220;color:var(--ink);border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:1rem;margin-bottom:10px" />
+        <div class="err" id="pwErr"></div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <button class="btn" type="submit" id="pwSave">Update password</button>
+          <button class="btn ghost" type="button" id="pwCancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="cards" id="kpis"></div>
+
+    <div class="panel full" style="margin-bottom:18px">
+      <h3>Activity (events per day)</h3>
+      <div class="chart" id="chart"></div>
+      <div class="axis" id="axis"></div>
+    </div>
+
+    <div class="grid">
+      <div class="panel"><h3>📄 Most-visited pages</h3><div id="pages"></div></div>
+      <div class="panel"><h3>📝 Most-started tests</h3><div id="tests"></div></div>
+      <div class="panel"><h3>🎯 Exam picks &amp; switches</h3><div id="exams"></div></div>
+      <div class="panel"><h3>🌐 By language</h3><div id="langs"></div></div>
+      <div class="panel full"><h3>🕒 Recent events</h3><div class="recent" id="recent"></div></div>
+    </div>
+
+    <div class="note">First-party analytics · stored in Cloudflare KV · no third-party trackers.</div>
+  </div>
+
+</div>
+
+<script>
+"use strict";
+var $ = function (id) { return document.getElementById(id); };
+var state = { needsSetup: false, authed: false };
+
+function api(path, opts) {
+  opts = opts || {};
+  opts.credentials = "same-origin";
+  opts.headers = Object.assign({ "Content-Type": "application/json" }, opts.headers || {});
+  return fetch("/api/admin/" + path, opts);
+}
+
+/* ---------- auth ---------- */
+function showGate(setup) {
+  $("dash").classList.add("hide");
+  $("gate").classList.remove("hide");
+  $("gateForm").classList.remove("hide");
+  $("pw2wrap").classList.toggle("hide", !setup);
+  $("gateTitle").textContent = setup ? "Create admin password" : "Sign in";
+  $("gateSub").textContent = setup
+    ? "No password is set yet. Choose one now — it protects this analytics dashboard."
+    : "Enter the admin password to view analytics.";
+  $("pwLabel").textContent = setup ? "New password" : "Password";
+  $("gateBtn").textContent = setup ? "Create password" : "Sign in";
+  $("pw").setAttribute("autocomplete", setup ? "new-password" : "current-password");
+  $("err").textContent = "";
+  $("pw").value = ""; $("pw2").value = "";
+  setTimeout(function () { $("pw").focus(); }, 30);
+}
+
+$("gateForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var pw = $("pw").value;
+  $("err").textContent = "";
+  if (state.needsSetup) {
+    if (pw.length < 8) { $("err").textContent = "Use at least 8 characters."; return; }
+    if (pw !== $("pw2").value) { $("err").textContent = "Passwords don't match."; return; }
+  }
+  $("gateBtn").disabled = true;
+  var route = state.needsSetup ? "setup" : "login";
+  api(route, { method: "POST", body: JSON.stringify({ password: pw }) })
+    .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
+    .then(function (res) {
+      $("gateBtn").disabled = false;
+      if (res.j && res.j.ok) { state.authed = true; state.needsSetup = false; boot(); return; }
+      var e2 = res.j && res.j.error;
+      $("err").textContent =
+        e2 === "locked" ? "Too many attempts — try again in a few minutes." :
+        e2 === "weak" ? "Use at least 8 characters." :
+        e2 === "invalid" ? "Incorrect password." :
+        e2 === "managed_by_secret" ? "Password is set via the ADMIN_PASSWORD secret." :
+        "Something went wrong. Try again.";
+    })
+    .catch(function () { $("gateBtn").disabled = false; $("err").textContent = "Network error."; });
+});
+
+$("logout").addEventListener("click", function () {
+  api("logout", { method: "POST" }).then(function () { state.authed = false; showGate(false); });
+});
+
+/* ---------- change password ---------- */
+$("changePw").addEventListener("click", function () {
+  var panel = $("pwPanel");
+  panel.classList.toggle("hide");
+  $("pwErr").textContent = ""; $("pwErr").style.color = ""; $("curPw").value = ""; $("newPw").value = "";
+  if (!panel.classList.contains("hide")) setTimeout(function () { $("curPw").focus(); }, 30);
+});
+$("pwCancel").addEventListener("click", function () { $("pwPanel").classList.add("hide"); });
+$("pwForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  $("pwErr").style.color = ""; $("pwErr").textContent = "";
+  var cur = $("curPw").value, next = $("newPw").value;
+  if (next.length < 8) { $("pwErr").textContent = "New password must be at least 8 characters."; return; }
+  $("pwSave").disabled = true;
+  api("password", { method: "POST", body: JSON.stringify({ current: cur, next: next }) })
+    .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
+    .then(function (res) {
+      $("pwSave").disabled = false;
+      if (res.j && res.j.ok) {
+        $("pwErr").style.color = "#34d399"; $("pwErr").textContent = "Password updated.";
+        $("curPw").value = ""; $("newPw").value = "";
+        setTimeout(function () { $("pwPanel").classList.add("hide"); $("pwErr").style.color = ""; $("pwErr").textContent = ""; }, 1400);
+      } else {
+        var er = res.j && res.j.error;
+        $("pwErr").textContent =
+          er === "invalid_current" ? "Current password is incorrect." :
+          er === "weak" ? "New password must be at least 8 characters." :
+          er === "managed_by_secret" ? "Password is managed via the ADMIN_PASSWORD secret." :
+          er === "unauthorized" ? "Session expired — please sign in again." :
+          "Could not update. Try again.";
+      }
+    })
+    .catch(function () { $("pwSave").disabled = false; $("pwErr").textContent = "Network error."; });
+});
+
+function showNoStorage() {
+  $("dash").classList.add("hide");
+  $("gate").classList.remove("hide");
+  $("pw2wrap").classList.add("hide");
+  $("gateForm").classList.add("hide");
+  $("gateTitle").textContent = "Storage not connected";
+  $("gateSub").textContent = "The analytics store (Cloudflare KV) isn't linked yet. Create a KV namespace and add the ANALYTICS_KV binding in wrangler.jsonc, then redeploy.";
+}
+
+/* ---------- dashboard ---------- */
+function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
+function pretty(name) { return esc(String(name).replace(/:/g, " · ")); }
+
+function list(elId, rows, prettyFn) {
+  var el = $(elId);
+  if (!rows || !rows.length) { el.innerHTML = '<div class="empty">No data yet.</div>'; return; }
+  var max = rows[0].c || 1;
+  el.innerHTML = rows.map(function (r) {
+    var w = Math.max(3, Math.round((r.c / max) * 100));
+    return '<div class="row"><div class="nm" title="' + esc(r.name) + '">' + (prettyFn ? prettyFn(r.name) : esc(r.name)) +
+      '</div><div class="ct">' + r.c.toLocaleString() + '</div>' +
+      '<div class="bar" style="width:' + w + '%"></div></div>';
+  }).join("");
+}
+
+function renderChart(daily) {
+  var c = $("chart"), ax = $("axis");
+  if (!daily || !daily.length) { c.innerHTML = '<div class="empty">No data yet.</div>'; ax.innerHTML = ""; return; }
+  var max = daily.reduce(function (m, d) { return Math.max(m, d.c); }, 1);
+  c.innerHTML = daily.map(function (d) {
+    var h = Math.max(2, Math.round((d.c / max) * 132));
+    return '<div class="cb" style="height:' + h + 'px" data-t="' + d.day + ': ' + d.c + '"></div>';
+  }).join("");
+  ax.innerHTML = '<span>' + daily[0].day + '</span><span>' + daily[daily.length - 1].day + '</span>';
+}
+
+function renderRecent(recent) {
+  var el = $("recent");
+  if (!recent || !recent.length) { el.innerHTML = '<div class="empty">No events yet.</div>'; return; }
+  el.innerHTML = recent.map(function (r) {
+    var t = new Date(r.ts);
+    var when = t.toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+    return '<div class="re"><span>' + esc(when) + '</span><span class="ty">' + esc(r.type) + '</span>' +
+      '<span>' + pretty(r.name) + (r.lang ? ' <span class="tag">' + esc(r.lang) + '</span>' : '') + '</span></div>';
+  }).join("");
+}
+
+function loadStats() {
+  return api("stats", { method: "GET" }).then(function (r) {
+    if (r.status === 401) { state.authed = false; showGate(false); return; }
+    return r.json().then(function (s) {
+      var sum = function (a) { return (a || []).reduce(function (x, y) { return x + y.c; }, 0); };
+      $("kpis").innerHTML =
+        kpi(s.total, "total clicks") +
+        kpi(sum(s.pages), "page views") +
+        kpi(sum(s.tests), "tests started") +
+        kpi(sum(s.exams), "exam clicks");
+      var days = parseInt($("range").value, 10) || 30;
+      renderChart((s.daily || []).slice(-days));
+      list("pages", s.pages);
+      list("tests", s.tests, pretty);
+      list("exams", s.exams);
+      list("langs", s.langs);
+      renderRecent(s.recent);
+    });
+  });
+}
+function kpi(n, label) { return '<div class="kpi"><div class="n">' + (n || 0).toLocaleString() + '</div><div class="l">' + label + '</div></div>'; }
+
+$("range").addEventListener("change", loadStats);
+
+/* ---------- boot ---------- */
+function boot() {
+  $("gate").classList.add("hide");
+  $("dash").classList.remove("hide");
+  $("changePw").classList.toggle("hide", !!state.envManaged);
+  loadStats();
+}
+api("state", { method: "GET" })
+  .then(function (r) { return r.json(); })
+  .then(function (j) {
+    state.needsSetup = !!j.needsSetup;
+    state.authed = !!j.authed;
+    state.storage = j.storage !== false;
+    state.envManaged = !!j.envManaged;
+    if (!state.storage && !state.authed) { showNoStorage(); return; }
+    if (state.authed) boot();
+    else showGate(state.needsSetup);
+  })
+  .catch(function () { showGate(false); $("err").textContent = "Cannot reach the server."; });
+</script>
+</body>
+</html>
