@@ -1,18 +1,33 @@
 {
-  // Cloudflare Worker that just serves the static site files.
-  // "assets.directory" tells wrangler where the files are (the repo root).
-  // PassRoute is a multi-vertical static site:
+  // Cloudflare Worker that serves the static site AND a tiny first-party analytics API.
+  //
+  // Static files live at the repo root ("assets.directory": "./"). With "main" set, the Worker
+  // runs ONLY for requests that don't match a static asset (assets take precedence), so the
+  // existing site is served exactly as before and the Worker just handles "/api/*".
+  //
   //   /            -> CDL app (index.html)        — also shows the first-visit exam/state picker
-  //   /cdl/...     -> CDL SEO landing pages
-  //   /dl/         -> DL app (dl/index.html)      — the DL hub + tests
-  //   /dl/*.html   -> DL SEO landing pages
-  //   /states-meta.js -> shared 50-state metadata (both apps)
-  // "html_handling: auto-trailing-slash" makes /dl/ resolve to /dl/index.html reliably.
+  //   /home/       -> exam chooser
+  //   /dl/ /citizenship/ /sat/ /motorcycle/ /ged/ /food-handler/ /customs-broker/  -> the apps
+  //   /cdl/... /dl/*.html  -> SEO landing pages
+  //   /admin/      -> password-protected analytics dashboard (static page; talks to /api/admin/*)
+  //   /api/*       -> Worker (src/worker.js): event tracking + admin auth + stats
+  //
+  // Storage = an embedded SQLite Durable Object (the "Analytics" class). It needs NO external
+  // provisioning (no D1/KV/database_id) and is free on the Workers Free plan (SQLite-backed DOs).
+  // The admin password is set on first /admin visit, or pre-seeded via the ADMIN_PASSWORD secret.
   "name": "passroute",
+  "main": "src/worker.js",
   "compatibility_date": "2026-06-10",
   "assets": {
     "directory": "./",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
-  }
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "ANALYTICS", "class_name": "Analytics" }]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["Analytics"] }
+  ]
 }

@@ -128,3 +128,21 @@ DPS appointment, what to bring; official links left untranslated.
     `min-width:1440px` (hidden below, so it never breaks the centered single-column layout).
 - Rules: max 2–3 units per page, never next to answer/next buttons, never timer-refreshed.
   In the SPA, ads refresh only on genuine `pushState` navigation (results screen).
+
+## Analytics & Admin (Cloudflare Worker)
+The site is now served by a Worker (`wrangler.jsonc` → `main: src/worker.js`) that **only** handles
+`/api/*`; static assets take precedence, so the site is served exactly as before. Full details in
+`analytics/README.md`.
+- **Storage:** an embedded **SQLite Durable Object** (`Analytics`, singleton). No D1/KV/`database_id`
+  to provision — it ships with the deploy and is free on the Workers Free plan. Migration `v1` in
+  `wrangler.jsonc` creates it automatically.
+- **Tracking:** `pr-analytics.js` (loaded on every app page; emitted by the app builders too) sends a
+  pageview on load and auto-wraps the existing globals `startTest` / `pick` / `switchExam` — so
+  test-starts and exam-clicks are tracked with **no engine edits**. Events POST to `/api/track`
+  (bot-filtered, no cookies, no PII).
+- **Admin:** `/admin/` — password set on first visit (or via the `ADMIN_PASSWORD` secret), PBKDF2
+  hash + HMAC session cookie in the DO. Dashboard shows top pages/tests/exams, language split, a
+  daily chart and recent events.
+- **Do not** serve the worker source: `.assetsignore` excludes `src/`, `wrangler.jsonc`, `analytics/`.
+- **Local test:** `wrangler dev --persist-to <dir outside the repo>` (avoids an asset-watch reload
+  loop); send a browser `User-Agent` to `/api/track` (curl's default UA is filtered as a bot).

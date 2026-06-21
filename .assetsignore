@@ -1,0 +1,9 @@
+# Files in the assets dir (repo root) that should NOT be served publicly.
+# gitignore-style patterns. The Worker source is bundled via "main"; it must not also be a public asset.
+/src
+/wrangler.jsonc
+/analytics
+/.assetsignore
+.DS_Store
+.fuse_hidden*
+node_modules
