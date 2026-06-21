@@ -25,11 +25,8 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
-  // Analytics storage is Cloudflare KV. To TURN IT ON, create a namespace and uncomment the block
-  // below with its id (`npx wrangler kv namespace create ANALYTICS_KV`, or dashboard ->
-  // Storage & Databases -> KV -> Create namespace). Until then the API degrades gracefully
-  // (tracking no-ops; /admin shows "Storage not connected") and the static site is unaffected.
-  // "kv_namespaces": [
-  //   { "binding": "ANALYTICS_KV", "id": "PASTE_YOUR_KV_NAMESPACE_ID_HERE" }
-  // ]
+  // Analytics storage = Cloudflare KV (free on the Workers plan). Namespace created in the dashboard.
+  "kv_namespaces": [
+    { "binding": "ANALYTICS_KV", "id": "9953535350d24833be02e2b43cce624a" }
+  ]
 }
