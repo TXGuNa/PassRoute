@@ -226,6 +226,12 @@ async function handleApi(req, env, url) {
     await putCfg(env, "pw", await hashPw(body.next));
     return J({ ok: true }, 200, { "set-cookie": setCookie(await signToken(env), secure) });
   }
+  if (path === "/api/admin/reset") {
+    if (req.method !== "POST") return J({ error: "method" }, 405);
+    if (!(await verifyToken(env, cookieFrom(req)))) return J({ ok: false, error: "unauthorized" }, 401);
+    if (KV(env)) await KV(env).put("stats", JSON.stringify(EMPTY_STATS()));
+    return J({ ok: true });
+  }
   if (path === "/api/admin/stats") {
     if (!(await verifyToken(env, cookieFrom(req)))) return J({ error: "unauthorized" }, 401);
     const s = await getStats(env);

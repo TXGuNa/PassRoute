@@ -90,7 +90,9 @@ table{ width:100%; border-collapse:collapse; font-size:.9rem; }
         <option value="90">Last 90 days</option>
         <option value="365">Last year</option>
       </select>
+      <label title="When on, visits from THIS browser are not counted" style="display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);cursor:pointer;user-select:none"><input type="checkbox" id="notrack" style="accent-color:var(--blue2);width:16px;height:16px" /> Don't count my visits</label>
       <button class="btn ghost" id="changePw">Change password</button>
+      <button class="btn ghost" id="resetStats" title="Clear all analytics counts" style="border-color:#7f1d1d;color:#fca5a5">Reset</button>
       <button class="btn ghost" id="logout">Log out</button>
     </div>
 
@@ -177,7 +179,7 @@ $("gateForm").addEventListener("submit", function (e) {
     .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
     .then(function (res) {
       $("gateBtn").disabled = false;
-      if (res.j && res.j.ok) { state.authed = true; state.needsSetup = false; boot(); return; }
+      if (res.j && res.j.ok) { try { localStorage.setItem("pr_notrack", "1"); } catch (e) {} state.authed = true; state.needsSetup = false; boot(); return; }
       var e2 = res.j && res.j.error;
       $("err").textContent =
         e2 === "locked" ? "Too many attempts — try again in a few minutes." :
@@ -191,6 +193,14 @@ $("gateForm").addEventListener("submit", function (e) {
 
 $("logout").addEventListener("click", function () {
   api("logout", { method: "POST" }).then(function () { state.authed = false; showGate(false); });
+});
+
+$("resetStats").addEventListener("click", function () {
+  if (!confirm("Reset ALL analytics counts to zero? This cannot be undone (your password stays).")) return;
+  api("reset", { method: "POST" }).then(function (r) {
+    if (r.status === 401) { state.authed = false; showGate(false); return; }
+    loadStats();
+  }).catch(function () {});
 });
 
 /* ---------- change password ---------- */
@@ -306,10 +316,21 @@ function kpi(n, label) { return '<div class="kpi"><div class="n">' + (n || 0).to
 $("range").addEventListener("change", loadStats);
 
 /* ---------- boot ---------- */
+function initNoTrack() {
+  var nt = $("notrack"); if (!nt) return;
+  try { nt.checked = localStorage.getItem("pr_notrack") === "1"; } catch (e) {}
+  if (!nt.__wired) {
+    nt.__wired = 1;
+    nt.addEventListener("change", function () {
+      try { if (nt.checked) localStorage.setItem("pr_notrack", "1"); else localStorage.removeItem("pr_notrack"); } catch (e) {}
+    });
+  }
+}
 function boot() {
   $("gate").classList.add("hide");
   $("dash").classList.remove("hide");
   $("changePw").classList.toggle("hide", !!state.envManaged);
+  initNoTrack();
   loadStats();
 }
 api("state", { method: "GET" })
