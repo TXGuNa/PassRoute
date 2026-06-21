@@ -121,7 +121,10 @@ table{ width:100%; border-collapse:collapse; font-size:.9rem; }
       <div class="panel"><h3>📄 Most-visited pages</h3><div id="pages"></div></div>
       <div class="panel"><h3>📝 Most-started tests</h3><div id="tests"></div></div>
       <div class="panel"><h3>🎯 Exam picks &amp; switches</h3><div id="exams"></div></div>
+      <div class="panel"><h3>🌍 Top countries</h3><div id="countries"></div></div>
+      <div class="panel"><h3>💻 Devices</h3><div id="devices"></div></div>
       <div class="panel"><h3>🌐 By language</h3><div id="langs"></div></div>
+      <div class="panel"><h3>🔗 Traffic sources</h3><div id="referrers"></div></div>
       <div class="panel full"><h3>🕒 Recent events</h3><div class="recent" id="recent"></div></div>
     </div>
 
@@ -237,6 +240,9 @@ function showNoStorage() {
 /* ---------- dashboard ---------- */
 function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
 function pretty(name) { return esc(String(name).replace(/:/g, " · ")); }
+var regionNames; try { regionNames = new Intl.DisplayNames(["en"], { type: "region" }); } catch (e) { regionNames = null; }
+function flag(cc) { if (!cc || !/^[A-Z]{2}$/.test(cc)) return "🏳️"; return String.fromCodePoint.apply(null, cc.split("").map(function (c) { return 0x1F1E6 + c.charCodeAt(0) - 65; })); }
+function countryPretty(cc) { var nm = cc; try { if (regionNames && /^[A-Z]{2}$/.test(cc)) nm = regionNames.of(cc) || cc; } catch (e) {} return flag(cc) + " " + esc(nm); }
 
 function list(elId, rows, prettyFn) {
   var el = $(elId);
@@ -287,7 +293,10 @@ function loadStats() {
       list("pages", s.pages);
       list("tests", s.tests, pretty);
       list("exams", s.exams);
+      list("countries", s.countries, countryPretty);
+      list("devices", s.devices);
       list("langs", s.langs);
+      list("referrers", s.referrers);
       renderRecent(s.recent);
     });
   });
