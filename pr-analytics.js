@@ -5,6 +5,10 @@
 (function () {
   "use strict";
   try {
+    // Don't track the owner's own browser (opt-out set when you log into /admin), and never
+    // track the admin dashboard or API paths themselves.
+    try { if (localStorage.getItem("pr_notrack") === "1") return; } catch (e) {}
+    if (/^\/(admin|api)(\/|$)/.test(location.pathname || "")) return;
     var ENDPOINT = "/api/track";
 
     function lang() {

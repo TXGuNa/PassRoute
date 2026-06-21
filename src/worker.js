@@ -66,10 +66,10 @@ async function hmac(secretB64u, msg) {
 
 /* ---------------- KV-backed store ---------------- */
 const KV = (env) => env.ANALYTICS_KV || null;
-const EMPTY_STATS = () => ({ total: 0, types: {}, pages: {}, tests: {}, exams: {}, langs: {}, daily: {}, recent: [] });
+const EMPTY_STATS = () => ({ total: 0, types: {}, pages: {}, tests: {}, exams: {}, langs: {}, daily: {}, recent: [], countries: {}, devices: {}, referrers: {} });
 async function getStats(env) {
   const kv = KV(env); if (!kv) return EMPTY_STATS();
-  return (await kv.get("stats", "json")) || EMPTY_STATS();
+  return Object.assign(EMPTY_STATS(), (await kv.get("stats", "json")) || {}); // backfills new fields on old data
 }
 const putStats = (env, s) => KV(env) ? KV(env).put("stats", JSON.stringify(s)) : Promise.resolve();
 const getCfg = (env, k) => KV(env) ? KV(env).get("config:" + k) : Promise.resolve(null);
@@ -98,7 +98,14 @@ async function trackEvents(env, events, meta) {
     bump(s.types, e.type);
     bump(s.daily, day);
     if (e.lang) bump(s.langs, String(e.lang).slice(0, 8));
-    if (e.type === "pageview") bump(s.pages, name);
+    if (e.type === "pageview") {
+      bump(s.pages, name);
+      if (meta) {
+        if (meta.country) bump(s.countries, meta.country);
+        bump(s.devices, meta.device || "desktop");
+        bump(s.referrers, meta.ref || "(direct)");
+      }
+    }
     else if (e.type === "test_start") bump(s.tests, name);
     else if (e.type === "exam_pick" || e.type === "exam_switch") bump(s.exams, name);
     s.recent.unshift({ ts: Date.now(), type: e.type, name, lang: e.lang || null });
@@ -170,10 +177,16 @@ async function handleApi(req, env, url) {
 
   if (path === "/api/track") {
     if (req.method !== "POST") return J({ error: "method" }, 405);
-    if (BOT_RE.test(req.headers.get("user-agent") || "")) return new Response(null, { status: 204 });
+    const ua = req.headers.get("user-agent") || "";
+    if (BOT_RE.test(ua)) return new Response(null, { status: 204 });
     const body = await readJson(req);
     let events = Array.isArray(body) ? body : (body && Array.isArray(body.events)) ? body.events : (body && body.type) ? [body] : [];
-    try { await trackEvents(env, events); } catch {}
+    // Cloudflare provides country per request (no IP stored). Device + external referrer host too.
+    const country = ((req.headers.get("cf-ipcountry") || (req.cf && req.cf.country) || "") + "").toUpperCase().slice(0, 2) || null;
+    const device = /ipad|tablet/i.test(ua) ? "tablet" : /mobile|android|iphone/i.test(ua) ? "mobile" : "desktop";
+    let ref = null;
+    try { const r = req.headers.get("referer"); if (r) { const h = new URL(r).host; if (h && h !== url.host) ref = h.slice(0, 80); } } catch {}
+    try { await trackEvents(env, events, { country, device, ref }); } catch {}
     return new Response(null, { status: 204 });
   }
 
@@ -213,6 +226,12 @@ async function handleApi(req, env, url) {
     await putCfg(env, "pw", await hashPw(body.next));
     return J({ ok: true }, 200, { "set-cookie": setCookie(await signToken(env), secure) });
   }
+  if (path === "/api/admin/reset") {
+    if (req.method !== "POST") return J({ error: "method" }, 405);
+    if (!(await verifyToken(env, cookieFrom(req)))) return J({ ok: false, error: "unauthorized" }, 401);
+    if (KV(env)) await KV(env).put("stats", JSON.stringify(EMPTY_STATS()));
+    return J({ ok: true });
+  }
   if (path === "/api/admin/stats") {
     if (!(await verifyToken(env, cookieFrom(req)))) return J({ error: "unauthorized" }, 401);
     const s = await getStats(env);
@@ -224,6 +243,9 @@ async function handleApi(req, env, url) {
       tests: topList(s.tests),
       exams: topList(s.exams),
       langs: topList(s.langs),
+      countries: topList(s.countries),
+      devices: topList(s.devices),
+      referrers: topList(s.referrers),
       daily: Object.keys(s.daily || {}).sort().map((day) => ({ day, c: s.daily[day] })),
       recent: s.recent || [],
     });

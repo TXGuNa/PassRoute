@@ -90,7 +90,9 @@ table{ width:100%; border-collapse:collapse; font-size:.9rem; }
         <option value="90">Last 90 days</option>
         <option value="365">Last year</option>
       </select>
+      <label title="When on, visits from THIS browser are not counted" style="display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);cursor:pointer;user-select:none"><input type="checkbox" id="notrack" style="accent-color:var(--blue2);width:16px;height:16px" /> Don't count my visits</label>
       <button class="btn ghost" id="changePw">Change password</button>
+      <button class="btn ghost" id="resetStats" title="Clear all analytics counts" style="border-color:#7f1d1d;color:#fca5a5">Reset</button>
       <button class="btn ghost" id="logout">Log out</button>
     </div>
 
@@ -121,7 +123,10 @@ table{ width:100%; border-collapse:collapse; font-size:.9rem; }
       <div class="panel"><h3>📄 Most-visited pages</h3><div id="pages"></div></div>
       <div class="panel"><h3>📝 Most-started tests</h3><div id="tests"></div></div>
       <div class="panel"><h3>🎯 Exam picks &amp; switches</h3><div id="exams"></div></div>
+      <div class="panel"><h3>🌍 Top countries</h3><div id="countries"></div></div>
+      <div class="panel"><h3>💻 Devices</h3><div id="devices"></div></div>
       <div class="panel"><h3>🌐 By language</h3><div id="langs"></div></div>
+      <div class="panel"><h3>🔗 Traffic sources</h3><div id="referrers"></div></div>
       <div class="panel full"><h3>🕒 Recent events</h3><div class="recent" id="recent"></div></div>
     </div>
 
@@ -174,7 +179,7 @@ $("gateForm").addEventListener("submit", function (e) {
     .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
     .then(function (res) {
       $("gateBtn").disabled = false;
-      if (res.j && res.j.ok) { state.authed = true; state.needsSetup = false; boot(); return; }
+      if (res.j && res.j.ok) { try { localStorage.setItem("pr_notrack", "1"); } catch (e) {} state.authed = true; state.needsSetup = false; boot(); return; }
       var e2 = res.j && res.j.error;
       $("err").textContent =
         e2 === "locked" ? "Too many attempts — try again in a few minutes." :
@@ -188,6 +193,14 @@ $("gateForm").addEventListener("submit", function (e) {
 
 $("logout").addEventListener("click", function () {
   api("logout", { method: "POST" }).then(function () { state.authed = false; showGate(false); });
+});
+
+$("resetStats").addEventListener("click", function () {
+  if (!confirm("Reset ALL analytics counts to zero? This cannot be undone (your password stays).")) return;
+  api("reset", { method: "POST" }).then(function (r) {
+    if (r.status === 401) { state.authed = false; showGate(false); return; }
+    loadStats();
+  }).catch(function () {});
 });
 
 /* ---------- change password ---------- */
@@ -237,6 +250,9 @@ function showNoStorage() {
 /* ---------- dashboard ---------- */
 function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
 function pretty(name) { return esc(String(name).replace(/:/g, " · ")); }
+var regionNames; try { regionNames = new Intl.DisplayNames(["en"], { type: "region" }); } catch (e) { regionNames = null; }
+function flag(cc) { if (!cc || !/^[A-Z]{2}$/.test(cc)) return "🏳️"; return String.fromCodePoint.apply(null, cc.split("").map(function (c) { return 0x1F1E6 + c.charCodeAt(0) - 65; })); }
+function countryPretty(cc) { var nm = cc; try { if (regionNames && /^[A-Z]{2}$/.test(cc)) nm = regionNames.of(cc) || cc; } catch (e) {} return flag(cc) + " " + esc(nm); }
 
 function list(elId, rows, prettyFn) {
   var el = $(elId);
@@ -287,7 +303,10 @@ function loadStats() {
       list("pages", s.pages);
       list("tests", s.tests, pretty);
       list("exams", s.exams);
+      list("countries", s.countries, countryPretty);
+      list("devices", s.devices);
       list("langs", s.langs);
+      list("referrers", s.referrers);
       renderRecent(s.recent);
     });
   });
@@ -297,10 +316,21 @@ function kpi(n, label) { return '<div class="kpi"><div class="n">' + (n || 0).to
 $("range").addEventListener("change", loadStats);
 
 /* ---------- boot ---------- */
+function initNoTrack() {
+  var nt = $("notrack"); if (!nt) return;
+  try { nt.checked = localStorage.getItem("pr_notrack") === "1"; } catch (e) {}
+  if (!nt.__wired) {
+    nt.__wired = 1;
+    nt.addEventListener("change", function () {
+      try { if (nt.checked) localStorage.setItem("pr_notrack", "1"); else localStorage.removeItem("pr_notrack"); } catch (e) {}
+    });
+  }
+}
 function boot() {
   $("gate").classList.add("hide");
   $("dash").classList.remove("hide");
   $("changePw").classList.toggle("hide", !!state.envManaged);
+  initNoTrack();
   loadStats();
 }
 api("state", { method: "GET" })
