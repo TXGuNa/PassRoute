@@ -90,7 +90,23 @@ table{ width:100%; border-collapse:collapse; font-size:.9rem; }
         <option value="90">Last 90 days</option>
         <option value="365">Last year</option>
       </select>
+      <button class="btn ghost" id="changePw">Change password</button>
       <button class="btn ghost" id="logout">Log out</button>
+    </div>
+
+    <div id="pwPanel" class="panel hide" style="margin-bottom:18px;max-width:460px">
+      <h3>Change admin password</h3>
+      <form id="pwForm">
+        <input id="curPw" type="password" placeholder="Current password" autocomplete="current-password"
+          style="width:100%;background:#0b1220;color:var(--ink);border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:1rem;margin-bottom:10px" />
+        <input id="newPw" type="password" placeholder="New password (at least 8 characters)" autocomplete="new-password"
+          style="width:100%;background:#0b1220;color:var(--ink);border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:1rem;margin-bottom:10px" />
+        <div class="err" id="pwErr"></div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <button class="btn" type="submit" id="pwSave">Update password</button>
+          <button class="btn ghost" type="button" id="pwCancel">Cancel</button>
+        </div>
+      </form>
     </div>
 
     <div class="cards" id="kpis"></div>
@@ -109,7 +125,7 @@ table{ width:100%; border-collapse:collapse; font-size:.9rem; }
       <div class="panel full"><h3>🕒 Recent events</h3><div class="recent" id="recent"></div></div>
     </div>
 
-    <div class="note">First-party analytics · stored in a Cloudflare SQLite Durable Object · no third-party trackers.</div>
+    <div class="note">First-party analytics · stored in Cloudflare KV · no third-party trackers.</div>
   </div>
 
 </div>
@@ -130,6 +146,7 @@ function api(path, opts) {
 function showGate(setup) {
   $("dash").classList.add("hide");
   $("gate").classList.remove("hide");
+  $("gateForm").classList.remove("hide");
   $("pw2wrap").classList.toggle("hide", !setup);
   $("gateTitle").textContent = setup ? "Create admin password" : "Sign in";
   $("gateSub").textContent = setup
@@ -173,6 +190,50 @@ $("logout").addEventListener("click", function () {
   api("logout", { method: "POST" }).then(function () { state.authed = false; showGate(false); });
 });
 
+/* ---------- change password ---------- */
+$("changePw").addEventListener("click", function () {
+  var panel = $("pwPanel");
+  panel.classList.toggle("hide");
+  $("pwErr").textContent = ""; $("pwErr").style.color = ""; $("curPw").value = ""; $("newPw").value = "";
+  if (!panel.classList.contains("hide")) setTimeout(function () { $("curPw").focus(); }, 30);
+});
+$("pwCancel").addEventListener("click", function () { $("pwPanel").classList.add("hide"); });
+$("pwForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  $("pwErr").style.color = ""; $("pwErr").textContent = "";
+  var cur = $("curPw").value, next = $("newPw").value;
+  if (next.length < 8) { $("pwErr").textContent = "New password must be at least 8 characters."; return; }
+  $("pwSave").disabled = true;
+  api("password", { method: "POST", body: JSON.stringify({ current: cur, next: next }) })
+    .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
+    .then(function (res) {
+      $("pwSave").disabled = false;
+      if (res.j && res.j.ok) {
+        $("pwErr").style.color = "#34d399"; $("pwErr").textContent = "Password updated.";
+        $("curPw").value = ""; $("newPw").value = "";
+        setTimeout(function () { $("pwPanel").classList.add("hide"); $("pwErr").style.color = ""; $("pwErr").textContent = ""; }, 1400);
+      } else {
+        var er = res.j && res.j.error;
+        $("pwErr").textContent =
+          er === "invalid_current" ? "Current password is incorrect." :
+          er === "weak" ? "New password must be at least 8 characters." :
+          er === "managed_by_secret" ? "Password is managed via the ADMIN_PASSWORD secret." :
+          er === "unauthorized" ? "Session expired — please sign in again." :
+          "Could not update. Try again.";
+      }
+    })
+    .catch(function () { $("pwSave").disabled = false; $("pwErr").textContent = "Network error."; });
+});
+
+function showNoStorage() {
+  $("dash").classList.add("hide");
+  $("gate").classList.remove("hide");
+  $("pw2wrap").classList.add("hide");
+  $("gateForm").classList.add("hide");
+  $("gateTitle").textContent = "Storage not connected";
+  $("gateSub").textContent = "The analytics store (Cloudflare KV) isn't linked yet. Create a KV namespace and add the ANALYTICS_KV binding in wrangler.jsonc, then redeploy.";
+}
+
 /* ---------- dashboard ---------- */
 function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
 function pretty(name) { return esc(String(name).replace(/:/g, " · ")); }
@@ -212,16 +273,17 @@ function renderRecent(recent) {
 }
 
 function loadStats() {
-  var days = $("range").value;
-  return api("stats?days=" + days, { method: "GET" }).then(function (r) {
+  return api("stats", { method: "GET" }).then(function (r) {
     if (r.status === 401) { state.authed = false; showGate(false); return; }
     return r.json().then(function (s) {
+      var sum = function (a) { return (a || []).reduce(function (x, y) { return x + y.c; }, 0); };
       $("kpis").innerHTML =
-        kpi(s.total, "events · last " + s.days + "d") +
-        kpi(s.totalAll, "events · all time") +
-        kpi((s.pages || []).reduce(function (a, b) { return a + b.c; }, 0), "pageviews · " + s.days + "d") +
-        kpi((s.tests || []).reduce(function (a, b) { return a + b.c; }, 0), "tests started · " + s.days + "d");
-      renderChart(s.daily);
+        kpi(s.total, "total clicks") +
+        kpi(sum(s.pages), "page views") +
+        kpi(sum(s.tests), "tests started") +
+        kpi(sum(s.exams), "exam clicks");
+      var days = parseInt($("range").value, 10) || 30;
+      renderChart((s.daily || []).slice(-days));
       list("pages", s.pages);
       list("tests", s.tests, pretty);
       list("exams", s.exams);
@@ -238,6 +300,7 @@ $("range").addEventListener("change", loadStats);
 function boot() {
   $("gate").classList.add("hide");
   $("dash").classList.remove("hide");
+  $("changePw").classList.toggle("hide", !!state.envManaged);
   loadStats();
 }
 api("state", { method: "GET" })
@@ -245,6 +308,9 @@ api("state", { method: "GET" })
   .then(function (j) {
     state.needsSetup = !!j.needsSetup;
     state.authed = !!j.authed;
+    state.storage = j.storage !== false;
+    state.envManaged = !!j.envManaged;
+    if (!state.storage && !state.authed) { showNoStorage(); return; }
     if (state.authed) boot();
     else showGate(state.needsSetup);
   })

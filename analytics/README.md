@@ -1,79 +1,87 @@
 # PassRoute Analytics + Admin
 
-First-party analytics ("which pages and tests are most clicked") with a password-protected admin
-dashboard. No third-party trackers, no external database to provision, free on the Cloudflare
-Workers Free plan.
+First-party analytics ("how many clicks, and which pages/tests are clicked") with a
+password-protected admin dashboard. No third-party trackers. Free on the Cloudflare Workers plan.
 
 ## Status (built 2026-06-19)
-- ✅ Worker API + embedded **SQLite Durable Object** storage (`src/worker.js`).
-- ✅ Client tracker `pr-analytics.js` — auto pageview + auto-wraps `startTest` / `pick` /
-  `switchExam`, so test-starts and exam-clicks are captured with **no edits to any engine**.
-  Included on all 9 app pages and in the 6 app builders (so rebuilds keep it).
-- ✅ Admin dashboard `/admin/` — first-run password setup, login, top pages / tests / exams,
-  language split, daily activity chart, recent events.
-- ✅ Tested end-to-end on real `workerd` (wrangler dev): tracking + bot-filter + validation,
-  auth (setup / login / lockout / logout), stats aggregation, static serving untouched,
-  worker source not publicly served. Client + admin-UI integration tests pass.
+- ✅ Worker API + **Cloudflare KV** storage (`src/worker.js`). KV is **not** SQLite and **not** a
+  Durable Object — chosen because the original Durable Object could not be created by this project's
+  deploy command (`wrangler versions upload` can't run DO migrations), and KV deploys cleanly and is
+  free on the Workers Free plan.
+- ✅ Client tracker `pr-analytics.js` — pageview on load + auto-wraps `startTest` / `pick` /
+  `switchExam`, so test-starts and exam-clicks are captured with no edits to any engine. On all 9
+  app pages + the 6 app builders.
+- ✅ Admin dashboard `/admin/` — first-run password setup, login, **change password**, total clicks,
+  most-visited pages, most-started tests, exam picks/switches, language split, daily chart, recent
+  events.
+- ✅ Tested end-to-end on real `workerd` (wrangler dev with KV): tracking + bot-filter + validation,
+  auth (setup / login / lockout / logout / change-password), stats aggregation, static serving
+  untouched, and `.assetsignore` blocking `.git` / worker source. Client + admin-UI tests pass.
+
+## One-time setup (required to turn on storage)
+KV needs a namespace. Create it once and put its id in `wrangler.jsonc`:
+```
+cd PassRoute
+npx wrangler kv namespace create ANALYTICS_KV      # prints { binding = "ANALYTICS_KV", id = "..." }
+```
+or in the dashboard: **Storage & Databases → KV → Create namespace** (name it `passroute-analytics`),
+then copy the **Namespace ID**. Put that id in `wrangler.jsonc`:
+```jsonc
+"kv_namespaces": [{ "binding": "ANALYTICS_KV", "id": "<your-namespace-id>" }]
+```
+Commit + push. Until the id is set, the API degrades gracefully (tracking no-ops; the admin page
+shows "Storage not connected") and the static site is unaffected.
 
 ## How to use it
-1. Deploy (push to `devMac` — the existing Cloudflare git integration runs `wrangler deploy`).
-   The Durable Object + its SQLite table are created automatically by the `v1` migration; there is
-   **nothing to set up in the Cloudflare dashboard**.
-2. Visit **https://passroute.ai/admin/**. The first time, it asks you to **create an admin
-   password** (min 8 chars). After that it's a normal login.
-3. The dashboard shows, for a selectable date range (7 / 30 / 90 / 365 days): most-visited pages,
-   most-started tests (e.g. `cdl:airbrakes:0`, `customs-broker:mock:0`), exam picks/switches,
-   language breakdown, a per-day activity chart, and the most recent events.
+1. Visit **https://passroute.ai/admin/**. First time, **create an admin password** (min 8 chars).
+2. The dashboard shows total clicks, most-visited pages, most-started tests
+   (e.g. `cdl:airbrakes:0`, `customs-broker:mock:0`), exam picks/switches, language split, a daily
+   activity chart (windowed by the range selector), and recent events.
+3. **Change password** any time via the button in the dashboard header.
 
 ## Architecture
 ```
-browser ──(pageview / test_start / exam_pick / exam_switch)──▶ POST /api/track ─▶ Worker ─▶ Analytics DO (SQLite)
-/admin/ (static) ──▶ /api/admin/{state,setup,login,logout,stats} ─▶ Worker ─▶ Analytics DO
-everything else ─▶ env.ASSETS.fetch()  (the static site, unchanged — assets take precedence over the Worker)
+browser ──(pageview / test_start / exam_pick / exam_switch)──▶ POST /api/track ─▶ Worker ─▶ KV
+/admin/ (static) ──▶ /api/admin/{state,setup,login,logout,password,stats} ─▶ Worker ─▶ KV
+everything else ─▶ env.ASSETS.fetch()  (the static site, unchanged — assets take precedence)
 ```
-- **Storage:** one `Analytics` Durable Object (singleton, `idFromName("global")`) with an embedded
-  SQLite DB. Tables: `events(ts,day,type,name,lang,ref,dev)` and `config(k,v)`. Events older than
-  ~400 days are pruned opportunistically.
-- **Why a Durable Object and not D1/KV?** A SQLite-backed DO needs **zero provisioning** (no
-  `database_id`, no dashboard step) and is **free** on the Workers Free plan (5 GB storage; free plan
-  is excluded from SQLite-storage billing). It ships with the deploy.
+- **Storage (KV keys):** `stats` = one JSON value `{ total, types, pages, tests, exams, langs, daily,
+  recent }`; `config:pw` = PBKDF2 password hash; `config:secret` = HMAC session secret;
+  `config:fail` / `config:lock` = brute-force guard. Counters are read-modify-write on the single
+  `stats` value (1 read + 1 write per `/api/track` call).
+- **Tradeoff vs SQLite:** KV is eventually consistent and has no atomic increment, so under heavy
+  *simultaneous* traffic a few increments can be lost (counts are approximate at high concurrency),
+  and the free plan allows ~1,000 writes/day. Fine for a growing site; if it gets very busy, move the
+  counters to D1 or upgrade. Date-range filtering applies to the daily chart only; page/test/exam
+  totals are all-time.
 
 ## Auth & security
-- Password is set on first `/admin` visit (PBKDF2-SHA256, 100k iterations, 16-byte random salt) and
-  stored hashed in the DO. **Or** pre-seed/override it with a secret (see below).
-- Sessions are HMAC-SHA256 signed tokens (12 h), in an `HttpOnly; Secure; SameSite=Strict` cookie.
-  The signing secret is a 32-byte random value generated inside the DO on first run.
-- Brute-force guard: after 5 failed logins, an escalating lockout (up to 15 min).
-- Visitor privacy: tracking is first-party, sends **no cookies** (`credentials:"omit"`), stores **no
-  IP and no PII** — only event type, a page/test key, language, referrer *host*, device kind
-  (mobile/desktop), and timestamp. Known bots are filtered server-side.
-
-### Set or reset the admin password via a secret (optional)
-If you set the `ADMIN_PASSWORD` secret, it takes precedence over the first-run password — useful to
-pre-seed it or to recover access if you forget the password you set in the UI:
-```
-cd PassRoute
-npx wrangler secret put ADMIN_PASSWORD     # paste the password when prompted
-```
-While the secret is set, the in-UI "create password" flow is disabled and login checks the secret.
+- Password set on first `/admin` visit (PBKDF2-SHA256, 100k iters, random salt), stored hashed in KV.
+  Or override/reset with the `ADMIN_PASSWORD` secret (`npx wrangler secret put ADMIN_PASSWORD`) —
+  while set, first-run setup and in-app change-password are disabled and login checks the secret.
+- Sessions: HMAC-SHA256 signed token (12 h) in an `HttpOnly; Secure; SameSite=Strict` cookie.
+- Brute-force guard: 5 failed logins → escalating lockout (up to 15 min).
+- Visitor privacy: first-party, **no cookies** (`credentials:"omit"`), **no IP, no PII** — only event
+  type, a page/test key, language, device kind, and timestamp. Bots filtered server-side.
 
 ## Files
-- `src/worker.js` — Worker router + `Analytics` Durable Object (track / auth / stats). Bundled via
-  `wrangler.jsonc` `main`; excluded from public serving by `.assetsignore`.
-- `pr-analytics.js` — client tracker (served to browsers; included on every app page).
-- `admin/index.html` — the dashboard (static page; talks to `/api/admin/*`).
-- `wrangler.jsonc` — adds `main`, the `ASSETS` binding, the `ANALYTICS` DO binding, and the `v1`
-  migration. Static serving is unchanged (the Worker only runs for `/api/*`).
-- `.assetsignore` — keeps `src/`, `wrangler.jsonc`, this `analytics/` dir out of public serving.
+- `src/worker.js` — Worker router + KV store (track / auth / stats / change-password).
+- `pr-analytics.js` — client tracker (served; on every app page).
+- `admin/index.html` — the dashboard (static; talks to `/api/admin/*`).
+- `wrangler.jsonc` — `main`, the `ASSETS` binding, and the `ANALYTICS_KV` KV binding.
+- `.assetsignore` — keeps `.git`, `.wrangler`, `src/`, `wrangler.jsonc`, `analytics/` OUT of public
+  serving. **Important:** providing this file replaces Cloudflare's built-in default ignores, so it
+  must list `.git`/`node_modules` itself (an earlier version omitted `.git` and would have published
+  the repo history).
 
 ## Local dev / testing
-Wrangler isn't committed (no `package.json` in the site root — keeps the deploy build-free). To run
-locally, install it anywhere outside the repo and point it at this config:
+Wrangler isn't committed (no `package.json` at the site root → build-free deploy). Install it outside
+the repo and run:
 ```
 npm i wrangler            # in a scratch dir, e.g. ../analytics-dev
 ../analytics-dev/node_modules/.bin/wrangler dev --port 8799 --persist-to /tmp/pr-state
 ```
-Use `--persist-to` **outside** the repo so the DO's SQLite writes don't sit inside the watched
-assets dir (`./`) and cause a reload loop. Test scripts used during the build:
-`/tmp/pra-test.cjs` (client tracker), `/tmp/admin-it.cjs` (admin UI vs. the live server). When
-testing `/api/track` with curl, send a browser `User-Agent` — curl's default UA is treated as a bot.
+Use `--persist-to` **outside** the repo so KV/state writes don't sit in the watched assets dir (`./`)
+and cause a reload loop. KV works locally in `wrangler dev` regardless of the namespace id. Test
+scripts: `/tmp/pra-test.cjs` (client), `/tmp/admin-it.cjs` (admin UI vs. the live server). When
+testing `/api/track` with curl, send a browser `User-Agent` (curl's default UA is filtered as a bot).

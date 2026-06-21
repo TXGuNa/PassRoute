@@ -5,16 +5,17 @@
   // runs ONLY for requests that don't match a static asset (assets take precedence), so the
   // existing site is served exactly as before and the Worker just handles "/api/*".
   //
-  //   /            -> CDL app (index.html)        — also shows the first-visit exam/state picker
-  //   /home/       -> exam chooser
-  //   /dl/ /citizenship/ /sat/ /motorcycle/ /ged/ /food-handler/ /customs-broker/  -> the apps
-  //   /cdl/... /dl/*.html  -> SEO landing pages
-  //   /admin/      -> password-protected analytics dashboard (static page; talks to /api/admin/*)
-  //   /api/*       -> Worker (src/worker.js): event tracking + admin auth + stats
+  //   /admin/   -> password-protected analytics dashboard (static page; talks to /api/admin/*)
+  //   /api/*    -> Worker (src/worker.js): event tracking + admin auth + stats
   //
-  // Storage = an embedded SQLite Durable Object (the "Analytics" class). It needs NO external
-  // provisioning (no D1/KV/database_id) and is free on the Workers Free plan (SQLite-backed DOs).
-  // The admin password is set on first /admin visit, or pre-seeded via the ADMIN_PASSWORD secret.
+  // Storage = Cloudflare KV (binding ANALYTICS_KV) — NOT SQLite, NOT a Durable Object, so it
+  // deploys with `wrangler versions upload` (no migration) and is free on the Workers Free plan.
+  //
+  // SETUP (one time): create the KV namespace and paste its id below:
+  //     npx wrangler kv namespace create ANALYTICS_KV
+  //   (or Cloudflare dashboard -> Storage & Databases -> KV -> Create namespace), then put the
+  //   resulting id in "kv_namespaces[0].id". The admin password is set on first /admin visit
+  //   (or via the ADMIN_PASSWORD secret).
   "name": "passroute",
   "main": "src/worker.js",
   "compatibility_date": "2026-06-10",
@@ -24,10 +25,11 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
-  "durable_objects": {
-    "bindings": [{ "name": "ANALYTICS", "class_name": "Analytics" }]
-  },
-  "migrations": [
-    { "tag": "v1", "new_sqlite_classes": ["Analytics"] }
-  ]
+  // Analytics storage is Cloudflare KV. To TURN IT ON, create a namespace and uncomment the block
+  // below with its id (`npx wrangler kv namespace create ANALYTICS_KV`, or dashboard ->
+  // Storage & Databases -> KV -> Create namespace). Until then the API degrades gracefully
+  // (tracking no-ops; /admin shows "Storage not connected") and the static site is unaffected.
+  // "kv_namespaces": [
+  //   { "binding": "ANALYTICS_KV", "id": "PASTE_YOUR_KV_NAMESPACE_ID_HERE" }
+  // ]
 }

@@ -130,19 +130,24 @@ DPS appointment, what to bring; official links left untranslated.
   In the SPA, ads refresh only on genuine `pushState` navigation (results screen).
 
 ## Analytics & Admin (Cloudflare Worker)
-The site is now served by a Worker (`wrangler.jsonc` → `main: src/worker.js`) that **only** handles
+The site is served by a Worker (`wrangler.jsonc` → `main: src/worker.js`) that **only** handles
 `/api/*`; static assets take precedence, so the site is served exactly as before. Full details in
 `analytics/README.md`.
-- **Storage:** an embedded **SQLite Durable Object** (`Analytics`, singleton). No D1/KV/`database_id`
-  to provision — it ships with the deploy and is free on the Workers Free plan. Migration `v1` in
-  `wrangler.jsonc` creates it automatically.
-- **Tracking:** `pr-analytics.js` (loaded on every app page; emitted by the app builders too) sends a
+- **Storage = Cloudflare KV** (binding `ANALYTICS_KV`). NOT SQLite, NOT a Durable Object — the DO was
+  abandoned because this project's deploy command is `wrangler versions upload`, which can't run DO
+  migrations (the deploy failed in 0s). KV deploys cleanly and is free on the Workers Free plan.
+  Counts live in one `stats` JSON value; password hash + session secret in `config:*` keys.
+  **Requires a one-time KV namespace id in `wrangler.jsonc`** (`npx wrangler kv namespace create
+  ANALYTICS_KV`); until set, the API degrades gracefully (storage off) and the site is unaffected.
+- **Tracking:** `pr-analytics.js` (on every app page; emitted by the app builders too) sends a
   pageview on load and auto-wraps the existing globals `startTest` / `pick` / `switchExam` — so
-  test-starts and exam-clicks are tracked with **no engine edits**. Events POST to `/api/track`
+  test-starts and exam-clicks are tracked with **no engine edits**. POSTs to `/api/track`
   (bot-filtered, no cookies, no PII).
-- **Admin:** `/admin/` — password set on first visit (or via the `ADMIN_PASSWORD` secret), PBKDF2
-  hash + HMAC session cookie in the DO. Dashboard shows top pages/tests/exams, language split, a
-  daily chart and recent events.
-- **Do not** serve the worker source: `.assetsignore` excludes `src/`, `wrangler.jsonc`, `analytics/`.
+- **Admin:** `/admin/` — password set on first visit (or `ADMIN_PASSWORD` secret), **changeable in the
+  panel**, PBKDF2 hash + HMAC session cookie, brute-force lockout. Dashboard: total clicks, top
+  pages/tests/exams, language split, daily chart, recent events.
+- **`.assetsignore`** excludes `.git`, `.wrangler`, `src/`, `wrangler.jsonc`, `analytics/`. NOTE:
+  providing this file REPLACES Cloudflare's default ignores, so it must list `.git`/`node_modules`
+  itself (omitting `.git` would publish the repo history).
 - **Local test:** `wrangler dev --persist-to <dir outside the repo>` (avoids an asset-watch reload
   loop); send a browser `User-Agent` to `/api/track` (curl's default UA is filtered as a bot).

@@ -1,9 +1,14 @@
-# Files in the assets dir (repo root) that should NOT be served publicly.
-# gitignore-style patterns. The Worker source is bundled via "main"; it must not also be a public asset.
-/src
-/wrangler.jsonc
-/analytics
-/.assetsignore
+# Files in the assets dir (repo root) that must NOT be served publicly.
+# NOTE: providing this file replaces Cloudflare's built-in default ignores, so we must re-list
+# .git, node_modules, etc. here ourselves. gitignore-style patterns.
+.git
+.gitignore
+.wrangler
+node_modules
 .DS_Store
 .fuse_hidden*
-node_modules
+/src
+/analytics
+/wrangler.jsonc
+/.assetsignore
+*.map
