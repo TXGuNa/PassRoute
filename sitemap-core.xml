@@ -119,4 +119,15 @@
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
+  <url><loc>https://passroute.ai/guides/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://passroute.ai/guides/cdl.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://passroute.ai/guides/dl.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://passroute.ai/guides/citizenship.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://passroute.ai/guides/sat.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://passroute.ai/guides/motorcycle.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://passroute.ai/guides/ged.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://passroute.ai/guides/food-handler.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://passroute.ai/guides/customs-broker.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://passroute.ai/about.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://passroute.ai/contact.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
 </urlset>
