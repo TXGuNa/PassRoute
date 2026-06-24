@@ -130,4 +130,8 @@
   <url><loc>https://passroute.ai/guides/customs-broker.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://passroute.ai/about.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://passroute.ai/contact.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://passroute.ai/guides/cdl-air-brakes.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://passroute.ai/guides/cdl-pre-trip-inspection.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://passroute.ai/guides/road-signs.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://passroute.ai/guides/ged-math.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
