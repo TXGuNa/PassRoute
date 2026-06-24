@@ -138,4 +138,68 @@
   <url><loc>https://passroute.ai/guides/cdl-hazmat.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://passroute.ai/guides/dl-safe-driving.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://passroute.ai/guides/sat-math.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url>
+    <loc>https://passroute.ai/guides/cdl.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/guides/cdl.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/guides/cdl.es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/guides/cdl.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/guides/dl.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/guides/dl.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/guides/dl.es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/guides/dl.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/guides/citizenship.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/guides/citizenship.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/guides/citizenship.es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/guides/citizenship.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/guides/sat.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/guides/sat.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/guides/sat.es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/guides/sat.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/guides/motorcycle.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/guides/motorcycle.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/guides/motorcycle.es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/guides/motorcycle.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/guides/ged.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/guides/ged.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/guides/ged.es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/guides/ged.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/guides/food-handler.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/guides/food-handler.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/guides/food-handler.es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/guides/food-handler.html"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/guides/customs-broker.es.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/guides/customs-broker.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/guides/customs-broker.es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/guides/customs-broker.html"/>
+  </url>
 </urlset>
