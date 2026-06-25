@@ -151,3 +151,28 @@ The site is served by a Worker (`wrangler.jsonc` → `main: src/worker.js`) that
   itself (omitting `.git` would publish the repo history).
 - **Local test:** `wrangler dev --persist-to <dir outside the repo>` (avoids an asset-watch reload
   loop); send a browser `User-Agent` to `/api/track` (curl's default UA is filtered as a bot).
+
+## Content layer (AdSense "low value content" fix)
+AdSense withheld ads for **low-value content** (ownership was already verified via `ads.txt`). The
+real cause: the app pages render into an empty `<div id="app">`, so crawlers saw almost no text on
+the ad-bearing pages. Fix = a real, original content layer:
+- **`/guides/`** — a hub + **12 study guides** (8 exam guides + 4 topic deep-dives: CDL Air Brakes,
+  CDL Pre-Trip, Road Signs, GED Math), ~2,000–3,000 words each, with Article schema, AdSense, and
+  links into the matching practice tests. Built by `content-engine/build-guides.cjs` from
+  `content-engine/guide-fragments/*.html`.
+- **`/about.html`, `/contact.html`** — trust/identity pages. Home page (`home/index.html`) has a
+  ~530-word content section in **all 6 languages** (one shown at a time, synced to `<html lang>` like
+  the app `seo-block`; per-language guide/test links). Source `content-engine/homecontent/home.<lang>.html`,
+  (re)inject with `node content-engine/inject-homecontent.cjs`.
+- **Per app page**: a crawlable `<section class="seo-block">` injected between `#app` and the footer
+  (so the ad-bearing SPA pages have real text), containing the ~500-word content in **all 6
+  languages** — one shown at a time, synced to `<html lang>` via a MutationObserver (the app updates
+  html[lang] when the user switches language; RTL is inherited from the app's html[dir]). Wrapped in
+  `<!--SEO-START-->…<!--SEO-END-->`. Source fragments `content-engine/appcontent/<slug>[.<lang>].html`;
+  (re)inject with `node content-engine/inject-appcontent.cjs` (idempotent).
+- **IMPORTANT — durability:** the app builders (`build-cb/ged/fh/motorcycle/dl/citizenship.cjs`) do
+  **not** emit the `seo-block`. After rebuilding any app vertical, **re-run
+  `node content-engine/inject-appcontent.cjs`** to restore its content section. (The
+  `google-adsense-account` meta tag IS already in those builders.)
+- All ad pages carry `<meta name="google-adsense-account" content="ca-pub-5005909536075464">` (an
+  AdSense verification requirement) — also added to the builders + `content-engine/build-guides.cjs`.
