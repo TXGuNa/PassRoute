@@ -161,7 +161,9 @@ the ad-bearing pages. Fix = a real, original content layer:
   links into the matching practice tests. Built by `content-engine/build-guides.cjs` from
   `content-engine/guide-fragments/*.html`.
 - **`/about.html`, `/contact.html`** — trust/identity pages. Home page (`home/index.html`) has a
-  ~700-word content section.
+  ~530-word content section in **all 6 languages** (one shown at a time, synced to `<html lang>` like
+  the app `seo-block`; per-language guide/test links). Source `content-engine/homecontent/home.<lang>.html`,
+  (re)inject with `node content-engine/inject-homecontent.cjs`.
 - **Per app page**: a crawlable `<section class="seo-block">` injected between `#app` and the footer
   (so the ad-bearing SPA pages have real text), containing the ~500-word content in **all 6
   languages** — one shown at a time, synced to `<html lang>` via a MutationObserver (the app updates
