@@ -162,9 +162,12 @@ the ad-bearing pages. Fix = a real, original content layer:
   `content-engine/guide-fragments/*.html`.
 - **`/about.html`, `/contact.html`** — trust/identity pages. Home page (`home/index.html`) has a
   ~700-word content section.
-- **Per app page**: a unique ~500-word crawlable `<section class="seo-block">` injected between
-  `#app` and the footer (so the ad-bearing SPA pages have real text). Source fragments in
-  `content-engine/appcontent/*.html`; (re)inject with `node content-engine/inject-appcontent.cjs`.
+- **Per app page**: a crawlable `<section class="seo-block">` injected between `#app` and the footer
+  (so the ad-bearing SPA pages have real text), containing the ~500-word content in **all 6
+  languages** — one shown at a time, synced to `<html lang>` via a MutationObserver (the app updates
+  html[lang] when the user switches language; RTL is inherited from the app's html[dir]). Wrapped in
+  `<!--SEO-START-->…<!--SEO-END-->`. Source fragments `content-engine/appcontent/<slug>[.<lang>].html`;
+  (re)inject with `node content-engine/inject-appcontent.cjs` (idempotent).
 - **IMPORTANT — durability:** the app builders (`build-cb/ged/fh/motorcycle/dl/citizenship.cjs`) do
   **not** emit the `seo-block`. After rebuilding any app vertical, **re-run
   `node content-engine/inject-appcontent.cjs`** to restore its content section. (The
