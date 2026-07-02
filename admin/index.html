@@ -20,6 +20,15 @@ a{ color:var(--blue); }
 .btn{ background:var(--blue2); color:#fff; border:0; border-radius:10px; padding:10px 14px; font-weight:650; font-size:.92rem; cursor:pointer; }
 .btn.ghost{ background:transparent; border:1px solid var(--line); color:var(--ink); }
 .btn:disabled{ opacity:.55; cursor:default; }
+.btn .ic{ display:none; font-size:1.05rem; line-height:1; }
+/* mobile: top-bar buttons collapse to icons (text hidden, icon + aria-label/title take over) */
+@media(max-width:760px){
+  .top{ flex-wrap:wrap; }
+  .top h1{ font-size:1rem; }
+  .top .btn .tx{ display:none; }
+  .top .btn .ic{ display:inline; }
+  .top .btn{ padding:10px 12px; }
+}
 select{ background:var(--card); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:9px 11px; font-size:.92rem; }
 /* auth gate */
 .gate{ max-width:380px; margin:8vh auto 0; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 24px; box-shadow:var(--shadow); }
@@ -91,9 +100,9 @@ table{ width:100%; border-collapse:collapse; font-size:.9rem; }
         <option value="365">Last year</option>
       </select>
       <label title="When on, visits from THIS browser are not counted" style="display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);cursor:pointer;user-select:none"><input type="checkbox" id="notrack" style="accent-color:var(--blue2);width:16px;height:16px" /> Don't count my visits</label>
-      <button class="btn ghost" id="changePw">Change password</button>
-      <button class="btn ghost" id="resetStats" title="Clear all analytics counts" style="border-color:#7f1d1d;color:#fca5a5">Reset</button>
-      <button class="btn ghost" id="logout">Log out</button>
+      <button class="btn ghost" id="changePw" title="Change password" aria-label="Change password"><span class="ic">🔑</span><span class="tx">Change password</span></button>
+      <button class="btn ghost" id="resetStats" title="Clear all analytics counts" aria-label="Reset analytics" style="border-color:#7f1d1d;color:#fca5a5"><span class="ic">🗑️</span><span class="tx">Reset</span></button>
+      <button class="btn ghost" id="logout" title="Log out" aria-label="Log out"><span class="ic">🚪</span><span class="tx">Log out</span></button>
     </div>
 
     <div id="pwPanel" class="panel hide" style="margin-bottom:18px;max-width:460px">

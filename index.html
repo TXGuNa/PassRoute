@@ -224,6 +224,27 @@
   .b-fail{background:var(--red-bg);color:var(--red)}
   .tcard .best{font-size:.74rem;color:var(--muted);margin-top:8px}
 
+  /* Exam simulator (real DPS-style exam) */
+  .examcard{display:flex;align-items:center;gap:16px;background:var(--card);border:2px solid var(--blue);border-radius:16px;box-shadow:var(--shadow);
+    padding:16px 18px;margin:14px 0 4px;cursor:pointer;transition:.15s;flex-wrap:wrap}
+  .examcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .examcard .ex-ico{font-size:2.1rem;line-height:1}
+  .examcard .ex-body{flex:1;min-width:220px}
+  .examcard .ex-kicker{font-size:.72rem;font-weight:800;letter-spacing:.6px;color:var(--blue);text-transform:uppercase}
+  .examcard h3{margin:2px 0 4px;font-size:1.14rem}
+  .examcard p{margin:0 0 9px;color:var(--muted);font-size:.9rem;line-height:1.45;max-width:660px}
+  .examcard .ex-btn{white-space:nowrap}
+  @media(max-width:560px){ .examcard .ex-btn{width:100%} }
+  .chip.exm{background:#eef3ff;color:var(--blue)}
+  [data-theme="dark"] .chip.exm{background:#16264a}
+  .opt.sel{border-color:var(--blue);background:#f5f8ff;box-shadow:inset 0 0 0 1px var(--blue)}
+  [data-theme="dark"] .opt.sel{background:#16223b}
+  .early-note{margin:12px auto 0;max-width:620px;background:#eef3ff;border:1px solid var(--blue);color:var(--ink);border-radius:12px;padding:10px 14px;font-size:.9rem;line-height:1.45}
+  [data-theme="dark"] .early-note{background:#16264a}
+  .bankload{display:flex;align-items:center;justify-content:center;gap:12px;padding:70px 0;color:var(--muted);font-weight:650}
+  .bankload .spin{width:22px;height:22px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--blue);animation:bspin .8s linear infinite}
+  @keyframes bspin{to{transform:rotate(360deg)}}
+
   /* Test runner */
   .runner{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
     box-shadow:var(--shadow);padding:0;overflow:hidden;margin:16px 0 40px}
@@ -574,7 +595,7 @@
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
       <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span class="exam-ic">📋</span><span class="exam-txt">CDL</span><span class="cv">▾</span></button>
-      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('sat')">🎓 SAT</button><button role="option" onclick="switchExam('moto')">🏍️ Motorcycle</button><button role="option" onclick="switchExam('ged')">📚 GED</button><button role="option" onclick="switchExam('fh')">🍽️ Food Handler</button><button role="option" onclick="switchExam('cb')">📦 Customs Broker</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
+      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('moto')">🏍️ Motorcycle</button><button role="option" onclick="switchExam('civ')">🛂 Citizenship</button><button role="option" onclick="switchExam('sat')">🎓 SAT</button><button role="option" onclick="switchExam('ged')">📚 GED</button><button role="option" onclick="switchExam('fh')">🍽️ Food Handler</button><button role="option" onclick="switchExam('ssm')">👨‍🍳 Food Manager</button><button role="option" onclick="switchExam('cb')">📦 Customs Broker</button><button role="option" onclick="switchExam('boater')">⛵ Boater Safety</button><button role="option" onclick="switchExam('drone')">🛩️ Drone (Part 107)</button><button role="option" onclick="switchExam('epa')">❄️ EPA 608 (HVAC)</button><button role="option" onclick="switchExam('guard')">🛡️ Security Guard</button><button role="option" onclick="switchExam('re')">🏡 Real Estate</button><button role="option" onclick="switchExam('notary')">📜 Notary Public</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="statedd" style="margin-right:6px">
       <button class="langbtn" id="stateBtn" onclick="toggleStateMenu(event)" aria-haspopup="listbox" aria-expanded="false" title="State"><span id="stateCur">TX</span><span class="cv">▾</span></button>
@@ -885,19 +906,10 @@
 <!-- Arabic UI + question translations (~3.2 MB) are loaded on demand by ensureLangPack(),
      only when Arabic is actually selected — see setLang()/boot. EN fallback covers the gap. -->
 <script src="endorsements.js"></script>
-<script src="questions-extra.js"></script>
-  <script src="upgrades.schoolbus.js"></script>
-  <script src="upgrades.doubles.js"></script>
-  <script src="upgrades.passenger.js"></script>
-  <script src="upgrades.hazmat.js"></script>
-  <script src="upgrades.tanker.js"></script>
-  <script src="upgrades.combination.js"></script>
-  <script src="upgrades.special.js"></script>
-  <script src="upgrades.airbrakes.js"></script>
-  <script src="upgrades.general.js"></script>
-  <script src="learn.cdl.js"></script>
-  <script src="learn.cristcdl.js"></script>
-  <script src="translations-hi-gk-extra.js"></script>
+<!-- Heavy question packs (~15.8 MB: questions-extra.js, upgrades.*.js, learn.cdl.js, learn.cristcdl.js)
+     are loaded ON DEMAND by ensureBank() the moment a category is opened — never on first paint.
+     BANK_META in the app script carries the final pool sizes so the home cards are correct before load. -->
+<script src="translations-hi-gk-extra.js"></script>
 <script src="states-meta.js"></script>
 <script src="state-special-index.js"></script>
 <script src="pretrip.js"></script>
@@ -968,6 +980,83 @@ function ensureStateSpecial(code, cb){
   sc.onerror=function(){ var cbs=_specLoading[code]||[]; delete _specLoading[code]; cbs.forEach(function(f){ if(f) f(false); }); };
   document.head.appendChild(sc);
 }
+/* Real CLP exam sizes per knowledge test (questions on the real DPS computer test). */
+const EXAM_SIZES = {special:20, general:50, airbrakes:25, combination:20, hazmat:30, tanker:20, doubles:20, passenger:20, schoolbus:20};
+
+/* ============================ LAZY QUESTION BANKS ============================
+   The heavy packs (~15.8 MB) load on demand, mirroring ensureLangPack/ensureStateSpecial:
+   · SHARED_PACK (questions-extra + the two learn banks, ~4.1 MB) — once, on first category open
+   · upgrades.<cat>.js (1.2–3.3 MB) — per category, the first time that category is opened
+   BANK_META = final pool size per category AFTER its packs are applied; it only drives the
+   home-card test counts before the packs arrive (resizeCat trusts the live pool once loaded). */
+const BANK_META = {special:200, general:524, airbrakes:250, combination:200, hazmat:300, tanker:200, doubles:200, passenger:200, schoolbus:200};
+const UPGRADE_CATS = {special:1, general:1, airbrakes:1, combination:1, hazmat:1, tanker:1, doubles:1, passenger:1, schoolbus:1};
+const SHARED_PACK = ['questions-extra.js','learn.cdl.js','learn.cristcdl.js'];
+var _bankState = { shared:false, cats:{} };
+var _bankLoading = {};
+function _bankBase(catId){ try{ return baseCatId(catId)||catId; }catch(e){ return catId; } }
+function bankReady(catId){ const base=_bankBase(catId);
+  if(!_bankState.shared) return false;
+  if(!UPGRADE_CATS[base]) return true;                                   /* e.g. __review__ */
+  if(base==='special' && typeof STATE!=='undefined' && STATE!=='TX') return true;  /* state banks are self-contained */
+  return !!_bankState.cats[base]; }
+function _inject(src, cb){ var s=document.createElement('script'); s.src=src; s.async=false;
+  s.onload=function(){ cb(true); }; s.onerror=function(){ cb(false); }; document.head.appendChild(s); }
+function _ensureShared(cb){
+  if(_bankState.shared){ if(cb) cb(true); return; }
+  if(_bankLoading.__shared){ _bankLoading.__shared.push(cb); return; }
+  _bankLoading.__shared=[cb];
+  (function step(i){
+    if(i>=SHARED_PACK.length){
+      _bankState.shared=true;
+      try{ DATA.categories.forEach(function(c){ resizeCat(c); }); }catch(e){}
+      var cbs=_bankLoading.__shared||[]; delete _bankLoading.__shared;
+      cbs.forEach(function(f){ if(f) f(true); }); return;
+    }
+    _inject(SHARED_PACK[i], function(){ step(i+1); });
+  })(0);
+}
+function ensureBank(catId, cb){
+  const base=_bankBase(catId);
+  _ensureShared(function(){
+    const want = UPGRADE_CATS[base] && !_bankState.cats[base] && !(base==='special' && typeof STATE!=='undefined' && STATE!=='TX');
+    if(!want){ if(cb) cb(true); return; }
+    const key='up_'+base;
+    if(_bankLoading[key]){ _bankLoading[key].push(cb); return; }
+    _bankLoading[key]=[cb];
+    _inject('upgrades.'+base+'.js', function(){
+      _bankState.cats[base]=true;
+      try{
+        const c=DATA.categories.find(function(x){ return x.id===base; }); if(c) resizeCat(c);
+        const lc=DATA.categories.find(function(x){ return x.kind==='learn' && x.learnSubject===base; }); if(lc) resizeCat(lc);
+        /* the TX special pack replaces/appends the live TX pool: refresh the TX snapshot + re-apply */
+        if(base==='special' && typeof STATE!=='undefined' && STATE==='TX'){ _snapSpecial(); _applyStateNow('TX'); }
+      }catch(e){}
+      var cbs=_bankLoading[key]||[]; delete _bankLoading[key];
+      cbs.forEach(function(f){ if(f) f(true); });
+    });
+  });
+}
+function showBankLoading(){ var el=document.getElementById('app');
+  if(el) el.innerHTML='<div class="bankload"><span class="spin"></span>'+t('loadingQ')+'</div>'; }
+
+/* Re-derive test count / exam size / pass mark from the category's CURRENT pool (or, before its
+   packs have loaded, from the expected final size) — used at boot, after every pack load, and
+   whenever a state-specific special bank (91–140 questions vs TX's default) is swapped in. */
+function resizeCat(c){ if(!c) return;
+  const subj = c.kind==='learn' ? (c.learnSubject||c.id) : c.id;
+  const target = EXAM_SIZES[subj]||25;
+  let P = c.questions.length;
+  if(c.kind!=='learn' && !bankReady(c.id)){       /* pool incomplete: use the expected final size for card counts */
+    if(c.id==='special' && typeof STATE!=='undefined' && STATE!=='TX'){
+      const meta = window.STATE_SPECIAL_META && STATE_SPECIAL_META[STATE];
+      P = Math.max(P, (meta && meta.n) || P);
+    } else P = Math.max(P, BANK_META[c.id]||P);
+  }
+  const E=Math.min(target,P);
+  c.examSize=E; c.numTests=Math.max(1,Math.ceil(P/E)); c.passNeed=Math.max(1,Math.round(E*0.8));
+  c.readyTarget = c.kind==='learn' ? c.numTests : Math.max(1,c.numTests-1);
+}
 function _snapSpecial(){ const cat=DATA.categories.find(c=>c.id==='special'); if(!cat||!window.I18N) return;
   _defSpecEN=cat.questions.slice(); _defSpecQ={};
   for(const L of ['ru','tr','es','hi']){ I18N.q[L]=I18N.q[L]||{}; _defSpecQ[L]=Object.assign({}, I18N.q[L].special||{}); } }
@@ -977,7 +1066,8 @@ function _applyStateNow(code){ const cat=DATA.categories.find(c=>c.id==='special
   if(!s || code==='TX' || !s.en){ if(_defSpecEN){ cat.questions=_defSpecEN.slice(); for(const L of ['ru','tr','es','hi']) I18N.q[L].special=Object.assign({}, _defSpecQ[L]);
     if(I18N.q.ar && _defSpecQ && _defSpecQ.ar) I18N.q.ar.special=Object.assign({}, _defSpecQ.ar); } }
   else { cat.questions=s.en; for(const L of ['ru','tr','es','hi']){ I18N.q[L]=I18N.q[L]||{}; I18N.q[L].special=s[L]||{}; }
-    if(I18N.q.ar) I18N.q.ar.special=s.ar||{}; } }
+    if(I18N.q.ar) I18N.q.ar.special=s.ar||{}; }
+  resizeCat(cat); }
 /* apply now with whatever's loaded (TX default until the bank arrives), then lazy-load the real bank
    and re-apply + re-render once it's in. Most states/TX need no fetch at all. */
 function applyState(code){ _applyStateNow(code);
@@ -997,35 +1087,16 @@ function switchExam(ex){ if(ex==='home'){ location.href='home/index.html'+(LANG!
   else if(ex==='moto') location.href='motorcycle/index.html'+(LANG!=='en'?'?lang='+LANG:'');
   else if(ex==='ged') location.href='ged/index.html'+(LANG!=='en'?'?lang='+LANG:'');
   else if(ex==='fh') location.href='food-handler/index.html'+(LANG!=='en'?'?lang='+LANG:'');
-  else if(ex==='cb') location.href='customs-broker/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
+  else if(ex==='cb') location.href='customs-broker/index.html'+(LANG!=='en'?'?lang='+LANG:''); else if(ex==='ssm') location.href='servsafe/index.html'+(LANG!=='en'?'?lang='+LANG:''); else if(ex==='boater') location.href='boater/index.html'+(LANG!=='en'?'?lang='+LANG:''); else if(ex==='drone') location.href='drone/index.html'+(LANG!=='en'?'?lang='+LANG:''); else if(ex==='epa') location.href='epa608/index.html'+(LANG!=='en'?'?lang='+LANG:''); else if(ex==='guard') location.href='security-guard/index.html'+(LANG!=='en'?'?lang='+LANG:''); else if(ex==='re') location.href='real-estate/index.html'+(LANG!=='en'?'?lang='+LANG:''); else if(ex==='notary') location.href='notary/index.html'+(LANG!=='en'?'?lang='+LANG:''); }
 document.addEventListener('click', function(){ var d=document.getElementById('examdd'); if(d) d.classList.remove('open'); });
 function closeStateMenu(){ const dd=document.getElementById('statedd'); if(dd) dd.classList.remove('open'); const b=document.getElementById('stateBtn'); if(b) b.setAttribute('aria-expanded','false'); }
 document.addEventListener('click', closeStateMenu);
 /* Test count auto-scales with the (unique) bank size: each pool is split into
    near-equal DISJOINT tests, so a question never repeats within or across the
-   tests of a category. Target sizes below pick how big each test is. */
-if(DATA && DATA.categories){
-  const CLP = {special:20, general:50, airbrakes:25, combination:20, hazmat:30, tanker:20, doubles:20, passenger:20, schoolbus:20};
-  DATA.categories.forEach(c=>{
-    const P = c.questions.length;
-    if(c.kind==="learn"){
-      // Learn (educational) lessons are sized to the real per-subject exam question count (same as the
-      // matching Practice test), then split into as many numbered "Lesson N" as needed to walk the WHOLE
-      // bank — every unique question shown once across the lessons, easy→hard within each.
-      const subj = c.learnSubject || c.id;
-      const LE = Math.min(CLP[subj] || 25, P);
-      c.examSize = LE; c.numTests = Math.max(1, Math.ceil(P / LE));
-      c.passNeed = Math.max(1, Math.round(LE*0.8)); c.readyTarget = c.numTests;
-      return;
-    }
-    const target = CLP[c.id] || 25;
-    const E = Math.min(target, P);                                   // each test = the real CLP exam size
-    c.examSize   = E;
-    c.numTests   = Math.max(1, Math.ceil(P / E));                    // enough tests so every unique question is shown
-    c.passNeed   = Math.max(1, Math.round(E * 0.8));
-    c.readyTarget = Math.max(1, c.numTests - 1);
-  });
-}
+   tests of a category. resizeCat() sizes each test to the REAL exam length
+   (EXAM_SIZES) and — until the heavy packs load — trusts BANK_META for the
+   final pool size so the home cards are right from the first paint. */
+if(DATA && DATA.categories){ DATA.categories.forEach(function(c){ resizeCat(c); }); }
 /* ---- CDL class model: which class(es) each test serves, and its kind ---- */
 const CLASS_META = {
   general:    {classes:["A","B","C"], kind:"core"},
@@ -1061,17 +1132,26 @@ function saveSession(){ try{
   if(state && (state.view==='test'||state.view==='results') && state.test){
     sessionStorage.setItem(SKEY, JSON.stringify({ view:state.view, catId:state.catId, idx:state.idx,
       cur:state.cur, answers:state.answers, correct:state.correct, incorrect:state.incorrect,
-      locked:state.locked, startTime:state.startTime, elapsed:state.elapsed, test:state.test }));
+      locked:state.locked, startTime:state.startTime, elapsed:state.elapsed, test:state.test,
+      exam:state.exam?1:0, endedEarly:state.endedEarly?1:0 }));
   } else { sessionStorage.removeItem(SKEY); }
 }catch(e){} }
 function clearSession(){ try{ sessionStorage.removeItem(SKEY); }catch(e){} }
 function restoreSession(){ try{
   const raw=sessionStorage.getItem(SKEY); if(!raw) return false;
-  const s=JSON.parse(raw); const cat=DATA.categories.find(c=>c.id===s.catId);
-  if(!cat || !Array.isArray(s.test) || (s.view!=='test'&&s.view!=='results')){ clearSession(); return false; }
+  const s=JSON.parse(raw);
+  if(!s.catId || !Array.isArray(s.test) || (s.view!=='test'&&s.view!=='results')){ clearSession(); return false; }
+  /* the cached test's qids point into the full (upgraded) pool — load its packs before resuming */
+  if(!bankReady(s.catId)){ showBankLoading(); ensureBank(s.catId, function(){ if(!_restoreNow(s)){ initRoute(); } }); return true; }
+  return _restoreNow(s);
+}catch(e){ clearSession(); return false; } }
+function _restoreNow(s){ try{
+  const cat=DATA.categories.find(c=>c.id===s.catId);
+  if(!cat){ clearSession(); return false; }
   state={ view:s.view, catId:s.catId, idx:s.idx, cat, test:s.test, cur:s.cur||0,
     answers:s.answers||new Array(s.test.length).fill(null), correct:s.correct||0, incorrect:s.incorrect||0,
-    locked:!!s.locked, startTime:s.startTime||Date.now(), elapsed:s.elapsed };
+    locked:!!s.locked, startTime:s.startTime||Date.now(), elapsed:s.elapsed,
+    exam:!!s.exam, endedEarly:!!s.endedEarly };
   window.scrollTo(0,0); render(); if(state.view==='test') startTimer(); syncURL(true);
   return true;
 }catch(e){ clearSession(); return false; } }
@@ -1099,9 +1179,23 @@ function stopTimer(){ if(timerInt){ clearInterval(timerInt); timerInt=null; } }
  tr:{ streakN:"{n} günlük seri", streakStart:"Bugün bir seri başlat", goalToday:"Bugün {c}/{g} soru", reviewCard:"Hatalarını tekrar et", reviewSub:"Yanlış yaptığın {n} soruyu çöz — doğru yapınca listeden çıkar.", reviewBtn:"Tekrara başla", reviewLabel:"Hata tekrarı", share:"Sonucu paylaş", reviewEmpty:"Tekrar edilecek hata yok — harika!" },
  hi:{ streakN:"{n}-दिन की लय", streakStart:"आज लय शुरू करें", goalToday:"आज {c}/{g} प्रश्न", reviewCard:"अपनी गलतियाँ दोहराएँ", reviewSub:"जो {n} प्रश्न आपने गलत किए उन्हें हल करें — सही करने पर वे सूची से हट जाते हैं।", reviewBtn:"दोहराव शुरू करें", reviewLabel:"गलती दोहराव", share:"परिणाम साझा करें", reviewEmpty:"दोहराने के लिए कोई गलती नहीं — बढ़िया!" },
  ar:{ streakN:"سلسلة {n} يوم", streakStart:"ابدأ سلسلة اليوم", goalToday:"{c}/{g} سؤالاً اليوم", reviewCard:"راجع أخطاءك", reviewSub:"تدرّب على الأسئلة الـ{n} التي أخطأت فيها — تُحذف من القائمة عند إجابتها بشكل صحيح.", reviewBtn:"ابدأ المراجعة", reviewLabel:"مراجعة الأخطاء", share:"مشاركة النتيجة", reviewEmpty:"لا أخطاء للمراجعة — أحسنت!" } };
- if(window.I18N&&I18N.ui) Object.keys(E).forEach(function(L){ I18N.ui[L]=I18N.ui[L]||{}; for(var k in E[L]) if(I18N.ui[L][k]==null) I18N.ui[L][k]=E[L][k]; }); })();
+ /* UI packs merge into I18N.ui without overwriting; kept on window so they can be RE-merged after
+    the lazy Arabic pack replaces I18N.ui.ar wholesale (otherwise these keys silently fall back to EN). */
+ window._uiPacks=window._uiPacks||[];
+ window._mergeUiPacks=function(){ if(!(window.I18N&&I18N.ui)) return;
+   window._uiPacks.forEach(function(P){ Object.keys(P).forEach(function(L){ I18N.ui[L]=I18N.ui[L]||{}; for(var k in P[L]) if(I18N.ui[L][k]==null) I18N.ui[L][k]=P[L][k]; }); }); };
+ window._uiPacks.push(E); _mergeUiPacks(); })();
 /* localized "Special Requirements" suffix for the state-specific special category name */
-(function(){ var R={en:"Special Requirements",es:"Requisitos especiales",ru:"Особые требования",tr:"Özel Gereklilikler",hi:"विशेष आवश्यकताएँ",ar:"المتطلبات الخاصة"}; if(window.I18N&&I18N.ui) for(var L in R){ I18N.ui[L]=I18N.ui[L]||{}; if(I18N.ui[L].specReq==null) I18N.ui[L].specReq=R[L]; } })();
+(function(){ var R={en:"Special Requirements",es:"Requisitos especiales",ru:"Особые требования",tr:"Özel Gereklilikler",hi:"विशेष आवश्यकताएँ",ar:"المتطلبات الخاصة"}; var P={}; for(var L in R) P[L]={specReq:R[L]}; window._uiPacks.push(P); _mergeUiPacks(); })();
+/* Exam Simulator UI strings (all 6 languages) — mirrors the real DPS computer test behavior */
+(function(){ var X={
+ en:{ examTile:"REAL EXAM MODE", examTitle:"Exam Simulator", examDesc:"{n} random questions · {need} correct (80%) to pass. No feedback until the end, and it stops early the moment you've passed or failed — exactly like the real DPS computer test.", examStart:"Start exam →", examRetake:"↻ New exam — fresh random questions", examConfirm:"Confirm answer →", pickAnswerExam:"Pick an answer — it locks in when you confirm, and there's no going back.", examChip:"EXAM · results at the end", examEndedPass:"The exam ended early: you reached {need} correct answers, so a pass was already certain — the real DPS test stops the same way.", examEndedFail:"The exam ended early: too many wrong answers ({n}) made a pass impossible — the real DPS test stops the same way.", resultsCrumbExam:"Exam Simulator — Results", loadingQ:"Loading questions…" },
+ es:{ examTile:"MODO EXAMEN REAL", examTitle:"Simulador de examen", examDesc:"{n} preguntas al azar · {need} correctas (80%) para aprobar. Sin retroalimentación hasta el final, y termina antes en cuanto aprobar o reprobar ya es seguro — igual que el examen real de DPS.", examStart:"Comenzar examen →", examRetake:"↻ Nuevo examen — nuevas preguntas al azar", examConfirm:"Confirmar respuesta →", pickAnswerExam:"Elige una respuesta — se bloquea al confirmar y no puedes volver atrás.", examChip:"EXAMEN · resultados al final", examEndedPass:"El examen terminó antes: alcanzaste {need} correctas y aprobar ya era seguro — el examen real de DPS se detiene igual.", examEndedFail:"El examen terminó antes: con {n} errores ya no era posible aprobar — el examen real de DPS se detiene igual.", resultsCrumbExam:"Simulador de examen — Resultados", loadingQ:"Cargando preguntas…" },
+ ru:{ examTile:"РЕЖИМ РЕАЛЬНОГО ЭКЗАМЕНА", examTitle:"Симулятор экзамена", examDesc:"{n} случайных вопросов · для сдачи нужно {need} (80%). Ответы не показываются до конца, а экзамен завершается досрочно, как только сдача или провал предрешены — в точности как настоящий компьютерный тест DPS.", examStart:"Начать экзамен →", examRetake:"↻ Новый экзамен — новые случайные вопросы", examConfirm:"Подтвердить ответ →", pickAnswerExam:"Выберите ответ — после подтверждения изменить его нельзя.", examChip:"ЭКЗАМЕН · итог в конце", examEndedPass:"Экзамен завершён досрочно: вы набрали {need} правильных, сдача была уже гарантирована — настоящий тест DPS останавливается так же.", examEndedFail:"Экзамен завершён досрочно: после {n} ошибок сдать уже невозможно — настоящий тест DPS останавливается так же.", resultsCrumbExam:"Симулятор экзамена — результаты", loadingQ:"Загрузка вопросов…" },
+ tr:{ examTile:"GERÇEK SINAV MODU", examTitle:"Sınav Simülatörü", examDesc:"{n} rastgele soru · geçmek için {need} doğru (%80). Sınav bitene kadar geri bildirim yok; geçme ya da kalma kesinleştiği anda sınav erken biter — tıpkı gerçek DPS bilgisayar sınavı gibi.", examStart:"Sınava başla →", examRetake:"↻ Yeni sınav — yeni rastgele sorular", examConfirm:"Cevabı onayla →", pickAnswerExam:"Bir cevap seç — onayladığında kilitlenir, geri dönüş yok.", examChip:"SINAV · sonuçlar sonda", examEndedPass:"Sınav erken bitti: {need} doğruya ulaştın ve geçmen kesinleşti — gerçek DPS sınavı da böyle durur.", examEndedFail:"Sınav erken bitti: {n} yanlışla geçme ihtimali kalmadı — gerçek DPS sınavı da böyle durur.", resultsCrumbExam:"Sınav Simülatörü — Sonuçlar", loadingQ:"Sorular yükleniyor…" },
+ hi:{ examTile:"असली परीक्षा मोड", examTitle:"परीक्षा सिम्युलेटर", examDesc:"{n} रैंडम प्रश्न · पास होने के लिए {need} सही (80%)। अंत तक कोई फ़ीडबैक नहीं, और पास/फेल तय होते ही परीक्षा पहले ही रुक जाती है — बिल्कुल असली DPS कंप्यूटर टेस्ट की तरह।", examStart:"परीक्षा शुरू करें →", examRetake:"↻ नई परीक्षा — नए रैंडम प्रश्न", examConfirm:"उत्तर पक्का करें →", pickAnswerExam:"एक उत्तर चुनें — पुष्टि के बाद बदला नहीं जा सकता।", examChip:"परीक्षा · परिणाम अंत में", examEndedPass:"परीक्षा पहले समाप्त हुई: आपने {need} सही उत्तर पा लिए और पास होना तय था — असली DPS टेस्ट भी ऐसे ही रुकता है।", examEndedFail:"परीक्षा पहले समाप्त हुई: {n} गलतियों के बाद पास होना संभव नहीं था — असली DPS टेस्ट भी ऐसे ही रुकता है।", resultsCrumbExam:"परीक्षा सिम्युलेटर — परिणाम", loadingQ:"प्रश्न लोड हो रहे हैं…" },
+ ar:{ examTile:"وضع الامتحان الحقيقي", examTitle:"محاكي الامتحان", examDesc:"{n} سؤالاً عشوائياً · تحتاج {need} إجابة صحيحة (80%) للنجاح. لا تظهر النتائج حتى النهاية، وينتهي الامتحان مبكراً فور حسم النجاح أو الرسوب — تماماً مثل اختبار DPS الحقيقي على الحاسوب.", examStart:"ابدأ الامتحان →", examRetake:"↻ امتحان جديد — أسئلة عشوائية جديدة", examConfirm:"تأكيد الإجابة →", pickAnswerExam:"اختر إجابة — تُقفل بعد التأكيد ولا يمكن الرجوع.", examChip:"امتحان · النتائج في النهاية", examEndedPass:"انتهى الامتحان مبكراً: وصلت إلى {need} إجابة صحيحة وأصبح النجاح مؤكداً — اختبار DPS الحقيقي يتوقف بالطريقة نفسها.", examEndedFail:"انتهى الامتحان مبكراً: بعد {n} أخطاء لم يعد النجاح ممكناً — اختبار DPS الحقيقي يتوقف بالطريقة نفسها.", resultsCrumbExam:"محاكي الامتحان — النتائج", loadingQ:"جارٍ تحميل الأسئلة…" } };
+ window._uiPacks.push(X); _mergeUiPacks(); })();
 function t(key, vars){
   let s = (window.I18N && I18N.ui[LANG] && I18N.ui[LANG][key]);
   if(s==null) s = (window.I18N && I18N.ui.en[key]!=null) ? I18N.ui.en[key] : key;
@@ -1141,6 +1235,9 @@ function ensureLangPack(l, cb){
          active state so a non-TX state (e.g. California) keeps its OWN Arabic special bank — otherwise
          translations-ar-q.js (a full I18N.q.ar assignment) would clobber the state's special.ar. */
       try{ if(window.I18N && I18N.q && I18N.q.ar){ if(_defSpecQ && _defSpecQ.ar===undefined) _defSpecQ.ar=Object.assign({}, I18N.q.ar.special||{}); if(typeof STATE!=='undefined') applyState(STATE); } }catch(e){}
+      /* translations-ar.js replaces I18N.ui.ar wholesale — re-merge the inline UI packs
+         (engagement, specReq, exam simulator) so those strings stay Arabic-aware. */
+      try{ if(window._mergeUiPacks) _mergeUiPacks(); }catch(e){}
       if(cb) cb(); return; }
     var s=document.createElement('script'); s.src=files[i++];
     s.onload=next; s.onerror=next; document.head.appendChild(s);
@@ -1328,7 +1425,14 @@ function render(){
   else if(state.view==='pretrip') el.innerHTML = renderPretrip();
   else if(state.view==='skills') el.innerHTML = renderSkills();
   else if(state.view==='basic'||state.view==='road') el.innerHTML = renderSkillDetail(state.view);
-  else if(state.view==='category') el.innerHTML = renderCategory(state.catId);
+  else if(state.view==='category'){
+    if(!bankReady(state.catId)){
+      el.innerHTML='<div class="bankload"><span class="spin"></span>'+t('loadingQ')+'</div>';
+      ensureBank(state.catId, function(){ if(state.view==='category') render(); });
+      mountAds(); return;
+    }
+    el.innerHTML = renderCategory(state.catId);
+  }
   else if(state.view==='test'){ renderTestShell(); return; }
   else if(state.view==='results') el.innerHTML = renderResults();
   else if(state.view==='stats') el.innerHTML = renderStats();
@@ -1707,18 +1811,36 @@ function renderCategory(catId){
   // One single grid: learning-test tiles first (labelled "LEARNING TEST"), then the
   // practice-test tiles (labelled "PRACTICE TEST"). No sub-sections.
   const tiles = (learn ? catTiles(learn) : '') + catTiles(cat);
+  // Exam Simulator card — a fresh random draw under real DPS rules, kept separate from practice tiles
+  const exr = (loadProgress().__exam||{})[cat.id];
+  const exBadge = exr ? (exr.passed?`<span class="badge b-pass">${t('passedB')}</span>`:`<span class="badge b-fail">${t('notYet')}</span>`)
+                      : `<span class="badge b-new">${t('notStarted')}</span>`;
+  const exBest = exr ? `<div class="best" style="margin-top:8px">${t('bestLine',{c:(exr.bestCorrect||exr.lastCorrect||0),t:exr.total,pct:exr.bestPct,a:exr.attempts})}</div>` : '';
+  const examCard = `<div class="examcard" role="button" tabindex="0" onclick="startExam('${cat.id}')" onkeydown="if(event.key==='Enter'){event.preventDefault();startExam('${cat.id}');}">
+      <div class="ex-ico">🎯</div>
+      <div class="ex-body">
+        <div class="ex-kicker">${t('examTile')}</div>
+        <h3>${t('examTitle')}</h3>
+        <p>${t('examDesc',{n:cat.examSize,need:cat.passNeed})}</p>
+        ${exBadge}${exBest}
+      </div>
+      <button class="btn primary ex-btn" onclick="event.stopPropagation();startExam('${cat.id}')">${t('examStart')}</button>
+    </div>`;
   return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <span>${catName(cat)}</span></div>
     <div class="section-head">
       <div><h2>${catName(cat)}</h2>
       <div class="info">${t('catInfo',{exam:cat.examSize,need:cat.passNeed,sec:cat.hbSection})}</div></div>
       <div class="badge ${s.passed===s.total?'b-pass':'b-new'}">${t('passedBadge',{p:s.passed,t:s.total})}</div>
     </div>
+    ${examCard}
     <div class="tests">${tiles}</div>`;
 }
 
 /* ============================ TEST RUNNER ============================ */
 function startTest(catId, idx){
+  if(!bankReady(catId)){ showBankLoading(); ensureBank(catId, function(){ startTest(catId, idx); }); return; }
   const cat = DATA.categories.find(c=>c.id===catId);
+  if(!cat) return;
   const test = buildTest(cat, idx);
   state = { view:'test', catId, idx, cat, test, cur:0,
             answers:new Array(test.length).fill(null), correct:0, incorrect:0, locked:false, startTime:Date.now() };
@@ -1729,9 +1851,38 @@ function startTest(catId, idx){
   saveSession();
 }
 
+/* ---- Exam Simulator: mirrors the real DPS computer test ----
+   · examSize questions drawn RANDOMLY from the whole pool (fresh every attempt)
+   · no feedback while answering; the answer locks when confirmed, no going back
+   · the exam STOPS EARLY the moment a pass (reached passNeed correct) or a fail
+     (too many wrong to still pass) is mathematically certain — like the real kiosk
+   · full review with explanations only on the results screen */
+function startExam(catId){
+  if(!bankReady(catId)){ showBankLoading(); ensureBank(catId, function(){ startExam(catId); }); return; }
+  const cat = DATA.categories.find(c=>c.id===catId);
+  if(!cat) return;
+  const pool = cat.questions, P = pool.length, E = Math.min(cat.examSize, P);
+  const pick = randShuffle(pool.map((q,i)=>i)).slice(0,E);
+  const test = pick.map(qi=>{
+    const q = pool[qi];
+    const _idx = q.options.map((o,i)=>i);
+    const _pin = _idx.filter(i=>/^(all|none)\b/i.test(String(q.options[i]).trim()));
+    const _free = _idx.filter(i=>_pin.indexOf(i)<0);
+    const optOrder = randShuffle(_free).concat(_pin);
+    return { qid: qi, optOrder, answer: optOrder.indexOf(q.answer) };
+  });
+  state = { view:'test', exam:true, catId, idx:0, cat, test, cur:0,
+            answers:new Array(test.length).fill(null), correct:0, incorrect:0, locked:false, startTime:Date.now() };
+  window.scrollTo(0,0);
+  renderTestShell();
+  startTimer();
+  syncURL(false);
+  saveSession();
+}
+
 function renderTestShell(){
   const el = document.getElementById('app');
-  el.innerHTML = `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${baseCatId(state.cat)}'})">${catName(state.cat)}</a> › <span>${testLabel(state.cat,state.idx)}</span></div>
+  el.innerHTML = `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${baseCatId(state.cat)}'})">${catName(state.cat)}</a> › <span>${state.exam? t('examTitle') : testLabel(state.cat,state.idx)}</span></div>
     <div class="runner" id="runner"></div>`;
   paintQuestion();
 }
@@ -1740,28 +1891,30 @@ function paintQuestion(){
   const s = state, it = s.test[s.cur], qd = qData(it.catId||s.catId, it.qid);
   const dispOpts = it.optOrder.map(oi=>qd.options[oi]);
   const isLearn = s.cat && s.cat.kind==="learn";        // learning tests have no pass/fail "misses" pressure
+  const isExam = !!s.exam;                              // exam sim: no feedback until the end
   const allowMiss = s.test.length - passMark(s.test.length);
   const missLeft = allowMiss - s.incorrect;
   const pct = Math.round((s.cur)/s.test.length*100);
   const prevAns = s.answers[s.cur];
   const answered = prevAns !== null;
+  const locked = answered && !isExam;                   // in exam mode a selection stays editable until confirmed
 
   const opts = dispOpts.map((txt,i)=>{
     let cls='opt';
-    if(answered){
+    if(locked){
       if(i===it.answer) cls+=' correct';
       else if(i===prevAns) cls+=' wrong';
-    }
+    } else if(isExam && i===prevAns) cls+=' sel';
     const key = String.fromCharCode(65+i);
     let mark='';
-    if(answered && i===it.answer) mark='<span class="mark" style="color:var(--green)">✓</span>';
-    else if(answered && i===prevAns) mark='<span class="mark" style="color:var(--red)">✗</span>';
-    return `<button class="${cls}" ${answered?'disabled':''} onclick="choose(${i})">
+    if(locked && i===it.answer) mark='<span class="mark" style="color:var(--green)">✓</span>';
+    else if(locked && i===prevAns) mark='<span class="mark" style="color:var(--red)">✗</span>';
+    return `<button class="${cls}" ${locked?'disabled':''} onclick="choose(${i})">
       <span class="key">${key}</span><span>${txt}</span>${mark}</button>`;
   }).join('');
 
   let explain='';
-  if(answered){
+  if(locked){
     const good = prevAns===it.answer;
     const L = String.fromCharCode(65+it.answer);
     explain = `<div class="explain show ${good?'good':'bad'}">
@@ -1772,14 +1925,18 @@ function paintQuestion(){
   }
 
   const isLast = s.cur === s.test.length-1;
+  const tally = isExam
+    ? `<span class="chip time" id="qtimer">${fmtTime(Date.now()-(s.startTime||Date.now()))}</span>
+        <span class="chip exm">${t('examChip')}</span>`
+    : `<span class="chip time" id="qtimer">${fmtTime(Date.now()-(s.startTime||Date.now()))}</span>
+        <span class="chip ok">✓ ${s.correct}</span>
+        <span class="chip no">✗ ${s.incorrect}</span>
+        ${isLearn ? '' : `<span class="chip left">${t('chipMiss',{n:(missLeft<0?0:missLeft)})}</span>`}`;
   document.getElementById('runner').innerHTML = `
     <div class="runbar">
       <span class="qpos">${t('tQuestion')} ${s.cur+1} <span style="color:var(--muted);font-weight:600">/ ${s.test.length}</span></span>
       <div class="tally">
-        <span class="chip time" id="qtimer">${fmtTime(Date.now()-(s.startTime||Date.now()))}</span>
-        <span class="chip ok">✓ ${s.correct}</span>
-        <span class="chip no">✗ ${s.incorrect}</span>
-        ${isLearn ? '' : `<span class="chip left">${t('chipMiss',{n:(missLeft<0?0:missLeft)})}</span>`}
+        ${tally}
       </div>
     </div>
     <div class="pbar"><i style="width:${pct}%"></i></div>
@@ -1790,8 +1947,8 @@ function paintQuestion(){
       ${explain}
     </div>
     <div class="runfoot">
-      ${answered ? `<button class="btn primary" onclick="next()">${isLast? t('seeResults') : t('nextQ')}</button>`
-                 : `<span class="hint">${t('pickAnswer')}</span>`}
+      ${answered ? `<button class="btn primary" onclick="next()">${isExam? t('examConfirm') : (isLast? t('seeResults') : t('nextQ'))}</button>`
+                 : `<span class="hint">${isExam? t('pickAnswerExam') : t('pickAnswer')}</span>`}
       <span class="top-spacer" style="flex:1"></span>
       <button class="btn ghost" onclick="confirmQuit()">${t('quit')}</button>
     </div>`;
@@ -1800,7 +1957,16 @@ function paintQuestion(){
 function setKbFocus(i){ const nodes=document.querySelectorAll('.opts .opt'); if(!nodes.length) return; const n=nodes.length; state.kb=((i%n)+n)%n; for(let k=0;k<n;k++) nodes[k].classList.toggle('kbfocus',k===state.kb); const el=nodes[state.kb]; if(el&&el.scrollIntoView) el.scrollIntoView({block:'nearest'}); }
 
 function choose(i){
-  const s=state; if(s.answers[s.cur]!==null) return;
+  const s=state;
+  if(s.exam){
+    /* exam mode: selecting just highlights; you can change it until you press Confirm */
+    if(s.answers[s.cur]===i) return;
+    s.answers[s.cur]=i;
+    paintQuestion();
+    saveSession();
+    return;
+  }
+  if(s.answers[s.cur]!==null) return;
   s.answers[s.cur]=i;
   if(i===s.test[s.cur].answer) s.correct++; else s.incorrect++;
   paintQuestion();
@@ -1811,6 +1977,18 @@ function choose(i){
 function next(){
   stopSpeak();
   const s=state;
+  if(s.exam){
+    /* Confirm locks the answer, scores it silently, then — like the real DPS computer test —
+       ends the exam early the moment the outcome is mathematically certain. */
+    if(s.answers[s.cur]===null) return;
+    if(s.answers[s.cur]===s.test[s.cur].answer) s.correct++; else s.incorrect++;
+    const total=s.test.length, need=passMark(total), allowMiss=total-need;
+    const decided = s.correct>=need || s.incorrect>allowMiss;
+    if(decided && s.cur<total-1){ s.endedEarly=true; finishTest(); return; }
+    if(s.cur<total-1){ s.cur++; paintQuestion(); saveSession(); window.scrollTo({top:0,behavior:'smooth'}); }
+    else finishTest();
+    return;
+  }
   if(s.cur < s.test.length-1){ s.cur++; paintQuestion(); saveSession(); window.scrollTo({top:0,behavior:'smooth'}); }
   else finishTest();
 }
@@ -1818,10 +1996,22 @@ function confirmQuit(){ askConfirm(t('confirmQuit'), ()=>go('category',{catId:ba
 function finishTest(){
   state.elapsed = Date.now() - (state.startTime||Date.now());
   stopTimer();
-  try{ if(window.PR){ PR.recordActivity(state.test.length); state.test.forEach((it,i)=>{ const ok=state.answers[i]===it.answer, cid=it.catId||state.catId; if(state.review){ if(ok) PR.clearMistake('cdl',cid,it.qid); } else if(!ok) PR.recordMistakes('cdl',cid,[it.qid]); }); } }catch(e){}
+  /* skip unanswered questions (an early-ended exam) so unseen questions are never logged as mistakes */
+  try{ if(window.PR){ PR.recordActivity(state.exam?(state.correct+state.incorrect):state.test.length); state.test.forEach((it,i)=>{ if(state.answers[i]===null) return; const ok=state.answers[i]===it.answer, cid=it.catId||state.catId; if(state.review){ if(ok) PR.clearMistake('cdl',cid,it.qid); } else if(!ok) PR.recordMistakes('cdl',cid,[it.qid]); }); } }catch(e){}
   if(!state.review){
-    recordResult(state.catId, state.idx, state.correct, state.test.length);
-    pushHistory({ts:Date.now(), cat:state.catId, idx:state.idx, correct:state.correct, total:state.test.length, pct:Math.round(state.correct/state.test.length*100), passed:state.correct>=passMark(state.test.length), secs:Math.round((state.elapsed||0)/1000)});
+    if(state.exam){
+      /* exam attempts are stored separately (progress.__exam) so they never overwrite Practice Test #1 */
+      const total=state.test.length, pct=Math.round(state.correct/total*100), passed=state.correct>=passMark(total);
+      const p=loadProgress(); p.__exam=p.__exam||{}; const prev=p.__exam[state.catId];
+      p.__exam[state.catId]={ passed: passed||(prev&&prev.passed)||false, lastPct:pct, lastCorrect:state.correct,
+        bestPct: prev?Math.max(prev.bestPct,pct):pct, bestCorrect: prev?Math.max(prev.bestCorrect||0,state.correct):state.correct,
+        total, attempts:(prev?prev.attempts:0)+1 };
+      saveProgress(p);
+      pushHistory({ts:Date.now(), cat:state.catId, idx:0, exam:1, correct:state.correct, total, pct, passed, secs:Math.round((state.elapsed||0)/1000)});
+    } else {
+      recordResult(state.catId, state.idx, state.correct, state.test.length);
+      pushHistory({ts:Date.now(), cat:state.catId, idx:state.idx, correct:state.correct, total:state.test.length, pct:Math.round(state.correct/state.test.length*100), passed:state.correct>=passMark(state.test.length), secs:Math.round((state.elapsed||0)/1000)});
+    }
   }
   state.view='results';
   window.scrollTo(0,0);
@@ -1831,6 +2021,10 @@ function finishTest(){
 }
 function startReview(){
   const miss = (window.PR?PR.mistakeList('cdl',30):[]); if(!miss.length){ toast(t('reviewEmpty')); return; }
+  /* mistakes may reference qids in not-yet-loaded packs — pull every needed bank first */
+  const needCats = []; miss.forEach(m=>{ const b=_bankBase(m.catId); if(!bankReady(b) && needCats.indexOf(b)<0) needCats.push(b); });
+  if(needCats.length){ showBankLoading(); let left=needCats.length;
+    needCats.forEach(c=>ensureBank(c, function(){ if(--left===0) startReview(); })); return; }
   const test = miss.map(m=>{ const cat=DATA.categories.find(c=>c.id===m.catId); if(!cat||!cat.questions[m.qid]) return null;
     const q=cat.questions[m.qid]; const _idx=q.options.map((o,i)=>i); const _pin=_idx.filter(i=>/^(all|none)\b/i.test(String(q.options[i]).trim())); const _free=_idx.filter(i=>_pin.indexOf(i)<0); const optOrder=randShuffle(_free).concat(_pin);
     return { catId:m.catId, qid:m.qid, optOrder, answer:optOrder.indexOf(q.answer) }; }).filter(Boolean);
@@ -1848,7 +2042,9 @@ function renderResults(){
   const need = passMark(total);
   const passed = correct >= need;
 
-  const reviews = s.test.map((it,i)=>{
+  /* an early-ended exam only reviews the questions that were actually answered */
+  const shown = s.exam ? s.test.slice(0, s.correct+s.incorrect) : s.test;
+  const reviews = shown.map((it,i)=>{
     const qd = qData(it.catId||s.catId, it.qid);
     const dispOpts = it.optOrder.map(oi=>qd.options[oi]);
     const you=s.answers[i]; const ok=you===it.answer;
@@ -1863,22 +2059,25 @@ function renderResults(){
     </div>`;
   }).join('');
 
-  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${baseCatId(s.cat)}'})">${catName(s.cat)}</a> › <span>${s.cat&&s.cat.kind==='learn'?t('resultsCrumbLesson',{n:s.idx+1}):t('resultsCrumb',{n:s.idx+1})}</span></div>
+  const crumbLabel = s.exam ? t('resultsCrumbExam')
+    : (s.cat&&s.cat.kind==='learn'?t('resultsCrumbLesson',{n:s.idx+1}):t('resultsCrumb',{n:s.idx+1}));
+  return `<div class="crumb"><a onclick="go('home')">${t('home')}</a> › <a onclick="go('category',{catId:'${baseCatId(s.cat)}'})">${catName(s.cat)}</a> › <span>${crumbLabel}</span></div>
     <div class="result ${passed?'pass':'fail'}">
       <div class="seal">${passed?'✓':'✗'}</div>
       <h2>${passed? t('rPassed') : t('rFailed')}</h2>
       <div class="score">${pct}%</div>
       <div class="line">${t('rScoreLine',{c:correct,t:total,need:need})}${passed?'': t('rMore',{n:need-correct})}</div>
-      <div class="rtime">${t('resTime',{t:fmtTime(s.elapsed||0)})} · ${t('resAvg',{s:Math.max(1,Math.round((s.elapsed||0)/1000/total))})}</div>
+      ${s.endedEarly ? `<div class="early-note">${passed? t('examEndedPass',{need:need}) : t('examEndedFail',{n:s.incorrect})}</div>` : ''}
+      <div class="rtime">${t('resTime',{t:fmtTime(s.elapsed||0)})} · ${t('resAvg',{s:Math.max(1,Math.round((s.elapsed||0)/1000/Math.max(1,(s.exam?(s.correct+s.incorrect):total))))})}</div>
       <div class="actions">
-        <button class="btn primary" onclick="${s.review?`startReview()`:`startTest('${s.catId}',${s.idx})`}">${t('rRetake')}</button>
+        <button class="btn primary" onclick="${s.review?`startReview()`:(s.exam?`startExam('${s.catId}')`:`startTest('${s.catId}',${s.idx})`)}">${s.exam? t('examRetake') : t('rRetake')}</button>
         <button class="btn ghost" onclick="shareCDL()">${t('share')}</button>
         ${s.review?'':`<button class="btn ghost" onclick="go('category',{catId:'${baseCatId(s.cat)}'})">${t('rBackTo',{cat:catName(s.cat)})}</button>`}
         <button class="btn ghost" onclick="go('home')">${t('rAllCats')}</button>
       </div>
     </div>
     <ins class="adsbygoogle" style="display:block;margin:18px 0" data-ad-client="ca-pub-5005909536075464" data-ad-slot="3385282635" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <div class="review"><h3>${t('rReview',{t:total})}</h3>${reviews}</div>`;
+    <div class="review"><h3>${t('rReview',{t:shown.length})}</h3>${reviews}</div>`;
 }
 
 /* ============================ STATS ============================ */
@@ -1900,7 +2099,7 @@ function renderStats(){
     const c=DATA.categories.find(x=>x.id===r.cat);
     let d=''; try{ d=new Date(r.ts).toLocaleString(LANG,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }catch(e){ d=new Date(r.ts).toLocaleString(); }
     return `<div class="srow ${r.passed?'p':'f'}">
-      <div class="sr-cat">${c?catName(c):r.cat} · ${c?testLabel(c,r.idx):t('tileTest',{n:r.idx+1})}</div>
+      <div class="sr-cat">${c?catName(c):r.cat} · ${r.exam? t('examTitle') : (c?testLabel(c,r.idx):t('tileTest',{n:r.idx+1}))}</div>
       <div class="sr-sc">${r.correct}/${r.total} · ${r.pct}%</div>
       <div class="sr-tm">⏱ ${fmtTime((r.secs||0)*1000)}</div>
       <div class="sr-st">${r.passed?'✓':'✗'}</div>
@@ -1951,15 +2150,18 @@ function toggleTheme(){
   window.addEventListener('DOMContentLoaded',()=>{ const b=document.getElementById('themeBtn'); if(b) b.textContent=t==='dark'?'☀️':'🌙'; });
 })();
 
-/* keyboard: ↑/↓ move the focus ring across answers, Enter selects (or advances when answered); 1-4 still answer directly */
+/* keyboard: ↑/↓ move the focus ring across answers, Enter selects (or advances when answered); 1-4 still answer directly.
+   Exam mode: the selection stays editable — arrows/numbers re-select any time, Enter confirms the highlighted/selected answer. */
 document.addEventListener('keydown',e=>{
   if(state.view!=='test') return;
   if(e.target&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
-  const s=state, answered=s.answers[s.cur]!==null, n=s.test[s.cur].optOrder.length, kb=(typeof s.kb==='number'&&s.kb>=0)?s.kb:-1;
-  if(!answered && (e.key==='ArrowDown'||e.key==='ArrowUp')){ e.preventDefault(); setKbFocus(kb<0?(e.key==='ArrowDown'?0:n-1):kb+(e.key==='ArrowDown'?1:-1)); }
-  else if(e.key==='Enter'){ e.preventDefault(); if(!answered) choose(kb<0?0:kb); else next(); }
-  else if(!answered && ['1','2','3','4'].includes(e.key)){ const i=+e.key-1; if(i<n) choose(i); }
-  else if(answered && (e.key==='n'||e.key===' ')){ e.preventDefault(); next(); }
+  const s=state, isExam=!!s.exam, sel=s.answers[s.cur]!==null, locked=sel&&!isExam, n=s.test[s.cur].optOrder.length, kb=(typeof s.kb==='number'&&s.kb>=0)?s.kb:-1;
+  if(!locked && (e.key==='ArrowDown'||e.key==='ArrowUp')){ e.preventDefault(); setKbFocus(kb<0?(e.key==='ArrowDown'?0:n-1):kb+(e.key==='ArrowDown'?1:-1)); }
+  else if(e.key==='Enter'){ e.preventDefault();
+    if(isExam){ if(kb>=0 && s.answers[s.cur]!==kb) choose(kb); else if(sel) next(); }
+    else { if(!sel) choose(kb<0?0:kb); else next(); } }
+  else if(!locked && ['1','2','3','4'].includes(e.key)){ const i=+e.key-1; if(i<n) choose(i); }
+  else if(sel && !isExam && (e.key==='n'||e.key===' ')){ e.preventDefault(); next(); }
 });
 
 /* ============================ ONBOARDING PICKER ============================ */
@@ -1969,7 +2171,8 @@ var OB={ en:{title:"Welcome to PassRoute",sub:"Pick your test and your state —
   es:{title:"Bienvenido a PassRoute",sub:"Elige tu examen y tu estado — lo recordaremos.",cdl:"Licencia comercial",dl:"Licencia de conducir",state:"Tu estado",start:"Comenzar →"},
   ru:{title:"Добро пожаловать в PassRoute",sub:"Выберите экзамен и штат — мы запомним.",cdl:"Коммерческие права",dl:"Водительские права",state:"Ваш штат",start:"Начать →"},
   tr:{title:"PassRoute'a hoş geldin",sub:"Sınavını ve eyaletini seç — hatırlayacağız.",cdl:"Ticari ehliyet",dl:"Sürücü belgesi",state:"Eyaletin",start:"Başla →"},
-  hi:{title:"PassRoute में आपका स्वागत है",sub:"अपना टेस्ट और राज्य चुनें — हम याद रखेंगे।",cdl:"वाणिज्यिक लाइसेंस",dl:"ड्राइवर लाइसेंस",state:"आपका राज्य",start:"शुरू करें →"} };
+  hi:{title:"PassRoute में आपका स्वागत है",sub:"अपना टेस्ट और राज्य चुनें — हम याद रखेंगे।",cdl:"वाणिज्यिक लाइसेंस",dl:"ड्राइवर लाइसेंस",state:"आपका राज्य",start:"शुरू करें →"},
+  ar:{title:"مرحباً بك في PassRoute",sub:"اختر امتحانك وولايتك — سنتذكر ذلك.",cdl:"رخصة تجارية",dl:"رخصة قيادة",state:"ولايتك",start:"ابدأ →"} };
 function ob(k){ return (OB[LANG]&&OB[LANG][k])||OB.en[k]; }
 function needsOnboarding(){ try{ var p=new URLSearchParams(location.search); if(p.get('v')||p.get('cat')) return false; return !localStorage.getItem('pr_exam'); }catch(e){ return false; } }
 var _obExam=null;

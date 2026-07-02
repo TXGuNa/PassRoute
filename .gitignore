@@ -11,3 +11,6 @@ Thumbs.db
 
 # wrangler local dev state
 .wrangler/
+
+# FUSE mount temp files
+.fuse_hidden*
