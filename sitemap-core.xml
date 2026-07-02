@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://passroute.ai/</loc>
     <changefreq>weekly</changefreq>
@@ -9,6 +9,7 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/?lang=tr"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/"/>
   </url>
   <url>
@@ -20,6 +21,7 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/home/?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/home/?lang=tr"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/home/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/home/?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/home/"/>
   </url>
   <url>
@@ -31,6 +33,7 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/dl/?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/dl/?lang=tr"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/dl/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/dl/?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/dl/"/>
   </url>
   <url>
@@ -42,6 +45,7 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/citizenship/?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/citizenship/?lang=tr"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/citizenship/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/citizenship/?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/citizenship/"/>
   </url>
   <url>
@@ -118,5 +122,89 @@
     <loc>https://passroute.ai/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://passroute.ai/boater/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/boater/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/boater/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/boater/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/boater/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/boater/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/boater/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/boater/"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/drone/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/drone/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/drone/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/drone/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/drone/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/drone/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/drone/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/drone/"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/epa608/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/epa608/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/epa608/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/epa608/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/epa608/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/epa608/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/epa608/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/epa608/"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/security-guard/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/security-guard/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/security-guard/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/security-guard/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/security-guard/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/security-guard/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/security-guard/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/security-guard/"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/servsafe/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/servsafe/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/servsafe/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/servsafe/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/servsafe/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/servsafe/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/servsafe/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/servsafe/"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/real-estate/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/real-estate/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/real-estate/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/real-estate/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/real-estate/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/real-estate/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/real-estate/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/real-estate/"/>
+  </url>
+  <url>
+    <loc>https://passroute.ai/notary/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://passroute.ai/notary/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://passroute.ai/notary/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://passroute.ai/notary/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://passroute.ai/notary/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://passroute.ai/notary/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://passroute.ai/notary/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://passroute.ai/notary/"/>
   </url>
 </urlset>

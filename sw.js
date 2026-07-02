@@ -1,9 +1,15 @@
 /* PassRoute service worker — offline support (stale-while-revalidate).
    Bump CACHE when you ship new content so clients refresh. */
-const CACHE = 'passroute-v13';
+const CACHE = 'passroute-v15';
+/* Precache = the light core shell only. The heavy packs (questions-extra.js, upgrades.*.js,
+   learn.*.js, translations-ar-*.js, state-special/*.js) are loaded on demand by the app and
+   land in this same cache via the stale-while-revalidate fetch handler below on first use —
+   so anything you've opened once keeps working offline, without forcing a 15 MB install. */
 const ASSETS = [
   './', 'index.html',
-  'questions.js', 'translations.js', 'translations-es.js', 'endorsements.js', 'questions-extra.js', 'pretrip.js',
+  'questions.js', 'translations.js', 'translations-es.js', 'translations-hi.js',
+  'translations-hi-gk-extra.js', 'endorsements.js', 'pretrip.js', 'skills.js',
+  'states-meta.js', 'state-special-index.js', 'pr-engagement.js', 'pr-analytics.js',
   'logo.png', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'favicon-32.png', 'favicon-64.png',
   'manifest.json', 'Texas-CDL-Study-Guide.pdf'
 ];

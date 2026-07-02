@@ -515,6 +515,14 @@
   .mk-sec{font-weight:760}
   .mk-clock{font-variant-numeric:tabular-nums;font-weight:800;font-size:1.1rem;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:3px 12px}
   .mk-clock.low{color:#fff;background:var(--red);border-color:var(--red)}
+  .mk-clockwrap{display:inline-flex;align-items:center;gap:8px}
+  .mk-clocklbl{font-size:.74rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  @media(max-width:480px){ .mk-clocklbl{display:none} }
+  .exam-btns{display:flex;flex-wrap:wrap;gap:10px}
+  .exam-btns .btn{display:inline-flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2}
+  .exam-btns .eb-meta{font-size:.72rem;font-weight:600;opacity:.75}
+  @media(max-width:560px){ .exam-btns{flex-direction:column} .exam-btns .btn{width:100%} }
+  .mk-estlbl{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
   .opt.picked{border-color:var(--blue);box-shadow:inset 0 0 0 2px var(--blue)}
   .opt.kbfocus{outline:3px solid var(--blue);outline-offset:2px}
   .flagbtn{background:none;border:1px solid var(--line);border-radius:8px;padding:4px 11px;font-size:.82rem;font-weight:700;color:var(--muted);cursor:pointer}
@@ -565,7 +573,7 @@
     <button class="hbtn ic" onclick="go('home')" id="homeBtn" title="Home" aria-label="Home">🏠</button>
     <div class="langdd" id="examdd" style="margin-right:6px">
       <button class="langbtn" id="examBtn" onclick="toggleExamMenu(event)" aria-haspopup="listbox" title="Exam"><span class="exam-ic">🎓</span><span class="exam-txt">SAT</span><span class="cv">▾</span></button>
-      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('cdl')">📋 Commercial (CDL)</button><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('civ')">🛂 US Citizenship</button><button role="option" onclick="switchExam('moto')">🏍️ Motorcycle</button><button role="option" onclick="switchExam('moto')">🏍️ Motorcycle</button><button role="option" onclick="switchExam('ged')">📚 GED</button><button role="option" onclick="switchExam('fh')">🍽️ Food Handler</button><button role="option" onclick="switchExam('cb')">📦 Customs Broker</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
+      <div class="langmenu" id="examMenu" role="listbox"><button role="option" onclick="switchExam('cdl')">📋 Commercial (CDL)</button><button role="option" onclick="switchExam('dl')">🚗 Driver License (DL)</button><button role="option" onclick="switchExam('moto')">🏍️ Motorcycle</button><button role="option" onclick="switchExam('civ')">🛂 Citizenship</button><button role="option" onclick="switchExam('ged')">📚 GED</button><button role="option" onclick="switchExam('fh')">🍽️ Food Handler</button><button role="option" onclick="switchExam('ssm')">👨‍🍳 Food Manager</button><button role="option" onclick="switchExam('cb')">📦 Customs Broker</button><button role="option" onclick="switchExam('boater')">⛵ Boater Safety</button><button role="option" onclick="switchExam('drone')">🛩️ Drone (Part 107)</button><button role="option" onclick="switchExam('epa')">❄️ EPA 608 (HVAC)</button><button role="option" onclick="switchExam('guard')">🛡️ Security Guard</button><button role="option" onclick="switchExam('re')">🏡 Real Estate</button><button role="option" onclick="switchExam('notary')">📜 Notary Public</button><button role="option" onclick="switchExam('home')">🏠 All exams</button></div>
     </div>
     <div class="langdd" id="langdd">
       <button class="langbtn" id="langBtn" onclick="toggleLangMenu(event)" aria-haspopup="listbox" aria-expanded="false"><span id="langCur">EN</span><span class="cv">▾</span></button>
@@ -924,6 +932,40 @@ var MOCK_UI = {
    outOf1600:"من 1600", rawCorrect:"{c}/{t} صحيحة", estNote:"تقدير بناءً على عدد إجاباتك الصحيحة. تُعدَّل درجات SAT الرقمي الرسمية حسب نموذج الاختبار، لذا قد تختلف درجتك الفعلية.", mockReviewT:"مراجعة الإجابات", retakeMock:"إعادة الاختبار الكامل" }
 };
 Object.keys(MOCK_UI).forEach(function(L){ for(var k in MOCK_UI[L]) UI[L][k]=MOCK_UI[L][k]; });
+/* ===== Exam Simulation UI strings (single timed modules + full exam, merged into UI) ===== */
+var EXAMSIM_UI = {
+ en:{ examSim:"Exam Simulation", examSimSub:"Take a realistic, timed Digital SAT module — no feedback until you finish, just like test day. Pick a single module or run the full exam.",
+   examRW:"Reading & Writing module", examMath:"Math module", examFull:"Full exam", examRWMeta:"27 questions · 32 min", examMathMeta:"22 questions · 35 min", examFullMeta:"49 questions · 67 min",
+   examStartRW:"Start R&W", examStartMath:"Start Math", examStartFull:"Start full exam", moduleTag:"Timed module",
+   timeLeft:"Time left", moduleDone:"Module complete", estScore:"Estimated score", outOf800:"out of 800", scaledSec:"{sec} — estimated {score}/800",
+   estScoreNote:"This is an ESTIMATE. Official Digital SAT scores are equated per test form and the real test is adaptive, so your actual score will differ.", retakeModule:"Retake module" },
+ es:{ examSim:"Simulación de examen", examSimSub:"Realiza un módulo del SAT Digital cronometrado y realista — sin correcciones hasta terminar, como el día del examen. Elige un solo módulo o el examen completo.",
+   examRW:"Módulo de Lectura y redacción", examMath:"Módulo de Matemáticas", examFull:"Examen completo", examRWMeta:"27 preguntas · 32 min", examMathMeta:"22 preguntas · 35 min", examFullMeta:"49 preguntas · 67 min",
+   examStartRW:"Empezar L&R", examStartMath:"Empezar Mate", examStartFull:"Empezar examen completo", moduleTag:"Módulo cronometrado",
+   timeLeft:"Tiempo restante", moduleDone:"Módulo completado", estScore:"Puntuación estimada", outOf800:"de 800", scaledSec:"{sec} — estimado {score}/800",
+   estScoreNote:"Esto es una ESTIMACIÓN. Las puntuaciones oficiales del SAT Digital se ajustan por versión y el examen real es adaptativo, así que tu puntuación real diferirá.", retakeModule:"Repetir módulo" },
+ ru:{ examSim:"Симуляция экзамена", examSimSub:"Пройдите реалистичный модуль Digital SAT с таймером — без проверки до конца, как в день экзамена. Выберите один модуль или весь экзамен.",
+   examRW:"Модуль «Чтение и письмо»", examMath:"Модуль «Математика»", examFull:"Полный экзамен", examRWMeta:"27 вопросов · 32 мин", examMathMeta:"22 вопроса · 35 мин", examFullMeta:"49 вопросов · 67 мин",
+   examStartRW:"Начать Ч&П", examStartMath:"Начать матем.", examStartFull:"Начать полный экзамен", moduleTag:"Модуль с таймером",
+   timeLeft:"Осталось времени", moduleDone:"Модуль завершён", estScore:"Примерный балл", outOf800:"из 800", scaledSec:"{sec} — примерно {score}/800",
+   estScoreNote:"Это ОЦЕНКА. Официальные баллы Digital SAT нормируются по версии теста, а реальный экзамен адаптивный, поэтому ваш настоящий балл будет отличаться.", retakeModule:"Пройти модуль заново" },
+ tr:{ examSim:"Sınav Simülasyonu", examSimSub:"Gerçekçi, süreli bir Digital SAT modülü çöz — sınav günü gibi, bitirene kadar geri bildirim yok. Tek bir modül veya tüm sınavı seç.",
+   examRW:"Okuma & Yazma modülü", examMath:"Matematik modülü", examFull:"Tam sınav", examRWMeta:"27 soru · 32 dk", examMathMeta:"22 soru · 35 dk", examFullMeta:"49 soru · 67 dk",
+   examStartRW:"O&Y başlat", examStartMath:"Matematik başlat", examStartFull:"Tam sınavı başlat", moduleTag:"Süreli modül",
+   timeLeft:"Kalan süre", moduleDone:"Modül tamamlandı", estScore:"Tahmini puan", outOf800:"/ 800", scaledSec:"{sec} — tahmini {score}/800",
+   estScoreNote:"Bu bir TAHMİNDİR. Resmi Digital SAT puanları sınav formuna göre eşitlenir ve gerçek sınav uyarlanabilirdir; bu yüzden gerçek puanın farklı olacaktır.", retakeModule:"Modülü tekrarla" },
+ hi:{ examSim:"परीक्षा सिमुलेशन", examSimSub:"एक यथार्थवादी, समयबद्ध डिजिटल SAT मॉड्यूल दें — परीक्षा वाले दिन की तरह, समाप्त होने तक कोई प्रतिक्रिया नहीं। एक मॉड्यूल या पूरी परीक्षा चुनें।",
+   examRW:"पठन और लेखन मॉड्यूल", examMath:"गणित मॉड्यूल", examFull:"पूरी परीक्षा", examRWMeta:"27 प्रश्न · 32 मिनट", examMathMeta:"22 प्रश्न · 35 मिनट", examFullMeta:"49 प्रश्न · 67 मिनट",
+   examStartRW:"पठन-लेखन शुरू", examStartMath:"गणित शुरू", examStartFull:"पूरी परीक्षा शुरू", moduleTag:"समयबद्ध मॉड्यूल",
+   timeLeft:"शेष समय", moduleDone:"मॉड्यूल पूर्ण", estScore:"अनुमानित स्कोर", outOf800:"800 में से", scaledSec:"{sec} — अनुमानित {score}/800",
+   estScoreNote:"यह एक अनुमान है। आधिकारिक डिजिटल SAT स्कोर परीक्षा-रूप के अनुसार समायोजित होते हैं और असली परीक्षा अनुकूली है, इसलिए आपका वास्तविक स्कोर भिन्न होगा।", retakeModule:"मॉड्यूल दोबारा दें" },
+ ar:{ examSim:"محاكاة الاختبار", examSimSub:"أدِّ وحدة SAT رقمية واقعية ومؤقَّتة — دون تصحيح حتى تنتهي، تماماً كيوم الاختبار. اختر وحدة واحدة أو الاختبار الكامل.",
+   examRW:"وحدة القراءة والكتابة", examMath:"وحدة الرياضيات", examFull:"الاختبار الكامل", examRWMeta:"27 سؤالاً · 32 دقيقة", examMathMeta:"22 سؤالاً · 35 دقيقة", examFullMeta:"49 سؤالاً · 67 دقيقة",
+   examStartRW:"ابدأ القراءة والكتابة", examStartMath:"ابدأ الرياضيات", examStartFull:"ابدأ الاختبار الكامل", moduleTag:"وحدة مؤقَّتة",
+   timeLeft:"الوقت المتبقّي", moduleDone:"اكتملت الوحدة", estScore:"الدرجة التقديرية", outOf800:"من 800", scaledSec:"{sec} — تقديري {score}/800",
+   estScoreNote:"هذه درجة تقديرية. تُعدَّل درجات SAT الرقمي الرسمية حسب نموذج الاختبار، والاختبار الحقيقي تكيّفي، لذا ستختلف درجتك الفعلية.", retakeModule:"إعادة الوحدة" }
+};
+Object.keys(EXAMSIM_UI).forEach(function(L){ for(var k in EXAMSIM_UI[L]) UI[L][k]=EXAMSIM_UI[L][k]; });
 var ENG_UI = {
  en:{ streakN:"{n}-day streak", streakStart:"Start a streak today", goalToday:"{c}/{g} questions today", reviewCard:"Review your mistakes", reviewSub:"Drill the {n} questions you've missed — they leave the list once you get them right.", reviewBtn:"Start review", reviewLabel:"Mistake review", share:"Share result", reviewEmpty:"No mistakes to review — great work!" },
  es:{ streakN:"Racha de {n} días", streakStart:"Empieza una racha hoy", goalToday:"{c}/{g} preguntas hoy", reviewCard:"Repasa tus errores", reviewSub:"Practica las {n} preguntas que fallaste; salen de la lista cuando las aciertas.", reviewBtn:"Empezar repaso", reviewLabel:"Repaso de errores", share:"Compartir resultado", reviewEmpty:"No hay errores que repasar, ¡bien hecho!" },
@@ -1017,12 +1059,17 @@ function renderHome(){
   var secs=[]; bases.forEach(function(c){ if(secs.indexOf(c.section)<0) secs.push(c.section); });
   var groups=secs.map(function(sec){ var cc=bases.filter(function(c){return c.section===sec;}).map(catCard).join('');
     return '<h3 class="sec-h">'+secName(sec)+'</h3><div class="grid">'+cc+'</div>'; }).join('');
-  var mockCard='<div class="mkcard" onclick="startMock()"><span class="mk-badge">'+t('mockMeta',{q:mockTotalQ(),min:mockTotalMin()})+'</span><h3>'+t('mockCard')+'</h3><p>'+t('mockCardSub')+'</p><button class="btn primary" onclick="event.stopPropagation();startMock()">'+t('mockStart')+' →</button></div>';
+  var examCard='<div class="mkcard"><span class="mk-badge">🎯 '+t('moduleTag')+'</span><h3>'+t('examSim')+'</h3><p>'+t('examSimSub')+'</p>'+
+    '<div class="exam-btns">'+
+    '<button class="btn primary" onclick="startMock(\'rw\')">'+t('examStartRW')+'<span class="eb-meta">'+t('examRWMeta')+'</span></button>'+
+    '<button class="btn primary" onclick="startMock(\'math\')">'+t('examStartMath')+'<span class="eb-meta">'+t('examMathMeta')+'</span></button>'+
+    '<button class="btn primary" onclick="startMock(\'full\')">'+t('examStartFull')+'<span class="eb-meta">'+t('examFullMeta')+'</span></button>'+
+    '</div></div>';
   var streak=(window.PR?PR.streakHTML({streak:t('streakN'),start:t('streakStart'),goal:t('goalToday')}):'');
   var mc=(window.PR?PR.mistakeCount('sat'):0);
   var reviewCard=mc>0?('<div class="revcard" onclick="startReview()"><div class="rev-ic">🎯</div><div class="rev-body"><h3>'+t('reviewCard')+'</h3><p>'+t('reviewSub',{n:mc})+'</p></div><button class="btn primary" onclick="event.stopPropagation();startReview()">'+t('reviewBtn')+'</button></div>'):'';
   return '<section class="hero"><h2>'+t('heroTitle')+'</h2><div class="sub">'+t('heroSub')+'</div></section>'+
-    streak+mockCard+reviewCard+'<div class="dlnote">'+t('note')+'</div>'+AD+groups; }
+    streak+examCard+reviewCard+'<div class="dlnote">'+t('note')+'</div>'+AD+groups; }
 function tiles(cat){ var html='',isL=cat.kind==='learn';
   for(var i=0;i<cat.numTests;i++){ var r=getResult(cat.id,i), badge='<span class="badge b-new">'+t('notStarted')+'</span>', best='';
     if(r){ badge=r.passed?'<span class="badge b-pass">'+t('passedB')+'</span>':'<span class="badge b-fail">'+t('notYet')+'</span>'; best='<div class="best">'+t('bestLine',{c:r.bestCorrect,t:r.total,pct:r.bestPct,a:r.attempts})+'</div>'; }
@@ -1083,8 +1130,9 @@ function renderResults(){ var s=state,total=s.test.length,correct=s.correct,pct=
     '<div class="review"><h3>'+t('seeRes')+'</h3>'+reviews+'</div>'; }
 function shareSAT(){ if(!window.PR||!state.test) return; var total=state.test.length,correct=state.correct,pct=Math.round(correct/total*100),pass=correct>=passMark(total);
   PR.shareScore({exam:'Digital SAT · '+catName(state.cat), score:pct+'%', scoreSub:correct+' / '+total, title:(pass?t('resPass'):t('resFail')), tag:(pass?'PASS':null), pass:pass, shareText:'Digital SAT practice: '+pct+'% ('+correct+'/'+total+')'}); }
-function shareMock(){ if(!window.PR||!state.mk||!state.mk.result) return; var r=state.mk.result;
-  PR.shareScore({exam:'Digital SAT — full practice test', score:String(r.totalScore), scoreSub:t('outOf1600'), title:t('mockCard'), pass:r.totalScore>=1000, shareText:'My Digital SAT practice score: '+r.totalScore+'/1600'}); }
+function shareMock(){ if(!window.PR||!state.mk||!state.mk.result) return; var r=state.mk.result, single=r.secScores.length===1, max=r.maxScore||1600;
+  var subj=single?('Digital SAT — '+secName(r.secScores[0].id)+' module'):'Digital SAT — full practice test';
+  PR.shareScore({exam:subj, score:String(r.totalScore), scoreSub:(single?t('outOf800'):t('outOf1600')), title:t('examSim'), pass:r.totalScore>=max*0.625, shareText:'My Digital SAT '+(single?'module':'practice')+' score: '+r.totalScore+'/'+max}); }
 function renderStats(){ var h=loadHistory(); var head='<div class="crumb"><a onclick="go(\'home\')">'+t('home')+'</a> › <span>'+t('statsT')+'</span></div>';
   if(!h.length) return head+'<p style="color:var(--muted);padding:20px 0">'+t('noData')+'</p>';
   var passed=h.filter(function(r){return r.passed;}).length;
@@ -1092,14 +1140,27 @@ function renderStats(){ var h=loadHistory(); var head='<div class="crumb"><a onc
     return '<div class="srow '+(r.passed?'p':'f')+'"><div class="sr-cat">'+(c?catName(c):r.cat)+' · '+(c?testLabel(c,r.idx):t('testN',{n:r.idx+1}))+'</div><div class="badge '+(r.passed?'b-pass':'b-fail')+'">'+r.correct+'/'+r.total+'</div></div>'; }).join('');
   return head+'<h2>'+t('statsT')+'</h2><div class="meta" style="margin:10px 0 16px"><span class="pill">'+t('taken')+': '+h.length+'</span><span class="pill">'+t('passed')+': '+passed+'</span></div>'+rows; }
 
-/* ===== full-length real-format mock: Reading & Writing + Math, timed, scaled 400–1600 ===== */
-var MOCK_SECTIONS=[
-  { id:'rw', minutes:64, draw:{ information:14, craft:15, expression:11, conventions:14 } },
-  { id:'math', minutes:70, draw:{ algebra:15, advanced:15, data:7, geometry:7 } }
-];
+/* ===== Exam Simulation: real-format timed Digital SAT modules, scaled 200–800 per section =====
+   Each module mirrors one real Digital SAT module: R&W = 27 questions / 32 min, Math = 22 / 35 min.
+   Questions are drawn randomly from each section's cats (roughly even per cat), fresh every attempt.
+   Runs: a single R&W module, a single Math module, or the full exam (R&W then Math, back-to-back). */
+var EXAM_MODULES={
+  rw:   { id:'rw',   minutes:32, draw:{ information:7, craft:7, expression:7, conventions:6 } },
+  math: { id:'math', minutes:35, draw:{ algebra:6, advanced:6, data:5, geometry:5 } }
+};
+var EXAM_RUNS={
+  rw:   { id:'rw',   mods:['rw'] },
+  math: { id:'math', mods:['math'] },
+  full: { id:'full', mods:['rw','math'] }
+};
+/* keep MOCK_SECTIONS as the default full-exam module list (back-compat with saved sessions/callers) */
+var MOCK_SECTIONS=EXAM_RUNS.full.mods.map(function(m){ return EXAM_MODULES[m]; });
 function mockSecSize(sec){ var n=0; for(var k in sec.draw) n+=sec.draw[k]; return n; }
-function mockTotalQ(){ var n=0; MOCK_SECTIONS.forEach(function(s){ n+=mockSecSize(s); }); return n; }
-function mockTotalMin(){ var n=0; MOCK_SECTIONS.forEach(function(s){ n+=s.minutes; }); return n; }
+function runMods(runId){ return (EXAM_RUNS[runId]||EXAM_RUNS.full).mods.map(function(m){ return EXAM_MODULES[m]; }); }
+function runTotalQ(runId){ var n=0; runMods(runId).forEach(function(s){ n+=mockSecSize(s); }); return n; }
+function runTotalMin(runId){ var n=0; runMods(runId).forEach(function(s){ n+=s.minutes; }); return n; }
+function mockTotalQ(){ return runTotalQ('full'); }
+function mockTotalMin(){ return runTotalMin('full'); }
 function buildMockSec(sec){
   var items=[];
   Object.keys(sec.draw).forEach(function(catId){
@@ -1122,10 +1183,10 @@ function mockRemainMs(){ return Math.max(0,((state.mk&&state.mk.secEnd)||Date.no
 function fmtClock(ms){ var s=Math.max(0,Math.round(ms/1000)),m=Math.floor(s/60); return m+":"+String(s%60).padStart(2,'0'); }
 function mockTick(){ var el=document.getElementById('mkclock'); if(!el) return; var r=mockRemainMs(); el.textContent=fmtClock(r); if(r<=300000) el.classList.add('low'); if(r<=0){ stopMockTimer(); toast(t('timeUpMsg')); submitSection(true); } }
 function startMockTimer(){ stopMockTimer(); mockInt=setInterval(mockTick,1000); mockTick(); }
-function startMock(){
-  var secs=MOCK_SECTIONS.map(function(sec){ return { id:sec.id, minutes:sec.minutes, items:buildMockSec(sec) }; });
+function startMock(runId){ runId=(runId&&EXAM_RUNS[runId])?runId:'full';
+  var secs=runMods(runId).map(function(sec){ return { id:sec.id, minutes:sec.minutes, items:buildMockSec(sec) }; });
   stopTimer(); stopMockTimer();
-  state={ view:'mockintro', mk:{ secs:secs, sec:0, cur:0,
+  state={ view:'mockintro', mk:{ run:runId, secs:secs, sec:0, cur:0,
     answers:secs.map(function(s){ return new Array(s.items.length).fill(null); }),
     flags:secs.map(function(s){ return new Array(s.items.length).fill(false); }) } };
   window.scrollTo(0,0); render(); syncURL(); saveSession(); }
@@ -1142,13 +1203,14 @@ function submitSection(auto){ var mk=state.mk;
 function continueMock(){ state.mk.sec++; beginSection(); }
 function finishMock(){ var mk=state.mk, secScores=[], totalRaw=0, total=0, totalScore=0;
   mk.secs.forEach(function(sec,si){ var raw=0; sec.items.forEach(function(it,qi){ if(mk.answers[si][qi]===it.answer) raw++; }); var sc=scaleSAT(raw,sec.items.length); secScores.push({id:sec.id,raw:raw,total:sec.items.length,score:sc}); totalRaw+=raw; total+=sec.items.length; totalScore+=sc; });
-  mk.result={secScores:secScores,totalScore:totalScore,totalRaw:totalRaw,total:total};
+  var maxScore=800*mk.secs.length; /* single module: /800, full exam: /1600 */
+  mk.result={run:mk.run||'full',secScores:secScores,totalScore:totalScore,totalRaw:totalRaw,total:total,maxScore:maxScore};
   try{ if(window.PR){ PR.recordActivity(total); mk.secs.forEach(function(sec,si){ sec.items.forEach(function(it,qi){ if(mk.answers[si][qi]!==it.answer) PR.recordMistakes('sat',it.catId,[it.qid]); }); }); } }catch(e){}
-  pushHistory({ts:Date.now(),cat:'mock',idx:0,correct:totalRaw,total:total,passed:totalScore>=1000,score:totalScore});
+  pushHistory({ts:Date.now(),cat:'mock',idx:0,correct:totalRaw,total:total,passed:totalScore>=maxScore*0.625,score:totalScore});
   stopMockTimer(); state.view='mockresults'; window.scrollTo(0,0); render(); syncURL(); clearSession(); }
 function confirmMockQuit(){ if(confirm(t('confirmMockQuit'))){ stopMockTimer(); clearSession(); go('home'); } }
 function renderMockIntro(){ var mk=state.mk, sec=mk.secs[mk.sec];
-  return '<div class="crumb"><a onclick="confirmMockQuit()">'+t('home')+'</a> › <span>'+t('mockCard')+'</span></div>'+
+  return '<div class="crumb"><a onclick="confirmMockQuit()">'+t('home')+'</a> › <span>'+t('examSim')+'</span></div>'+
     '<div class="mkintro"><div class="mk-step">'+t('secOf',{n:mk.sec+1,t:mk.secs.length})+'</div>'+
     '<h2>'+secName(sec.id)+'</h2><div class="mk-meta">'+t('secQmin',{q:sec.items.length,min:sec.minutes})+'</div>'+
     '<p class="mk-note">'+t('secNoBack')+'</p>'+
@@ -1160,7 +1222,7 @@ function paintMock(){ var mk=state.mk, sec=mk.secs[mk.sec], it=sec.items[mk.cur]
   var pal=sec.items.map(function(_,i){ var a=mk.answers[mk.sec][i]!==null, f=mk.flags[mk.sec][i], c=i===mk.cur; return '<button class="pcell'+(c?' cur':'')+(a?' ans':'')+(f?' flag':'')+'" onclick="mkJump('+i+')">'+(i+1)+'</button>'; }).join('');
   var last=mk.cur===sec.items.length-1, first=mk.cur===0, fl=mk.flags[mk.sec][mk.cur];
   document.getElementById('runner').innerHTML=
-    '<div class="mkbar"><span class="mk-sec">'+secName(sec.id)+'</span><span class="mk-clock" id="mkclock">'+fmtClock(mockRemainMs())+'</span></div>'+
+    '<div class="mkbar"><span class="mk-sec">'+secName(sec.id)+'</span><span class="mk-clockwrap"><span class="mk-clocklbl">⏱ '+t('timeLeft')+'</span><span class="mk-clock" id="mkclock">'+fmtClock(mockRemainMs())+'</span></span></div>'+
     '<div class="runbar"><span class="qpos">'+t('qOfN',{n:mk.cur+1,t:sec.items.length})+'</span><button class="flagbtn'+(fl?' on':'')+'" onclick="mkFlag()">⚑ '+(fl?t('flaggedQ'):t('flagQ'))+'</button></div>'+
     '<div class="qbody"><div class="qtext">'+qd.q+'</div><div class="opts">'+opts+'</div></div>'+
     '<div class="mkpalette">'+pal+'</div>'+
@@ -1173,16 +1235,19 @@ function renderMockBreak(){ var mk=state.mk, nxt=mk.secs[mk.sec+1];
   return '<div class="mkbreak"><div class="seal">✓</div><h2>'+t('breakTitle')+'</h2>'+
     '<div class="mk-meta">'+t('breakNext',{sec:secName(nxt.id)})+' — '+t('secQmin',{q:nxt.items.length,min:nxt.minutes})+'</div>'+
     '<button class="btn primary big" onclick="continueMock()">'+t('continueBtn')+'</button></div>'; }
-function renderMockResults(){ var r=state.mk.result;
+function renderMockResults(){ var r=state.mk.result, run=r.run||'full', single=r.secScores.length===1;
   var secRows=r.secScores.map(function(s){ return '<div class="mk-srow"><span class="mk-sname">'+secName(s.id)+'</span><span class="mk-sscore">'+s.score+'</span><span class="mk-raw">'+t('rawCorrect',{c:s.raw,t:s.total})+'</span></div>'; }).join('');
   var reviews=[];
   state.mk.secs.forEach(function(sec,si){ sec.items.forEach(function(it,qi){ var qd=qData(it.catId,it.qid),disp=it.optOrder.map(function(oi){return qd.options[oi];}),you=state.mk.answers[si][qi],ok=you===it.answer,youTxt=you===null?'—':disp[you];
     var rows=ok?('<div class="ra correct">'+disp[it.answer]+'</div>'):('<div class="ra you-wrong">'+youTxt+'</div><div class="ra correct">'+disp[it.answer]+'</div>');
     reviews.push('<div class="rev"><div class="rq">'+secName(sec.id)+' · '+qd.q+'</div>'+rows+'<div class="rhb"><b>📐 '+qd.hbref+':</b> '+qd.explanation+'</div></div>'); }); });
-  return '<div class="crumb"><a onclick="go(\'home\')">'+t('home')+'</a> › <span>'+t('mockCard')+'</span></div>'+
-    '<div class="mkresult"><div class="mk-total">'+r.totalScore+'</div><div class="mk-outof">'+t('outOf1600')+'</div>'+
-    '<div class="mk-secs">'+secRows+'</div><p class="mk-est">'+t('estNote')+'</p>'+
-    '<div class="actions"><button class="btn primary" onclick="startMock()">'+t('retakeMock')+'</button>'+
+  /* single module → estimate out of 800 (labelled clearly); full exam → 400–1600 (sum of both sections) */
+  var outLbl=single?t('outOf800'):t('outOf1600');
+  var estLbl='<div class="mk-estlbl">'+t('estScore')+'</div>';
+  return '<div class="crumb"><a onclick="go(\'home\')">'+t('home')+'</a> › <span>'+t('examSim')+'</span></div>'+
+    '<div class="mkresult"><div class="mk-total">'+r.totalScore+'</div><div class="mk-outof">'+outLbl+'</div>'+estLbl+
+    '<div class="mk-secs">'+secRows+'</div><p class="mk-est">'+t('estScoreNote')+'</p>'+
+    '<div class="actions"><button class="btn primary" onclick="startMock(\''+run+'\')">'+(single?t('retakeModule'):t('retakeMock'))+'</button>'+
     '<button class="btn ghost" onclick="shareMock()">'+t('share')+'</button>'+
     '<button class="btn ghost" onclick="go(\'home\')">'+t('allCats')+'</button></div></div>'+AD+
     '<div class="review"><h3>'+t('mockReviewT')+'</h3>'+reviews.join('')+'</div>'; }
@@ -1210,7 +1275,7 @@ function toggleLangMenu(e){ if(e) e.stopPropagation(); document.getElementById('
 function toggleExamMenu(e){ if(e) e.stopPropagation(); document.getElementById('examdd').classList.toggle('open'); }
 document.addEventListener('click',function(){ ['langdd','examdd'].forEach(function(id){ var d=document.getElementById(id); if(d) d.classList.remove('open'); }); });
 function setLang(l){ LANG=l; try{ localStorage.setItem(LKEY,l); }catch(e){} document.documentElement.setAttribute('lang',l); document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr'); renderLangMenu(); applyChrome(); render(); }
-function switchExam(ex){ if(ex==='home'){ location.href='../home/index.html'+(LANG!=='en'?'?lang='+LANG:''); return; } var q=(LANG!=='en'?'?lang='+LANG:''); if(ex==='cdl') location.href='../index.html?exam=cdl'+(LANG!=='en'?'&lang='+LANG:''); else if(ex==='dl') location.href='../dl/index.html'+q; else if(ex==='civ') location.href='../citizenship/index.html'+q; else if(ex==='moto') location.href='../motorcycle/index.html'+q; else if(ex==='ged') location.href='../ged/index.html'+q; else if(ex==='fh') location.href='../food-handler/index.html'+q; else if(ex==='cb') location.href='../customs-broker/index.html'+q; }
+function switchExam(ex){ if(ex==='home'){ location.href='../home/index.html'+(LANG!=='en'?'?lang='+LANG:''); return; } var q=(LANG!=='en'?'?lang='+LANG:''); if(ex==='cdl') location.href='../index.html?exam=cdl'+(LANG!=='en'?'&lang='+LANG:''); else if(ex==='dl') location.href='../dl/index.html'+q; else if(ex==='civ') location.href='../citizenship/index.html'+q; else if(ex==='moto') location.href='../motorcycle/index.html'+q; else if(ex==='ged') location.href='../ged/index.html'+q; else if(ex==='fh') location.href='../food-handler/index.html'+q; else if(ex==='cb') location.href='../customs-broker/index.html'+q; else if(ex==='ssm') location.href='../servsafe/index.html'+q; else if(ex==='boater') location.href='../boater/index.html'+q; else if(ex==='drone') location.href='../drone/index.html'+q; else if(ex==='epa') location.href='../epa608/index.html'+q; else if(ex==='guard') location.href='../security-guard/index.html'+q; else if(ex==='re') location.href='../real-estate/index.html'+q; else if(ex==='notary') location.href='../notary/index.html'+q; }
 function toggleTheme(){ var d=document.documentElement.getAttribute('data-theme')==='dark'?'':'dark'; document.documentElement.setAttribute('data-theme',d); try{ localStorage.setItem(TKEY,d); }catch(e){} var b=document.getElementById('themeBtn'); if(b) b.textContent=d==='dark'?'☀️':'🌙'; }
 function resetAll(){ if(confirm(t('confirmReset'))){ try{ localStorage.removeItem(PKEY); localStorage.removeItem(HKEY); }catch(e){} clearSession(); go('home'); } }
 function applyChrome(){ var bs=document.getElementById('brandSub'); if(bs) bs.textContent=t('sub');
